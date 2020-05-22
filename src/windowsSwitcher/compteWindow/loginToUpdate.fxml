@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to left, #537895 0%, #09203f 74%);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="windowsSwitcher.compteWindow.LoginToUpdate">
+   <children>
+      <VBox alignment="CENTER" prefHeight="326.0" prefWidth="400.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Vérification de profil" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Rockwell" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/verificationIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="304.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/accountIcon.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="usernameTestField" prefHeight="28.0" prefWidth="218.0" promptText="Nom d'utilisateur" styleClass="loginTextFeild" stylesheets="@../windowsSwitcher.css" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="40.0" layoutY="186.0" prefHeight="33.0" prefWidth="304.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/passwordIcon.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="passwordTextField" prefHeight="28.0" prefWidth="219.0" promptText="Mot de passe" styleClass="loginTextFeild" stylesheets="@../windowsSwitcher.css" />
+               </children>
+            </HBox>
+            <Label fx:id="erreurMessage" text="Nom d'utilisateur ou mot de passe sont fausses !!" textFill="#ff80d5" visible="false">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" spacing="50.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button fx:id="EnterButton" mnemonicParsing="false" onAction="#handleEnterButton" prefHeight="32.0" prefWidth="145.0" style="-fx-font-weight: bold;" styleClass="AddUserButton" stylesheets="@../windowsSwitcher.css" text="Entrer" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="annulerButton" mnemonicParsing="false" onAction="#handleAnnulerButton" prefHeight="32.0" prefWidth="147.0" style="-fx-font-weight: bold;" styleClass="AnnulerButton" stylesheets="@../windowsSwitcher.css" text="Annuler" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

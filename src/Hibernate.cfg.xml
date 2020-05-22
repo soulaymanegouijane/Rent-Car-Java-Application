@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		
+
+		<!-- SQL Dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		
+		<!-- Database Connection Settings -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/projet_location</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.pool_size">10</property>
+		<property name="show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<!-- Specifying Session Context -->
+		<property name="current_session_context_class">thread</property>
+
+		<mapping class="Entities.Carburant"/>
+	 	<mapping class="Entities.Client"/>
+                <mapping class="Entities.Parking"/>
+                <mapping class="Entities.Status"/>
+                <mapping class="Entities.TypeReservation"/>
+                <mapping class="Entities.Role"/>
+                <mapping class="Entities.Utilisateur"/>
+                <mapping class="Entities.Factures"/>
+                <mapping class="Entities.Sanction"/>
+                <mapping class="Entities.Type"/>
+                <mapping class="Entities.Marque"/>
+                <mapping class="Entities.Vehicule"/>
+                <mapping class="Entities.Reservation"/>
+                <mapping class="Entities.Contrat"/>
+        <!--<mapping class="ControllerImpl.ClientImp"/>
+        <mapping class="ControllerImpl.CarburantImpl"/>
+        <mapping class="ControllerImpl.ParkingImpl"/>
+        <mapping class="ControllerImpl.ReservationImpl"/>
+        <mapping class="ControllerImpl.VehiculeImpl"/>
+        <mapping class="ControllerImpl.UtilisateurImpl"/>
+        <mapping class="ControllerImpl.ContratImpl"/>
+        <mapping class="ControllerImpl.FactureImpl"/>
+        <mapping class="ControllerImpl.SanctionImpl"/>
+        <mapping class="ControllerImpl.RoleImpl"/>
+        <mapping class="ControllerImpl.StatusImpl"/>
+        <mapping class="ControllerImpl.MarqueImpl"/>
+        <mapping class="ControllerImpl.TypeReservationImpl"/>
+        <mapping class="ControllerImpl.TypeImpl"/>
+        <mapping class="Interfaces.ClientInter"/>
+        <mapping class="Interfaces.CarburantInter"/>
+        <mapping class="Interfaces.ParkingInter"/>
+        <mapping class="Interfaces.ReservationInter"/>
+        <mapping class="Interfaces.VehiculeInter"/>
+        <mapping class="Interfaces.UtilisateurInter"/>
+        <mapping class="Interfaces.ContratInter"/>
+        <mapping class="Interfaces.FactureInter"/>
+        <mapping class="Interfaces.SanctionInter"/>
+        <mapping class="Interfaces.RoleInter"/>
+        <mapping class="Interfaces.StatusInter"/>
+        <mapping class="Interfaces.MarqueInter"/>
+        <mapping class="Interfaces.TypeReservationInter"/>
+        <mapping class="Interfaces.TypeInter"/>
+        <mapping class="AbstractClasses.Abst"/>
+        <mapping class="windowsSwitcher.clientWindow.ClientWindow"/>
+        <mapping class="windowsSwitcher.windowsSwitcher"/>
+        <mapping class="utilisateurPage.UtilisateurPage"/>
+        <mapping class="windowsSwitcher.contratWindow.ContratWindow"/>
+        <mapping class="windowsSwitcher.parkingWindow.parkingWindow"/>
+        <mapping class="windowsSwitcher.reservationWindow.ReservationWindow"/>
+        <mapping class="windowsSwitcher.utilisateurWindow.UtilisateurWindow"/>
+        <mapping class="windowsSwitcher.vehiculeWindow.VehiculeWindow"/>
+        <mapping class="sample.Main"/>
+        <mapping class="sample.Controller"/>
+        <mapping class="loginPage.LoginMain"/>
+        <mapping class="homePage.HomePage"/> -->
+		
+		
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,84 @@
+.root{
+    -fx-background-image: url("../img/lines-8538-1920x1200.jpg");
+    -fx-background-size: cover;
+}
+
+.menuButton {
+    -fx-background-color : transparent;
+    -fx-border-radius : 50;
+    -fx-border-color : white;
+}
+
+.menuButton:hover {
+    -fx-background-color : linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    -fx-background-radius :  50 50 50 50;
+    -fx-border-radius : 40;
+    -fx-border-width: 10 10 10 10;
+    -fx-border-color : white;
+}
+
+.menuButton:pressed {
+    -fx-background-color : linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+    -fx-background-radius :  50 50 50 50;
+    -fx-border-radius : 40;
+    -fx-border-width: 10 10 10 10;
+    -fx-border-color : white;
+}
+
+.deconnexionButton {
+    -fx-background-color : transparent;
+    -fx-border-color : white;
+    -fx-border-radius : 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-border-width:  0px 0px 5px 0px;
+}
+
+.deconnexionButton:hover{
+    -fx-background-color : linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color : white;
+    -fx-border-radius : 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-border-width:  5px 5px 5px 5px;
+}
+
+.deconnexionButton:pressed{
+    -fx-background-color : linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color : white;
+    -fx-border-radius : 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-border-width:  5px 5px 5px 5px;
+}
+
+.accountButton {
+    -fx-background-color : transparent;
+    -fx-border-color : white;
+    -fx-border-radius : 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-border-width:  0px 0px 5px 0px;
+}
+
+.accountButton:hover{
+    -fx-background-color : linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color : white;
+    -fx-border-radius : 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-border-width:  5px 5px 5px 5px;
+}
+
+.accountButton:pressed{
+    -fx-background-color : linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color : white;
+    -fx-border-radius : 20;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.2em;
+    -fx-border-width:  5px 5px 5px 5px;
+}

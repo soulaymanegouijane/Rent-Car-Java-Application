@@ -1,0 +1,113 @@
+
+.leftPane {
+    -fx-background-color: linear-gradient(to bottom, #485461 10%, #28313b 74%);
+}
+
+.topPane {
+    -fx-background-color: linear-gradient(to right, #485461 10%, #3584A7 51%, #30D2BE 100%);
+
+}
+
+.menuButton {
+    -fx-background-color : transparent;
+}
+
+.menuButton:hover {
+    -fx-background-color : linear-gradient(to left, #000000 0%, #2c3e50 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.menuButton:pressed {
+    -fx-background-color : linear-gradient(to right, #485461 10%, #3584A7 51%, #30D2BE 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.menuButton:cancel {
+    -fx-background-color : linear-gradient(to right, #485461 10%, #3584A7 51%, #30D2BE 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.comboBox {
+    -fx-background-color: #D4CEE3;
+    -fx-border-color: #2F2B43;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2 2 2 2;
+    -fx-font-weight: bold;
+}
+
+.searchTextFeild {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #2D75E8;
+}
+
+.searchButton {
+    -fx-background-color : linear-gradient(to left, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.searchButton:hover {
+    -fx-background-color : linear-gradient(to left, #6E7FF3 0%, #5753C9 48%, #3D4E81 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: white;
+}
+
+.searchButton:pressed {
+    -fx-background-color : linear-gradient(to left, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.AddUserButton {
+    -fx-background-color : linear-gradient(to left, #7f53ac 0%, #647dee 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.AddUserButton:hover {
+    -fx-background-color : linear-gradient(to left, #647dee 0%, #7f53ac 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.AddUserButton:pressed {
+    -fx-background-color : linear-gradient(to left, #7f53ac 0%, #647dee 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.detailsUserButton {
+    -fx-background-color : linear-gradient(to left, #3bb78f 0%, #0bab64 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.detailsUserButton:hover {
+    -fx-background-color : linear-gradient(to left, #0bab64 0%, #3bb78f 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.detailsUserButton:pressed {
+    -fx-background-color : linear-gradient(to left, #3bb78f 0%, #0bab64 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}

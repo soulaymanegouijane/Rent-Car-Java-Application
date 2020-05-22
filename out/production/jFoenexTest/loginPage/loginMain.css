@@ -1,0 +1,12 @@
+.root{
+    -fx-background-image: url("../img/BackgroundCar.jpg");
+    -fx-background-size: cover;
+}
+
+#username{
+    -fx-text-fill: white;
+}
+
+#password{
+    -fx-text-fill: white;
+}

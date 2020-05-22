@@ -1,0 +1,254 @@
+
+.leftPane {
+    -fx-background-color: linear-gradient(to bottom, #485461 10%, #28313b 74%);
+}
+
+.topPane {
+    -fx-background-color: linear-gradient(to right, #485461 10%, #3584A7 51%, #30D2BE 100%);
+
+}
+
+.menuButton {
+    -fx-background-color : transparent;
+}
+
+.menuButton:hover {
+    -fx-background-color : linear-gradient(to left, #000000 0%, #2c3e50 74%);
+
+}
+
+.menuButton:pressed {
+    -fx-background-color : linear-gradient(to right, #485461 10%, #3584A7 51%, #30D2BE 100%);
+}
+
+.menuButton:cancel {
+    -fx-background-color : linear-gradient(to right, #485461 10%, #3584A7 51%, #30D2BE 100%);
+}
+
+.logoutButton {
+    -fx-background-color : transparent;
+}
+
+.logoutButton:hover {
+    -fx-background-color : linear-gradient(to left, #bd4f6c 0%, #d7816a 74%);
+}
+
+.logoutButton:pressed {
+    -fx-background-color : linear-gradient(to left, #d7816a 0%, #bd4f6c 74%);
+}
+
+.logoutButton:cancel {
+    -fx-background-color : linear-gradient(to left, #d7816a 0%, #bd4f6c 74%);
+}
+
+.homeButton {
+    -fx-background-color : transparent;
+}
+
+.homeButton:hover {
+    -fx-background-color : linear-gradient(to left, #a40606 0%, #d98324 74%);
+}
+
+.homeButton:pressed {
+    -fx-background-color : linear-gradient(to left, #d98324 0%, #a40606 74%);
+}
+
+.homeButton:cancel {
+    -fx-background-color : linear-gradient(to left, #d98324 0%, #a40606 74%);
+}
+
+.comboBox {
+    -fx-background-color: #D4CEE3;
+    -fx-border-color: #2F2B43;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2 2 2 2;
+    -fx-font-weight: bold;
+}
+
+.searchTextFeild {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #2D75E8;
+}
+
+.searchButton {
+    -fx-background-color : linear-gradient(to left, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.searchButton:hover {
+    -fx-background-color : linear-gradient(to left, #6E7FF3 0%, #5753C9 48%, #3D4E81 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.searchButton:pressed {
+    -fx-background-color : linear-gradient(to left, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.AddUserButton {
+    -fx-background-color : linear-gradient(to left, #7f53ac 0%, #647dee 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+}
+
+.AddUserButton:hover {
+    -fx-background-color : linear-gradient(to left, #647dee 0%, #7f53ac 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+}
+
+.AddUserButton:pressed {
+    -fx-background-color : linear-gradient(to left, #7f53ac 0%, #647dee 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+}
+
+.detailsUserButton {
+    -fx-background-color : linear-gradient(to left, #3bb78f 0%, #0bab64 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.detailsUserButton:hover {
+    -fx-background-color : linear-gradient(to left, #0bab64 0%, #3bb78f 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.detailsUserButton:pressed {
+    -fx-background-color : linear-gradient(to left, #3bb78f 0%, #0bab64 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+}
+
+.choisirComboBox {
+    -fx-background-color: transparent;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-prompt-text-fill: white;
+}
+
+.choisirComboBox .list-cell {
+    -fx-background-color: #5a5a5a;
+}
+
+.choisirComboBox .text {
+    -fx-fill: white;
+}
+
+.sliderStyle .range-bar{
+    -fx-background-color: lime;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: lime;
+    -fx-border-width: 0 0 2 0;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkslateblue;
+    -fx-font-size: 16;
+}
+
+.ComboBox {
+    -fx-background-color: transparent;
+    -fx-border-color: lime;
+    -fx-border-width: 0 0 2 0;
+    -fx-font-family: Rockwell;
+    -fx-font-size: 14;
+}
+
+.ComboBox .text {
+    -fx-fill: darkslateblue;
+}
+
+.date {
+    -fx-background-color: transparent;
+    -fx-border-color: lime;
+    -fx-border-width: 0 0 1 0;
+    -fx-font-family: Rockwell;
+    -fx-font-size: 14;
+}
+
+.styledTextFeild {
+    -fx-background-color: transparent;
+    -fx-border-color: lime;
+    -fx-border-width: 0 0 2 0;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkslateblue;
+    -fx-font-size: 16;
+}
+
+.chooseImageButton {
+    -fx-background-color: linear-gradient(to left, #7cffcb 0%, #74f2ce 74%);
+    -fx-font-family: Rockwell;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.AnnulerButton {
+    -fx-background-color : linear-gradient(to left, #bd4f6c 0%, #d7816a 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+}
+
+.AnnulerButton:hover {
+    -fx-background-color : linear-gradient(to left, #d7816a 0%, #bd4f6c 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+}
+
+.AnnulerButton:pressed {
+    -fx-background-color : linear-gradient(to left, #bd4f6c 0%, #d7816a 74%);
+    -fx-background-radius: 50 50 50 50;
+    -fx-border-radius : 50;
+    -fx-border-color: white;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+}
+
+.loginTextFeild {
+    -fx-background-color: transparent;
+    -fx-font-family: Rockwell;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
