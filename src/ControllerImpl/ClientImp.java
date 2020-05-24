@@ -14,11 +14,7 @@ import Interfaces.ClientInter;
 import javafx.collections.ObservableList;
 
 public class ClientImp extends Abst implements ClientInter{
-	
-	
-	
-	Connection con = null;
-	
+
 	@Override
 	public int add(Client arg) {
 		
@@ -27,10 +23,9 @@ public class ClientImp extends Abst implements ClientInter{
 				+ "lieu_naissance,n_permis,delivrer , validitePermis, delevre_a,type_identifiant , num_carte, validitePI,code_postale,ville,pays,nationalite)"
 				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
-		Connection conn = null;
+		Connection con = Abst.getConnection();
 		try {
-			conn = Abst.getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
 			preparedStatement.setString(1,arg.getNom());
 			preparedStatement.setString(2,arg.getPrenom());
 			preparedStatement.setString(3,arg.getAdress());
@@ -68,13 +63,11 @@ public class ClientImp extends Abst implements ClientInter{
 
 	@Override
 	public Client edit(Client arg) {
-		
 		String sql = "UPDATE Client SET nom=?, prenom=?, adress=?, telephone=?, email=?, age=?, civilite=?, date_naissance=?,"
 				+ "lieu_naissance=?,n_permis=?,delivrer=? , validitePermis=?, delevre_a=?,type_identifiant=? , num_carte=?, validitePI=?  where idClient=?";
 		Connection con = Abst.getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			
 			ps.setString(1,arg.getNom());
 			ps.setString(2,arg.getPrenom());
 			ps.setString(3,arg.getAdress());
@@ -91,7 +84,7 @@ public class ClientImp extends Abst implements ClientInter{
 			ps.setString(5,arg.getCarte_identifiant());
 			ps.setString(5,arg.getNum_carte());
 			//ps.setDate(1, arg.getValiditePI());
-			ps.setLong(6, arg.getIdClient());
+			ps.setString(6, arg.getIdClient());
 			ps.executeUpdate();
 			arg.setIdClient(arg.getIdClient());
 			arg.setAdress(arg.getAdress());
@@ -128,12 +121,12 @@ public class ClientImp extends Abst implements ClientInter{
 
 	@Override
 	public int delete(Client arg) {
-		
+		Connection con = Abst.getConnection();
 		int status = 0;
 		try {
 			String sql = "DELETE FROM client where idClient=?";
 			PreparedStatement ps =  con.prepareStatement(sql);
-			ps.setLong(1,arg.getIdClient());
+			ps.setString(1,arg.getIdClient());
 			status = ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -153,7 +146,7 @@ public class ClientImp extends Abst implements ClientInter{
 
 	@Override
 	public List<Client> getAll() {
-		
+		Connection con = Abst.getConnection();
 		List<Client> list = new ArrayList<Client>();
 		try {
 			String sql = "select * from Client";
@@ -161,7 +154,7 @@ public class ClientImp extends Abst implements ClientInter{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Client client = new Client();
-				client.setIdClient(rs.getLong("idClient"));
+				client.setIdClient(rs.getString("idClient"));
 				client.setNom(rs.getString("nom"));
 				client.setPrenom(rs.getString("prenom"));
 				client.setAdress(rs.getString("adress"));
@@ -196,7 +189,7 @@ public class ClientImp extends Abst implements ClientInter{
 
 	@Override
 	public Client get(String nom) {
-		
+		Connection con = Abst.getConnection();
 		Client client = new Client();
 		try {
 			String sql = "Select * from Client where nom=?";
@@ -205,7 +198,7 @@ public class ClientImp extends Abst implements ClientInter{
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				client.setIdClient(rs.getLong("idClient"));
+				client.setIdClient(rs.getString("idClient"));
 				client.setNom(rs.getString("nom"));
 				client.setPrenom(rs.getString("prenom"));
 				client.setAdress(rs.getString("adress"));
@@ -226,7 +219,6 @@ public class ClientImp extends Abst implements ClientInter{
 				return null;
 			}
 			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -244,16 +236,17 @@ public class ClientImp extends Abst implements ClientInter{
 	/** Logique ? ou non */
 	@Override
 	public List<Reservation> trouverTousLesReservation(Client client) {
+		Connection con = Abst.getConnection();
 		List<Reservation> list = new ArrayList<Reservation>();
 		try {
 			String sql = "Select * from Reservation where idClient = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setLong(1, client.getIdClient());
+			ps.setString(1, client.getIdClient());
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Reservation res = new Reservation();
 				res.setIdReservation(rs.getLong(1));
-				res.setDatReservation(rs.getDate(2));
+				res.setDatReservation(rs.getString(2));
 				ClientImp cli = new ClientImp();
 				StatusImpl sti = new StatusImpl();
 				TypeReservationImpl tri = new TypeReservationImpl();
@@ -277,8 +270,7 @@ public class ClientImp extends Abst implements ClientInter{
 
 	@Override
 	public Client getById(long id) {
-		
-		
+		Connection con = Abst.getConnection();
 		Client client = new Client();
 		try {
 			String sql = "select * from Client where idClient = ?";
@@ -286,7 +278,7 @@ public class ClientImp extends Abst implements ClientInter{
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				client.setIdClient(rs.getLong("idClient"));
+				client.setIdClient(rs.getString("idClient"));
 				client.setNom(rs.getString("nom"));
 				client.setPrenom(rs.getString("prenom"));
 				client.setAdress(rs.getString("adress"));
@@ -319,7 +311,7 @@ public class ClientImp extends Abst implements ClientInter{
 	}
 
 	public Client byPrenom(String prenom) {
-		
+		Connection con = Abst.getConnection();
 		Client client = new Client();
 		try {
 			String sql = "Select * from Client where prenom=?";
@@ -328,7 +320,7 @@ public class ClientImp extends Abst implements ClientInter{
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				client.setIdClient(rs.getLong("idClient"));
+				client.setIdClient(rs.getString("idClient"));
 				client.setNom(rs.getString("nom"));
 				client.setPrenom(rs.getString("prenom"));
 				client.setAdress(rs.getString("adress"));
@@ -355,16 +347,15 @@ public class ClientImp extends Abst implements ClientInter{
 	}
 	
 	public Client byNom(String nom) {
-		
+		Connection con = Abst.getConnection();
 		Client client = new Client();
 		try {
 			String sql = "Select * from Client where nom=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, nom);
 			ResultSet rs =  ps.executeQuery();
-			
 			if(rs.next()) {
-				client.setIdClient(rs.getLong("idClient"));
+				client.setIdClient(rs.getString("idClient"));
 				client.setNom(rs.getString("nom"));
 				client.setPrenom(rs.getString("prenom"));
 				client.setAdress(rs.getString("adress"));
@@ -391,7 +382,7 @@ public class ClientImp extends Abst implements ClientInter{
 	}
 	
 	public Client ByCin(String cin) {
-		
+		Connection con = Abst.getConnection();
 		Client client = new Client();
 		try {
 			String sql = "Select * from Client where cin=?";
@@ -400,7 +391,7 @@ public class ClientImp extends Abst implements ClientInter{
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				client.setIdClient(rs.getLong("idClient"));
+				client.setIdClient(rs.getString("idClient"));
 				client.setNom(rs.getString("nom"));
 				client.setPrenom(rs.getString("prenom"));
 				client.setAdress(rs.getString("adress"));
@@ -428,6 +419,12 @@ public class ClientImp extends Abst implements ClientInter{
 	
 	public ObservableList<Client> retourne(){
 		
+		return null;
+	}
+
+	@Override
+	public Client getById(String id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

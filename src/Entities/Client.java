@@ -16,60 +16,59 @@ import javax.persistence.Table;
 public class Client implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idClient", nullable=false)
-	private long idClient;
-	@Column(name="age",nullable=false)
+	private String idClient;
+	@Column(name="age",nullable=true)
 	private int age;
-	@Column(name="nom",nullable=false)
+	@Column(name="nom",nullable=true)
 	private String nom;
-	@Column(name="prenom",nullable=false)
+	@Column(name="prenom",nullable=true)
 	private String prenom;
-	@Column(name="adress",nullable=false)
+	@Column(name="adress",nullable=true)
 	private String adress;
-	@Column(name="telephone",nullable=false)
+	@Column(name="telephone",nullable=true)
 	private String telephone;
-	@Column(name="email",nullable=false)
+	@Column(name="email",nullable=true)
 	private String email;	
-	@Column(name="civilite",nullable=false)
+	@Column(name="civilite",nullable=true)
 	private String civilite;
-	@Column(name="date_naissance",nullable=false)
+	@Column(name="date_naissance",nullable=true)
 	private String date_naissance;
-	@Column(name="lieu_naissance",nullable=false)
+	@Column(name="lieu_naissance",nullable=true)
 	private String lieu_naissance;
-	@Column(name="n_permis",nullable=false)
+	@Column(name="n_permis",nullable=true)
 	private String n_permis;
-	@Column(name="delevre_le",nullable=false)
+	@Column(name="delevre_le",nullable=true)
 	private String delevre_le;
-	@Column(name="validitePermis",nullable=false)
+	@Column(name="validitePermis",nullable=true)
 	private String validitePermis;
-	@Column(name="delevre_a",nullable=false)
+	@Column(name="delevre_a",nullable=true)
 	private String delevre_a;
-	@Column(name="type_identifiant",nullable=false)
+	@Column(name="type_identifiant",nullable=true)
 	private String carte_identifiant;
-	@Column(name="num_carte",nullable=false)
+	@Column(name="num_carte",nullable=true)
 	private String num_carte;
-	@Column(name="validitePI",nullable=false)
+	@Column(name="validitePI",nullable=true)
 	private String validitePI;
-	@Column(name="ville",nullable=false)
+	@Column(name="ville",nullable=true)
 	private String ville;
-	@Column(name="pays",nullable=false)
+	@Column(name="pays",nullable=true)
 	private String pays;
-	@Column(name="code_postale",nullable=false)
+	@Column(name="code_postale",nullable=true)
 	private String  code_postale;
-	@Column(name="nationalite",nullable=false)
+	@Column(name="nationalite",nullable=true)
 	private String nationalite;
 	//private List<Reservation> listReservation = new ArrayList<>();
 	/**
 	 * @return the idClient
 	 */
-	public long getIdClient() {
+	public String getIdClient() {
 		return idClient;
 	}
 	/**
 	 * @param idClient the idClient to set
 	 */
-	public void setIdClient(long idClient) {
+	public void setIdClient(String idClient) {
 		this.idClient = idClient;
 	}
 	/**
@@ -330,7 +329,7 @@ public class Client implements Serializable{
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
 	}
-	public Client(long idClient, int age, String nom, String prenom, String adress, String telephone, String email,
+	public Client(String idClient, int age, String nom, String prenom, String adress, String telephone, String email,
 			String civilite, String date_naissance, String lieu_naissance, String n_permis, String delevre_le,
 			String validitePermis, String delevre_a, String carte_identifiant, String num_carte, String validitePI,
 			String ville, String pays, String code_postale, String nationalite) {

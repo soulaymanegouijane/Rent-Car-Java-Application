@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Contrat.AjouterUnContrat">
+   <children>
+      <Pane prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
+         <children>
+            <Label layoutX="290.0" layoutY="18.0" styleClass="text" stylesheets="@../Css/textStyle.css" text="Créer Une Contrat" textFill="WHITE" />
+            <JFXButton fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="697.0" layoutY="13.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="89.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+         </children>
+      </Pane>
+      <VBox layoutX="114.0" layoutY="72.0" prefHeight="494.0" prefWidth="572.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label text="Reférence Du Contrat :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="idContrat" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Date Du Contrat :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXComboBox fx:id="comboday1" prefHeight="23.0" prefWidth="57.0" promptText="jour :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="combomonth1" layoutX="158.0" layoutY="27.0" prefHeight="23.0" prefWidth="61.0" promptText="Mois :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="comboyear1" layoutX="214.0" layoutY="27.0" prefHeight="23.0" prefWidth="72.0" promptText="Année :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Véhicule :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="vehicule" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <JFXButton fx:id="parcourrirButton1" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Réservation :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="reservation" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <JFXButton fx:id="parcourrirButton2" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Date de Départ :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXComboBox fx:id="comboday2" prefHeight="23.0" prefWidth="57.0" promptText="jour :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="combomonth2" layoutX="158.0" layoutY="27.0" prefHeight="23.0" prefWidth="61.0" promptText="Mois :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="comboyear2" layoutX="214.0" layoutY="27.0" prefHeight="23.0" prefWidth="72.0" promptText="Année :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="234.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Date de Retour :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <JFXComboBox fx:id="comboday3" prefHeight="23.0" prefWidth="57.0" promptText="jour :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="combomonth3" layoutX="158.0" layoutY="27.0" prefHeight="23.0" prefWidth="61.0" promptText="Mois :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="comboyear3" layoutX="214.0" layoutY="27.0" prefHeight="23.0" prefWidth="72.0" promptText="Année :" style="-jfx-label-float: true;">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="jfx-combo-box" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Remise :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="remise" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label stylesheets="@../Css/MinitextStyle.css" text="\%" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="346.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="164.0" text="Kilométrage de depart :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="kmDepart" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="74.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="346.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Montant total :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="montantTotal" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="450.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label fx:id="sanction" prefWidth="138.0" text="Sanctions :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="montantTotal1" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <JFXButton fx:id="submit" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Générer Une Facture" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="finish" layoutX="210.0" layoutY="10.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #6622CC; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Terminer le Contrat" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

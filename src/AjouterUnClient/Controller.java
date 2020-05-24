@@ -1,4 +1,4 @@
-package sample.AjouterUnClient;
+package AjouterUnClient;
 
 
 import com.jfoenix.controls.JFXButton;
@@ -13,15 +13,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-@FXML
+	@FXML
     private JFXButton closeButton ;
-@FXML
+	
+	@FXML
     private void closeButtonAction(){
-    Stage stage =(Stage) closeButton.getScene().getWindow();
-    stage.close();
-
-}
-@FXML
+	    Stage stage =(Stage) closeButton.getScene().getWindow();
+	    stage.close();
+	}
+	
+	@FXML
     public JFXComboBox<Integer> comboday1 ;
     public JFXComboBox<Integer> comboday2 ;
     public JFXComboBox<Integer> comboday3 ;
@@ -43,7 +44,11 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        comboday1.setItems(dayslist);
+    	comboBox();
+    }
+    
+    public void comboBox() {
+    	comboday1.setItems(dayslist);
         comboday2.setItems(dayslist);
         comboday3.setItems(dayslist);
         combomonth1.setItems(monthslist);

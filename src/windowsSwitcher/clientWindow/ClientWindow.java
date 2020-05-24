@@ -76,8 +76,7 @@ public class ClientWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	comboBox();
-        remplir_tableau();
-        
+        remplir_tableau(); 
     }
     
     public void comboBox() {
@@ -172,7 +171,7 @@ public class ClientWindow implements Initializable {
 			ps.setString(1, valeur);
 			tous_les_client = ps.executeQuery();
 			if(tous_les_client.next()) {
-				client.setIdClient(tous_les_client.getLong("idClient"));
+				client.setIdClient(tous_les_client.getString("idClient"));
 				client.setNom(tous_les_client.getString("nom"));
 				client.setPrenom(tous_les_client.getString("prenom"));
 				client.setAdress(tous_les_client.getString("adress"));
@@ -238,7 +237,7 @@ public class ClientWindow implements Initializable {
 			
 			while(tous_les_client.next()) {
 				Client client = new Client();
-				client.setIdClient(tous_les_client.getLong("idClient"));
+				client.setIdClient(tous_les_client.getString("idClient"));
 				client.setNom(tous_les_client.getString("nom"));
 				client.setPrenom(tous_les_client.getString("prenom"));
 				client.setAdress(tous_les_client.getString("adress"));

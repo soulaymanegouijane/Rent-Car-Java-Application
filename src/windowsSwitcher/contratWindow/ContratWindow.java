@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXButton;
 import AbstactClasses.Abst;
 import Entities.Contrat;
 import Entities.Parking;
+import Entities.Vehicule;
+import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,10 +35,16 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ContratWindow implements Initializable {
+    
+    @FXML
+    private TextField textFeildChoisirVehicule;
 
-    public HBox hBoxChoisirVehicule;
-    public TextField textFeildChoisirVehicule;
-    public JFXButton buttonChoisirVehicule;
+    @FXML
+    private JFXButton buttonChoisirVehicule;
+
+    @FXML
+    private HBox hBoxChoisirVehicule;
+    
     @FXML
     private ComboBox<String> chercherComboBox;
 
@@ -90,6 +98,9 @@ public class ContratWindow implements Initializable {
 
     @FXML
     private TableColumn<Contrat,String> col_date_contrat;
+    
+    @FXML
+    private TableColumn<Contrat,String> col_vehicule;
 
     @FXML
     private TableColumn<Contrat,String> col_date_echeance;
@@ -118,6 +129,7 @@ public class ContratWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	comboBox();
+    	remplir_tableau();
     }
     
     public void comboBox() {
@@ -358,39 +370,44 @@ public class ContratWindow implements Initializable {
         HB.setVisible(true);
         HB.setDisable(false);
     }
-
+    
     public void remplir_tableau() {
-    	ResultSet tous_les_contrat = null;
- 		try {
- 			String sql = "select * from contrat";
- 			Connection con = Abst.getConnection();
- 			PreparedStatement ps = con.prepareStatement(sql);
- 			tous_les_contrat = ps.executeQuery();
- 			
- 			while(tous_les_contrat.next()) {
- 				Contrat parking = new Contrat();
-// 				parking.setIdParking(tous_les_parking.getLong(""));
-//				parking.setAdress(tous_les_parking.getString(""));
-//				parking.setCapacite(tous_les_parking.getLong(""));
-//				parking.setNbr_place_pleinne(tous_les_parking.getInt(""));
- 				contrat_list.add(parking);
- 			}
- 			con.close();
- 		} catch (SQLException e) {
- 			e.printStackTrace();
- 		}
+    	
+		try {
+			String sql = "SELECT * FROM contrat";
+			Connection con = Abst.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet tous_les_contrat = ps.executeQuery();
+			while(tous_les_contrat.next()) {
+				System.out.println("---> bien");
+			    Contrat contrat = new Contrat();
+			    contrat.setIdContrat(tous_les_contrat.getLong("idContrat"));
+			    contrat.setReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")));
+			    //contrat.setVehicule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")));
+			    contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinClient(H.reservation.getCinClient(tous_les_contrat.getLong("idReservation")));
+			    contrat.setMatricule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")).getIdVehicule());
+			    contrat.setCodeReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")).getIdReservation());
+			    contrat.setDate_retour(tous_les_contrat.getString("date_retour"));
+			    contrat.setDateContrat(tous_les_contrat.getString("date_Contrat"));
+			    contrat_list.add(contrat);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
  		
  		
- 		
- 	   col_nb_contrat.setCellValueFactory(new PropertyValueFactory<>(""));
- 	   col_cin_client.setCellValueFactory(new PropertyValueFactory<>(""));
- 	   col_date_contrat.setCellValueFactory(new PropertyValueFactory<>(""));
- 	   col_date_echeance.setCellValueFactory(new PropertyValueFactory<>(""));
- 	   col_reservation.setCellValueFactory(new PropertyValueFactory<>(""));
- 	   col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>(""));
- 		    
+ 	   col_nb_contrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
+ 	   col_cin_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
+ 	   col_date_contrat.setCellValueFactory(new PropertyValueFactory<>("dateContrat"));
+ 	   col_date_echeance.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+ 	   col_reservation.setCellValueFactory(new PropertyValueFactory<>("codeReservation"));
+ 	   col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+ 	  col_vehicule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
  	
          
  		   tableContrat.setItems(contrat_list);
     }
+
 }

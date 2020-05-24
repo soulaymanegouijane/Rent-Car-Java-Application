@@ -498,12 +498,15 @@ public class VehiculeWindow implements Initializable {
 			tous_les_vehicule = ps.executeQuery();
 			
 			while(tous_les_vehicule.next()) {
+				System.out.println("bien");
 				Vehicule vehicule = new Vehicule();
-				vehicule.setIdVehicule(tous_les_vehicule.getString("matricule"));
+				vehicule.setIdVehicule(tous_les_vehicule.getString("idVehicule"));
 				vehicule.setNbr_place(tous_les_vehicule.getInt("nbr_place"));
 //				vehicule.setLibelle_parking(H.parking.getById(tous_les_vehicule.getLong("idParking")).getAdress());
 //				vehicule.setLibelle_carburant(H.carburant.getById(tous_les_vehicule.getLong("idCarburant")).getLibelle());
 //				vehicule.setLibelle_marque(H.marque.getById(tous_les_vehicule.getLong("idMarque")).getLibelle());
+				vehicule.setMarqueLibelle(H.vehicule.marque_libelle(tous_les_vehicule.getString("idVehicule")));
+				vehicule.setTypeVehicule(H.type.getById(H.vehicule.getType(tous_les_vehicule.getString("idVehicule"))).getLibelle());
 				vehicule.setColor(tous_les_vehicule.getString("color"));
 				vehicule.setKilometrage(tous_les_vehicule.getLong("kilometrage"));
 				vehicule.setTelephone(tous_les_vehicule.getString("telephone"));
@@ -517,9 +520,9 @@ public class VehiculeWindow implements Initializable {
 		    col_disponibilite.setCellValueFactory(new PropertyValueFactory<>("dispo"));
 		    col_carburant.setCellValueFactory(new PropertyValueFactory<>("libelle_carburant"));
 		    col_kilometrage.setCellValueFactory(new PropertyValueFactory<>("kilometrage"));
-		    col_marque.setCellValueFactory(new PropertyValueFactory<>("libelle_marque"));
+		    col_marque.setCellValueFactory(new PropertyValueFactory<>("marqueLibelle"));
 		    
-		    col_type.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+		    col_type.setCellValueFactory(new PropertyValueFactory<>("typeVehicule"));
 		    col_Emplacement.setCellValueFactory(new PropertyValueFactory<>("libelle_parking"));
         
 		    tableVehicule.setItems(vehicule_list);

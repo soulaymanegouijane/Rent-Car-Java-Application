@@ -1,4 +1,4 @@
-package sample.AjouterUtilisateur;
+package AjouterUtilisateur;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;

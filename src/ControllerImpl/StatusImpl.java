@@ -83,7 +83,7 @@ public class StatusImpl extends Abst implements StatusInter {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Status st = new Status();
-				st.setIdStatus(rs.getInt(1));
+				st.setIdStatus(rs.getLong(1));
 				st.setLibelle(rs.getString(2));
 				st.setDescription(rs.getString(3));
 				list.add(st);
@@ -108,7 +108,7 @@ public class StatusImpl extends Abst implements StatusInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				st.setIdStatus(rs.getInt(1));
+				st.setIdStatus(rs.getLong(1));
 				st.setLibelle(rs.getString(2));
 				st.setDescription(rs.getString(3));
 				
@@ -155,7 +155,7 @@ public class StatusImpl extends Abst implements StatusInter {
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
 				reservation.setIdReservation(rs.getLong("idReservation"));
-				reservation.setDatReservation(rs.getDate("dateReservation"));
+				reservation.setDatReservation(rs.getString("dateReservation"));
 				reservation.setClient(cli.getById(rs.getLong("idClient")));
 				reservation.setStatus(getById(idStatus));
 				reservation.setTypeRes(tre.getById(rs.getLong("idTypeRes")));
@@ -179,9 +179,9 @@ public class StatusImpl extends Abst implements StatusInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				st.setIdStatus(rs.getInt(1));
-				st.setLibelle(rs.getString(2));
-				st.setDescription(rs.getString(3));
+				st.setIdStatus(rs.getLong("idStatus"));
+				st.setLibelle(rs.getString("libelle"));
+				st.setDescription(rs.getString("description"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas --- Class Status");

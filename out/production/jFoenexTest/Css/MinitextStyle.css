@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+}
+
+.text {
+    -fx-font-family: "Montserrat";
+    -fx-font-size : 12px;
+}

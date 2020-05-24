@@ -16,9 +16,8 @@ import javax.persistence.Table;
 public class Utilisateur implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idUtilisateur", nullable=false)
-	private long idUtilisateur;
+	private String idUtilisateur;
 	@Column(name="nom",nullable=false)
 	private String nom;
 	@Column(name="prenom",nullable=false)
@@ -33,7 +32,7 @@ public class Utilisateur implements Serializable{
 	private String naissance;
 	@Column(name="etat_compte",nullable=false)
 	private String etat_compte;
-	@Column(name="idRole",nullable=false)
+	@Column(name="idRole",nullable=true)
 	private long idRole;
 	@Column(name="idReservation",nullable=false)
 	private long idReservation;
@@ -65,7 +64,7 @@ public class Utilisateur implements Serializable{
 	}
 
 
-	public Utilisateur(long idUtilisateur, String nom, String prenom, String tele, String adress, String email,
+	public Utilisateur(String idUtilisateur, String nom, String prenom, String tele, String adress, String email,
 			String naissance, String etat_compte, Role role, Reservation reservation) {
 		super();
 		this.idUtilisateur = idUtilisateur;
@@ -114,13 +113,13 @@ public class Utilisateur implements Serializable{
 	/**
 	 * @return the idUtilisateur
 	 */
-	public long getIdUtilisateur() {
+	public String getIdUtilisateur() {
 		return idUtilisateur;
 	}
 	/**
 	 * @param idUtilisateur the idUtilisateur to set
 	 */
-	public void setIdUtilisateur(long idUtilisateur) {
+	public void setIdUtilisateur(String idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 	/**

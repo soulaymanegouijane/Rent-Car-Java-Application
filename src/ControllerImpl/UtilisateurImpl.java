@@ -53,7 +53,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ps.setString(5,arg.getEmail());
 			ps.setLong(6, arg.getReservation().getIdReservation());
 			ps.setLong(6, arg.getRole().getIdRole());
-			ps.setLong(8, arg.getIdUtilisateur());
+			ps.setString(8, arg.getIdUtilisateur());
 			ps.executeUpdate();
 			arg.setAdress(arg.getAdress());
 			arg.setNom(arg.getNom());
@@ -78,7 +78,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			String sql = "DELETE FROM utilisateur where CodeUtilisateur=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps =  con.prepareStatement(sql);
-			ps.setLong(1,arg.getIdUtilisateur());
+			ps.setString(1,arg.getIdUtilisateur());
 			status = ps.executeUpdate();
 			
 			con.close();
@@ -100,7 +100,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Utilisateur user = new Utilisateur();
-				user.setIdUtilisateur(rs.getLong(1));
+				user.setIdUtilisateur(rs.getString(1));
 				user.setNom(rs.getString(2));
 				user.setPrenom(rs.getString(3));
 				user.setAdress(rs.getString(4));
@@ -130,7 +130,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				c.setIdUtilisateur(rs.getInt(1));
+				c.setIdUtilisateur(rs.getString(1));
 				c.setNom(rs.getString(2));
 				c.setPrenom(rs.getString(3));
 				c.setAdress(rs.getString(4));
@@ -164,7 +164,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				c.setIdUtilisateur(rs.getInt(1));
+				c.setIdUtilisateur(rs.getString(1));
 				c.setNom(rs.getString(2));
 				c.setPrenom(rs.getString(3));
 				c.setAdress(rs.getString(4));

@@ -4,7 +4,9 @@ import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
 import Entities.Reservation;
+import Entities.Status;
 import Entities.Utilisateur;
+import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -137,36 +139,42 @@ public class ReservationWindow implements Initializable {
     }
 
     public void remplir_tableau(){
-        ResultSet tous_les_client = null;
+        ResultSet rs = null;
 		try {
 			String sql = "select * from reservation";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
-			tous_les_client = ps.executeQuery();
+			rs = ps.executeQuery();
 			
-			while(tous_les_client.next()) {
-				Reservation reservation = new Reservation();
-//				client.setIdClient(tous_les_client.getLong("idClient"));
-//				client.setNom(tous_les_client.getString("nom"));
-//				client.setPrenom(tous_les_client.getString("prenom"));
-//				client.setAdress(tous_les_client.getString("adress"));
-//				client.setTelephone(tous_les_client.getString("telephone"));
-//				client.setEmail(tous_les_client.getString("email"));
-//				client.setDate_naissance(tous_les_client.getString("date_naissance"));
-//				reservation_list.add(client);
+			while(rs.next()) {
+				Reservation res = new Reservation();
+				res.setIdReservation(rs.getLong("idReservation"));
+				//res.setDatReservation(rs.getString("dateReservation"));
+				res.setDate_depart(rs.getString("date_depart"));
+				res.setDate_retour(rs.getString("date_retour"));
+				res.setCinClient(H.reservation.getCinClient(rs.getLong("idReservation")));
+				res.setCinUtilisateur(H.reservation.getCinUtilisateur(rs.getLong("idReservation")));
+				Status s = H.status.getById(H.reservation.getStatus(rs.getLong("idStatus")));
+				res.setStatusRes(s.getLibelle());
+				res.setTypeVehicule(H.type.getById(H.vehicule.getType(rs.getString("idVehicule"))).getLibelle());
+//				res.setVehicule(H.vehicule.getById(rs.getString("matricule")));
+//				res.setClient(H.client.getById(rs.getLong("idClient")));
+//				res.setStatus(H.status.getById(rs.getLong("idStatus")));
+//				res.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));
+				reservation_list.add(res);
 			}
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
         
-        col_id.setCellValueFactory(new PropertyValueFactory<>("idClient"));
-        col_type.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        col_date_depart.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        col_date_retour.setCellValueFactory(new PropertyValueFactory<>("email"));
-        col_id_client.setCellValueFactory(new PropertyValueFactory<>("adress"));
-        col_id_utilisateur.setCellValueFactory(new PropertyValueFactory<>("date_naissance"));
-        col_status.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+        col_id.setCellValueFactory(new PropertyValueFactory<>("idReservation"));
+        col_type.setCellValueFactory(new PropertyValueFactory<>("typeVehicule"));
+        col_date_depart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        col_date_retour.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+        col_id_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
+        col_id_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+        col_status.setCellValueFactory(new PropertyValueFactory<>("statusRes"));
         
         tableReservation.setItems(reservation_list);
     }

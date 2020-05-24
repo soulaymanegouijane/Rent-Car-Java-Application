@@ -219,13 +219,13 @@ public class UtilisateurWindow implements Initializable {
 			
 			while(tous_les_utilisateur.next()) {
 				Utilisateur utilisateur = new Utilisateur();
-				utilisateur.setIdUtilisateur(tous_les_utilisateur.getLong("idUtilisateur"));
+				utilisateur.setIdUtilisateur(tous_les_utilisateur.getString("idUtilisateur"));
 				utilisateur.setNom(tous_les_utilisateur.getString("nom"));
 				utilisateur.setPrenom(tous_les_utilisateur.getString("prenom"));
-				utilisateur.setAdress(tous_les_utilisateur.getString("adresse"));
+				utilisateur.setAdress(tous_les_utilisateur.getString("adress"));
 				utilisateur.setTele(tous_les_utilisateur.getString("telephone"));
 				utilisateur.setEmail(tous_les_utilisateur.getString("email"));
-				utilisateur.setNaissance(tous_les_utilisateur.getString("date_naissance"));
+				utilisateur.setNaissance(tous_les_utilisateur.getString("naissance"));
 				utilisateur.setEtat_compte(tous_les_utilisateur.getString("etat_compte"));
 				utilisateur_list.add(utilisateur);
 			}
@@ -268,7 +268,7 @@ public class UtilisateurWindow implements Initializable {
 			ps.setString(1, valeur);
 			tous_les_utilisateur = ps.executeQuery();
 			if(tous_les_utilisateur.next()) {
-				utilisateur.setIdUtilisateur(tous_les_utilisateur.getLong("idUtilisateur"));
+				utilisateur.setIdUtilisateur(tous_les_utilisateur.getString("idUtilisateur"));
 				utilisateur.setNom(tous_les_utilisateur.getString("nom"));
 				utilisateur.setPrenom(tous_les_utilisateur.getString("prenom"));
 				utilisateur.setAdress(tous_les_utilisateur.getString("adresse"));

@@ -25,8 +25,8 @@ public class ContratImpl extends Abst implements ContratInter {
 				+ " km_depart, caution, remise, prix_jours, nbr_jours, heure_sortie, heure_entre, date_retour) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setTimestamp(1, toTimeStampp(arg.getDateContrat()) );
-			ps.setTimestamp(2, toTimeStampp(arg.getDate_sortie()));
+			ps.setString(1, arg.getDateContrat() );
+			ps.setString(2, arg.getDate_sortie());
 			ps.setLong(3, arg.getReservation().getIdReservation());
 			ps.setLong(4, arg.getSanction().getIdSanction());
 			ps.setString(5, arg.getVehicule().getIdVehicule());
@@ -37,9 +37,9 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setFloat(10, arg.getRemise());
 			ps.setFloat(11, arg.getPrix_jour());
 			ps.setInt(12, arg.getNbr_jour());
-			ps.setTimestamp(13, toTimeStampp(arg.getHeure_sortie()) );
-			ps.setTimestamp(14, toTimeStampp(arg.getHeure_retour()) );
-			ps.setTimestamp(15, toTimeStampp(arg.getDate_retour()) );
+			ps.setString(13, arg.getHeure_sortie() );
+			ps.setString(14, arg.getHeure_retour() );
+			ps.setString(15, arg.getDate_retour() );
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -61,8 +61,8 @@ public class ContratImpl extends Abst implements ContratInter {
 					+ " km_depart=?, caution=?, remise=?, prix_jours=?, nbr_jours=?, heure_sortie=?, heure_entre=?, date_retour=? where idContrat = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setTimestamp(1, toTimeStampp(arg.getDateContrat()) );
-			ps.setTimestamp(2, toTimeStampp(arg.getDate_sortie()));
+			ps.setString(1, arg.getDateContrat() );
+			ps.setString(2, arg.getDate_sortie());
 			ps.setLong(3, arg.getReservation().getIdReservation());
 			ps.setLong(4, arg.getSanction().getIdSanction());
 			ps.setString(5, arg.getVehicule().getIdVehicule());
@@ -73,9 +73,9 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setFloat(10, arg.getRemise());
 			ps.setFloat(11, arg.getPrix_jour());
 			ps.setInt(12, arg.getNbr_jour());
-			ps.setTimestamp(13, toTimeStampp(arg.getHeure_sortie()) );
-			ps.setTimestamp(14, toTimeStampp(arg.getHeure_retour()) );
-			ps.setTimestamp(15, toTimeStampp(arg.getDate_retour()) );
+			ps.setString(13, arg.getHeure_sortie() );
+			ps.setString(14, arg.getHeure_retour() );
+			ps.setString(15, arg.getDate_retour() );
 			ps.setLong(16, arg.getIdContrat());
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -121,9 +121,9 @@ public class ContratImpl extends Abst implements ContratInter {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Contrat contrat = new Contrat();
-				contrat.setDate_retour(rs.getDate("date_retour"));
-				contrat.setDate_sortie(rs.getDate("date_sortie"));
-				contrat.setDateContrat(rs.getDate("date_Contrat"));
+				contrat.setDate_retour(rs.getString("date_retour"));
+				contrat.setDate_sortie(rs.getString("date_sortie"));
+				contrat.setDateContrat(rs.getString("date_Contrat"));
 				contrat.setSanction(sani.getById(rs.getLong("idSanction")));
 				contrat.setVehicule(vhi.getById(rs.getString("matricule")));
 				contrat.setReservation(resi.getById(rs.getLong("idReservation")));
@@ -134,8 +134,8 @@ public class ContratImpl extends Abst implements ContratInter {
 				contrat.setKm_depart(rs.getLong("km_depart"));
 				contrat.setPrix_jour(rs.getFloat("prix_jours"));
 				contrat.setNbr_jour(rs.getInt("nbr_jours"));
-				contrat.setHeure_retour(rs.getDate("heure_entre"));
-				contrat.setHeure_sortie(rs.getDate("heure_sortie"));
+				contrat.setHeure_retour(rs.getString("heure_entre"));
+				contrat.setHeure_sortie(rs.getString("heure_sortie"));
 				contrat.setIdContrat(rs.getLong("idContrat"));
 				list.add(contrat);
 			}
@@ -196,9 +196,9 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setLong(1,id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				contrat.setDate_retour(rs.getDate("date_retour"));
-				contrat.setDate_sortie(rs.getDate("date_sortie"));
-				contrat.setDateContrat(rs.getDate("date_Contrat"));
+				contrat.setDate_retour(rs.getString("date_retour"));
+				contrat.setDate_sortie(rs.getString("date_sortie"));
+				contrat.setDateContrat(rs.getString("date_Contrat"));
 				contrat.setSanction(sani.getById(rs.getLong("idSanction")));
 				contrat.setVehicule(vhi.getById(rs.getString("matricule")));
 				contrat.setReservation(resi.getById(rs.getLong("idReservation")));
@@ -209,8 +209,8 @@ public class ContratImpl extends Abst implements ContratInter {
 				contrat.setKm_depart(rs.getLong("km_depart"));
 				contrat.setPrix_jour(rs.getFloat("prix_jours"));
 				contrat.setNbr_jour(rs.getInt("nbr_jours"));
-				contrat.setHeure_retour(rs.getDate("heure_entre"));
-				contrat.setHeure_sortie(rs.getDate("heure_sortie"));
+				contrat.setHeure_retour(rs.getString("heure_entre"));
+				contrat.setHeure_sortie(rs.getString("heure_sortie"));
 				contrat.setIdContrat(rs.getLong("idContrat"));
 			}
 		} catch (SQLException e) {

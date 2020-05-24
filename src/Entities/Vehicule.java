@@ -28,14 +28,16 @@ public class Vehicule implements Serializable{
 //	private String libelle_marque;
 //	private String libelle_carburant;
 //	private String libelle_parking;
+	private String typeVehicule;
+	private String marqueLibelle;
 	
 	@Column(name="kilometrage",nullable=false)
 	private long kilometrage;
-	@Column(name="idCarburant",nullable=false)
+	@Column(name="idCarburant",nullable=true)
 	private long dCarburant;
-	@Column(name="idMarque",nullable=false)
-	private long idMarque;
-	@Column(name="idParking",nullable=false)
+	@Column(name="idType",nullable=true)
+	private long idType;
+	@Column(name="idParking",nullable=true)
 	private long idParking;
 
 
@@ -44,8 +46,8 @@ public class Vehicule implements Serializable{
 	@JoinColumn(name="idCarburant",referencedColumnName = "idCarburant",insertable = false,updatable = false)
 	private Carburant carburant;
 	@ManyToOne
-	@JoinColumn(name="idMarque",referencedColumnName = "idMarque",insertable = false,updatable = false)
-	private Marque marque;
+	@JoinColumn(name="idType",referencedColumnName = "idType",insertable = false,updatable = false)
+	private Type type;
 	@ManyToOne
 	@JoinColumn(name="idParking",referencedColumnName = "idParking",insertable = false,updatable = false)
 	private Parking parking;
@@ -140,7 +142,7 @@ public class Vehicule implements Serializable{
 		this.kilometrage = kilometrage;
 	}
 
-	public Vehicule(String idVehicule, int nbr_place, String color, boolean dispo, Carburant carburant, Marque marque,
+	public Vehicule(String idVehicule, int nbr_place, String color, boolean dispo, Carburant carburant, Type type,
 			Parking parking, long kilometrage) {
 		super();
 		this.idVehicule = idVehicule;
@@ -148,7 +150,7 @@ public class Vehicule implements Serializable{
 		this.color = color;
 		this.dispo = dispo;
 		this.carburant = carburant;
-		this.marque = marque;
+		this.type = type;
 		this.parking = parking;
 		this.kilometrage = kilometrage;
 	}
@@ -228,16 +230,16 @@ public class Vehicule implements Serializable{
 	/**
 	 * @return the marque
 	 */
-	public Marque getMarque() {
-		return marque;
+	public Type getType() {
+		return type;
 	}
 
 
 	/**
 	 * @param marque the marque to set
 	 */
-	public void setMarque(Marque marque) {
-		this.marque = marque;
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 
@@ -254,6 +256,22 @@ public class Vehicule implements Serializable{
 	 */
 	public void setParking(Parking parking) {
 		this.parking = parking;
+	}
+
+	public String getTypeVehicule() {
+		return typeVehicule;
+	}
+
+	public void setTypeVehicule(String typeVehicule) {
+		this.typeVehicule = typeVehicule;
+	}
+
+	public String getMarqueLibelle() {
+		return marqueLibelle;
+	}
+
+	public void setMarqueLibelle(String marqueLibelle) {
+		this.marqueLibelle = marqueLibelle;
 	}
 
 

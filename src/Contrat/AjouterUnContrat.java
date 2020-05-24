@@ -1,4 +1,4 @@
-package sample.Contrat;
+package Contrat;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -41,7 +41,11 @@ public class AjouterUnContrat implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-            comboday1.setItems(dayslist);
+        	comboBx();
+        }
+        
+        public void comboBx() {
+        	comboday1.setItems(dayslist);
             comboday2.setItems(dayslist);
             comboday3.setItems(dayslist);
             combomonth1.setItems(monthslist);
@@ -50,8 +54,6 @@ public class AjouterUnContrat implements Initializable {
             comboyear1.setItems(yearslist);
             comboyear2.setItems(yearslist);
             comboyear3.setItems(yearslist);
-
-
         }
     }
 

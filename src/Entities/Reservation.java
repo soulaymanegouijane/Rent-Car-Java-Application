@@ -21,22 +21,95 @@ public class Reservation implements Serializable{
 	@Column(name="idReservation", nullable=false)
 	private long idReservation;
 	@Column(name="dateReservation",nullable=false)
-	private Date datReservation;
+	private String datReservation;
 	@Column(name="date_depart",nullable=false)
-	private Date date_depart;
+	private String date_depart;
 	@Column(name="date_retour",nullable=false)
-	private Date date_retour;	
+	private String date_retour;	
 	@Column(name="avance",nullable=false)
 	private float avance;
-	@Column(name="idTypeRes",nullable=false)
+	@Column(name="idTypeRes",nullable=true)
 	private long idTypeRes;
-	@Column(name="idClient",nullable=false)
-	private long idClient;
-	@Column(name="idStatus",nullable=false)
+	@Column(name="idClient",nullable=true)
+	private String idClient;
+	@Column(name="idStatus",nullable=true)
 	private long idStatus;
-	@Column(name="idVehicule",nullable=false)
+	@Column(name="idVehicule",nullable=true)
 	private String idVehicule;
 	
+	private String cinClient;
+	private String cinUtilisateur;
+	private String statusRes;
+	private  String typeVehicule;
+	
+	/**
+	 * @return the typeVehicule
+	 */
+	public String getTypeVehicule() {
+		return typeVehicule;
+	}
+
+
+
+
+
+
+	/**
+	 * @param typeVehicule the typeVehicule to set
+	 */
+	public void setTypeVehicule(String typeVehicule) {
+		this.typeVehicule = typeVehicule;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the statusRes
+	 */
+	public String getStatusRes() {
+		return statusRes;
+	}
+
+
+
+
+
+
+	/**
+	 * @param statusRes the statusRes to set
+	 */
+	public void setStatusRes(String statusRes) {
+		this.statusRes = statusRes;
+	}
+
+
+
+
+
+
+	/**
+	 * @return the cinUtilisateur
+	 */
+	public String getCinUtilisateur() {
+		return cinUtilisateur;
+	}
+
+
+
+
+
+
+	/**
+	 * @param cinUtilisateur the cinUtilisateur to set
+	 */
+	public void setCinUtilisateur(String cinUtilisateur) {
+		this.cinUtilisateur = cinUtilisateur;
+	}
+
+
 	@ManyToOne
 	@JoinColumn(name="idClient",referencedColumnName = "idClient",insertable = false,updatable = false)
 	private Client client;
@@ -55,23 +128,37 @@ public class Reservation implements Serializable{
 
 	
 
-	public Reservation(long idReservation, Date datReservation, Date date_depart, Date date_retour, float avance, TypeReservation typeRes, Client client, Status status, Vehicule vehicule) {
-		this.idReservation = idReservation;
-		this.datReservation = datReservation;
-		this.date_depart = date_depart;
-		this.date_retour = date_retour;
-		this.avance = avance;
-		this.typeRes = typeRes;
-		this.client = client;
-		this.status = status;
-		this.vehicule = vehicule;
-	}
+	
 
 
 	public Reservation() {
 	}
 
 	
+	
+
+
+
+	/**
+	 * @return the cinClient
+	 */
+	public String getCinClient() {
+		return cinClient;
+	}
+
+
+
+
+
+
+	/**
+	 * @param cinClient the cinClient to set
+	 */
+	public void setCinClient(String cinClient) {
+		this.cinClient = cinClient;
+	}
+
+
 
 
 
@@ -86,29 +173,29 @@ public class Reservation implements Serializable{
 	}
 
 
-	public Date getDatReservation() {
+	public String getDatReservation() {
 		return datReservation;
 	}
 
 
-	public void setDatReservation(Date datReservation) {
+	public void setDatReservation(String datReservation) {
 		this.datReservation = datReservation;
 	}
 
 
-	public Date getDate_depart() {
+	public String getDate_depart() {
 		return this.date_depart;
 	}
 
-	public void setDate_depart(Date date_depart) {
+	public void setDate_depart(String date_depart) {
 		this.date_depart = date_depart;
 	}
 
-	public Date getDate_retour() {
+	public String getDate_retour() {
 		return this.date_retour;
 	}
 
-	public void setDate_retour(Date date_retour) {
+	public void setDate_retour(String date_retour) {
 		this.date_retour = date_retour;
 	}
 

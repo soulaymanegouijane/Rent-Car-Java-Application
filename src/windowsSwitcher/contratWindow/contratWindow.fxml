@@ -150,13 +150,13 @@
                                                 </ImageView>
                                             </graphic>
                                         </Label>
-                                        <TableView fx:id="tableauUtilisateurs" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                        <TableView fx:id="tableContrat" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="col_nb_contrat" prefWidth="94.0" text="N° contrat" />
                                                 <TableColumn fx:id="col_date_contrat" prefWidth="117.0" text="Date de Contrat" />
                                                 <TableColumn fx:id="col_date_echeance" prefWidth="120.0" text="Date d'échéance" />
                                                 <TableColumn fx:id="col_reservation" prefWidth="128.0" text="Code de réservation" />
-                                                <TableColumn fx:id="col_reservation1" prefWidth="131.0" text="Matricule de véhicule" />
+                                                <TableColumn fx:id="col_vehicule" prefWidth="131.0" text="Matricule de véhicule" />
                                                 <TableColumn fx:id="col_cin_client" prefWidth="117.0" text="CIN client" />
                                                 <TableColumn fx:id="col_cin_utilisateur" prefWidth="116.0" text="CIN utilisateur" />
                                             </columns>

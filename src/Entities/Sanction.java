@@ -27,7 +27,7 @@ public class Sanction implements Serializable{
 	private Date dateSanction;
 	@Column(name="montant",nullable=false)
 	private Double montant;
-	@Column(name="idContrat",nullable=false)
+	@Column(name="idContrat",nullable=true)
 	private long idContrat;
 	
 	

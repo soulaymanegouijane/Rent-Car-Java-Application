@@ -21,36 +21,42 @@ public class Contrat implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idContrat", nullable=false)
 	private long idContrat;
-	@Column(name="date_contrat",nullable=false)
-	private Date dateContrat;
-	@Column(name="montant_total",nullable=false)
+	@Column(name="date_contrat",nullable=true)
+	private String dateContrat;
+	@Column(name="montant_total",nullable=true)
 	private double MontantTotal;
-	@Column(name="idVehicule",nullable=false)
+	@Column(name="idVehicule",nullable=true)
 	private String idVehicule;
-	@Column(name="idReservation",nullable=false)
+	@Column(name="idReservation",nullable=true)
 	private Long idReservation;
-	@Column(name="idSanction",nullable=false)
+	@Column(name="idSanction",nullable=true)
 	private Long idSanction;
-	@Column(name="date_sortie",nullable=false)
-	private Date date_sortie;
-	@Column(name="date_retour",nullable=false)
-	private Date date_retour; 
-	@Column(name="heure_retour",nullable=false)
-	private Date heure_retour;
-	@Column(name="heure_sortie",nullable=false)
-	private Date heure_sortie;
-	@Column(name="nbr_jour",nullable=false)
+	@Column(name="date_sortie",nullable=true)
+	private String date_sortie;
+	@Column(name="date_retour",nullable=true)
+	private String date_retour; 
+	@Column(name="heure_retour",nullable=true)
+	private String heure_retour;
+	@Column(name="heure_sortie",nullable=true)
+	private String heure_sortie;
+	@Column(name="nbr_jour",nullable=true)
 	private int nbr_jour;
-	@Column(name="prix_jour",nullable=false)
+	@Column(name="prix_jour",nullable=true)
 	private float prix_jour;
-	@Column(name="remise",nullable=false)
+	@Column(name="remise",nullable=true)
 	private float remise;
-	@Column(name="caution",nullable=false)
+	@Column(name="caution",nullable=true)
 	private float caution;
-	@Column(name="km_depart",nullable=false)
+	@Column(name="km_depart",nullable=true)
 	private long km_depart;
-	@Column(name="km_retour",nullable=false)
+	@Column(name="km_retour",nullable=true)
 	private long km_retour;
+	
+	private String matricule;
+	private String cinClient;
+	private String cinUtilisateur;
+	@Column(name="codeReservation",nullable=true)
+	private long codeReservation;
 	
 	@ManyToOne
 	@JoinColumn(name="idVehicule",referencedColumnName = "idVehicule",insertable = false,updatable = false)
@@ -63,8 +69,8 @@ public class Contrat implements Serializable{
 	private Sanction sanction;
 	
 	
-	public Contrat(Date dateContrat, double montantTotal, Vehicule vehicule, Reservation reservation, Sanction sanction,
-			Date date_sortie, Date date_retour, Date heure_retour, Date heure_sortie, int nbr_jour, float prix_jour,
+	public Contrat(String dateContrat, double montantTotal, Vehicule vehicule, Reservation reservation, Sanction sanction,
+			String date_sortie, String date_retour, String heure_retour, String heure_sortie, int nbr_jour, float prix_jour,
 			float remise, float caution, long km_depart, long km_retour) {
 		super();
 		this.dateContrat = dateContrat;
@@ -100,25 +106,8 @@ public class Contrat implements Serializable{
 	 * @param remise
 	 * @param caution
 	 */
-	public Contrat( Date dateContrat, double montantTotal, Vehicule vehicule, Reservation reservation,
-			Sanction sanction, Date date_sortie, Date date_retour, Date heure_retour, Date heure_sortie, int nbr_jour,
-			float prix_jour, float remise, float caution) {
-		super();
-//		this.idContrat = idContrat;
-		this.dateContrat = dateContrat;
-		this.MontantTotal = montantTotal;
-		this.vehicule = vehicule;
-		this.reservation = reservation;
-		this.sanction = sanction;
-		this.date_sortie = date_sortie;
-		this.date_retour = date_retour;
-		this.heure_retour = heure_retour;
-		this.heure_sortie = heure_sortie;
-		this.nbr_jour = nbr_jour;
-		this.prix_jour = prix_jour;
-		this.remise = remise;
-		this.caution = caution;
-	}
+	
+	
 
 	/**
 	 * @param ConstructeruSansParametre
@@ -128,60 +117,86 @@ public class Contrat implements Serializable{
 	}
 
 	/**
-	 * @return the codeContrat
+	 * @return the matricule
 	 */
-	public long getIdContrat() {
-		return this.idContrat;
+	public String getMatricule() {
+		return matricule;
 	}
 
 	/**
-	 * @param codeContrat the codeContrat to set
+	 * @param matricule the matricule to set
+	 */
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
+
+	/**
+	 * @return the cinClient
+	 */
+	public String getCinClient() {
+		return cinClient;
+	}
+
+	/**
+	 * @param cinClient the cinClient to set
+	 */
+	public void setCinClient(String cinClient) {
+		this.cinClient = cinClient;
+	}
+
+	/**
+	 * @return the cinUtilisateur
+	 */
+	public String getCinUtilisateur() {
+		return cinUtilisateur;
+	}
+
+	/**
+	 * @param cinUtilisateur the cinUtilisateur to set
+	 */
+	public void setCinUtilisateur(String cinUtilisateur) {
+		this.cinUtilisateur = cinUtilisateur;
+	}
+
+	/**
+	 * @return the codeReservation
+	 */
+	public long getCodeReservation() {
+		return codeReservation;
+	}
+
+	/**
+	 * @param codeReservation the codeReservation to set
+	 */
+	public void setCodeReservation(long codeReservation) {
+		this.codeReservation = codeReservation;
+	}
+
+	/**
+	 * @return the idContrat
+	 */
+	public long getIdContrat() {
+		return idContrat;
+	}
+
+	/**
+	 * @param idContrat the idContrat to set
 	 */
 	public void setIdContrat(long idContrat) {
 		this.idContrat = idContrat;
-	}
-	
-	
-
-	/**
-	 * @return the km_depart
-	 */
-	public long getKm_depart() {
-		return km_depart;
-	}
-
-	/**
-	 * @param km_depart the km_depart to set
-	 */
-	public void setKm_depart(long km_depart) {
-		this.km_depart = km_depart;
-	}
-
-	/**
-	 * @return the km_retour
-	 */
-	public long getKm_retour() {
-		return km_retour;
-	}
-
-	/**
-	 * @param km_retour the km_retour to set
-	 */
-	public void setKm_retour(long km_retour) {
-		this.km_retour = km_retour;
 	}
 
 	/**
 	 * @return the dateContrat
 	 */
-	public Date getDateContrat() {
+	public String getDateContrat() {
 		return dateContrat;
 	}
 
 	/**
 	 * @param dateContrat the dateContrat to set
 	 */
-	public void setDateContrat(Date dateContrat) {
+	public void setDateContrat(String dateContrat) {
 		this.dateContrat = dateContrat;
 	}
 
@@ -200,100 +215,100 @@ public class Contrat implements Serializable{
 	}
 
 	/**
-	 * @return the vehicule
+	 * @return the idVehicule
 	 */
-	public Vehicule getVehicule() {
-		return vehicule;
+	public String getIdVehicule() {
+		return idVehicule;
 	}
 
 	/**
-	 * @param vehicule the vehicule to set
+	 * @param idVehicule the idVehicule to set
 	 */
-	public void setVehicule(Vehicule vehicule) {
-		this.vehicule = vehicule;
+	public void setIdVehicule(String idVehicule) {
+		this.idVehicule = idVehicule;
 	}
 
 	/**
-	 * @return the reservation
+	 * @return the idReservation
 	 */
-	public Reservation getReservation() {
-		return reservation;
+	public Long getIdReservation() {
+		return idReservation;
 	}
 
 	/**
-	 * @param reservation the reservation to set
+	 * @param idReservation the idReservation to set
 	 */
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
+	public void setIdReservation(Long idReservation) {
+		this.idReservation = idReservation;
 	}
 
 	/**
-	 * @return the sanction
+	 * @return the idSanction
 	 */
-	public Sanction getSanction() {
-		return sanction;
+	public Long getIdSanction() {
+		return idSanction;
 	}
 
 	/**
-	 * @param sanction the sanction to set
+	 * @param idSanction the idSanction to set
 	 */
-	public void setSanction(Sanction sanction) {
-		this.sanction = sanction;
+	public void setIdSanction(Long idSanction) {
+		this.idSanction = idSanction;
 	}
 
 	/**
 	 * @return the date_sortie
 	 */
-	public Date getDate_sortie() {
+	public String getDate_sortie() {
 		return date_sortie;
 	}
 
 	/**
 	 * @param date_sortie the date_sortie to set
 	 */
-	public void setDate_sortie(Date date_sortie) {
+	public void setDate_sortie(String date_sortie) {
 		this.date_sortie = date_sortie;
 	}
 
 	/**
 	 * @return the date_retour
 	 */
-	public Date getDate_retour() {
+	public String getDate_retour() {
 		return date_retour;
 	}
 
 	/**
 	 * @param date_retour the date_retour to set
 	 */
-	public void setDate_retour(Date date_retour) {
+	public void setDate_retour(String date_retour) {
 		this.date_retour = date_retour;
 	}
 
 	/**
 	 * @return the heure_retour
 	 */
-	public Date getHeure_retour() {
+	public String getHeure_retour() {
 		return heure_retour;
 	}
 
 	/**
 	 * @param heure_retour the heure_retour to set
 	 */
-	public void setHeure_retour(Date heure_retour) {
+	public void setHeure_retour(String heure_retour) {
 		this.heure_retour = heure_retour;
 	}
 
 	/**
 	 * @return the heure_sortie
 	 */
-	public Date getHeure_sortie() {
+	public String getHeure_sortie() {
 		return heure_sortie;
 	}
 
 	/**
 	 * @param heure_sortie the heure_sortie to set
 	 */
-	public void setHeure_sortie(Date heure_sortie) {
+	public void setHeure_sortie(String heure_sortie) {
 		this.heure_sortie = heure_sortie;
 	}
 
@@ -352,6 +367,78 @@ public class Contrat implements Serializable{
 	public void setCaution(float caution) {
 		this.caution = caution;
 	}
+
+	/**
+	 * @return the km_depart
+	 */
+	public long getKm_depart() {
+		return km_depart;
+	}
+
+	/**
+	 * @param km_depart the km_depart to set
+	 */
+	public void setKm_depart(long km_depart) {
+		this.km_depart = km_depart;
+	}
+
+	/**
+	 * @return the km_retour
+	 */
+	public long getKm_retour() {
+		return km_retour;
+	}
+
+	/**
+	 * @param km_retour the km_retour to set
+	 */
+	public void setKm_retour(long km_retour) {
+		this.km_retour = km_retour;
+	}
+
+	/**
+	 * @return the vehicule
+	 */
+	public Vehicule getVehicule() {
+		return vehicule;
+	}
+
+	/**
+	 * @param vehicule the vehicule to set
+	 */
+	public void setVehicule(Vehicule vehicule) {
+		this.vehicule = vehicule;
+	}
+
+	/**
+	 * @return the reservation
+	 */
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	/**
+	 * @param reservation the reservation to set
+	 */
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+	/**
+	 * @return the sanction
+	 */
+	public Sanction getSanction() {
+		return sanction;
+	}
+
+	/**
+	 * @param sanction the sanction to set
+	 */
+	public void setSanction(Sanction sanction) {
+		this.sanction = sanction;
+	}
+
+	
 	
 	
 	
