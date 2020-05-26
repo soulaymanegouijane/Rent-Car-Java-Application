@@ -85,7 +85,7 @@
                                                         </HBox>
                                                         <HBox fx:id="hBoxChoisirClient" alignment="CENTER" disable="true" prefHeight="35.0" prefWidth="313.0" visible="false">
                                                             <children>
-                                                                <TextField fx:id="textFeildChoisirClient" disable="true" prefHeight="33.0" prefWidth="237.0" promptText="CIN Client" stylesheets="@../windowsSwitcher.css" />
+                                                                <TextField fx:id="textFeildChoisirClient" disable="false" prefHeight="33.0" prefWidth="237.0" promptText="CIN Client" stylesheets="@../windowsSwitcher.css" />
                                                                 <JFXButton fx:id="buttonChoisirClient" onAction="#handleButtonChoisirClient" prefHeight="26.0" prefWidth="76.0" styleClass="detailsUserButton" stylesheets="@../windowsSwitcher.css" text="Choisir" textFill="WHITE">
                                                                     <font>
                                                                         <Font name="Rockwell" size="14.0" />

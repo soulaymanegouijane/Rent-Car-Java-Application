@@ -3,7 +3,9 @@ package windowsSwitcher.contratWindow;
 import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
+import Entities.Carburant;
 import Entities.Contrat;
+import Entities.Marque;
 import Entities.Parking;
 import Entities.Vehicule;
 import Test.H;
@@ -36,6 +38,7 @@ import java.util.ResourceBundle;
 
 public class ContratWindow implements Initializable {
     
+	
     @FXML
     private TextField textFeildChoisirVehicule;
 
@@ -70,7 +73,7 @@ public class ContratWindow implements Initializable {
     private HBox hBoxChoisirClient;
 
     @FXML
-    private TextField textFeildChoisirClient;
+    public TextField textFeildChoisirClient;
 
     @FXML
     private JFXButton buttonChoisirClient;
@@ -120,11 +123,13 @@ public class ContratWindow implements Initializable {
     @FXML
     private Button detailContratButton;
 
+    String searchSection = null;
 
 
-    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "N° contrat", "Date", "Résérvation", "Véhicule", "Client", "Utilisateur");
+    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Num contrat", "Date", "Reservation", "Vehicule", "Client", "Utilisateur");
     ObservableList<Contrat> contrat_list = FXCollections.observableArrayList();
-
+    ObservableList<Contrat> mono_contrat = FXCollections.observableArrayList();
+    ObservableList<Contrat> contrats = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -144,7 +149,7 @@ public class ContratWindow implements Initializable {
     }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {
-        String searchSection = chercherComboBox.getValue();
+        searchSection = chercherComboBox.getValue();
         chercherButton.setDisable(false);
 
         if(searchSection.equals("Tous") || searchSection.isEmpty()){
@@ -156,7 +161,7 @@ public class ContratWindow implements Initializable {
             disable(hBoxChoisirClient);
             disable(hBoxChoisirUtilisateur);
 
-        }else if(searchSection.equals("N° contrat")){
+        }else if(searchSection.equals("Num contrat")){
 
             enable(nContratTextFeild);
             disable(dateDatePicker);
@@ -174,7 +179,7 @@ public class ContratWindow implements Initializable {
             disable(hBoxChoisirClient);
             disable(hBoxChoisirUtilisateur);
 
-        }else if(searchSection.equals("Résérvation")){
+        }else if(searchSection.equals("Reservation")){
 
             disable(nContratTextFeild);
             disable(dateDatePicker);
@@ -183,7 +188,7 @@ public class ContratWindow implements Initializable {
             disable(hBoxChoisirClient);
             disable(hBoxChoisirUtilisateur);
 
-        }else if(searchSection.equals("Véhicule")){
+        }else if(searchSection.equals("Vehicule")){
 
             disable(nContratTextFeild);
             disable(dateDatePicker);
@@ -217,7 +222,7 @@ public class ContratWindow implements Initializable {
         String searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
 
-        if(searchSection.equals("N° contrat")){
+        if(searchSection.equals("Num contrat")){
 
             try {
                 int nContratTaped = Integer.parseInt(nContratTextFeild.getText());
@@ -235,7 +240,7 @@ public class ContratWindow implements Initializable {
                 enable(ErreurMessage);
             }
 
-        }else if(searchSection.equals("Résérvation")){
+        }else if(searchSection.equals("Reservation")){
             String reservationTaped = textFeildChoisirReservation.getText();
 
             if(reservationTaped.isEmpty()){
@@ -244,7 +249,7 @@ public class ContratWindow implements Initializable {
                 // Search résérvation by client
             }
 
-        }else if(searchSection.equals("Véhicule")){
+        }else if(searchSection.equals("Vehicule")){
             String vehiculeTaped = textFeildChoisirVehicule.getText();
 
             if(vehiculeTaped.isEmpty()){
@@ -253,13 +258,14 @@ public class ContratWindow implements Initializable {
                 // Search résérvation by client
             }
 
-        }else if(searchSection.equals("CIN Client")){
+        }else if(searchSection.equals("Client")){
             String clientTaped = textFeildChoisirClient.getText();
 
             if(clientTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
                 // Search résérvation by client
+            	selectReservations(clientTaped);
             }
 
         }else if(searchSection.equals("CIN Utilisateur")){
@@ -298,7 +304,8 @@ public class ContratWindow implements Initializable {
     }
 
     public void handleButtonChoisirClient(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirClientScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirClientScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -306,6 +313,9 @@ public class ContratWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirClientScene choisirClient = loader.getController();
+        textFeildChoisirClient.setText(choisirClient.cinClientSelected);
     }
 
 
@@ -409,5 +419,123 @@ public class ContratWindow implements Initializable {
          
  		   tableContrat.setItems(contrat_list);
     }
+    
+    public void afficher_contrat(String valeur) {
+    	searchSection = chercherComboBox.getValue();
+    	Contrat contrat = new Contrat();
+    	ResultSet tous_les_contrat = null;
+		try {
+	    	String sql = "";
+	    	PreparedStatement ps = null;
+	    	Connection con = null;
+			if(searchSection.equals("Vehicule")) {
+				sql = "select * from contrat where idVehicule=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Reservation")) {
+				sql = "select * from contrat where idReservation=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			if(searchSection.equals("Date")) {
+				sql = "select * from contrat where date_contrat=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Client")) {
+				sql = "select * from vehicule where dispo=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setBoolean(1, Boolean.valueOf(valeur));
+			}
+			if(searchSection.equals("Utilisateur")) {
+				sql = "select * from vehicule where idParking=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			if(searchSection.equals("Num contrat")) {
+				sql = "select * from vehicule where idParking=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			tous_les_contrat = ps.executeQuery();
+			if(tous_les_contrat.next()) {
+				contrat.setIdContrat(tous_les_contrat.getLong("idContrat"));
+			    contrat.setReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")));
+			    //contrat.setVehicule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")));
+			    contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinClient(H.reservation.getCinClient(tous_les_contrat.getLong("idReservation")));
+			    contrat.setMatricule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")).getIdVehicule());
+			    contrat.setCodeReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")).getIdReservation());
+			    contrat.setDate_retour(tous_les_contrat.getString("date_retour"));
+			    contrat.setDateContrat(tous_les_contrat.getString("date_Contrat"));
+				mono_contrat.add(contrat);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		   col_nb_contrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
+	 	   col_cin_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
+	 	   col_date_contrat.setCellValueFactory(new PropertyValueFactory<>("dateContrat"));
+	 	   col_date_echeance.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+	 	   col_reservation.setCellValueFactory(new PropertyValueFactory<>("codeReservation"));
+	 	   col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+		   col_vehicule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+	   
+    
+	    tableContrat.setItems(mono_contrat);
+    }
+    
+    public void selectReservations(String idClient) {
+		Connection con = Abst.getConnection();
+		String sql = "select * from reservation where idClient =?";
+		long idReservation = 0;
+		Contrat contrat= null;
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, idClient);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				idReservation = rs.getLong("idReservation");
+				contrat = selectContrats(idReservation);
+				mono_contrat.add(contrat);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public Contrat selectContrats(long idReservation) {
+		Connection con = Abst.getConnection();
+		String sql = "select * from contrat where idReservation =?";
+		Contrat contrat = new Contrat();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setLong(1, idReservation);
+			ResultSet tous_les_contrat = ps.executeQuery();
+			while(tous_les_contrat.next()) {
+				contrat.setIdContrat(tous_les_contrat.getLong("idContrat"));
+			    contrat.setReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinClient(H.reservation.getCinClient(tous_les_contrat.getLong("idReservation")));
+			    contrat.setMatricule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")).getIdVehicule());
+			    contrat.setCodeReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")).getIdReservation());
+			    contrat.setDate_retour(tous_les_contrat.getString("date_retour"));
+			    contrat.setDateContrat(tous_les_contrat.getString("date_Contrat"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return contrat;
+	}
 
+	
+	
+	
 }

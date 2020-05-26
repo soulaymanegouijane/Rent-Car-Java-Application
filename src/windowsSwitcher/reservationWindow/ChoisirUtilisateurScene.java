@@ -35,7 +35,9 @@ public class ChoisirUtilisateurScene implements Initializable {
         }else{
             // Get selected row
 
-            /*utilisateur selectedUtilisateur= utilisateurTableView.getSelectionModel().getSelectedItems().get(0);
+            /*
+             * 
+            utilisateur selectedUtilisateur= utilisateurTableView.getSelectionModel().getSelectedItems().get(0);
             int cinUtilisateurSelected = selectedUtilisateur.toString().split(",")[0].substring(1);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("reservationWindow.fxml"));
             ReservationWindow reservationWindow = loader.getController();

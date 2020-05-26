@@ -25,9 +25,7 @@ public class Vehicule implements Serializable{
 	@Column(name="telephone",nullable=false)
 	private String telephone;
 	
-//	private String libelle_marque;
-//	private String libelle_carburant;
-//	private String libelle_parking;
+	
 	private String typeVehicule;
 	private String marqueLibelle;
 	
