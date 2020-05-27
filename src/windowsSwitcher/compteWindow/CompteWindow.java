@@ -1,6 +1,7 @@
 package windowsSwitcher.compteWindow;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -24,24 +25,60 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CompteWindow implements Initializable {
-    public ImageView profilImage;
-    public Button chooseProfilImageButton;
-    public Label fullNameLabel;
-    public Label typeCompteLabel;
-    public TextField usernameTextField;
-    public PasswordField passwordTextField;
-    public TextField cinTextField;
-    public TextField nomTextField;
-    public TextField prenomTextField;
-    public TextField compteTypeTextField;
-    public TextField teleTextField;
-    public TextField adresseTextField;
-    public TextField emailTextField;
-    public TextField etatCompteTextField;
-    public Button saveCompte;
-    public Button annulerButton;
-    public Button updateCompteButton;
-    public VBox grandTextVBox;
+	
+	@FXML
+    private ImageView profilImage;
+
+    @FXML
+    private Button chooseProfilImageButton;
+
+    @FXML
+    private VBox grandTextVBox;
+
+    @FXML
+    private Label fullNameLabel;
+
+    @FXML
+    private Label typeCompteLabel;
+
+    @FXML
+    private TextField cinTextField;
+
+    @FXML
+    private TextField nomTextField;
+
+    @FXML
+    private TextField prenomTextField;
+
+    @FXML
+    private TextField compteTypeTextField;
+
+    @FXML
+    private TextField teleTextField;
+
+    @FXML
+    private TextField adresseTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField etatCompteTextField;
+
+    @FXML
+    private PasswordField passwordTextField;
+
+    @FXML
+    private TextField usernameTextField;
+
+    @FXML
+    private Button saveCompte;
+
+    @FXML
+    private Button annulerButton;
+
+    @FXML
+    private Button updateCompteButton;
 
 
     private Image oldimage;

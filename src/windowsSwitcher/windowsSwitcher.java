@@ -15,16 +15,37 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class windowsSwitcher {
-    public JFXButton utilisateurButton;
-    public JFXButton clientButton;
-    public JFXButton vehiculesButton;
-    public JFXButton parkingButton;
-    public JFXButton reservationsButton;
-    public JFXButton contratsButton;
-    public JFXButton compteButton;
-    public JFXButton acceuilButton;
-    public AnchorPane windowSpace;
-    public JFXButton deconnexionButton;
+	
+	@FXML
+    private JFXButton acceuilButton;
+
+    @FXML
+    private JFXButton utilisateurButton;
+
+    @FXML
+    private JFXButton clientButton;
+
+    @FXML
+    private JFXButton vehiculesButton;
+
+    @FXML
+    private JFXButton parkingButton;
+
+    @FXML
+    private JFXButton reservationsButton;
+
+    @FXML
+    private JFXButton contratsButton;
+
+    @FXML
+    private JFXButton compteButton;
+
+    @FXML
+    private JFXButton deconnexionButton;
+
+    @FXML
+    private AnchorPane windowSpace;
+    
 
     public void handleAcceuilButton(ActionEvent actionEvent) {
 

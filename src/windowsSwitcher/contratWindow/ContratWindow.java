@@ -282,7 +282,8 @@ public class ContratWindow implements Initializable {
     }
 
     public void handleButtonChoisirReservation(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirReservationScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirReservationScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -290,10 +291,14 @@ public class ContratWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirReservationScene choisirReservation = loader.getController();
+        textFeildChoisirReservation.setText(choisirReservation.idReservationSelected);
     }
 
     public void handleButtonChoisirVehicule(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirVehiculeScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirVehiculeScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -301,6 +306,10 @@ public class ContratWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirVehiculeScene choisirVehicule = loader.getController();
+        textFeildChoisirVehicule.setText(choisirVehicule.matriculeVehicule);
+        
     }
 
     public void handleButtonChoisirClient(ActionEvent actionEvent) throws IOException {
@@ -320,7 +329,8 @@ public class ContratWindow implements Initializable {
 
 
     public void handleButtonChoisirUtilisateur(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirUtilisateurScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirUtilisateurScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -328,6 +338,9 @@ public class ContratWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirUtilisateurScene choisirUser = loader.getController();
+        textFeildChoisirUtilisateur.setText(choisirUser.cinUtilisateurSelected);
     }
 
 
@@ -447,19 +460,19 @@ public class ContratWindow implements Initializable {
 				ps.setString(1, valeur);
 			}
 			if(searchSection.equals("Client")) {
-				sql = "select * from vehicule where dispo=?";
+				sql = "select * from vehicule where idClient=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setBoolean(1, Boolean.valueOf(valeur));
 			}
 			if(searchSection.equals("Utilisateur")) {
-				sql = "select * from vehicule where idParking=?";
+				sql = "select * from vehicule where idUtilisateur=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
 			if(searchSection.equals("Num contrat")) {
-				sql = "select * from vehicule where idParking=?";
+				sql = "select * from vehicule where idContrats=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
@@ -511,7 +524,8 @@ public class ContratWindow implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	public Contrat selectContrats(long idReservation) {
+	
+    public Contrat selectContrats(long idReservation) {
 		Connection con = Abst.getConnection();
 		String sql = "select * from contrat where idReservation =?";
 		Contrat contrat = new Contrat();

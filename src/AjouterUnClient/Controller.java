@@ -16,11 +16,7 @@ public class Controller implements Initializable {
 	@FXML
     private JFXButton closeButton ;
 	
-	@FXML
-    private void closeButtonAction(){
-	    Stage stage =(Stage) closeButton.getScene().getWindow();
-	    stage.close();
-	}
+	
 	
 	@FXML
     public JFXComboBox<Integer> comboday1 ;
@@ -47,6 +43,8 @@ public class Controller implements Initializable {
     	comboBox();
     }
     
+    
+    
     public void comboBox() {
     	comboday1.setItems(dayslist);
         comboday2.setItems(dayslist);
@@ -60,4 +58,10 @@ public class Controller implements Initializable {
         comboGender.setItems(Genderlist);
         comboIdType.setItems(Idtypelist);
     }
+    
+    @FXML
+    private void closeButtonAction(){
+	    Stage stage =(Stage) closeButton.getScene().getWindow();
+	    stage.close();
+	}
 }

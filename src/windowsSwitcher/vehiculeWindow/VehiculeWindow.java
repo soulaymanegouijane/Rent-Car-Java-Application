@@ -25,6 +25,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import windowsSwitcher.contratWindow.ChoisirVehiculeScene;
 
 import java.io.IOException;
 import java.net.URL;
@@ -368,7 +369,8 @@ public class VehiculeWindow implements Initializable {
     }
 
 	public void handleButtonChoisirParking(ActionEvent actionEvent) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("choisirParkingScene.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirParkingScene.fxml"));
+    	Parent root = loader.load();
 
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
@@ -376,6 +378,10 @@ public class VehiculeWindow implements Initializable {
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
+		
+		ChoisirParkingScene choisirParking = loader.getController();
+		textFeildChoisirParking.setText(choisirParking.idParkingChoisi);
+		
 	}
 
     public void disable(TextField TF) {

@@ -116,9 +116,9 @@ public class ReservationWindow implements Initializable {
         
 	
 
-    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Véhicule", "Client", "Utilisateur", "Status", "Nombres des contrats");
-    ObservableList<String> typeTypeList = FXCollections.observableArrayList("Réservation local", "Réservation téléphonique");
-    ObservableList<String> statutTypeList = FXCollections.observableArrayList("En cours", "Complété", "Annulé");
+    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status", "Nombres des contrats");
+    ObservableList<String> typeTypeList = FXCollections.observableArrayList("Reservation local", "Reservation telephonique");
+    ObservableList<String> statutTypeList = FXCollections.observableArrayList("En cours", "Complété", "Annule");
 
     ObservableList<Reservation> reservation_list = FXCollections.observableArrayList();
     ObservableList<Reservation> mono_reservation = FXCollections.observableArrayList();
@@ -266,7 +266,7 @@ public class ReservationWindow implements Initializable {
             disable(statutComboBox);
             disable(nbrContratTextFeild);
 
-        }else if(searchSection.equals("Véhicule")){
+        }else if(searchSection.equals("Vehicule")){
 
             disable(idTextFeild);
             disable(typeComboBox);
@@ -346,7 +346,7 @@ public class ReservationWindow implements Initializable {
 
             // Search résérvation by date
 
-        }else if(searchSection.equals("Véhicule")){
+        }else if(searchSection.equals("Vehicule")){
             String vehiculeTaped = textFeildChoisirVehicule.getText();
 
             if(vehiculeTaped.isEmpty()){

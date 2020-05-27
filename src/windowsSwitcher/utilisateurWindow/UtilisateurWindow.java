@@ -2,10 +2,10 @@ package windowsSwitcher.utilisateurWindow;
 
 import com.jfoenix.controls.JFXComboBox;
 
+
 import com.jfoenix.controls.JFXTextField;
 
 import AbstactClasses.Abst;
-import Entities.Client;
 import Entities.Utilisateur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.sql.Connection;

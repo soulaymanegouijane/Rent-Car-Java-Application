@@ -1,6 +1,7 @@
 package windowsSwitcher.compteWindow;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -10,11 +11,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginToUpdate {
-    public TextField usernameTestField;
-    public PasswordField passwordTextField;
-    public Button EnterButton;
-    public Button annulerButton;
-    public Label erreurMessage;
+	
+	@FXML
+    private TextField usernameTestField;
+
+    @FXML
+    private PasswordField passwordTextField;
+
+    @FXML
+    private Label erreurMessage;
+
+    @FXML
+    private Button EnterButton;
+
+    @FXML
+    private Button annulerButton;
+	
     public boolean activateUpdate;
 
     public void handleEnterButton(ActionEvent actionEvent) throws IOException {
