@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javax.swing.*;
 
 import AbstactClasses.Abst;
+import Entities.Contrat;
 import Entities.Parking;
 import Entities.Vehicule;
 import Test.H;
@@ -65,9 +66,11 @@ public class parkingWindow implements Initializable {
     private Button detailParkingButton;
     
 
-    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Nom", "Capacité minimal", "Places vides minimal");
+    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Adress", "Capacite", "places sature");
     ObservableList<Parking> parking_list = FXCollections.observableArrayList();
-
+    ObservableList<Parking> mono_parking = FXCollections.observableArrayList();
+    
+    String searchSection = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chercherComboBox.setPromptText("Chercher par:");
@@ -88,7 +91,7 @@ public class parkingWindow implements Initializable {
 
             disable(dataTextFeild);
 
-        }else if(searchSection.equals("Nom") || searchSection.equals("Capacité minimal") || searchSection.equals("Places vides minimal")){
+        }else if(searchSection.equals("Adress") || searchSection.equals("Capacite") || searchSection.equals("places sature")){
 
             enable(dataTextFeild);
 
@@ -96,38 +99,92 @@ public class parkingWindow implements Initializable {
     }
 
     public void handleCharcherButton(ActionEvent actionEvent) {
-        String searchSection = chercherComboBox.getValue();
+        searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
 
-        if(searchSection.equals("Nom")){
+        if(searchSection.equals("Adress")){
             String nomTaped = dataTextFeild.getText();
 
             if(nomTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search Parking by Nom
+                // Search Parking by Adress
+            	afficher_parking(nomTaped);
             }
 
-        }else if(searchSection.equals("Capacité minimal")){
-            try {
-                int capaciteTaped = Integer.parseInt(dataTextFeild.getText());
-                // Search Parking by Capacité minimal
+        }else if(searchSection.equals("Capacite")){
 
-            }catch (NumberFormatException e){
+        	String capaciteTaped = dataTextFeild.getText();
+        	
+        	if(capaciteTaped.isEmpty()){
                 enable(ErreurMessage);
+            }else {
+            	// Search Parking by Capacite
+                afficher_parking(capaciteTaped);
             }
+            
 
-        }else if(searchSection.equals("Places vides minimal")){
-            try {
-                int placesTaped = Integer.parseInt(dataTextFeild.getText());
-                // Search Parking by Places vides minimal
-
-            }catch (NumberFormatException e){
+        }else if(searchSection.equals("places sature")){
+            
+            String placesTaped = dataTextFeild.getText();
+            
+            if(placesTaped.isEmpty()){
                 enable(ErreurMessage);
+            }else {
+            	// Search Parking by places sature
+                afficher_parking(placesTaped);
             }
 
+        }else {
+        	remplir_tableau();
         }
     }
+    
+    public void afficher_parking(String valeur) {
+    	searchSection = chercherComboBox.getValue();
+    	Parking contrat = new Parking();
+    	ResultSet tous_les_parking = null;
+    	Connection con = Abst.getConnection();
+		try {
+	    	String sql = "";
+	    	PreparedStatement ps = null;
+	    	
+			if(searchSection.equals("Adress")) {
+				sql = "select * from parking where adress=?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Capacite")) {
+				sql = "select * from parking where capacite=?";
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			if(searchSection.equals("places sature")) {
+				sql = "select * from parking where nbr_place_pleinne=?";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, Integer.valueOf(valeur));
+			}
+			tous_les_parking = ps.executeQuery();
+			while(tous_les_parking.next()) {
+				Parking parking = new Parking();
+ 				parking.setIdParking(tous_les_parking.getLong("idParking"));
+				parking.setAdress(tous_les_parking.getString("adress"));
+				parking.setCapacite(tous_les_parking.getLong("capacite"));
+				parking.setNbr_place_pleinne(tous_les_parking.getInt("nbr_place_pleinne"));
+				mono_parking.add(contrat);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		col_id.setCellValueFactory(new PropertyValueFactory<>("idParking"));
+ 	    col_capacite.setCellValueFactory(new PropertyValueFactory<>("capacite"));
+ 	    col_placesVides.setCellValueFactory(new PropertyValueFactory<>("nbr_place_pleinne"));
+ 	    col_adresse.setCellValueFactory(new PropertyValueFactory<>("adress"));
+ 	    
+ 	   tableParking.setItems(mono_parking);
+}
 
     public void disable(TextField TF){
         TF.setVisible(false);
@@ -181,12 +238,9 @@ public class parkingWindow implements Initializable {
  		}
  		
  	    col_id.setCellValueFactory(new PropertyValueFactory<>("idParking"));
- 	    //col_Nom.setCellValueFactory(new PropertyValueFactory<>("dispo"));
  	    col_capacite.setCellValueFactory(new PropertyValueFactory<>("capacite"));
  	    col_placesVides.setCellValueFactory(new PropertyValueFactory<>("nbr_place_pleinne"));
  	    col_adresse.setCellValueFactory(new PropertyValueFactory<>("adress"));
- 		    
- 	
          
  		   tableParking.setItems(parking_list);
     }

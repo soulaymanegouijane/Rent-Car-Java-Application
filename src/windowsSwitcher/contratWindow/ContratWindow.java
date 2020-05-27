@@ -264,7 +264,7 @@ public class ContratWindow implements Initializable {
             if(clientTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by client
+                
             	selectReservations(clientTaped);
             }
 
@@ -274,9 +274,12 @@ public class ContratWindow implements Initializable {
             if(utilisateurTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by client
+                long reservation_numero = afficherUser(utilisateurTaped);
+                returnContrat(reservation_numero);
             }
 
+        }else {
+        	remplir_tableau();
         }
 
     }
@@ -327,7 +330,6 @@ public class ContratWindow implements Initializable {
         textFeildChoisirClient.setText(choisirClient.cinClientSelected);
     }
 
-
     public void handleButtonChoisirUtilisateur(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirUtilisateurScene.fxml"));
     	Parent root = loader.load();
@@ -342,7 +344,6 @@ public class ContratWindow implements Initializable {
         ChoisirUtilisateurScene choisirUser = loader.getController();
         textFeildChoisirUtilisateur.setText(choisirUser.cinUtilisateurSelected);
     }
-
 
     public void disable(TextField TF){
         TF.setVisible(false);
@@ -437,43 +438,28 @@ public class ContratWindow implements Initializable {
     	searchSection = chercherComboBox.getValue();
     	Contrat contrat = new Contrat();
     	ResultSet tous_les_contrat = null;
+    	Connection con = Abst.getConnection();
 		try {
 	    	String sql = "";
 	    	PreparedStatement ps = null;
-	    	Connection con = null;
+	    	
 			if(searchSection.equals("Vehicule")) {
 				sql = "select * from contrat where idVehicule=?";
-				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
 			}
 			if(searchSection.equals("Reservation")) {
 				sql = "select * from contrat where idReservation=?";
-				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
 			if(searchSection.equals("Date")) {
 				sql = "select * from contrat where date_contrat=?";
-				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
 			}
-			if(searchSection.equals("Client")) {
-				sql = "select * from vehicule where idClient=?";
-				con = Abst.getConnection();
-				ps = con.prepareStatement(sql);
-				ps.setBoolean(1, Boolean.valueOf(valeur));
-			}
-			if(searchSection.equals("Utilisateur")) {
-				sql = "select * from vehicule where idUtilisateur=?";
-				con = Abst.getConnection();
-				ps = con.prepareStatement(sql);
-				ps.setLong(1, Long.valueOf(valeur));
-			}
 			if(searchSection.equals("Num contrat")) {
-				sql = "select * from vehicule where idContrats=?";
-				con = Abst.getConnection();
+				sql = "select * from contrat where idContrat=?";
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
@@ -523,6 +509,16 @@ public class ContratWindow implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		   col_nb_contrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
+	 	   col_cin_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
+	 	   col_date_contrat.setCellValueFactory(new PropertyValueFactory<>("dateContrat"));
+	 	   col_date_echeance.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+	 	   col_reservation.setCellValueFactory(new PropertyValueFactory<>("codeReservation"));
+	 	   col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+		   col_vehicule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+	   
+ 
+	       tableContrat.setItems(mono_contrat);
 	}
 	
     public Contrat selectContrats(long idReservation) {
@@ -549,7 +545,57 @@ public class ContratWindow implements Initializable {
 		return contrat;
 	}
 
+	public void returnContrat(long idReservation) {
+		Connection con = Abst.getConnection();
+		String sql = "select * from contrat where idReservation = ?";
+		Contrat contrat = new Contrat();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setLong(1, idReservation);
+			ResultSet tous_les_contrat = ps.executeQuery();
+			if(tous_les_contrat.next()) {
+				contrat.setIdContrat(tous_les_contrat.getLong("idContrat"));
+			    contrat.setReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinClient(H.reservation.getCinClient(tous_les_contrat.getLong("idReservation")));
+			    contrat.setMatricule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")).getIdVehicule());
+			    contrat.setCodeReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")).getIdReservation());
+			    contrat.setDate_retour(tous_les_contrat.getString("date_retour"));
+			    contrat.setDateContrat(tous_les_contrat.getString("date_Contrat"));
+			    mono_contrat.add(contrat);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		   col_nb_contrat.setCellValueFactory(new PropertyValueFactory<>("idContrat"));
+	 	   col_cin_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
+	 	   col_date_contrat.setCellValueFactory(new PropertyValueFactory<>("dateContrat"));
+	 	   col_date_echeance.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+	 	   col_reservation.setCellValueFactory(new PropertyValueFactory<>("codeReservation"));
+	 	   col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+		   col_vehicule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
+	   
+ 
+		   tableContrat.setItems(mono_contrat);
+	}
 	
+	public long afficherUser(String idUtilisateur) {
+		Connection con = Abst.getConnection();
+		String sql = "select idReservation from Utilisateur where idUtilisateur = ?";
+		long idReservation = 0;
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, idUtilisateur);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				idReservation = rs.getLong("idReservation");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return idReservation;
+	}
 	
 	
 }

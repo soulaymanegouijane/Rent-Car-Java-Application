@@ -3,6 +3,7 @@ package windowsSwitcher.reservationWindow;
 import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
+import Entities.Parking;
 import Entities.Reservation;
 import Entities.Status;
 import Entities.Utilisateur;
@@ -36,7 +37,9 @@ public class ReservationWindow implements Initializable {
     public HBox hBoxChoisirVehicule;
     public TextField textFeildChoisirVehicule;
     public JFXButton buttonChoisirVehicule;
-    @FXML
+    
+    String searchSection = null;
+    	@FXML
 	    private ComboBox<String> chercherComboBox;
 
 	    @FXML
@@ -179,6 +182,36 @@ public class ReservationWindow implements Initializable {
         tableReservation.setItems(reservation_list);
     }
 
+    public void afficher_reservation(String valeur) {
+    	searchSection = chercherComboBox.getValue();
+    	Parking contrat = new Parking();
+    	ResultSet tous_les_parking = null;
+    	Connection con = Abst.getConnection();
+		try {
+	    	String sql = "";
+	    	PreparedStatement ps = null;
+	    	
+			if(searchSection.equals("Adress")) {
+				sql = "select * from parking where adress=?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Capacite")) {
+				sql = "select * from parking where capacite=?";
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			if(searchSection.equals("places sature")) {
+				sql = "select * from parking where nbr_place_pleinne=?";
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, Integer.valueOf(valeur));
+			}
+			tous_les_parking = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
     public void handleAjouterReservationButton(ActionEvent actionEvent) {
     }
 

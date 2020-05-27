@@ -110,10 +110,9 @@
                                         <TableView fx:id="tableParking" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="col_id" prefWidth="92.0" text="Id" />
-                                                <TableColumn fx:id="col_Nom" prefWidth="180.0" text="Nom" />
-                                                <TableColumn fx:id="col_capacite" prefWidth="111.0" text="Capacité" />
-                                                <TableColumn fx:id="col_placesVides" prefWidth="138.0" text="N° palaces vides" />
-                                                <TableColumn fx:id="col_adresse" prefWidth="302.0" text="Adresse" />
+                                                <TableColumn fx:id="col_capacite" prefWidth="134.0" text="capacite" />
+                                                <TableColumn fx:id="col_placesVides" prefWidth="139.0" text="N° palaces saturé" />
+                                                <TableColumn fx:id="col_adresse" prefWidth="458.0" text="Adresse" />
                                             </columns>
                                         </TableView>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
