@@ -20,8 +20,8 @@ public class AjouterParking {
 
     String idparking;
     String adressparking;
-    String capaciteParking;
-    String occupeParking;
+    int capaciteParking;
+    int occupeParking;
     String idUtilisateur;
 
     @FXML
@@ -31,5 +31,53 @@ public class AjouterParking {
     }
 
     public void submitButtonAction(ActionEvent actionEvent) {
+        erreurMessage.setVisible(false);
+
+        if(Erreur()){
+            erreurMessage.setVisible(true);
+        }else{
+            idparking = idparkingTextField.getText();
+            adressparking = adressparkingTextField.getText();
+            capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
+            occupeParking = Integer.parseInt(occupeParkingTextField.getText());
+            idUtilisateur = idUtilisateurTextField.getText();
+
+            // Upload informations to dataBase
+
+            Stage stage =(Stage) submitButton.getScene().getWindow();
+            stage.close();
+        }
+
+    }
+
+    public boolean Erreur() {
+
+        if(!isNumeric(capaciteParkingTextField.getText())){
+            erreurMessage.setText("La capacité faut étre un entier !!");
+            return true;
+        }
+
+        if(!isNumeric(occupeParkingTextField.getText())){
+            erreurMessage.setText("Le nombre des places occupées faut étre un entier !!");
+            return true;
+        }
+
+        if(idparking.isEmpty() || adressparking.isEmpty() || idUtilisateur.isEmpty()){
+            erreurMessage.setText("Remplire tous les champs !!");
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
