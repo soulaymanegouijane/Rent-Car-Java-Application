@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="491.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterParking.AjouterParking">
     <children>
@@ -27,7 +28,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="idparking" prefWidth="200.0" styleClass="text">
+                  <TextField fx:id="idparkingTextField" prefWidth="200.0" styleClass="text">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -45,7 +46,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="adressparking" prefWidth="200.0" styleClass="text">
+                  <TextField fx:id="adressparkingTextField" prefWidth="200.0" styleClass="text">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -63,7 +64,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="capaciteParking" prefWidth="200.0" styleClass="text">
+                  <TextField fx:id="capaciteParkingTextField" prefWidth="200.0" styleClass="text">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -81,7 +82,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="occupeParking" editable="false" prefWidth="200.0">
+                  <TextField fx:id="occupeParkingTextField" editable="false" prefWidth="200.0">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -96,19 +97,14 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="166.0" prefHeight="52.0" prefWidth="500.0">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="166.0" prefHeight="52.0" prefWidth="500.0" spacing="60.0">
                <children>
                   <Label prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Déclaré Par :">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefWidth="20.0" text="Mr.">
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="idUtilisateur" editable="false" prefWidth="200.0">
+                  <TextField fx:id="idUtilisateurTextField" disable="true" editable="false" prefWidth="200.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -125,14 +121,18 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="closeButton" prefHeight="50.0" prefWidth="128.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
-                  <JFXButton fx:id="submitButton" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer." textFill="WHITE">
+                  <JFXButton fx:id="closeButton" onAction="#closeButtonAction" prefHeight="50.0" prefWidth="128.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+                  <JFXButton fx:id="submitButton" layoutX="10.0" layoutY="10.0" onAction="#submitButtonAction" prefHeight="50.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer." textFill="WHITE">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
                   </JFXButton>
                </children>
             </HBox>
+            <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="543.0" text="Remplire tous les champs" textFill="#fc0000" visible="false">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font></Label>
          </children>
       </VBox>
     </children>
