@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+}
+
+.datePicker{
+    -fx-background-color: -fx-background;
+    -fx-border-color: -fx-background;
+    -fx-border-width: 0 0 1 0;
+    -fx-font-family: 'Montserrat';
+    -fx-font-size: 12;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+
+.datePicker:focused{
+    -fx-background-color: -fx-background;
+    -fx-border-color: blue;
+    -fx-border-width: 0 0 1 0;
+    -fx-font-family: 'Montserrat';
+    -fx-font-size: 12;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}

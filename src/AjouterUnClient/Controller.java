@@ -5,35 +5,58 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-	@FXML
+    public JFXButton saveButton;
+    public TextField prenomTextField;
+    public TextField nomTextField;
+    public TextField nationaliteTextField;
+    public DatePicker dateNaissanceDatePicker;
+    public TextField lieuNaissanceTextField;
+    public TextField cinTextField;
+    public TextField numPermisTextField;
+    public TextField lieuDelivreTextField;
+    public DatePicker dateDelivreDatePicker;
+    public DatePicker dateExpireDatePicker;
+    public TextField adresseTextField;
+    public TextField codePostalTextField;
+    public TextField paysTextField;
+    public TextField telephoneTextField;
+    public TextField emailTextField;
+    public Label erreurMessage;
+    @FXML
     private JFXButton closeButton ;
-	
-	
-	
 	@FXML
-    public JFXComboBox<Integer> comboday1 ;
-    public JFXComboBox<Integer> comboday2 ;
-    public JFXComboBox<Integer> comboday3 ;
-    public JFXComboBox<String> combomonth1 ;
-    public JFXComboBox<String> combomonth2 ;
-    public JFXComboBox<String> combomonth3 ;
-    public JFXComboBox<Integer> comboyear1 ;
-    public JFXComboBox<Integer> comboyear2 ;
-    public JFXComboBox<Integer> comboyear3 ;
     public JFXComboBox<String> comboGender ;
     public JFXComboBox<String> comboIdType ;
 
-    ObservableList<Integer> dayslist = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
-    ObservableList<Integer> yearslist = FXCollections.observableArrayList(1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035,2036,2037,2038,2039,2040);
-    ObservableList<String> monthslist = FXCollections.observableArrayList("Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre");
+    String prenom = null;
+    String nom = null;
+    String nationalite = null;
+    LocalDate dateNaissance = null;
+    String lieuNaissance = null;
+    String cin = null;
+    String numPermis = null;
+    String lieuDelivre = null;
+    LocalDate dateDelivre = null;
+    LocalDate dateExpire = null;
+    String adresse = null;
+    String codePostal = null;
+    String pays = null;
+    String telephone = null;
+    String email = null;
+
     ObservableList<String> Genderlist = FXCollections.observableArrayList("Femme","Homme");
     ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
 
@@ -46,15 +69,6 @@ public class Controller implements Initializable {
     
     
     public void comboBox() {
-    	comboday1.setItems(dayslist);
-        comboday2.setItems(dayslist);
-        comboday3.setItems(dayslist);
-        combomonth1.setItems(monthslist);
-        combomonth2.setItems(monthslist);
-        combomonth3.setItems(monthslist);
-        comboyear1.setItems(yearslist);
-        comboyear2.setItems(yearslist);
-        comboyear3.setItems(yearslist);
         comboGender.setItems(Genderlist);
         comboIdType.setItems(Idtypelist);
     }
@@ -64,4 +78,41 @@ public class Controller implements Initializable {
 	    Stage stage =(Stage) closeButton.getScene().getWindow();
 	    stage.close();
 	}
+
+    public void handleSaveButton(ActionEvent actionEvent) {
+        erreurMessage.setVisible(false);
+
+        prenom = prenomTextField.getText();
+        nom = nomTextField.getText();
+        nationalite = nationaliteTextField.getText();
+        dateNaissance = dateNaissanceDatePicker.getValue();
+        lieuNaissance = lieuNaissanceTextField.getText();
+        cin = cinTextField.getText();
+        numPermis = numPermisTextField.getText();
+        lieuDelivre = lieuDelivreTextField.getText();
+        dateDelivre = dateDelivreDatePicker.getValue();
+        dateExpire = dateExpireDatePicker.getValue();
+        adresse = adresseTextField.getText();
+        codePostal = codePostalTextField.getText();
+        pays = paysTextField.getText();
+        telephone = telephoneTextField.getText();
+        email = emailTextField.getText();
+
+        if(testEmpty()){
+            erreurMessage.setVisible(true);
+        }else{
+            // Upload informations to dataBase
+
+            Stage stage =(Stage) saveButton.getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    public boolean testEmpty(){
+        if(prenom.isEmpty() || nom.isEmpty() || nationalite.isEmpty() || dateNaissance == null || lieuNaissance.isEmpty()
+                || cin.isEmpty() || numPermis.isEmpty() || lieuDelivre.isEmpty() || dateDelivre == null
+                || dateExpire == null || adresse.isEmpty() || codePostal.isEmpty() || pays.isEmpty() || telephone.isEmpty()
+                || email.isEmpty()) return true;
+        return false;
+    }
 }

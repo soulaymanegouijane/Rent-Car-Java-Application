@@ -5,6 +5,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AjouterUtilisateur.ControllerUtilisateur">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterUtilisateur.ControllerUtilisateur">
    <children>
       <Pane prefHeight="580.0" prefWidth="400.0">
          <children>
@@ -36,7 +37,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
                      <children>
-                        <TextField alignment="CENTER" prefWidth="154.0" promptText="Prenom :">
+                        <TextField fx:id="prenomTextField" alignment="CENTER" prefWidth="154.0" promptText="Prenom :">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -49,7 +50,7 @@
                               <String fx:value="text-field" />
                            </styleClass>
                         </TextField>
-                        <TextField alignment="CENTER" prefHeight="25.0" prefWidth="154.0" promptText="Nom :">
+                        <TextField fx:id="nomTextField" alignment="CENTER" prefHeight="25.0" prefWidth="154.0" promptText="Nom :">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -62,7 +63,7 @@
                               <String fx:value="text-field" />
                            </styleClass>
                         </TextField>
-                        <JFXComboBox fx:id="comboGender1" focusColor="#039ed3" prefHeight="25.0" prefWidth="104.0" promptText="Role :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" styleClass="combo-box" stylesheets="@../Css/combo.css" unFocusColor="#cfcfcf" visibleRowCount="3">
+                        <JFXComboBox fx:id="comboRole" focusColor="#039ed3" prefHeight="25.0" prefWidth="104.0" promptText="Role :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" styleClass="combo-box" stylesheets="@../Css/combo.css" unFocusColor="#cfcfcf" visibleRowCount="3">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -84,7 +85,7 @@
                               <Insets />
                            </opaqueInsets>
                         </JFXComboBox>
-                        <TextField alignment="CENTER" prefHeight="25.0" prefWidth="154.0" promptText="Nationalité :">
+                        <TextField fx:id="nationaliteTextField" alignment="CENTER" prefHeight="25.0" prefWidth="154.0" promptText="Nationalité :">
                            <HBox.margin>
                               <Insets left="60.0" right="10.0" />
                            </HBox.margin>
@@ -101,68 +102,21 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0" spacing="30.0">
                      <children>
                         <Label text="Date de Naissance :" textFill="#b9b3b3">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <JFXComboBox fx:id="comboday3" focusColor="#039ed3" prefHeight="25.0" prefWidth="47.0" promptText="Jour :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="jfx-combo-box" />
-                              <String fx:value="text" />
-                           </styleClass>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="combomonth1" focusColor="#039ed3" layoutX="119.0" layoutY="26.0" prefHeight="25.0" prefWidth="81.0" promptText="Mois :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="jfx-combo-box" />
-                              <String fx:value="text" />
-                           </styleClass>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="comboyear3" focusColor="#039ed3" layoutX="254.0" layoutY="26.0" prefHeight="25.0" prefWidth="106.0" promptText="Année :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="jfx-combo-box" />
-                              <String fx:value="text" />
-                           </styleClass>
-                        </JFXComboBox>
+                        <DatePicker fx:id="date_naissance" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" prefHeight="45.0" prefWidth="386.0">
                      <children>
-                        <TextField alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Lieu de Naissance :">
+                        <TextField fx:id="lieuNaissanceTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Lieu de Naissance :">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -197,7 +151,7 @@
                               <String fx:value="text" />
                            </styleClass>
                         </JFXComboBox>
-                        <TextField alignment="CENTER" prefHeight="25.0" prefWidth="173.0" promptText="N° de la carte d'identité :">
+                        <TextField fx:id="cinTextField" alignment="CENTER" prefHeight="25.0" prefWidth="173.0" promptText="N° de la carte d'identité :">
                            <HBox.margin>
                               <Insets left="20.0" right="10.0" />
                            </HBox.margin>
@@ -240,7 +194,7 @@
       <Pane layoutY="-1.0" prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
          <children>
             <Label layoutX="236.0" layoutY="18.0" stylesheets="@../Css/textStyle.css" text="Ajouter Un Nouveau Utilisateur" textFill="WHITE" />
-            <JFXButton fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="671.0" layoutY="12.0" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+            <JFXButton fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="671.0" layoutY="12.0" onAction="#handleAnnulerButton" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
          </children>
       </Pane>
       <Separator layoutX="399.0" layoutY="93.0" opacity="0.6" orientation="VERTICAL" prefHeight="470.0" prefWidth="0.0" style="-fx-background-color: #63B4FF;" />
@@ -253,7 +207,7 @@
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="25.0" prefWidth="377.0" promptText="Adresse :">
+                  <TextField fx:id="adresseTextField" alignment="CENTER" prefHeight="25.0" prefWidth="377.0" promptText="Adresse :">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -273,7 +227,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="386.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="25.0" prefWidth="154.0" promptText="Code Postal :">
+                  <TextField fx:id="codePostalTextField" alignment="CENTER" prefHeight="25.0" prefWidth="154.0" promptText="Code Postal :">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -286,7 +240,7 @@
                         <String fx:value="text-field" />
                      </styleClass>
                   </TextField>
-                  <TextField alignment="CENTER" layoutX="70.0" layoutY="20.0" prefHeight="25.0" prefWidth="154.0" promptText="Ville:">
+                  <TextField fx:id="villeTextField" alignment="CENTER" layoutX="70.0" layoutY="20.0" prefHeight="25.0" prefWidth="154.0" promptText="Ville:">
                      <HBox.margin>
                         <Insets left="50.0" right="10.0" />
                      </HBox.margin>
@@ -306,7 +260,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" prefHeight="45.0" prefWidth="386.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Pays :">
+                  <TextField fx:id="paysTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Pays :">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -326,7 +280,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="N° de Telephone:">
+                  <TextField fx:id="telephoneTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="N° de Telephone:">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -346,7 +300,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="45.0" prefWidth="386.0">
                <children>
-                  <TextField alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Adreese Email :">
+                  <TextField fx:id="emailTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Adreese Email :">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
@@ -366,7 +320,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="58.0" prefWidth="386.0">
                <children>
-                  <JFXButton fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer le Client" textFill="WHITE">
+                  <JFXButton fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleSaveButton" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer le Client" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="120.0" />
                      </HBox.margin>
@@ -376,6 +330,11 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </HBox>
+            <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="400.0" text="Remplire tous les champs" textFill="RED" visible="false">
+               <font>
+                  <Font name="Rockwell" size="14.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </children>
