@@ -17,7 +17,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public int add(Utilisateur arg) {
 		int status =0;
-		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idReservation,idRole,naissance) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idReservation,idRole,naissance,type_identifiant,photo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		Connection conn = null;
 		try {
@@ -39,6 +39,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			preparedStatement.setString(11, arg.getPays());
 			preparedStatement.setString(12, arg.getNationalite());
 			preparedStatement.setString(13, arg.getEtat_compte());
+			preparedStatement.setString(17, arg.getCarte_identifiant());
+			preparedStatement.setBytes(18, arg.getImage());
 			status = preparedStatement.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -103,7 +105,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	public List<Utilisateur> getAll() {
 		List<Utilisateur> list = new ArrayList<Utilisateur>();
 		try {
-			String sql = "select CodeUtilisateur,nom,prenom,adress,telephone,email,idReservation, idRole from utilisateur";
+			String sql = "select * from utilisateur";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -145,6 +147,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setAdress(rs.getString(4));
 				c.setTele(rs.getString(5));
 				c.setEmail(rs.getString(6));
+				c.setImage(rs.getBytes("photo"));
 				ReservationImpl resi = new ReservationImpl();
 				RoleImpl roi = new RoleImpl();
 				c.setReservation(resi.getById(rs.getLong(7)));

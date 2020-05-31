@@ -1,5 +1,7 @@
 package Entities;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -46,7 +49,12 @@ public class Utilisateur implements Serializable{
 	private String pays;
 	@Column(name="nationalite",nullable=true)
 	private String nationalite;
+	@Column(name="type_identifiant",nullable=true)
+	private String carte_identifiant;
 	
+	@Lob
+	@Column(name="photo", columnDefinition = "BLOB")
+	private byte [] image;
 	
 	@ManyToOne
 	@JoinColumn(name="idRole",referencedColumnName = "idRole",insertable = false,updatable = false)
@@ -56,6 +64,41 @@ public class Utilisateur implements Serializable{
 	private Reservation reservation;
 	
 	
+	
+	
+	
+	/**
+	 * @return the image
+	 */
+	public byte[] getImage() {
+		return image;
+	}
+
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+
+	/**
+	 * @return the carte_identifiant
+	 */
+	public String getCarte_identifiant() {
+		return carte_identifiant;
+	}
+
+
+	/**
+	 * @param carte_identifiant the carte_identifiant to set
+	 */
+	public void setCarte_identifiant(String carte_identifiant) {
+		this.carte_identifiant = carte_identifiant;
+	}
+
+
 	/**
 	 * @return the nationalite
 	 */

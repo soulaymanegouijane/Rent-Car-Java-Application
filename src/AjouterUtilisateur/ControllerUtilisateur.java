@@ -7,8 +7,11 @@ import Entities.Reservation;
 import Entities.Role;
 import Entities.Utilisateur;
 import Test.H;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,11 +19,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import sun.misc.IOUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class ControllerUtilisateur {
+public class ControllerUtilisateur implements Initializable {
 	
 	@FXML
     private ImageView idview;
@@ -85,6 +95,8 @@ public class ControllerUtilisateur {
     @FXML
     private Label erreurMessage;
 
+    ObservableList<String> civilite = FXCollections.observableArrayList("Homme","Femme");
+    ObservableList<String> identification = FXCollections.observableArrayList("Passport","Carte Nationale");
     
 
     Image image = null;
@@ -103,17 +115,40 @@ public class ControllerUtilisateur {
     String pays = null;
     String telephone = null;
     String email = null;
+    
+    
+    
+    @Override
+	public void initialize(URL location, ResourceBundle resources) {
+    	comboBox();
+	}
+    
+    public void comboBox() {
+    	comboGender.setItems(civilite);
+    	comboIdType.setItems(identification);
+    	
+    }
 
+    FileChooser fc = new FileChooser();
+    File selectedfile = null;
+    File file = null;
+    byte[] bFile = null;
     public void btnimageAction(){
-        FileChooser fc = new FileChooser();
-        File selectedfile = fc.showOpenDialog(null);
+        
+        selectedfile = fc.showOpenDialog(null);
         if(selectedfile!=null){
             Image newimage = new Image(selectedfile.toURI().toString(),200,150,true,true);
             //idview=new ImageView(image);
             text.setText(selectedfile.getAbsolutePath());
             idview.setImage(newimage);
+            file = new File(selectedfile.getAbsolutePath());
+            bFile = new byte[(int) file.length()];
+            System.out.println(selectedfile.getAbsolutePath());
         }
     }
+    
+    
+    
 
     public void handleAnnulerButton(ActionEvent actionEvent) {
         Stage stage =(Stage) closeButton.getScene().getWindow();
@@ -139,7 +174,7 @@ public class ControllerUtilisateur {
         pays = paysTextField.getText();
         telephone = telephoneTextField.getText();
         email = emailTextField.getText();
-        Reservation res = H.reservation.getById(11);
+        Reservation res = H.reservation.getById(1);
         Role rol = H.role.getById(1);
         boolean s = false;
         if(s){
@@ -162,6 +197,22 @@ public class ControllerUtilisateur {
 			user.setVille(ville);
 			user.setReservation(res);
 			user.setRole(rol);
+			user.setCarte_identifiant(idType);
+			
+			try {
+				FileInputStream inputStream = new FileInputStream(file);
+				try {
+					inputStream.read(bFile);
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			
+			user.setImage(bFile);
 			
 			H.utilisateur.add(user);
 
@@ -177,4 +228,6 @@ public class ControllerUtilisateur {
             return true;
         return false;
     }
+
+	
 }
