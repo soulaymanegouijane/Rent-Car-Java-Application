@@ -130,7 +130,7 @@ public class ContratWindow implements Initializable {
     ObservableList<Contrat> contrat_list = FXCollections.observableArrayList();
     ObservableList<Contrat> mono_contrat = FXCollections.observableArrayList();
     ObservableList<Contrat> contrats = FXCollections.observableArrayList();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	comboBox();
@@ -219,56 +219,72 @@ public class ContratWindow implements Initializable {
     }
 
     public void handleChercherButton(ActionEvent actionEvent) {
+    	contrat_list.clear();
+        mono_contrat.clear();
         String searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
 
         if(searchSection.equals("Num contrat")){
+            
+            String nContratTaped = nContratTextFeild.getText();
 
-            try {
-                int nContratTaped = Integer.parseInt(nContratTextFeild.getText());
-                // Search contrat by N° contrat
-
-            }catch (NumberFormatException e){
+            if(nContratTaped.isEmpty()){
                 enable(ErreurMessage);
+            }else {
+                // Search résérvation by client
+            	afficher_contrat(nContratTaped);
             }
 
         }else if(searchSection.equals("Date")){
+        	contrat_list.clear();
+            mono_contrat.clear();
+            String dateTaped = ((TextField)dateDatePicker.getEditor()).getText();
 
-            try {
-                LocalDate dateTaped = dateDatePicker.getValue();
-            }catch (DateTimeException e){
+            if(dateTaped.isEmpty()){
                 enable(ErreurMessage);
+            }else {
+                // Search résérvation by client
+            	afficher_contrat(dateTaped);
             }
 
         }else if(searchSection.equals("Reservation")){
+        	contrat_list.clear();
+            mono_contrat.clear();
             String reservationTaped = textFeildChoisirReservation.getText();
 
             if(reservationTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
                 // Search résérvation by client
+            	afficher_contrat(reservationTaped);
             }
 
         }else if(searchSection.equals("Vehicule")){
+        	contrat_list.clear();
+            mono_contrat.clear();
             String vehiculeTaped = textFeildChoisirVehicule.getText();
 
             if(vehiculeTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
                 // Search résérvation by client
+            	afficher_contrat(vehiculeTaped);
             }
 
         }else if(searchSection.equals("Client")){
+        	contrat_list.clear();
+            mono_contrat.clear();
             String clientTaped = textFeildChoisirClient.getText();
 
             if(clientTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                
             	selectReservations(clientTaped);
             }
 
         }else if(searchSection.equals("CIN Utilisateur")){
+        	contrat_list.clear();
+            mono_contrat.clear();
             String utilisateurTaped = textFeildChoisirUtilisateur.getText();
 
             if(utilisateurTaped.isEmpty()){
@@ -279,6 +295,8 @@ public class ContratWindow implements Initializable {
             }
 
         }else {
+        	contrat_list.clear();
+            mono_contrat.clear();
         	remplir_tableau();
         }
 

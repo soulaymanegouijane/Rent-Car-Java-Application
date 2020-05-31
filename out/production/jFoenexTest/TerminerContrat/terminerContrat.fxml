@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TerminerContrat.TerminerContrat">
+    <children>
+        <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Terminer Le Contrat " textFill="WHITE" />
+            </children>
+        </Pane>
+        <VBox layoutX="-2.0" layoutY="65.0" prefHeight="385.0" prefWidth="500.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" stylesheets="@../Css/MinitextStyle.css" text="Veuillez Lire Les Inforamtions Suivantes et les Confirmer : :" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Référence Contrat:" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idContrat" editable="false" prefWidth="214.0">
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="56.0" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Référence Sanction:" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idSanction" editable="false" prefWidth="214.0">
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Date de mise fin :" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <DatePicker fx:id="todayDate" editable="false" prefWidth="214.0">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                            <stylesheets>
+                                <URL value="@../Css/datePicker.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="datePicker" />
+                                <String fx:value="text" />
+                            </styleClass>
+                        </DatePicker>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="N° Des Jours du retard :" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="nbrDaysRetard" editable="false" prefWidth="214.0">
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="218.0" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Reste du Facture :" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="resteFacture" editable="false" prefWidth="190.0">
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                  <Label styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Dhs" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="272.0" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Sanctions :" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="sanction" editable="false" prefWidth="190.0">
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                  <Label styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Dhs" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="246.0" prefHeight="40.0" prefWidth="500.0">
+                    <children>
+                        <Label contentDisplay="CENTER" prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Montant Total TTC :" textFill="#63b4ff">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="montantTTC" editable="false" prefWidth="190.0">
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                  <Label styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Dhs" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="69.0" prefWidth="500.0">
+                    <children>
+                        <JFXButton fx:id="closeButton" prefHeight="38.0" prefWidth="121.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+                        <JFXButton fx:id="payerBtn" layoutX="10.0" layoutY="10.0" prefHeight="38.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Payer et Mettre fin" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </JFXButton>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

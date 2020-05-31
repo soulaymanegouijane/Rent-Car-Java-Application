@@ -28,13 +28,13 @@ public class Reservation implements Serializable{
 	private String date_retour;	
 	@Column(name="avance",nullable=false)
 	private float avance;
-	@Column(name="idTypeRes",nullable=true)
+	@Column(name="idTypeRes",nullable=false)
 	private long idTypeRes;
-	@Column(name="idClient",nullable=true)
+	@Column(name="idClient",nullable=false)
 	private String idClient;
-	@Column(name="idStatus",nullable=true)
+	@Column(name="idStatus",nullable=false)
 	private long idStatus;
-	@Column(name="idVehicule",nullable=true)
+	@Column(name="idVehicule",nullable=false)
 	private String idVehicule;
 	
 	private String cinClient;

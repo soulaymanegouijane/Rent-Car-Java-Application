@@ -3,6 +3,9 @@ package AjouterUnClient;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+
+import Entities.Client;
+import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,44 +21,88 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    public JFXButton saveButton;
-    public TextField prenomTextField;
-    public TextField nomTextField;
-    public TextField nationaliteTextField;
-    public DatePicker dateNaissanceDatePicker;
-    public TextField lieuNaissanceTextField;
-    public TextField cinTextField;
-    public TextField numPermisTextField;
-    public TextField lieuDelivreTextField;
-    public DatePicker dateDelivreDatePicker;
-    public DatePicker dateExpireDatePicker;
-    public TextField adresseTextField;
-    public TextField codePostalTextField;
-    public TextField paysTextField;
-    public TextField telephoneTextField;
-    public TextField emailTextField;
-    public Label erreurMessage;
-    @FXML
-    private JFXButton closeButton ;
+	
 	@FXML
-    public JFXComboBox<String> comboGender ;
-    public JFXComboBox<String> comboIdType ;
+    private TextField prenomTextField;
+
+    @FXML
+    private TextField nomTextField;
+
+    @FXML
+    private JFXComboBox<String> comboGender;
+
+    @FXML
+    private TextField nationaliteTextField;
+
+    @FXML
+    private DatePicker dateNaissanceDatePicker;
+
+    @FXML
+    private TextField lieuNaissanceTextField;
+
+    @FXML
+    private JFXComboBox<String> comboIdType;
+
+    @FXML
+    private TextField cinTextField;
+
+    @FXML
+    private TextField numPermisTextField;
+
+    @FXML
+    private TextField lieuDelivreTextField;
+
+    @FXML
+    private DatePicker dateDelivreDatePicker;
+
+    @FXML
+    private DatePicker dateExpireDatePicker;
+
+    @FXML
+    private JFXButton closeButton;
+
+    @FXML
+    private TextField adresseTextField;
+
+    @FXML
+    private TextField codePostalTextField;
+
+    @FXML
+    private TextField villeTextField;
+
+    @FXML
+    private TextField paysTextField;
+
+    @FXML
+    private TextField telephoneTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private JFXButton saveButton;
+
+    @FXML
+    private Label erreurMessage;
 
     String prenom = null;
     String nom = null;
     String nationalite = null;
-    LocalDate dateNaissance = null;
+    String dateNaissance = null;
     String lieuNaissance = null;
-    String cin = null;
+    String cinClient = null;
     String numPermis = null;
     String lieuDelivre = null;
-    LocalDate dateDelivre = null;
-    LocalDate dateExpire = null;
+    String dateDelivre = null;
+    String dateExpire = null;
     String adresse = null;
     String codePostal = null;
     String pays = null;
     String telephone = null;
     String email = null;
+    String ville = null;
+    String genre = null;
+    String typeIdentifiant = null;
 
     ObservableList<String> Genderlist = FXCollections.observableArrayList("Femme","Homme");
     ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
@@ -85,23 +132,51 @@ public class Controller implements Initializable {
         prenom = prenomTextField.getText();
         nom = nomTextField.getText();
         nationalite = nationaliteTextField.getText();
-        dateNaissance = dateNaissanceDatePicker.getValue();
+        dateNaissance = ((TextField)dateNaissanceDatePicker.getEditor()).getText();
         lieuNaissance = lieuNaissanceTextField.getText();
-        cin = cinTextField.getText();
+        cinClient = cinTextField.getText();
         numPermis = numPermisTextField.getText();
         lieuDelivre = lieuDelivreTextField.getText();
-        dateDelivre = dateDelivreDatePicker.getValue();
-        dateExpire = dateExpireDatePicker.getValue();
+        dateDelivre = ((TextField)dateDelivreDatePicker.getEditor()).getText();
+        dateExpire = ((TextField)dateExpireDatePicker.getEditor()).getText();
         adresse = adresseTextField.getText();
         codePostal = codePostalTextField.getText();
         pays = paysTextField.getText();
         telephone = telephoneTextField.getText();
         email = emailTextField.getText();
-
+        ville = villeTextField.getText();
+        genre = comboGender.getValue();
+        typeIdentifiant = comboIdType.getValue();
+        Client client = new Client();
+        
         if(testEmpty()){
             erreurMessage.setVisible(true);
         }else{
-            // Upload informations to dataBase
+        	client.setAdress(adresse);
+        	client.setNom(nom);
+        	client.setPrenom(prenom);
+        	client.setNationalite(nationalite);
+        	client.setDate_naissance(dateNaissance);
+        	client.setLieu_naissance(lieuNaissance);
+        	client.setIdClient(cinClient);
+        	client.setN_permis(numPermis);
+        	client.setDelevre_le(lieuDelivre);
+        	client.setDelevre_a(dateDelivre);
+        	client.setPays(pays);
+        	client.setTelephone(telephone);
+        	client.setEmail(email);
+        	client.setCode_postale(codePostal);
+        	client.setCivilite(genre);
+        	client.setCarte_identifiant(typeIdentifiant);
+        	client.setVille(ville);
+        	
+        	
+        	int s = H.client.add(client);
+        	if(s!=0) {
+        		System.out.println("l'ajout est bien fait");
+        	}else {
+        		System.out.println("il y a un prb");
+        	}
 
             Stage stage =(Stage) saveButton.getScene().getWindow();
             stage.close();
@@ -110,7 +185,7 @@ public class Controller implements Initializable {
 
     public boolean testEmpty(){
         if(prenom.isEmpty() || nom.isEmpty() || nationalite.isEmpty() || dateNaissance == null || lieuNaissance.isEmpty()
-                || cin.isEmpty() || numPermis.isEmpty() || lieuDelivre.isEmpty() || dateDelivre == null
+                || cinClient.isEmpty() || numPermis.isEmpty() || lieuDelivre.isEmpty() || dateDelivre == null
                 || dateExpire == null || adresse.isEmpty() || codePostal.isEmpty() || pays.isEmpty() || telephone.isEmpty()
                 || email.isEmpty()) return true;
         return false;

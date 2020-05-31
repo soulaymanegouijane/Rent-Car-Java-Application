@@ -191,20 +191,40 @@ public class ReservationWindow implements Initializable {
 	    	String sql = "";
 	    	PreparedStatement ps = null;
 	    	
-			if(searchSection.equals("Adress")) {
-				sql = "select * from parking where adress=?";
+			if(searchSection.equals("Client")) {
+				sql = "select * from reservation where idClient=?";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
 			}
-			if(searchSection.equals("Capacite")) {
-				sql = "select * from parking where capacite=?";
+			if(searchSection.equals("Vehicule")) {
+				sql = "select * from reservation where idVehicule=?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Status")) {
+				sql = "select * from reservation where idStatus=?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Date")) {
+				sql = "select * from reservation where dateReservation=?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, valeur);
+			}
+			if(searchSection.equals("Utilisateur")) {
+				sql = "select * from reservation where idReservation=?";
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
-			if(searchSection.equals("places sature")) {
-				sql = "select * from parking where nbr_place_pleinne=?";
+			if(searchSection.equals("Type")) {
+				sql = "select * from reservation where idTypeRes=?";
 				ps = con.prepareStatement(sql);
-				ps.setInt(1, Integer.valueOf(valeur));
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			if(searchSection.equals("Id")) {
+				sql = "select * from reservation where idReservation=?";
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
 			}
 			tous_les_parking = ps.executeQuery();
 		} catch (SQLException e) {
@@ -368,6 +388,7 @@ public class ReservationWindow implements Initializable {
                 enable(ErreurMessage);
             }else {
                 // Search résérvation by id
+            	afficher_reservation(idTaped);
             }
 
         }else if(searchSection.equals("Type")){
@@ -375,9 +396,14 @@ public class ReservationWindow implements Initializable {
             // Search résérvation by Type
 
         }else if(searchSection.equals("Date")){
-            LocalDate dateTaped = dateDatePicker.getValue();
+            String dateTaped = ((TextField)dateDatePicker.getEditor()).getText();
 
-            // Search résérvation by date
+            if(dateTaped.isEmpty()){
+                enable(ErreurMessage);
+            }else {
+            	// Search reservation by date
+            	afficher_reservation(dateTaped);
+            }
 
         }else if(searchSection.equals("Vehicule")){
             String vehiculeTaped = textFeildChoisirVehicule.getText();
@@ -386,6 +412,7 @@ public class ReservationWindow implements Initializable {
                 enable(ErreurMessage);
             }else {
                 // Search résérvation by client
+            	afficher_reservation(vehiculeTaped);
             }
 
         }else if(searchSection.equals("Client")){
@@ -395,6 +422,7 @@ public class ReservationWindow implements Initializable {
                 enable(ErreurMessage);
             }else {
                 // Search résérvation by client
+            	afficher_reservation(clientTaped);
             }
 
         }else if(searchSection.equals("Utilisateur")){
@@ -403,13 +431,20 @@ public class ReservationWindow implements Initializable {
             if(utilisateurTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by utilisateur
+            	// Search résérvation by utilisateur
+            	long idReservation = getReservation(utilisateurTaped);
+            	afficher_reservation(String.valueOf(idReservation));
             }
 
         }else if(searchSection.equals("Status")){
             String statutTaped = statutComboBox.getValue();
 
-            // Search résérvation by statut
+            if(statutTaped.isEmpty()){
+                enable(ErreurMessage);
+            }else {
+                // Search résérvation by client
+            	afficher_reservation(statutTaped);
+            }
 
         }else if(searchSection.equals("Nombres des contrats")){
             try {
@@ -421,6 +456,23 @@ public class ReservationWindow implements Initializable {
             }
 
         }
+    }
+    
+    public long getReservation(String idUser) {
+    	Connection con = Abst.getConnection();
+    	String sql = "select idReservation from reservation where idUtilisateur = ?";
+    	long idReservation = 0;
+    	try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, idUser);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				idReservation = rs.getLong("idReservation");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	return idReservation;
     }
 
     public void disable(TextField TF){

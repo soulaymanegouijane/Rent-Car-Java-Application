@@ -18,34 +18,145 @@ public class Utilisateur implements Serializable{
 	@Id
 	@Column(name="idUtilisateur", nullable=false)
 	private String idUtilisateur;
-	@Column(name="nom",nullable=false)
+	@Column(name="nom",nullable=true)
 	private String nom;
-	@Column(name="prenom",nullable=false)
+	@Column(name="prenom",nullable=true)
 	private String prenom;
-	@Column(name="telephone",nullable=false)
+	@Column(name="telephone",nullable=true)
 	private String tele;
-	@Column(name="adress",nullable=false)
+	@Column(name="adress",nullable=true)
 	private String adress;
-	@Column(name="email",nullable=false)
+	@Column(name="email",nullable=true)
 	private String email;
-	@Column(name="naissance",nullable=false)
+	@Column(name="naissance",nullable=true)
 	private String naissance;
-	@Column(name="etat_compte",nullable=false)
+	@Column(name="etat_compte",nullable=true)
 	private String etat_compte;
-	@Column(name="idRole",nullable=true)
+	@Column(name="idRole",nullable=false)
 	private long idRole;
 	@Column(name="idReservation",nullable=false)
 	private long idReservation;
-
+	@Column(name="civilite",nullable=true)
+	private String civilite;
+	@Column(name="lieu_naissance",nullable=true)
+	private String lieu_naissance;
+	@Column(name="ville",nullable=true)
+	private String ville;
+	@Column(name="pays",nullable=true)
+	private String pays;
+	@Column(name="nationalite",nullable=true)
+	private String nationalite;
+	
+	
 	@ManyToOne
 	@JoinColumn(name="idRole",referencedColumnName = "idRole",insertable = false,updatable = false)
 	private Role role;
 	@ManyToOne
 	@JoinColumn(name="idReservation",referencedColumnName = "idReservation",insertable = false,updatable = false)
 	private Reservation reservation;
+	
+	
+	/**
+	 * @return the nationalite
+	 */
+	public String getNationalite() {
+		return nationalite;
+	}
+
+
+	/**
+	 * @param nationalite the nationalite to set
+	 */
+	public void setNationalite(String nationalite) {
+		this.nationalite = nationalite;
+	}
+
+
+	/**
+	 * @return the pays
+	 */
+	public String getPays() {
+		return pays;
+	}
+
+
+	/**
+	 * @param pays the pays to set
+	 */
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+	@Column(name="code_postale",nullable=true)
+	private String  code_postale;
+
+	
 
 	
 	
+
+
+	/**
+	 * @return the civilite
+	 */
+	public String getCivilite() {
+		return civilite;
+	}
+
+
+	/**
+	 * @param civilite the civilite to set
+	 */
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
+	}
+
+
+	/**
+	 * @return the lieu_naissance
+	 */
+	public String getLieu_naissance() {
+		return lieu_naissance;
+	}
+
+
+	/**
+	 * @param lieu_naissance the lieu_naissance to set
+	 */
+	public void setLieu_naissance(String lieu_naissance) {
+		this.lieu_naissance = lieu_naissance;
+	}
+
+
+	/**
+	 * @return the ville
+	 */
+	public String getVille() {
+		return ville;
+	}
+
+
+	/**
+	 * @param ville the ville to set
+	 */
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
+
+	/**
+	 * @return the code_postale
+	 */
+	public String getCode_postale() {
+		return code_postale;
+	}
+
+
+	/**
+	 * @param code_postale the code_postale to set
+	 */
+	public void setCode_postale(String code_postale) {
+		this.code_postale = code_postale;
+	}
 
 
 	/**

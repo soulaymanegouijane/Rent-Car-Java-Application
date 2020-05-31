@@ -20,12 +20,13 @@ public class ClientImp extends Abst implements ClientInter{
 		
 		int status =0;
 		String sql = "INSERT INTO client ( nom, prenom, adress, telephone, email, age, civilite, date_naissance,"
-				+ "lieu_naissance,n_permis,delivrer , validitePermis, delevre_a,type_identifiant , num_carte, validitePI,code_postale,ville,pays,nationalite)"
-				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "lieu_naissance,n_permis,delevre_le , validitePermis, delevre_a,type_identifiant , num_carte, validitePI,code_postale,ville,pays,nationalite,idClient)"
+				+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		Connection con = Abst.getConnection();
 		try {
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			preparedStatement.setString(21, arg.getIdClient());
 			preparedStatement.setString(1,arg.getNom());
 			preparedStatement.setString(2,arg.getPrenom());
 			preparedStatement.setString(3,arg.getAdress());
@@ -64,7 +65,7 @@ public class ClientImp extends Abst implements ClientInter{
 	@Override
 	public Client edit(Client arg) {
 		String sql = "UPDATE Client SET nom=?, prenom=?, adress=?, telephone=?, email=?, age=?, civilite=?, date_naissance=?,"
-				+ "lieu_naissance=?,n_permis=?,delivrer=? , validitePermis=?, delevre_a=?,type_identifiant=? , num_carte=?, validitePI=?  where idClient=?";
+				+ "lieu_naissance=?,n_permis=?,delevre_le=? , validitePermis=?, delevre_a=?,type_identifiant=? , num_carte=?, validitePI=?  where idClient=?";
 		Connection con = Abst.getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -165,7 +166,7 @@ public class ClientImp extends Abst implements ClientInter{
 				client.setNum_carte(rs.getString("num_carte"));
 				client.setDelevre_a(rs.getString("delevre_a"));
 				//client.setValiditePermis(rs.getDate("validitePermis"));
-				//client.setDelevre_le(rs.getDate("delivrer"));
+				//client.setDelevre_le(rs.getDate("delevre_le"));
 				client.setN_permis(rs.getString("n_permis"));
 				client.setLieu_naissance(rs.getString("lieu_naissance"));
 				//client.setDate_naissance(rs.getDate("date_naissance"));
@@ -209,7 +210,7 @@ public class ClientImp extends Abst implements ClientInter{
 				client.setNum_carte(rs.getString("num_carte"));
 				client.setDelevre_a(rs.getString("delevre_a"));
 				//client.setValiditePermis(rs.getDate("validitePermis"));
-				//client.setDelevre_le(rs.getDate("delivrer"));
+				//client.setDelevre_le(rs.getDate("delevre_le"));
 				client.setN_permis(rs.getString("n_permis"));
 				client.setLieu_naissance(rs.getString("lieu_naissance"));
 				//client.setDate_naissance(rs.getDate("date_naissance"));

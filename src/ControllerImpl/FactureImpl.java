@@ -13,7 +13,28 @@ public class FactureImpl extends Abst implements FactureInter {
 
 	@Override
 	public int add(Factures arg) {
-		return 0;
+		int status = 0;
+		Connection con = Abst.getConnection();
+		String sql = "insert into facture (date_facture,nbr_jours,prix_ht,tva,montant_ttc,idContrat) values (?,?,?,?,?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, arg.getDateFacture());
+			ps.setInt(2, arg.getNbr_jours());
+			ps.setDouble(3, arg.getPrixHT());
+			ps.setDouble(4, arg.getTVA());
+			ps.setDouble(5, arg.getMontantTTC());
+			ps.setLong(6, arg.getContrat().getIdContrat());
+			status = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return status;
 	}
 
 	@Override

@@ -17,19 +17,28 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public int add(Utilisateur arg) {
 		int status =0;
-		String sql = "insert into utilisateur (nom,prenom,adresse,telephone,email,idReservation,idRole) values (?,?,?,?,?,?,?)";
+		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idReservation,idRole,naissance) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		Connection conn = null;
 		try {
 			conn = Abst.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
+			preparedStatement.setString(6, arg.getIdUtilisateur());
 			preparedStatement.setString(1,arg.getNom());
 			preparedStatement.setString(2,arg.getPrenom());
 			preparedStatement.setString(3,arg.getAdress());
 			preparedStatement.setString(5,arg.getTele());
 			preparedStatement.setString(4,arg.getEmail());
-			preparedStatement.setLong(6,arg.getReservation().getIdReservation());
-			preparedStatement.setLong(7,arg.getRole().getIdRole());
+			preparedStatement.setLong(14,arg.getReservation().getIdReservation());//reservation
+			preparedStatement.setLong(15,arg.getRole().getIdRole());//role
+			preparedStatement.setString(16, arg.getNaissance());
+			preparedStatement.setString(7,arg.getCivilite());
+			preparedStatement.setString(8,arg.getLieu_naissance());
+			preparedStatement.setString(9, arg.getCode_postale());
+			preparedStatement.setString(10, arg.getVille());
+			preparedStatement.setString(11, arg.getPays());
+			preparedStatement.setString(12, arg.getNationalite());
+			preparedStatement.setString(13, arg.getEtat_compte());
 			status = preparedStatement.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -41,7 +50,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public Utilisateur edit(Utilisateur arg) {
 		
-		String sql = "UPDATE utilisateur SET nom=?,prenom=?,adresse=?,telephone=?, email=?, idReservation=?,idRole =? where CodeUtilisateur=?";
+		String sql = "UPDATE utilisateur SET nom=?,prenom=?,adress=?,telephone=?, email=?, idReservation=?,idRole =? where CodeUtilisateur=?";
 		Connection con = Abst.getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -94,7 +103,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	public List<Utilisateur> getAll() {
 		List<Utilisateur> list = new ArrayList<Utilisateur>();
 		try {
-			String sql = "select CodeUtilisateur,nom,prenom,adresse,telephone,email,idReservation, idRole from utilisateur";
+			String sql = "select CodeUtilisateur,nom,prenom,adress,telephone,email,idReservation, idRole from utilisateur";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -123,7 +132,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	public Utilisateur get(String nom) {
 		Utilisateur c = new Utilisateur();
 		try {
-			String sql = "Select codeUtilisateur,nom,prenom,adresse,telephone,email,idReservation,idRole from utilisateur where nom=?";
+			String sql = "Select codeUtilisateur,nom,prenom,adress,telephone,email,idReservation,idRole from utilisateur where nom=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, nom);
@@ -157,7 +166,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		Utilisateur c = new Utilisateur();
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "Select idUtilisateur,nom,prenom,adresse,telephone,email,idReservation,idRole from utilisateur where idUtilisateur=?";
+			String sql = "Select idUtilisateur,nom,prenom,adress,telephone,email,idReservation,idRole from utilisateur where idUtilisateur=?";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, id);

@@ -82,7 +82,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="occupeParkingTextField" editable="false" prefWidth="200.0">
+                  <TextField fx:id="occupeParkingTextField" prefWidth="200.0">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>

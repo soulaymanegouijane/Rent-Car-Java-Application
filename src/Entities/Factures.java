@@ -20,17 +20,17 @@ public class Factures implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idFacture", nullable=false)
 	private long idFacture;
-	@Column(name="date_facture",nullable=false)
-	private Date dateFacture;
-	@Column(name="nbr_jours",nullable=false)
+	@Column(name="date_facture",nullable=true)
+	private String dateFacture;
+	@Column(name="nbr_jours",nullable=true)
 	private int nbr_jours;
-	@Column(name="prix_ht",nullable=false)
+	@Column(name="prix_ht",nullable=true)
 	private double prixHT;
-	@Column(name="tva",nullable=false)
+	@Column(name="tva",nullable=true)
 	private double TVA;
-	@Column(name="montant_ttc",nullable=false)
+	@Column(name="montant_ttc",nullable=true)
 	private double montantTTC;
-	@Column(name="idContrat",nullable=false)
+	@Column(name="idContrat",nullable=true)
 	private Long idContrat;
 	
 
@@ -42,7 +42,6 @@ public class Factures implements Serializable{
 	 * 
 	 */
 	public Factures() {
-		super();
 	}
 	/**
 	 * @param idFacture
@@ -53,7 +52,7 @@ public class Factures implements Serializable{
 	 * @param montantTTC
 	 * @param contrat
 	 */
-	public Factures(long idFacture, Date dateFacture, int nbr_jours, double prixHT, double tVA, double montantTTC,
+	public Factures(long idFacture, String dateFacture, int nbr_jours, double prixHT, double tVA, double montantTTC,
 			Contrat contrat) {
 		super();
 		this.idFacture = idFacture;
@@ -79,13 +78,13 @@ public class Factures implements Serializable{
 	/**
 	 * @return the dateFacture
 	 */
-	public Date getDateFacture() {
+	public String getDateFacture() {
 		return dateFacture;
 	}
 	/**
 	 * @param dateFacture the dateFacture to set
 	 */
-	public void setDateFacture(Date dateFacture) {
+	public void setDateFacture(String dateFacture) {
 		this.dateFacture = dateFacture;
 	}
 	/**

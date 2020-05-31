@@ -2,6 +2,11 @@ package AjouterUtilisateur;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+
+import Entities.Reservation;
+import Entities.Role;
+import Entities.Utilisateur;
+import Test.H;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -16,30 +21,71 @@ import java.io.File;
 import java.time.LocalDate;
 
 public class ControllerUtilisateur {
-    public TextField prenomTextField;
-    public TextField nomTextField;
-    public JFXComboBox comboRole;
-    public JFXComboBox comboGender;
-    public TextField nationaliteTextField;
-    public DatePicker date_naissance;
-    public TextField lieuNaissanceTextField;
-    public JFXComboBox comboIdType;
-    public TextField cinTextField;
-    public JFXButton closeButton;
-    public TextField adresseTextField;
-    public TextField codePostalTextField;
-    public TextField villeTextField;
-    public TextField paysTextField;
-    public TextField telephoneTextField;
-    public TextField emailTextField;
-    public JFXButton saveButton;
-    public Label erreurMessage;
-    @FXML
-    private JFXButton btn;
-    @FXML
+	
+	@FXML
     private ImageView idview;
+
+    @FXML
+    private TextField prenomTextField;
+
+    @FXML
+    private TextField nomTextField;
+
+    @FXML
+    private JFXComboBox<String> comboRole;
+
+    @FXML
+    private JFXComboBox<String> comboGender;
+
+    @FXML
+    private TextField nationaliteTextField;
+
+    @FXML
+    private DatePicker date_naissance;
+
+    @FXML
+    private TextField lieuNaissanceTextField;
+
+    @FXML
+    private JFXComboBox<String> comboIdType;
+
+    @FXML
+    private TextField cinTextField;
+
     @FXML
     private TextField text;
+
+    @FXML
+    private JFXButton btn;
+
+    @FXML
+    private JFXButton closeButton;
+
+    @FXML
+    private TextField adresseTextField;
+
+    @FXML
+    private TextField codePostalTextField;
+
+    @FXML
+    private TextField villeTextField;
+
+    @FXML
+    private TextField paysTextField;
+
+    @FXML
+    private TextField telephoneTextField;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private JFXButton saveButton;
+
+    @FXML
+    private Label erreurMessage;
+
+    
 
     Image image = null;
     String prenom = null;
@@ -47,7 +93,7 @@ public class ControllerUtilisateur {
     String role = null;
     String genre = null;
     String nationalite = null;
-    LocalDate dateNaissance = null;
+    String dateNaissance = null;
     String lieuNaissance = null;
     String idType = null;
     String cin = null;
@@ -76,16 +122,16 @@ public class ControllerUtilisateur {
 
     public void handleSaveButton(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
-
+        Utilisateur user = new Utilisateur();
         image = idview.getImage();
         prenom = prenomTextField.getText();
         nom = nomTextField.getText();
-        role = comboRole.getSelectionModel().getSelectedItem().toString();
-        genre = comboGender.getSelectionModel().getSelectedItem().toString();
+        role = comboRole.getSelectionModel().getSelectedItem();
+        genre = comboGender.getSelectionModel().getSelectedItem();
         nationalite = nationaliteTextField.getText();
-        dateNaissance = date_naissance.getValue();
+        dateNaissance = ((TextField)date_naissance.getEditor()).getText();
         lieuNaissance = lieuNaissanceTextField.getText();
-        idType = comboIdType.getSelectionModel().getSelectedItem().toString();
+        idType = comboIdType.getSelectionModel().getSelectedItem();
         cin = cinTextField.getText();
         adresse = adresseTextField.getText();
         codePostal = codePostalTextField.getText();
@@ -93,11 +139,31 @@ public class ControllerUtilisateur {
         pays = paysTextField.getText();
         telephone = telephoneTextField.getText();
         email = emailTextField.getText();
-
-        if(testEmpty()){
+        Reservation res = H.reservation.getById(11);
+        Role rol = H.role.getById(1);
+        boolean s = false;
+        if(s){
             erreurMessage.setVisible(true);
         }else{
             // Upload informations to dataBase
+        	user.setIdUtilisateur(cin);
+			user.setNom(nom);
+			user.setPrenom(prenom);
+			user.setAdress(adresse);
+			user.setTele(telephone);
+			user.setEmail(email);
+			user.setNationalite(nationalite);
+			user.setNaissance(dateNaissance);
+			user.setLieu_naissance(lieuNaissance);
+			user.setEtat_compte("");
+			user.setPays(pays);
+			user.setCode_postale(codePostal);
+			user.setCivilite(genre);
+			user.setVille(ville);
+			user.setReservation(res);
+			user.setRole(rol);
+			
+			H.utilisateur.add(user);
 
             Stage stage =(Stage) saveButton.getScene().getWindow();
             stage.close();

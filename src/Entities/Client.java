@@ -46,6 +46,7 @@ public class Client implements Serializable{
 	private String delevre_a;
 	@Column(name="type_identifiant",nullable=true)
 	private String carte_identifiant;
+	//  num carte c'est le cin du client meme chose que idClient
 	@Column(name="num_carte",nullable=true)
 	private String num_carte;
 	@Column(name="validitePI",nullable=true)
