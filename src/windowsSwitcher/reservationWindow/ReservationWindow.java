@@ -152,18 +152,13 @@ public class ReservationWindow implements Initializable {
 			while(rs.next()) {
 				Reservation res = new Reservation();
 				res.setIdReservation(rs.getLong("idReservation"));
-				//res.setDatReservation(rs.getString("dateReservation"));
 				res.setDate_depart(rs.getString("date_depart"));
 				res.setDate_retour(rs.getString("date_retour"));
-				res.setCinClient(H.reservation.getCinClient(rs.getLong("idReservation")));
-				res.setCinUtilisateur(H.reservation.getCinUtilisateur(rs.getLong("idReservation")));
-				Status s = H.status.getById(H.reservation.getStatus(rs.getLong("idStatus")));
+				res.setCinClient(rs.getString("idClient"));
+				res.setCinUtilisateur(rs.getString("idUtilisateur"));
+				Status s = H.status.getById(H.reservation.getStatus(rs.getLong("idReservation")));
 				res.setStatusRes(s.getLibelle());
 				res.setTypeVehicule(H.type.getById(H.vehicule.getType(rs.getString("idVehicule"))).getLibelle());
-//				res.setVehicule(H.vehicule.getById(rs.getString("matricule")));
-//				res.setClient(H.client.getById(rs.getLong("idClient")));
-//				res.setStatus(H.status.getById(rs.getLong("idStatus")));
-//				res.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));
 				reservation_list.add(res);
 			}
 			con.close();

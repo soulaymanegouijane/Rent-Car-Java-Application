@@ -261,7 +261,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                     <children>
-                        <JFXButton fx:id="submit" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer La Réservation" textFill="WHITE">
+                        <JFXButton fx:id="submit" onAction="#addReservation" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer La Réservation" textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="50.0" />
                             </HBox.margin>

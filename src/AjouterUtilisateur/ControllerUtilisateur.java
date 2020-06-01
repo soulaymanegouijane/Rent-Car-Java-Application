@@ -174,8 +174,7 @@ public class ControllerUtilisateur implements Initializable {
         pays = paysTextField.getText();
         telephone = telephoneTextField.getText();
         email = emailTextField.getText();
-        Reservation res = H.reservation.getById(1);
-        Role rol = H.role.getById(1);
+        Role rol = H.role.get(role);
         boolean s = false;
         if(s){
             erreurMessage.setVisible(true);
@@ -195,7 +194,6 @@ public class ControllerUtilisateur implements Initializable {
 			user.setCode_postale(codePostal);
 			user.setCivilite(genre);
 			user.setVille(ville);
-			user.setReservation(res);
 			user.setRole(rol);
 			user.setCarte_identifiant(idType);
 			
