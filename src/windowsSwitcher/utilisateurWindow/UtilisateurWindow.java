@@ -146,6 +146,8 @@ public class UtilisateurWindow implements Initializable {
         disable(ErreurMessage);
 
         if(searchSection.equals("CIN")){
+        	utilisateur_list.clear();
+        	mono_Utilisateur.clear();
             String CINTaped = dataTextFeild.getText();
             utilisateur_list.clear();
             mono_Utilisateur.clear();
@@ -157,6 +159,8 @@ public class UtilisateurWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Nom")){
+        	utilisateur_list.clear();
+        	mono_Utilisateur.clear();
             String NomTaped = dataTextFeild.getText();
             utilisateur_list.clear();
             mono_Utilisateur.clear();
@@ -169,6 +173,8 @@ public class UtilisateurWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Prenom")){
+        	utilisateur_list.clear();
+        	mono_Utilisateur.clear();
             String PrenomTaped = dataTextFeild.getText();
             utilisateur_list.clear();
             mono_Utilisateur.clear();
@@ -181,6 +187,8 @@ public class UtilisateurWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Etat de compte")){
+        	utilisateur_list.clear();
+        	mono_Utilisateur.clear();
             String EtatTaped = compteComboBox.getValue();
             utilisateur_list.clear();
             mono_Utilisateur.clear();
@@ -227,6 +235,8 @@ public class UtilisateurWindow implements Initializable {
     }
     
     public void remplir_tableau(){
+    	utilisateur_list.clear();
+    	mono_Utilisateur.clear();
         ResultSet tous_les_utilisateur = null;
 		try {
 			String sql = "select * from utilisateur";

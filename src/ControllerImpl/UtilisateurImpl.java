@@ -11,27 +11,25 @@ import java.util.List;
 import AbstactClasses.Abst;
 import Entities.Utilisateur;
 import Interfaces.UtilisateurInter;
+import Test.H;
 
 public class UtilisateurImpl extends Abst implements UtilisateurInter {
 
 	@Override
 	public int add(Utilisateur arg) {
 		int status =0;
-		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idReservation,idRole,naissance,type_identifiant,photo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idRole,naissance,type_identifiant,photo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		Connection conn = null;
 		try {
 			conn = Abst.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(sql);
-			preparedStatement.setString(6, arg.getIdUtilisateur());
 			preparedStatement.setString(1,arg.getNom());
 			preparedStatement.setString(2,arg.getPrenom());
 			preparedStatement.setString(3,arg.getAdress());
-			preparedStatement.setString(5,arg.getTele());
 			preparedStatement.setString(4,arg.getEmail());
-			preparedStatement.setLong(14,arg.getReservation().getIdReservation());//reservation
-			preparedStatement.setLong(15,arg.getRole().getIdRole());//role
-			preparedStatement.setString(16, arg.getNaissance());
+			preparedStatement.setString(5,arg.getTele());
+			preparedStatement.setString(6, arg.getIdUtilisateur());
 			preparedStatement.setString(7,arg.getCivilite());
 			preparedStatement.setString(8,arg.getLieu_naissance());
 			preparedStatement.setString(9, arg.getCode_postale());
@@ -39,8 +37,10 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			preparedStatement.setString(11, arg.getPays());
 			preparedStatement.setString(12, arg.getNationalite());
 			preparedStatement.setString(13, arg.getEtat_compte());
-			preparedStatement.setString(17, arg.getCarte_identifiant());
-			preparedStatement.setBytes(18, arg.getImage());
+			preparedStatement.setLong(14,arg.getRole().getIdRole());//role
+			preparedStatement.setString(15, arg.getNaissance());
+			preparedStatement.setString(16, arg.getCarte_identifiant());
+			preparedStatement.setBytes(17, arg.getImage());
 			status = preparedStatement.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public Utilisateur edit(Utilisateur arg) {
 		
-		String sql = "UPDATE utilisateur SET nom=?,prenom=?,adress=?,telephone=?, email=?, idReservation=?,idRole =? where CodeUtilisateur=?";
+		String sql = "UPDATE utilisateur SET nom=?,prenom=?,adress=?,telephone=?, email=?, idRole =? where CodeUtilisateur=?";
 		Connection con = Abst.getConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -62,9 +62,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ps.setString(3,arg.getAdress());
 			ps.setString(4,arg.getTele());
 			ps.setString(5,arg.getEmail());
-			ps.setLong(6, arg.getReservation().getIdReservation());
 			ps.setLong(6, arg.getRole().getIdRole());
-			ps.setString(8, arg.getIdUtilisateur());
+			ps.setString(7, arg.getIdUtilisateur());
 			ps.executeUpdate();
 			arg.setAdress(arg.getAdress());
 			arg.setNom(arg.getNom());
@@ -72,7 +71,6 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			arg.setTele(arg.getTele());
 			arg.setEmail(arg.getEmail());
 			arg.setIdUtilisateur(arg.getIdUtilisateur());
-			arg.setReservation(arg.getReservation());
 			arg.setRole(arg.getRole());
 			con.close();
 		} catch (SQLException e) {
@@ -117,10 +115,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				user.setAdress(rs.getString(4));
 				user.setTele(rs.getString(5));
 				user.setEmail(rs.getString(6));
-				ReservationImpl resi = new ReservationImpl();
-				RoleImpl roi = new RoleImpl();
-				user.setReservation(resi.getById(rs.getLong(7)));
-				user.setRole(roi.getById(rs.getLong(8)));
+				user.setRole(H.role.getById(rs.getLong(8)));
 				list.add(user);
 			}
 			con.close();
@@ -148,10 +143,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setTele(rs.getString(5));
 				c.setEmail(rs.getString(6));
 				c.setImage(rs.getBytes("photo"));
-				ReservationImpl resi = new ReservationImpl();
-				RoleImpl roi = new RoleImpl();
-				c.setReservation(resi.getById(rs.getLong(7)));
-				c.setRole(roi.getById(rs.getLong(8)));
+				c.setRole(H.role.getById(rs.getLong("idRole")));
 			}else {
 				return null;
 			}
@@ -182,10 +174,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setAdress(rs.getString(4));
 				c.setTele(rs.getString(5));
 				c.setEmail(rs.getString(6));
-				ReservationImpl resi = new ReservationImpl();
-				RoleImpl roi = new RoleImpl();
-				c.setReservation(resi.getById(rs.getLong(7)));
-				c.setRole(roi.getById(rs.getLong(8)));
+				c.setRole(H.role.getById(rs.getLong("idRole")));
 			}else {
 				return null;
 			}

@@ -22,7 +22,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 		Connection con = Abst.getConnection();
 		try {
 			
-			String sql = "insert into reservation (idReservation,dateReservation,idClient,idTypeRes,idStatus,matricule,avance,date_depart,date_retour) values(?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into reservation (idReservation,dateReservation,idClient,idTypeRes,idStatus,matricule,avance,date_depart,date_retour,idUtilisateur) values(?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, arg.getIdReservation());
 			ps.setString(2, arg.getDatReservation());
@@ -33,6 +33,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 			ps.setFloat(7, arg.getAvance());
 			ps.setString(8, arg.getDate_depart());
 			ps.setString(9, arg.getDate_retour());
+			ps.setString(10, arg.getUtilisateur().getIdUtilisateur());
 			status = ps.executeUpdate();
 			
 			
@@ -179,6 +180,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 		return r;
 	}
 
+	// je dois supprimer cette fonction
 	public String getCinClient(long idReservation) {
 		String id = null;
 		Connection con = Abst.getConnection();
@@ -196,7 +198,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 		return id;
 	}
 	
-	// mais est ce que cette fonction logique ou non
+	// mais est ce que cette fonction logique ou non ---------> je dois supprimer cette fonction 
 	public String getCinUtilisateur(long idReservation) {
 		String id = null;
 		Connection con = Abst.getConnection();

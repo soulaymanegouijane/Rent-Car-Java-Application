@@ -36,11 +36,36 @@ public class Reservation implements Serializable{
 	private long idStatus;
 	@Column(name="idVehicule",nullable=false)
 	private String idVehicule;
+	@Column(name="idUtilisateur",nullable=true)
+	private String idUtilisateur;
 	
+	
+
+
 	private String cinClient;
 	private String cinUtilisateur;
 	private String statusRes;
 	private  String typeVehicule;
+	
+	@ManyToOne
+	@JoinColumn(name="idUtilisateur",referencedColumnName = "idUtilisateur",insertable = false,updatable = false)
+	private Utilisateur utilisateur;
+	
+	
+	/**
+	 * @return the utilisateur
+	 */
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+
+	/**
+	 * @param utilisateur the utilisateur to set
+	 */
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 	
 	/**
 	 * @return the typeVehicule
@@ -48,10 +73,6 @@ public class Reservation implements Serializable{
 	public String getTypeVehicule() {
 		return typeVehicule;
 	}
-
-
-
-
 
 
 	/**

@@ -37,8 +37,8 @@ public class Utilisateur implements Serializable{
 	private String etat_compte;
 	@Column(name="idRole",nullable=false)
 	private long idRole;
-	@Column(name="idReservation",nullable=false)
-	private long idReservation;
+//	@Column(name="idReservation",nullable=false)
+//	private long idReservation;
 	@Column(name="civilite",nullable=true)
 	private String civilite;
 	@Column(name="lieu_naissance",nullable=true)
@@ -59,9 +59,6 @@ public class Utilisateur implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idRole",referencedColumnName = "idRole",insertable = false,updatable = false)
 	private Role role;
-	@ManyToOne
-	@JoinColumn(name="idReservation",referencedColumnName = "idReservation",insertable = false,updatable = false)
-	private Reservation reservation;
 	
 	
 	
@@ -218,20 +215,6 @@ public class Utilisateur implements Serializable{
 	}
 
 
-	public Utilisateur(String idUtilisateur, String nom, String prenom, String tele, String adress, String email,
-			String naissance, String etat_compte, Role role, Reservation reservation) {
-		super();
-		this.idUtilisateur = idUtilisateur;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.tele = tele;
-		this.adress = adress;
-		this.email = email;
-		this.naissance = naissance;
-		this.etat_compte = etat_compte;
-		this.role = role;
-		this.reservation = reservation;
-	}
 
 
 	/**
@@ -341,18 +324,6 @@ public class Utilisateur implements Serializable{
 	 */
 	public void setRole(Role role) {
 		this.role = role;
-	}
-	/**
-	 * @return the reservation
-	 */
-	public Reservation getReservation() {
-		return reservation;
-	}
-	/**
-	 * @param reservation the reservation to set
-	 */
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
 	}
 	
 	
