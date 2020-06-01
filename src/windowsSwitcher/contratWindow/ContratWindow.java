@@ -135,7 +135,19 @@ public class ContratWindow implements Initializable {
         chercherComboBox.setItems(searchTypeList);
     }
     
-    public void handleAjouterContratButton(ActionEvent actionEvent) {
+    public void handleAjouterContratButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Contrat/AjouterUnContrat.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        mono_contrat.clear();
+        contrat_list.clear();
+        remplir_tableau();
     }
 
     public void handleDetailContratButton(ActionEvent actionEvent) {

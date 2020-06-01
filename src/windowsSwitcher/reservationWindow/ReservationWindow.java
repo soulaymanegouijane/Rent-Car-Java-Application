@@ -127,6 +127,8 @@ public class ReservationWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBox();
+        mono_reservation.clear();
+        reservation_list.clear();
         remplir_tableau();
     }
 
@@ -226,12 +228,7 @@ public class ReservationWindow implements Initializable {
     }
     
     public void handleAjouterReservationButton(ActionEvent actionEvent) throws IOException {
-<<<<<<< HEAD
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Reservation/AjouterReservation.fxml"));
-    	System.out.println("------------->"+loader);
-=======
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterReservation/AjouterReservation.fxml"));
->>>>>>> f482d775741e0ab5607e29fd0cd9fd4658b62ad6
         Parent root = loader.load();
 
         Stage stage = new Stage();
@@ -240,7 +237,8 @@ public class ReservationWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
+        mono_reservation.clear();
+        reservation_list.clear();
         remplir_tableau();
     }
 
@@ -392,6 +390,8 @@ public class ReservationWindow implements Initializable {
         disable(ErreurMessage);
 
         if(searchSection.equals("Id")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             String idTaped = idTextFeild.getText();
 
             if(idTaped.isEmpty()){
@@ -402,6 +402,8 @@ public class ReservationWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Type")){
+        	mono_reservation.clear();
+            reservation_list.clear();
 
             // Search résérvation by Type
 
@@ -416,6 +418,8 @@ public class ReservationWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Vehicule")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             String vehiculeTaped = textFeildChoisirVehicule.getText();
 
             if(vehiculeTaped.isEmpty()){
@@ -426,6 +430,8 @@ public class ReservationWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Client")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             String clientTaped = textFeildChoisirClient.getText();
 
             if(clientTaped.isEmpty()){
@@ -436,6 +442,8 @@ public class ReservationWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Utilisateur")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             String utilisateurTaped = textFeildChoisirUtilisateur.getText();
 
             if(utilisateurTaped.isEmpty()){
@@ -447,6 +455,8 @@ public class ReservationWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Status")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             String statutTaped = statutComboBox.getValue();
 
             if(statutTaped.isEmpty()){
@@ -457,6 +467,8 @@ public class ReservationWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Nombres des contrats")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             try {
                 int nbrContratTaped = Integer.parseInt(nbrContratTextFeild.getText());
                 // Search résérvation by client

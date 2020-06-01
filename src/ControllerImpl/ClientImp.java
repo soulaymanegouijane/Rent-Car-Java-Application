@@ -425,8 +425,44 @@ public class ClientImp extends Abst implements ClientInter{
 
 	@Override
 	public Client getById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = Abst.getConnection();
+		Client client = new Client();
+		try {
+			String sql = "select * from Client where idClient = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				client.setIdClient(rs.getString("idClient"));
+				client.setNom(rs.getString("nom"));
+				client.setPrenom(rs.getString("prenom"));
+				client.setAdress(rs.getString("adress"));
+				client.setTelephone(rs.getString("telephone"));
+				client.setEmail(rs.getString("email"));
+				client.setCarte_identifiant(rs.getString("type_identifiant"));
+				//client.setValiditePI( rs.getDate("validitePI"));
+				client.setNum_carte(rs.getString("num_carte"));
+				client.setDelevre_a(rs.getString("delevre_a"));
+				//client.setValiditePermis( rs.getDate("validitePermis"));
+				//client.setDelevre_le( rs.getDate("delivrer"));
+				client.setN_permis(rs.getString("n_permis"));
+				client.setLieu_naissance(rs.getString("lieu_naissance"));
+				//client.setDate_naissance( rs.getDate("date_naissance"));
+				client.setCivilite(rs.getString("civilite"));
+				client.setAge(rs.getInt("age"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				con.close();
+				System.out.println("closed");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return client;
 	}
 	
 	

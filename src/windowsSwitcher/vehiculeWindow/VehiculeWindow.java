@@ -362,7 +362,19 @@ public class VehiculeWindow implements Initializable {
         }
     }
     
-    public void handleAjouterVehiculeButton(ActionEvent actionEvent) {
+    public void handleAjouterVehiculeButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterVehicule/AjouterVehicule.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        mono_vehicule.clear();
+        vehicule_list.clear();
+        remplir_tableau();
     }
 
     public void handleDetailVehiculeButton(ActionEvent actionEvent) {

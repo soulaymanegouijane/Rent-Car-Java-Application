@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import windowsSwitcher.contratWindow.ChoisirReservationScene;
 
 import java.io.IOException;
 import java.net.URL;
@@ -79,8 +80,11 @@ public class AjouterReservation implements Initializable {
     	idReservation.setText(String.valueOf(nouveauIdReservation));
         getTypeReservation();
         comboBox();
+        
     }
 
+    String str = null;
+    
     @FXML
     void btnChoisirClient(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirClientScene.fxml"));
@@ -96,11 +100,27 @@ public class AjouterReservation implements Initializable {
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
+		
+		ChoisirClientScene choisirVehicule = loader.getController();
+		client.setText(choisirVehicule.cinClientSelected);
+		str = client.getText();
+		System.out.println("----------------> "+str);
     }
 
     @FXML
-    void btnChoisirVehicule(ActionEvent event) {
+    void btnChoisirVehicule(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirVehiculeScene.fxml"));
+    	Parent root = loader.load();
 
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        
+        ChoisirVehiculeScene choisirClient = loader.getController();
+        vehicule.setText(choisirClient.matriculeVehicule);
     }
 
     
@@ -113,8 +133,10 @@ public class AjouterReservation implements Initializable {
     	String dtDepart = ((TextField)dateDepart.getEditor()).getText();
     	String matricule = vehicule.getText();
     	String Client = client.getText();
+    	System.out.println(client +"  --------------");
     	String type = typeReservation.getValue();
     	TypeReservation tpRes = H.typeres.get(type);
+    	System.out.println("-------- TypeReservation ---------->"+tpRes);
     	
     	Reservation reservation = new Reservation();
     	
@@ -123,7 +145,9 @@ public class AjouterReservation implements Initializable {
     	reservation.setDate_depart(dtDepart);
     	reservation.setDate_retour(dtRetour);
     	reservation.setVehicule(H.vehicule.getById(matricule));
-    	reservation.setClient(H.client.getById(Client));
+    	reservation.setClient(H.client.getById(str));
+    	reservation.setStatus(H.status.getById(1));
+    	reservation.setUtilisateur(H.utilisateur.getById("JB3066"));
     	reservation.setTypeRes(tpRes);
     	
     	int result = H.reservation.add(reservation);
@@ -133,6 +157,9 @@ public class AjouterReservation implements Initializable {
 		} else {
 			System.out.println("il y a un prb dans l'ajout d'une reservation");
 		}
+    	
+    	Stage stage =(Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

@@ -22,7 +22,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 		Connection con = Abst.getConnection();
 		try {
 			
-			String sql = "insert into reservation (idReservation,dateReservation,idClient,idTypeRes,idStatus,matricule,avance,date_depart,date_retour,idUtilisateur) values(?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into reservation (idReservation,dateReservation,idClient,idTypeRes,idStatus,idVehicule,avance,date_depart,date_retour,idUtilisateur) values(?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, arg.getIdReservation());
 			ps.setString(2, arg.getDatReservation());

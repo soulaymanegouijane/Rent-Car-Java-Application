@@ -24,7 +24,6 @@ public class AjouterParking implements Initializable{
     public TextField adressparkingTextField;
     public TextField capaciteParkingTextField;
     public TextField occupeParkingTextField;
-    public TextField idUtilisateurTextField;
     public JFXButton submitButton;
     public Label erreurMessage;
     @FXML
@@ -34,7 +33,6 @@ public class AjouterParking implements Initializable{
     String adressparking;
     int capaciteParking;
     int occupeParking;
-    String idUtilisateur;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -54,12 +52,12 @@ public class AjouterParking implements Initializable{
         adressparking = adressparkingTextField.getText();
         capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
         occupeParking = Integer.parseInt(occupeParkingTextField.getText());
-        idUtilisateur = idUtilisateurTextField.getText();
         if(Erreur()){
             erreurMessage.setVisible(true);
         }else{
             // Upload informations to dataBase
             Parking parking = new Parking();
+            parking.setIdParking(Long.valueOf(idparking));
             parking.setAdress(adressparking);
             parking.setCapacite(capaciteParking);
             parking.setNbr_place_pleinne(occupeParking);
@@ -86,7 +84,7 @@ public class AjouterParking implements Initializable{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				parc = rs.getLong("maxFact");
+				parc = rs.getLong("maxParc");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -106,7 +104,7 @@ public class AjouterParking implements Initializable{
             return true;
         }
 
-        if(idparking.isEmpty() || adressparking.isEmpty() || idUtilisateur.isEmpty()){
+        if(idparking.isEmpty() || adressparking.isEmpty()){
             erreurMessage.setText("Remplire tous les champs !!");
             return true;
         }

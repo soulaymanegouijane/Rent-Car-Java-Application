@@ -193,4 +193,41 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		return c;
 	}
 
+	@Override
+	public Utilisateur getById(String idUser) {
+		Utilisateur c = new Utilisateur();
+		Connection con = Abst.getConnection();
+		try {
+			String sql = "Select idUtilisateur,nom,prenom,adress,telephone,email,idRole from utilisateur where idUtilisateur=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, idUser);
+			ResultSet rs =  ps.executeQuery();
+			
+			if(rs.next()) {
+				c.setIdUtilisateur(rs.getString(1));
+				c.setNom(rs.getString(2));
+				c.setPrenom(rs.getString(3));
+				c.setAdress(rs.getString(4));
+				c.setTele(rs.getString(5));
+				c.setEmail(rs.getString(6));
+				c.setRole(H.role.getById(rs.getLong("idRole")));
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				System.out.println("closed from utilisateur ?");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return c;
+	}
+
 }

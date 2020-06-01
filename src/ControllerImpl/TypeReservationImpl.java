@@ -108,9 +108,9 @@ public class TypeReservationImpl extends Abst implements TypeReservationInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				tr.setIdTypeReservation(rs.getInt(1));
-				tr.setLibelle(rs.getString(2));
-				tr.setDescription(rs.getString(3));
+				tr.setIdTypeReservation(rs.getInt("idTypeRes"));
+				tr.setLibelle(rs.getString("libelle"));
+				tr.setDescription(rs.getString("description"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
