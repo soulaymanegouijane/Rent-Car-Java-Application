@@ -227,14 +227,27 @@ public class ReservationWindow implements Initializable {
 		}
     }
     
-    public void handleAjouterReservationButton(ActionEvent actionEvent) {
+    public void handleAjouterReservationButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Reservation/AjouterReservation.fxml"));
+    	System.out.println("------------->"+loader);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        remplir_tableau();
     }
 
     public void handleDetailReservationButton(ActionEvent actionEvent) {
     }
 
     public void handleButtonChoisirVehicule(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirVehiculeScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirVehiculeScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

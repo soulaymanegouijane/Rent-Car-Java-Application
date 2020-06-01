@@ -75,6 +75,42 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
+                     <children>
+                        <JFXComboBox fx:id="comboIdType" focusColor="#039ed3" prefHeight="25.0" prefWidth="195.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <stylesheets>
+                              <URL value="@../Css/combo.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="jfx-combo-box" />
+                              <String fx:value="text" />
+                           </styleClass>
+                        </JFXComboBox>
+                        <TextField fx:id="cinTextField" alignment="CENTER" prefHeight="25.0" prefWidth="173.0" promptText="N° de la carte d'identité :">
+                           <HBox.margin>
+                              <Insets left="20.0" right="10.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="386.0">
                      <children>
                         <JFXComboBox fx:id="comboGender" focusColor="#039ed3" prefHeight="23.0" prefWidth="154.0" promptText="Genre :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" styleClass="combo-box" stylesheets="@../Css/combo.css" unFocusColor="#cfcfcf" visibleRowCount="3">
@@ -133,42 +169,6 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
-                     <children>
-                        <JFXComboBox fx:id="comboIdType" focusColor="#039ed3" prefHeight="25.0" prefWidth="195.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="jfx-combo-box" />
-                              <String fx:value="text" />
-                           </styleClass>
-                        </JFXComboBox>
-                        <TextField fx:id="cinTextField" alignment="CENTER" prefHeight="25.0" prefWidth="173.0" promptText="N° de la carte d'identité :">
-                           <HBox.margin>
-                              <Insets left="20.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="335.0" prefHeight="45.0" prefWidth="386.0">
                      <children>
                         <TextField fx:id="text" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="241.0" promptText="chemin de la photo :">

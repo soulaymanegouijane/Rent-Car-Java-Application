@@ -5,6 +5,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -43,45 +44,15 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <JFXComboBox fx:id="comboday1" prefHeight="23.0" prefWidth="57.0" promptText="jour :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="100.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="combomonth1" layoutX="158.0" layoutY="27.0" prefHeight="23.0" prefWidth="61.0" promptText="Mois :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="comboyear1" layoutX="214.0" layoutY="27.0" prefHeight="23.0" prefWidth="72.0" promptText="Année :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
+                  <DatePicker fx:id="dateReservation" prefWidth="149.0" stylesheets="@../Css/datePicker.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="datePicker" />
+                        <String fx:value="text" />
+                     </styleClass>
+                  </DatePicker>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
@@ -96,7 +67,7 @@
                                 <Insets left="100.0" />
                             </HBox.margin>
                         </TextField>
-                        <JFXButton fx:id="parcourrirButton1" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                        <JFXButton fx:id="parcourrirButton1" onAction="#btnChoisirVehicule" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -115,7 +86,7 @@
                                 <Insets left="100.0" />
                             </HBox.margin>
                         </TextField>
-                        <JFXButton fx:id="parcourrirButton2" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                        <JFXButton fx:id="parcourrirButton2" onAction="#btnChoisirClient" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -129,45 +100,15 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <JFXComboBox fx:id="comboday2" prefHeight="23.0" prefWidth="57.0" promptText="jour :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="100.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="combomonth2" layoutX="158.0" layoutY="27.0" prefHeight="23.0" prefWidth="61.0" promptText="Mois :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="comboyear2" layoutX="214.0" layoutY="27.0" prefHeight="23.0" prefWidth="72.0" promptText="Année :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
+                  <DatePicker fx:id="dateDepart" prefWidth="149.0" stylesheets="@../Css/datePicker.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="datePicker" />
+                        <String fx:value="text" />
+                     </styleClass>
+                  </DatePicker>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="234.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
@@ -177,45 +118,15 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <JFXComboBox fx:id="comboday3" prefHeight="23.0" prefWidth="57.0" promptText="jour :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="100.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="combomonth3" layoutX="158.0" layoutY="27.0" prefHeight="23.0" prefWidth="61.0" promptText="Mois :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
-                        <JFXComboBox fx:id="comboyear3" layoutX="214.0" layoutY="27.0" prefHeight="23.0" prefWidth="72.0" promptText="Année :" style="-jfx-label-float: true;">
-                            <stylesheets>
-                                <URL value="@../Css/combo.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="jfx-combo-box" />
-                            </styleClass>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </JFXComboBox>
+                  <DatePicker fx:id="dateRetour" prefWidth="149.0" stylesheets="@../Css/datePicker.css">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="datePicker" />
+                        <String fx:value="text" />
+                     </styleClass>
+                  </DatePicker>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">

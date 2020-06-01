@@ -67,7 +67,7 @@
                                 <Insets left="100.0" />
                             </HBox.margin>
                         </TextField>
-                        <JFXButton fx:id="parcourrirButton1" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                        <JFXButton fx:id="parcourrirButton1" onAction="#btnChoisirVehicule" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -86,7 +86,7 @@
                                 <Insets left="100.0" />
                             </HBox.margin>
                         </TextField>
-                        <JFXButton fx:id="parcourrirButton2" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                        <JFXButton fx:id="parcourrirButton2" onAction="#btnChoisirClient" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
