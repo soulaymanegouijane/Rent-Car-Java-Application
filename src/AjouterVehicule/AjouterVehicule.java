@@ -32,14 +32,16 @@ public class AjouterVehicule implements Initializable{
 	    private TextField idmatricule;
 
 	    @FXML
-	    private JFXComboBox<Integer> idplace;
+	    private TextField nombrePlaceTextField; // Nombre de place
 
 	    @FXML
 	    private JFXComboBox<String> idcarburant;
 
 	    @FXML
-	    private TextField idmark;
+	    private JFXComboBox<String> marqueComboBox; // le combobox de la marque
 
+		@FXML
+		private JFXComboBox<String> typeComboBox ; //type de la voiture
 	    @FXML
 	    private TextField idcolor;
 
@@ -51,19 +53,16 @@ public class AjouterVehicule implements Initializable{
 
 	    ObservableList<String> carburantList = FXCollections.observableArrayList();
 	    ObservableList<String> parkingList = FXCollections.observableArrayList();
-	    ObservableList<Integer> nbrPlace = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
-	    
 	    @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 	    	comboBox();
 		}
-	    
+
 	    public void comboBox() {
 	    	idcarburant.setItems(carburantList);
-	    	idplace.setItems(nbrPlace);
 	    	idparking.setItems(parkingList);
 	    }
-	    
+
 	    @FXML
 	    public void closeButtonAction(){
 	        Stage stage =(Stage) closeButton.getScene().getWindow();
@@ -86,8 +85,6 @@ public class AjouterVehicule implements Initializable{
 	    	vehicule.setParking(H.parking.get(parking));
 	    	vehicule.setType(null);
 	    	H.vehicule.add(vehicule);
-	    	
-	    	
 	    }
 	    
 	    public void carburant_base_donnee() {

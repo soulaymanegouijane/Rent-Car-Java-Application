@@ -48,12 +48,6 @@ public class AjouterParking implements Initializable{
         stage.close();
     }
 
-    
-    /* 
-     *  ------> supprimer utilisateur parce que on a changer le diagramme de classe 
-     *  		donc on n 'a pas une relation fort entre utilisateur et parking
-    */
-    
     public void submitButtonAction(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
         idparking = idparkingTextField.getText();
