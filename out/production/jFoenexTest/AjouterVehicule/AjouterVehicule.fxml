@@ -5,6 +5,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,8 +17,7 @@
     <children>
         <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
             <children>
-                <Label layoutX="91.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Ajouter Un Nouveau Vehicule " textFill="WHITE" />
-                <JFXButton fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="671.0" layoutY="12.0" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+                <Label alignment="CENTER" layoutX="67.0" layoutY="15.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Ajouter une nouvelle Vehicule " textFill="WHITE" />
             </children>
         </Pane>
           <VBox layoutY="64.0" prefHeight="427.0" prefWidth="500.0">
@@ -44,7 +44,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="idmatricule" alignment="CENTER" prefWidth="180.0">
+                  <TextField fx:id="matriculeTextField" alignment="CENTER" prefWidth="180.0">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -69,15 +69,19 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="idplace" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="nombre de place" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                  <TextField fx:id="nombrePlaceTextField" alignment="CENTER" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
-                     <stylesheets>
-                        <URL value="@../Css/combo.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                  </JFXComboBox>
+                  </TextField>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="104.0" prefHeight="47.0" prefWidth="500.0">
@@ -90,7 +94,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="idcarburant" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Carburant" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                  <JFXComboBox fx:id="carburantComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Carburant" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -99,6 +103,7 @@
                         <URL value="@../Css/MinitextStyle.css" />
                      </stylesheets>
                   </JFXComboBox>
+                  <JFXButton fx:id="ajouterCarburantButton" onAction="#handleAjouterCarburantButton" styleClass="chooseImageButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Ajouter" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
@@ -111,60 +116,64 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="idmark" alignment="CENTER" prefWidth="180.0">
+                  <JFXComboBox fx:id="marqueComboBox" focusColor="#63b4ff" layoutX="180.0" layoutY="30.0" prefHeight="25.0" prefWidth="180.0" promptText="Marque" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
-                     <stylesheets>
-                        <URL value="@../Css/textinputstyle.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text-field" />
-                     </styleClass>
-                  </TextField>
+                  </JFXComboBox>
+                  <JFXButton fx:id="ajouterMarqueButton" onAction="#handleAjouterMarqueButton" styleClass="chooseImageButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Ajouter" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="198.0" prefHeight="47.0" prefWidth="500.0">
+            <HBox layoutX="10.0" layoutY="196.0" prefHeight="47.0" prefWidth="500.0">
                <padding>
                   <Insets top="20.0" />
                </padding>
                <children>
-                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :">
+                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Type :">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="idcolor" alignment="CENTER" prefWidth="180.0">
+                  <JFXComboBox fx:id="typeComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Type" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
-                     <stylesheets>
-                        <URL value="@../Css/textinputstyle.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text-field" />
-                     </styleClass>
-                  </TextField>
+                  </JFXComboBox>
+                  <JFXButton fx:id="ajouterTypeButton" onAction="#handleAjouterTypeButton" styleClass="chooseImageButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Ajouter" />
                </children>
             </HBox>
-            <HBox layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0">
+            <HBox alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="198.0" prefHeight="58.0" prefWidth="500.0">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <children>
+                  <Label prefHeight="29.0" prefWidth="220.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ColorPicker fx:id="colorColorPicker" prefHeight="25.0" prefWidth="180.0" styleClass="colorPicker" stylesheets="@../windowsSwitcher/windowsSwitcher.css" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0" spacing="5.0">
                <padding>
                   <Insets top="20.0" />
                </padding>
                <children>
-                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Parking :">
+                  <Label prefHeight="17.0" prefWidth="214.0" stylesheets="@../Css/MinitextStyle.css" text="Parking :">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="idparking" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Parking" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
+                  <JFXComboBox fx:id="parkingComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Parking" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                      <stylesheets>
                         <URL value="@../Css/combo.css" />
                         <URL value="@../Css/MinitextStyle.css" />
@@ -174,8 +183,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="closeButton" layoutX="10.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" />
-                  <JFXButton fx:id="submitButton" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer">
+                  <JFXButton fx:id="closeButton" layoutX="10.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+                  <JFXButton fx:id="submitButton" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>

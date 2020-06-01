@@ -3,11 +3,7 @@ package windowsSwitcher.contratWindow;
 import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
-import Entities.Carburant;
 import Entities.Contrat;
-import Entities.Marque;
-import Entities.Parking;
-import Entities.Vehicule;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,9 +27,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ContratWindow implements Initializable {
@@ -126,7 +119,7 @@ public class ContratWindow implements Initializable {
     String searchSection = null;
 
 
-    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Num contrat", "Date", "Reservation", "Vehicule", "Client", "Utilisateur");
+    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Num contrat", "Date", "AjouterReservation", "Vehicule", "Client", "Utilisateur");
     ObservableList<Contrat> contrat_list = FXCollections.observableArrayList();
     ObservableList<Contrat> mono_contrat = FXCollections.observableArrayList();
     ObservableList<Contrat> contrats = FXCollections.observableArrayList();
@@ -179,7 +172,7 @@ public class ContratWindow implements Initializable {
             disable(hBoxChoisirClient);
             disable(hBoxChoisirUtilisateur);
 
-        }else if(searchSection.equals("Reservation")){
+        }else if(searchSection.equals("AjouterReservation")){
 
             disable(nContratTextFeild);
             disable(dateDatePicker);
@@ -247,7 +240,7 @@ public class ContratWindow implements Initializable {
             	afficher_contrat(dateTaped);
             }
 
-        }else if(searchSection.equals("Reservation")){
+        }else if(searchSection.equals("AjouterReservation")){
         	contrat_list.clear();
             mono_contrat.clear();
             String reservationTaped = textFeildChoisirReservation.getText();
@@ -466,7 +459,7 @@ public class ContratWindow implements Initializable {
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
 			}
-			if(searchSection.equals("Reservation")) {
+			if(searchSection.equals("AjouterReservation")) {
 				sql = "select * from contrat where idReservation=?";
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
