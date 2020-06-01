@@ -1,4 +1,4 @@
-package Reservation;
+package AjouterReservation;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;

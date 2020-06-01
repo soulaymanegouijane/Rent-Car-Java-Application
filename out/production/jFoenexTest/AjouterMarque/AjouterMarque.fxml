@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterMarque.AjouterMarque">
+   <children>
+      <Pane prefHeight="53.0" prefWidth="701.0" style="-fx-background-color: #406C87;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="217.0" layoutY="12.0" prefHeight="29.0" prefWidth="268.0" stylesheets="@../Css/textStyle.css" text="Ajout Multiple " textFill="WHITE" />
+         </children>
+      </Pane>
+      <VBox layoutX="1.0" layoutY="53.0" prefHeight="397.0" prefWidth="700.0">
+         <children>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="42.0" prefWidth="700.0">
+               <children>
+                  <Label minWidth="200.0" prefWidth="200.0" stylesheets="@../Css/MinitextStyle.css" text="Ajouter Une Marque :">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="10.0" prefWidth="200.0" stylesheets="@../Css/MinitextStyle.css" text="Ajouter Un Type :">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="10.0" prefWidth="200.0" stylesheets="@../Css/MinitextStyle.css" text="Ajouter Un status">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="261.0" prefWidth="700.0">
+               <children>
+                  <VBox prefHeight="261.0" prefWidth="220.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="220.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="56.0" stylesheets="@../Css/MinitextStyle.css" text="Libellé :" textFill="#b9b3b3" />
+                              <TextField fx:id="libelleMarque" prefHeight="25.0" prefWidth="160.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="31.0" prefWidth="220.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="87.0" stylesheets="@../Css/MinitextStyle.css" text="Description :" textFill="#b9b3b3" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="descriptionMarque" alignment="CENTER" prefHeight="25.0" prefWidth="160.0">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="ajouterMarqueBtn" prefHeight="47.0" prefWidth="127.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator maxWidth="5.0" minWidth="5.0" opacity="0.88" orientation="VERTICAL" prefHeight="200.0" prefWidth="5.0" style="-fx-background-color: #63B4FF;" />
+                  <VBox layoutX="20.0" layoutY="10.0" prefHeight="261.0" prefWidth="220.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="220.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="66.0" stylesheets="@../Css/MinitextStyle.css" text="Libellé :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="libelleType" prefHeight="25.0" prefWidth="160.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="31.0" prefWidth="220.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="87.0" stylesheets="@../Css/MinitextStyle.css" text="Description :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="descriptionType" alignment="CENTER" prefHeight="25.0" prefWidth="160.0">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="ajouterTypeBtn" prefHeight="47.0" prefWidth="127.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator layoutX="240.0" layoutY="10.0" maxWidth="2.0" minHeight="0.0" minWidth="5.0" opacity="0.88" orientation="VERTICAL" prefHeight="261.0" prefWidth="5.0" style="-fx-background-color: #63B4FF;" />
+                  <VBox layoutX="250.0" layoutY="10.0" prefHeight="261.0" prefWidth="220.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="220.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefHeight="15.0" prefWidth="67.0" stylesheets="@../Css/MinitextStyle.css" text="Libellé :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="libelleStatus" prefHeight="25.0" prefWidth="160.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="31.0" prefWidth="220.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="87.0" stylesheets="@../Css/MinitextStyle.css" text="Description :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="descriptionStatus" alignment="CENTER" prefHeight="25.0" prefWidth="160.0">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="ajouterStatusBtn" prefHeight="47.0" prefWidth="127.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="76.0" prefWidth="700.0">
+               <children>
+                  <JFXButton fx:id="closeButton" prefHeight="44.0" prefWidth="120.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+                  <JFXButton fx:id="ajouterToutBtn" layoutX="300.0" layoutY="26.0" prefHeight="43.0" prefWidth="170.0" style="-fx-background-radius: 40; -fx-background-color: #63B4FF;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter Tout" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

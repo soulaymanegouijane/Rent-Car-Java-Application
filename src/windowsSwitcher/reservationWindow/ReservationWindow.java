@@ -6,7 +6,6 @@ import AbstactClasses.Abst;
 import Entities.Parking;
 import Entities.Reservation;
 import Entities.Status;
-import Entities.Utilisateur;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +29,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ReservationWindow implements Initializable {
@@ -228,8 +226,12 @@ public class ReservationWindow implements Initializable {
     }
     
     public void handleAjouterReservationButton(ActionEvent actionEvent) throws IOException {
+<<<<<<< HEAD
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Reservation/AjouterReservation.fxml"));
     	System.out.println("------------->"+loader);
+=======
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterReservation/AjouterReservation.fxml"));
+>>>>>>> f482d775741e0ab5607e29fd0cd9fd4658b62ad6
         Parent root = loader.load();
 
         Stage stage = new Stage();

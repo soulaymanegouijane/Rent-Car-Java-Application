@@ -192,6 +192,13 @@
     -fx-fill: darkslateblue;
 }
 
+.colorPicker {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #cdcdcd;
+}
+
+
 .date {
     -fx-background-color: transparent;
     -fx-border-color: lime;
