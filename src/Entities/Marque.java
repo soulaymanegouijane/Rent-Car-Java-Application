@@ -13,6 +13,11 @@ import javax.persistence.Table;
 @Table(name="marque")
 public class Marque implements Serializable{
 	
+	@Override
+	public String toString() {
+		return "Marque [idMarque=" + idMarque + ", libelle=" + libelle + ", description=" + description + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idMarque", nullable=false)

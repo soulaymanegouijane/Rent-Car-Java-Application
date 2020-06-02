@@ -146,9 +146,9 @@ public class CarburantImpl extends Abst implements CarburantInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				st.setIdCarburant(rs.getInt(1));
-				st.setLibelle(rs.getString(2));
-				st.setDescription(rs.getString(3));
+				st.setIdCarburant(rs.getInt("idCarburant"));
+				st.setLibelle(rs.getString("libelle"));
+				st.setDescription(rs.getString("description"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");

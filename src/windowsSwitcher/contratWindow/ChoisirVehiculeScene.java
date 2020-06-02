@@ -98,7 +98,6 @@ public class ChoisirVehiculeScene implements Initializable {
 				vehicule.setIdVehicule(tous_les_vehicule.getString("idVehicule"));
 				vehicule.setMarqueLibelle(H.vehicule.marque_libelle(tous_les_vehicule.getString("idVehicule")));
 				vehicule.setTypeVehicule(H.type.getById(H.vehicule.getType(tous_les_vehicule.getString("idVehicule"))).getLibelle());
-				vehicule.setKilometrage(tous_les_vehicule.getLong("kilometrage"));
 				vehicule_list.add(vehicule);
 			}
 			con.close();

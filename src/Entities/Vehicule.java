@@ -16,21 +16,22 @@ public class Vehicule implements Serializable{
 	@Id
 	@Column(name="idVehicule", nullable=false)
 	private String idVehicule;
-	@Column(name="nbr_place",nullable=false)
+	@Column(name="nbr_place",nullable=true)
 	private int nbr_place;
-	@Column(name="color",nullable=false)
+	@Column(name="color",nullable=true)
 	private String color;
-	@Column(name="dispo",nullable=false)
+	@Column(name="dispo",nullable=true)
 	private boolean dispo;
-	@Column(name="telephone",nullable=false)
-	private String telephone;
 	
 	
 	private String typeVehicule;
 	private String marqueLibelle;
 	
-	@Column(name="kilometrage",nullable=false)
-	private long kilometrage;
+	private String libelle_marque;
+	private String libelle_parking;
+	private String libelle_carburant;
+	
+	
 	@Column(name="idCarburant",nullable=true)
 	private long dCarburant;
 	@Column(name="idType",nullable=true)
@@ -56,61 +57,48 @@ public class Vehicule implements Serializable{
 
 
 
-//	/**
-//	 * @return the libelle_marque
-//	 */
-//	public String getLibelle_marque() {
-//		return libelle_marque;
-//	}
-//
-//	/**
-//	 * @param libelle_marque the libelle_marque to set
-//	 */
-//	public void setLibelle_marque(String libelle_marque) {
-//		this.libelle_marque = libelle_marque;
-//	}
-//
-//	/**
-//	 * @return the libelle_carburant
-//	 */
-//	public String getLibelle_carburant() {
-//		return libelle_carburant;
-//	}
-//
-//	/**
-//	 * @param libelle_carburant the libelle_carburant to set
-//	 */
-//	public void setLibelle_carburant(String libelle_carburant) {
-//		this.libelle_carburant = libelle_carburant;
-//	}
-//
-//	/**
-//	 * @return the libelle_parking
-//	 */
-//	public String getLibelle_parking() {
-//		return libelle_parking;
-//	}
-//
-//	/**
-//	 * @param libelle_parking the libelle_parking to set
-//	 */
-//	public void setLibelle_parking(String libelle_parking) {
-//		this.libelle_parking = libelle_parking;
-//	}
-
 	/**
-	 * @return the telephone
+	 * @return the libelle_marque
 	 */
-	public String getTelephone() {
-		return telephone;
+	public String getLibelle_marque() {
+		return libelle_marque;
 	}
 
 	/**
-	 * @param telephone the telephone to set
+	 * @param libelle_marque the libelle_marque to set
 	 */
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setLibelle_marque(String libelle_marque) {
+		this.libelle_marque = libelle_marque;
 	}
+
+	/**
+	 * @return the libelle_carburant
+	 */
+	public String getLibelle_carburant() {
+		return libelle_carburant;
+	}
+
+	/**
+	 * @param libelle_carburant the libelle_carburant to set
+	 */
+	public void setLibelle_carburant(String libelle_carburant) {
+		this.libelle_carburant = libelle_carburant;
+	}
+
+	/**
+	 * @return the libelle_parkinglibelle_carburant
+	 */
+	public String getLibelle_parking() {
+		return libelle_parking;
+	}
+
+	/**
+	 * @param libelle_parking the libelle_parking to set
+	 */
+	public void setLibelle_parking(String libelle_parking) {
+		this.libelle_parking = libelle_parking;
+	}
+
 
 	/**
 	 * @return the idVehicule
@@ -126,32 +114,7 @@ public class Vehicule implements Serializable{
 		this.idVehicule = idVehicule;
 	}
 
-	/**
-	 * @return the kilometrage
-	 */
-	public long getKilometrage() {
-		return kilometrage;
-	}
-
-	/**
-	 * @param kilometrage the kilometrage to set
-	 */
-	public void setKilometrage(long kilometrage) {
-		this.kilometrage = kilometrage;
-	}
-
-	public Vehicule(String idVehicule, int nbr_place, String color, boolean dispo, Carburant carburant, Type type,
-			Parking parking, long kilometrage) {
-		super();
-		this.idVehicule = idVehicule;
-		this.nbr_place = nbr_place;
-		this.color = color;
-		this.dispo = dispo;
-		this.carburant = carburant;
-		this.type = type;
-		this.parking = parking;
-		this.kilometrage = kilometrage;
-	}
+	
 
 	public boolean isDispo() {
 		return this.dispo;

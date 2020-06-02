@@ -84,6 +84,11 @@ public class Carburant implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	@Override
+	public String toString() {
+		return "Carburant [idCarburant=" + idCarburant + ", libelle=" + libelle + ", description=" + description + "]";
+	}
 	
 	
 	

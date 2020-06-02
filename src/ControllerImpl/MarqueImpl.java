@@ -100,11 +100,11 @@ public class MarqueImpl extends Abst implements MarqueInter {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				Marque st = new Marque();
-				st.setIdMarque(rs.getInt(1));
-				st.setLibelle(rs.getString(2));
-				st.setDescription(rs.getString(3));
-				list.add(st);
+				Marque marque = new Marque();
+				marque.setIdMarque(rs.getInt("idMarque"));
+				marque.setLibelle(rs.getString("libelle"));
+				marque.setDescription(rs.getString("description"));
+				list.add(marque);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,9 +132,9 @@ public class MarqueImpl extends Abst implements MarqueInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				st.setIdMarque(rs.getInt(1));
-				st.setLibelle(rs.getString(2));
-				st.setDescription(rs.getString(3));
+				st.setIdMarque(rs.getInt("idMarque"));
+				st.setLibelle(rs.getString("libelle"));
+				st.setDescription(rs.getString("description"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
@@ -167,9 +167,9 @@ public class MarqueImpl extends Abst implements MarqueInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				marque.setIdMarque(rs.getLong(1));
-				marque.setDescription(rs.getString(3));
-				marque.setLibelle(rs.getString(2));
+				marque.setIdMarque(rs.getInt("idMarque"));
+				marque.setLibelle(rs.getString("libelle"));
+				marque.setDescription(rs.getString("description"));
 			}else {
 				return null;
 			}

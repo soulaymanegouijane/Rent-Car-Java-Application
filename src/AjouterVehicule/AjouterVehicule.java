@@ -12,9 +12,13 @@ import com.jfoenix.controls.JFXComboBox;
 
 import AbstactClasses.Abst;
 import Entities.Carburant;
+import Entities.Marque;
 import Entities.Parking;
+import Entities.Type;
 import Entities.Vehicule;
 import Test.H;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,64 +30,145 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class AjouterVehicule implements Initializable{
+	
+	 	@FXML
+	    private TextField matriculeTextField;
 
-	public TextField matriculeTextField;
-	public JFXComboBox carburantComboBox;
-	public JFXButton ajouterMarqueButton;
-	public JFXComboBox typeComboBox;
-	public ColorPicker colorColorPicker;
-	public JFXComboBox parkingComboBox;
-	public JFXButton ajouterTypeButton;
-	public JFXButton ajouterCarburantButton;
-	@FXML
-	private JFXButton closeButton;
+	    @FXML
+	    private TextField nombrePlaceTextField;
 
-	@FXML
-	private TextField nombrePlaceTextField; // Nombre de place
+	    @FXML
+	    private JFXComboBox<String> carburantComboBox;
 
-	@FXML
-	private JFXComboBox<String> marqueComboBox; // le combobox de la marque
+	    @FXML
+	    private JFXButton ajouterCarburantButton;
 
-	@FXML
-	private JFXButton submitButton;
+	    @FXML
+	    private JFXComboBox<String> marqueComboBox;
+
+	    @FXML
+	    private JFXButton ajouterMarqueButton;
+
+	    @FXML
+	    private JFXComboBox<String> typeComboBox;
+
+	    @FXML
+	    private JFXButton ajouterTypeButton;
+
+	    @FXML
+	    private ColorPicker colorColorPicker;
+
+	    @FXML
+	    private JFXComboBox<String> parkingComboBox;
+
+	    @FXML
+	    private JFXButton closeButton;
+
+	    @FXML
+	    private JFXButton submitButton;
 
 	ObservableList<String> carburantList = FXCollections.observableArrayList();
 	ObservableList<String> marqueList = FXCollections.observableArrayList();
 	ObservableList<String> TypeList = FXCollections.observableArrayList();
+	ObservableList<String> ParkingList = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		carburant_base_donnee();
+		parking_base_donnee();
+		marque_base_donne();
 		comboBox();
+		marqueComboBox.valueProperty().addListener(new ChangeListener<String>() {
+			@Override 
+			public void changed(ObservableValue ov, String t, String t1) {
+				System.out.println("--------------------------> changer");
+				TypeList.clear();
+				typeComboBox.setItems(TypeList);
+			}
+		});
 	}
 
 	public void comboBox() {
 		carburantComboBox.setItems(carburantList);
+		parkingComboBox.setItems(ParkingList);
+		marqueComboBox.setItems(marqueList);
+		
 	}
+	
+	@FXML
+    void TypeOfTheMarque(ActionEvent event) {
+		String value = marqueComboBox.getValue() ;
+		type_base_donne(value);
+		
+    }
 
+	public void type_base_donne(String str) {
+		ResultSet tous_les_types = null;
+		String sql = "select * from type where idMarque = ?";
+		Connection con = Abst.getConnection();
+		Marque marque = H.marque.get(str);
+		System.out.println(marque.toString());
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setLong(1, marque.getIdMarque());
+			tous_les_types = ps.executeQuery();
+			while(tous_les_types.next()) {
+				Type type = new Type();
+				type.setLibelle(tous_les_types.getString("libelle"));
+				System.out.println("----- type -----> ! "+tous_les_types.getString("libelle"));
+				String typ = type.getLibelle();
+				TypeList.add(typ);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void marque_base_donne() {
+		ResultSet tous_les_marques = null;
+		String sql = "select * from marque";
+		Connection con = Abst.getConnection();
+		try {
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			tous_les_marques = ps.executeQuery();
+			while(tous_les_marques.next()) {
+				Marque marque = new Marque();
+				marque.setLibelle(tous_les_marques.getString("libelle"));
+				String mrq = marque.getLibelle();
+				marqueList.add(mrq);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@FXML
 	public void closeButtonAction(){
 		Stage stage =(Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}
 	    
-	@FXML
-	void addVehicule(ActionEvent event) throws NumberFormatException{
-
-		String matricule = matriculeTextField.getText();
-		int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
-		String carbutant = (String) carburantComboBox.getValue();
-		String parking = (String) parkingComboBox.getValue();
-		String color = toRGBCode(colorColorPicker.getValue());
-		String marque = marqueComboBox.getValue();
-		Vehicule vehicule = new Vehicule();
-		vehicule.setIdVehicule(matricule);
-		vehicule.setCarburant(H.carburant.get(carbutant));
-		vehicule.setColor(color);
-		vehicule.setNbr_place(nbrPlace);
-		vehicule.setParking(H.parking.get(parking));
-		vehicule.setType(null);
-		H.vehicule.add(vehicule);
-	}
+//	@FXML
+//	void addVehicule(ActionEvent event) throws NumberFormatException{
+//
+//		String matricule = matriculeTextField.getText();
+//		int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
+//		String carbutant = (String) carburantComboBox.getValue();
+//		String parking = (String) parkingComboBox.getValue();
+//		String color = toRGBCode(colorColorPicker.getValue());
+//		String marque = marqueComboBox.getValue();
+//		Vehicule vehicule = new Vehicule();
+//		vehicule.setIdVehicule(matricule);
+//		vehicule.setCarburant(H.carburant.get(carbutant));
+//		vehicule.setColor(color);
+//		vehicule.setNbr_place(nbrPlace);
+//		vehicule.setParking(H.parking.get(parking));
+//		vehicule.setType(null);
+//		H.vehicule.add(vehicule);
+//	}
 	    
 	public void carburant_base_donnee() {
 		ResultSet tous_les_carburant = null;
@@ -115,7 +200,7 @@ public class AjouterVehicule implements Initializable{
 				Parking parking = new Parking();
 				parking.setAdress(tous_les_parking.getString("adress"));
 				String adr = parking.getAdress();
-				//parkingList.add(adr);
+				ParkingList.add(adr);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -124,6 +209,25 @@ public class AjouterVehicule implements Initializable{
 	}
 
 	public void handleSubmitButton(ActionEvent actionEvent) {
+		String matricule = matriculeTextField.getText();
+		int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
+		String carbutant = (String) carburantComboBox.getValue();
+		String parking = (String) parkingComboBox.getValue();
+		String color = toRGBCode(colorColorPicker.getValue());
+		String marque = marqueComboBox.getValue();
+		String typ = typeComboBox.getValue();
+		Vehicule vehicule = new Vehicule();
+		vehicule.setIdVehicule(matricule);
+		vehicule.setCarburant(H.carburant.get(carbutant));
+		vehicule.setColor(color);
+		vehicule.setNbr_place(nbrPlace);
+		vehicule.setParking(H.parking.get(parking));
+		vehicule.setType(H.type.get(typ));
+		vehicule.setDispo(true);
+		H.vehicule.add(vehicule);
+		
+		Stage stg = (Stage) closeButton.getScene().getWindow();
+		stg.close();
 	}
 
 	public void handleAjouterMarqueButton(ActionEvent actionEvent) {

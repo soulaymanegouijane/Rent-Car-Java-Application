@@ -20,10 +20,11 @@ public class ParkingImpl extends Abst implements ParkingInter{
 		int status=0;
 		try {
 			Connection con = Abst.getConnection();
-			String sql = "insert into parking (adress,capacite,idUtilisateur) values(?,?,?)";
+			String sql = "insert into parking (adress,capacite,nbr_place_pleinne) values(?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getAdress());
 			ps.setLong(2,arg.getCapacite());
+			ps.setLong(3, arg.getNbr_place_pleinne());
 			status = ps.executeUpdate();
 			
 			con.close();
@@ -107,9 +108,9 @@ public class ParkingImpl extends Abst implements ParkingInter{
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				parking.setIdParking(rs.getLong(1));
-				parking.setAdress(rs.getString(2));
-				parking.setCapacite(rs.getLong(3));
+				parking.setIdParking(rs.getLong("idParking"));
+				parking.setAdress(rs.getString("adress"));
+				parking.setCapacite(rs.getLong("capacite"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
