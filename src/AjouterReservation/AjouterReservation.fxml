@@ -69,9 +69,14 @@
                   </Label>
                   <TextField fx:id="idUtilisateur" editable="false" stylesheets="@../Css/textinputstyle.css">
                      <HBox.margin>
-                        <Insets left="2.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </TextField>
+                  <JFXButton fx:id="parcourrirButtonUser" onAction="#btnChoisirUser" style="-fx-background-color: #1ED760; -fx-background-radius: 20;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir " textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </JFXButton>
                </children>
             </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">

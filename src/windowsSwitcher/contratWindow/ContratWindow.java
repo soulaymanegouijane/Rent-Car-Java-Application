@@ -431,7 +431,7 @@ public class ContratWindow implements Initializable {
 			    contrat.setIdContrat(tous_les_contrat.getLong("idContrat"));
 			    contrat.setReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")));
 			    //contrat.setVehicule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")));
-			    contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
+			    //contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
 			    contrat.setCinClient(H.reservation.getCinClient(tous_les_contrat.getLong("idReservation")));
 			    contrat.setMatricule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")).getIdVehicule());
 			    contrat.setCodeReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")).getIdReservation());

@@ -12,6 +12,7 @@ import java.util.List;
 import AbstactClasses.Abst;
 import Entities.Contrat;
 import Interfaces.ContratInter;
+import Test.H;
 
 public class ContratImpl extends Abst implements ContratInter {
 
@@ -21,8 +22,8 @@ public class ContratImpl extends Abst implements ContratInter {
 	public int add(Contrat arg) {
 		int status=0;
 		Connection con = Abst.getConnection();
-		String sql = "INSERT INTO contratt (date_Contrat, date_sortie, idReservation, idSanction, matricule, MontantTotal, km_retour,"
-				+ " km_depart, caution, remise, prix_jours, nbr_jours, heure_sortie, heure_entre, date_retour) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO contrat (date_Contrat, date_sortie, idReservation, idSanction, idVehicule, montant_total, km_retour,"
+				+ " km_depart, caution, remise, prix_jour, nbr_jour, heure_sortie, heure_retour, date_retour) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getDateContrat() );
@@ -57,7 +58,7 @@ public class ContratImpl extends Abst implements ContratInter {
 	public Contrat edit(Contrat arg) {
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "UPDATE contratt SET date_Contrat =?, date_sortie=?, idReservation=?, idSanction=?, matricule=?, MontantTotal=?, km_retour=?,"
+			String sql = "UPDATE contrat SET date_Contrat =?, date_sortie=?, idReservation=?, idSanction=?, idVehicule=?, MontantTotal=?, km_retour=?,"
 					+ " km_depart=?, caution=?, remise=?, prix_jours=?, nbr_jours=?, heure_sortie=?, heure_entre=?, date_retour=? where idContrat = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			
@@ -89,7 +90,7 @@ public class ContratImpl extends Abst implements ContratInter {
 		Connection con = Abst.getConnection();
 		int status = 0;
 		try {
-			String sql = "DELETE FROM contratt where idContrat=?";
+			String sql = "DELETE FROM contrat where idContrat=?";
 			PreparedStatement ps =  con.prepareStatement(sql);
 			ps.setLong(1,arg.getIdContrat());
 			status = ps.executeUpdate();
@@ -111,12 +112,9 @@ public class ContratImpl extends Abst implements ContratInter {
 	@Override
 	public List<Contrat> getAll() {
 		Connection con = Abst.getConnection();
-		VehiculeImpl vhi = new VehiculeImpl();
-		ReservationImpl resi = new ReservationImpl();
-		SanctionImpl sani = new SanctionImpl();
 		List<Contrat> list = new ArrayList<Contrat>();
 		try {
-			String sql = "select * from contratt";
+			String sql = "select * from contrat";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -124,9 +122,9 @@ public class ContratImpl extends Abst implements ContratInter {
 				contrat.setDate_retour(rs.getString("date_retour"));
 				contrat.setDate_sortie(rs.getString("date_sortie"));
 				contrat.setDateContrat(rs.getString("date_Contrat"));
-				contrat.setSanction(sani.getById(rs.getLong("idSanction")));
-				contrat.setVehicule(vhi.getById(rs.getString("matricule")));
-				contrat.setReservation(resi.getById(rs.getLong("idReservation")));
+				contrat.setSanction(H.sanction.getById(rs.getLong("idSanction")));
+				contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
+				contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
 				contrat.setMontantTotal(rs.getFloat("MontantTotal"));
 				contrat.setCaution(rs.getFloat("caution"));
 				contrat.setRemise(rs.getFloat("remise"));
@@ -162,7 +160,7 @@ public class ContratImpl extends Abst implements ContratInter {
 		Connection con = Abst.getConnection();
 		List<Date> list = new ArrayList<Date>();
 		try {
-			String sql = "select date_fin_contrat from contratt where matricule=?";
+			String sql = "select date_fin_contrat from contrat where idVehicule=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, matricule );
 			ResultSet rs = ps.executeQuery();
@@ -186,12 +184,9 @@ public class ContratImpl extends Abst implements ContratInter {
 	@Override
 	public Contrat getById(long id){ 
 		Connection con = Abst.getConnection();
-		VehiculeImpl vhi = new VehiculeImpl();
-		ReservationImpl resi = new ReservationImpl();
-		SanctionImpl sani = new SanctionImpl();
 		Contrat contrat = new Contrat();
 		try {
-			String sql = "select * from contratt where idContrat=?";
+			String sql = "select * from contrat where idContrat=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1,id);
 			ResultSet rs = ps.executeQuery();
@@ -199,9 +194,9 @@ public class ContratImpl extends Abst implements ContratInter {
 				contrat.setDate_retour(rs.getString("date_retour"));
 				contrat.setDate_sortie(rs.getString("date_sortie"));
 				contrat.setDateContrat(rs.getString("date_Contrat"));
-				contrat.setSanction(sani.getById(rs.getLong("idSanction")));
-				contrat.setVehicule(vhi.getById(rs.getString("matricule")));
-				contrat.setReservation(resi.getById(rs.getLong("idReservation")));
+				contrat.setSanction(H.sanction.getById(rs.getLong("idSanction")));
+				contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
+				contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
 				contrat.setMontantTotal(rs.getFloat("MontantTotal"));
 				contrat.setCaution(rs.getFloat("caution"));
 				contrat.setRemise(rs.getFloat("remise"));

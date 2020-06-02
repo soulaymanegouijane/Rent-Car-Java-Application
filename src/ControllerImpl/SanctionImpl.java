@@ -11,6 +11,7 @@ import java.util.List;
 import AbstactClasses.Abst;
 import Entities.Sanction;
 import Interfaces.SanctionInter;
+import Test.H;
 
 public class SanctionImpl extends Abst implements SanctionInter{
 
@@ -19,7 +20,7 @@ public class SanctionImpl extends Abst implements SanctionInter{
 		int status=0;
 		try {
 			Connection con = Abst.getConnection();
-			String sql = "insert into sanctio (dateSanction,idContrat) values(?,?)";
+			String sql = "insert into sanction (date_sanction,idContrat) values(?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setDate(1, arg.getDateSanction());
 			ps.setLong(2,  arg.getContrat().getIdContrat());
@@ -35,7 +36,7 @@ public class SanctionImpl extends Abst implements SanctionInter{
 	@Override
 	public Sanction edit(Sanction arg) {
 		try {
-			String sql = "UPDATE sanctio SET dateSanction=?,idContrat=? where idSanction=?";
+			String sql = "UPDATE sanction SET date_sanction=?,idContrat=? where idSanction=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			
@@ -58,7 +59,7 @@ public class SanctionImpl extends Abst implements SanctionInter{
 	public int delete(Sanction arg) {
 		int status = 0;
 		try {
-			String sql = "DELETE FROM sanctio where idSanction=?";
+			String sql = "DELETE FROM sanction where idSanction=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps =  con.prepareStatement(sql);
 			ps.setLong(1,arg.getIdSanction());
@@ -77,16 +78,15 @@ public class SanctionImpl extends Abst implements SanctionInter{
 	public List<Sanction> getAll() {
 		List<Sanction> list = new ArrayList<Sanction>();
 		try {
-			String sql = "select * from sanctio";
+			String sql = "select * from sanction";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Sanction sanction = new Sanction();
 				sanction.setIdSanction(rs.getLong("idSanction"));
-				sanction.setDateSanction(rs.getDate("dateSanction"));
-				ContratImpl coni = new ContratImpl();
-				sanction.setContrat(coni.getById(rs.getLong("idContrat")));
+				sanction.setDateSanction(rs.getDate("date_sanction"));
+				sanction.setContrat(H.contrat.getById(rs.getLong("idContrat")));
 				list.add(sanction);
 			}
 			con.close();
@@ -106,16 +106,15 @@ public class SanctionImpl extends Abst implements SanctionInter{
 	public Sanction getById(long id) {
 		Sanction sanction = new Sanction();
 		try {
-			String sql ="select * from sanctio where idSanction=?";
+			String sql ="select * from sanction where idSanction=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				sanction.setIdSanction(rs.getLong("idSanction"));
-				sanction.setDateSanction(rs.getDate("dateSanction"));
-				ContratImpl coni = new ContratImpl();
-				sanction.setContrat(coni.getById(rs.getLong("idContrat")));
+				sanction.setDateSanction(rs.getDate("date_sanction"));
+				sanction.setContrat(H.contrat.getById(rs.getLong("idContrat")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

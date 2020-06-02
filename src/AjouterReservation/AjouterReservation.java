@@ -52,6 +52,9 @@ public class AjouterReservation implements Initializable {
 
     @FXML
     private JFXButton parcourrirButton2;
+    
+    @FXML
+    private JFXButton parcourrirButtonUser;
 
     @FXML
     private TextField avance;
@@ -109,6 +112,26 @@ public class AjouterReservation implements Initializable {
 		str = client.getText();
 		System.out.println("----------------> "+str);
     }
+    
+    @FXML
+    void btnChoisirUser(ActionEvent event) {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirUtilisateurScene.fxml"));
+    	Parent root = null;
+    	try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	Stage stage = new Stage();
+    	stage.setScene(new Scene(root));
+		stage.setResizable(false);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.showAndWait();
+		
+		ChoisirUtilisateurScene choisirUser = loader.getController();
+		idUtilisateur.setText(choisirUser.cinUtilisateurSelected);
+    }
 
     @FXML
     void btnChoisirVehicule(ActionEvent event) throws IOException {
@@ -136,10 +159,9 @@ public class AjouterReservation implements Initializable {
     	String dtDepart = ((TextField)dateDepart.getEditor()).getText();
     	String matricule = vehicule.getText();
     	String Client = client.getText();
-    	System.out.println(client +"  --------------");
+    	String user = idUtilisateur.getText();
     	String type = typeReservation.getValue();
     	TypeReservation tpRes = H.typeres.get(type);
-    	System.out.println("-------- TypeReservation ---------->"+tpRes);
     	
     	Reservation reservation = new Reservation();
     	
@@ -150,7 +172,7 @@ public class AjouterReservation implements Initializable {
     	reservation.setVehicule(H.vehicule.getById(matricule));
     	reservation.setClient(H.client.getById(str));
     	reservation.setStatus(H.status.getById(1));
-    	reservation.setUtilisateur(H.utilisateur.getById("JB3066"));
+    	reservation.setUtilisateur(H.utilisateur.getById(user));
     	reservation.setTypeRes(tpRes);
     	
     	int result = H.reservation.add(reservation);
