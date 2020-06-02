@@ -55,6 +55,25 @@
                   </DatePicker>
                     </children>
                 </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="163.0" text="Ajouter Par :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label stylesheets="@../Css/MinitextStyle.css" text="Mr/Mme" textFill="#b9b3b3">
+                     <HBox.margin>
+                        <Insets left="46.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="idUtilisateur" editable="false" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="2.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                     <children>
                         <Label prefWidth="163.0" text="Véhicule :" textFill="#656060">
