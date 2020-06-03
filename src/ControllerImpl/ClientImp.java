@@ -440,16 +440,20 @@ public class ClientImp extends Abst implements ClientInter{
 				client.setTelephone(rs.getString("telephone"));
 				client.setEmail(rs.getString("email"));
 				client.setCarte_identifiant(rs.getString("type_identifiant"));
-				//client.setValiditePI( rs.getDate("validitePI"));
+				//client.setValiditePI( rs.getString("validitePI"));
 				client.setNum_carte(rs.getString("num_carte"));
 				client.setDelevre_a(rs.getString("delevre_a"));
-				//client.setValiditePermis( rs.getDate("validitePermis"));
-				//client.setDelevre_le( rs.getDate("delivrer"));
+				client.setValiditePermis( rs.getString("validitePermis"));
+				client.setDelevre_le( rs.getString("delevre_le"));
 				client.setN_permis(rs.getString("n_permis"));
 				client.setLieu_naissance(rs.getString("lieu_naissance"));
-				//client.setDate_naissance( rs.getDate("date_naissance"));
+				client.setDate_naissance( rs.getString("date_naissance"));
 				client.setCivilite(rs.getString("civilite"));
 				client.setAge(rs.getInt("age"));
+				client.setPays(rs.getString("pays"));
+				client.setNationalite(rs.getString("nationalite"));
+				client.setVille(rs.getString("ville"));
+				client.setCode_postale(rs.getString("code_postale"));
 			}
 			
 		} catch (SQLException e) {

@@ -1,72 +1,94 @@
 package InterfaceDetails;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class DetailClient {
+public class DetailClient implements Initializable{
+
+	@FXML
+	public TextField GenreTextField;
 
     @FXML
-    private TextField GenreTextField  ; // le genre du client (Mr. if Masculin || Mme. if Feminin)
+    public TextField prenomTextField;
 
     @FXML
-    private TextField  prenomTextField ; // champ du Prenom du client
+    public TextField nomTextField;
 
     @FXML
-    private TextField nomTextField  ; // champ du nom du client
+    public TextField nationaliteTextField;
 
     @FXML
-    private TextField nationaliteTextField ; // champ de la nationalité
+    public DatePicker dateNaissanceDatePicker;
 
     @FXML
-    private DatePicker dateNaissanceDatePicker; // date de naissance du client
+    public TextField lieuNaissanceTextField;
 
     @FXML
-    private TextField lieuNaissanceTextField  ; // lieu de naissance du client
+    public TextField typeCinTextField;
 
     @FXML
-    private TextField  typeCinTextField ; // type de carte d'identité (carte nationale ou Passport)
+    public TextField cinTextField;
 
     @FXML
-    private TextField  cinTextField ; // Numero de la piéce d'identite
+    public TextField numPermisTextField;
 
     @FXML
-    private TextField numPermisTextField ; // Numero du Permis de conduite
+    public TextField lieuDelivreTextField;
 
     @FXML
-    private TextField lieuDelivreTextField  ; //Permis Délivré  A
+    public DatePicker dateDelivreDatePicker;
 
     @FXML
-    private DatePicker dateDelivreDatePicker ; //Permis Délivré  En
+    public DatePicker dateExpireDatePicker;
 
     @FXML
-    private DatePicker dateExpireDatePicker ; //Permis Expire  En
+    public TextField adresseTextField;
 
     @FXML
-    private TextField adresseTextField ; //Adresse du client
+    public TextField codePostalTextField;
 
     @FXML
-    private TextField codePostalTextField ; //Code Postale du client
+    public TextField villeTextField;
 
     @FXML
-    private TextField villeTextField ; //Ville Du client
+    public TextField paysTextField;
 
     @FXML
-    private TextField telephoneTextField ; //Numéro du telephone du Client
+    public TextField telephoneTextField;
 
     @FXML
-    private TextField emailTextField ; //Email du client
+    public TextField emailTextField;
+
     @FXML
-    private JFXButton closeButton ; //OK button
+    private JFXButton closeButton;
+
     @FXML
-    private JFXButton deleteBtn ; //Boutton Supprimer
+    private JFXButton deleteBtn;
+    
+    
+    
+    //Boutton Supprimer
     @FXML
     public void closeButtonAction(){
     Stage stage =(Stage) closeButton.getScene().getWindow();
     stage.close();
 }
+
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		String str = prenomTextField.getText();
+		System.out.println("-----------> "+str);
+		
+	}
 
 // deleteBtnAction ()
 }

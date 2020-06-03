@@ -10,7 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -19,10 +21,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import AbstactClasses.Abst;
+import AjouterReservation.ChoisirUtilisateurScene;
 import Entities.Client;
+import InterfaceDetails.DetailClient;
+import Test.H;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -83,13 +90,31 @@ public class ClientWindow implements Initializable {
     String searchSection = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    	detailClientButton.setDisable(true);
     	comboBox();
-        remplir_tableau(); 
+        remplir_tableau();
+        Client c = H.client.getById("JB3066");
+        System.out.println(c.getDate_naissance());
     }
     
     public void comboBox() {
     	chercherComboBox.setPromptText("Chercher par:");
         chercherComboBox.setItems(searchTypeList);
+    }
+    
+    Client clientSelected = null;
+    
+    @FXML
+    void clicked(MouseEvent event) {
+    	TableViewSelectionModel<Client>  selectionModel = tableClient.getSelectionModel ();
+    	ObservableList <Integer> indice = selectionModel.getSelectedIndices ();
+    	if (indice.isEmpty()) {
+    		detailClientButton.setDisable(true);
+    	}else {
+    		String cin = tableClient.getSelectionModel().getSelectedItem().getIdClient();
+    		clientSelected = H.client.getById(cin);
+    		detailClientButton.setDisable(false);
+    	}
     }
 
     public void handleAjouterClientButton(ActionEvent actionEvent) throws IOException {
@@ -102,13 +127,54 @@ public class ClientWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
+        client_list.clear();
         remplir_tableau();
     }
 
-    public void handleDetailClientButton(ActionEvent actionEvent) {
+    public void handleDetailClientButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailClient.fxml"));
+        Parent root = loader.load();
+        
+        // fonction pour rmplir les champs du detailClient interface
+        FunctionAffiche(loader);
+        
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+     
+    }
+    
+    public void FunctionAffiche(FXMLLoader loader) {
+    	DetailClient clt = loader.getController();
+        clt.prenomTextField.setText(clientSelected.getPrenom());
+        clt.nomTextField.setText(clientSelected.getNom());
+        clt.nationaliteTextField.setText(clientSelected.getNationalite());
+        clt.lieuNaissanceTextField.setText(clientSelected.getLieu_naissance());
+        clt.emailTextField.setText(clientSelected.getEmail());
+        clt.telephoneTextField.setText(clientSelected.getTelephone());
+        clt.codePostalTextField.setText(clientSelected.getCode_postale());
+        clt.villeTextField.setText(clientSelected.getVille());
+        clt.cinTextField.setText(clientSelected.getIdClient());
+        clt.numPermisTextField.setText(clientSelected.getN_permis());
+        clt.dateDelivreDatePicker.setValue(convert(clientSelected.getDelevre_a()));
+        clt.dateExpireDatePicker.setValue(convert(clientSelected.getValiditePermis()));
+        clt.dateNaissanceDatePicker.setValue(convert(clientSelected.getDate_naissance()));
+        clt.adresseTextField.setText(clientSelected.getAdress());
+        clt.typeCinTextField.setText(clientSelected.getCarte_identifiant());
+        clt.paysTextField.setText(clientSelected.getPays());
+        clt.lieuDelivreTextField.setText(clientSelected.getDelevre_le());
     }
 
+    public LocalDate convert(String str) {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate date = LocalDate.parse(str, formatter);
+    	return date;
+    	
+    }
+    
     public void handleChercherComboBox(ActionEvent actionEvent) {
         String searchSection = chercherComboBox.getValue();
         chercherButton.setDisable(false);

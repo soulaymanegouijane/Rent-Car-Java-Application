@@ -107,7 +107,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Label>
-                                        <TableView fx:id="tableClient" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                        <TableView fx:id="tableClient" onMouseClicked="#clicked" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="col_cin" prefWidth="70.0" text="CIN" />
                                                 <TableColumn fx:id="col_nom" prefWidth="75.0" text="Nom" />
