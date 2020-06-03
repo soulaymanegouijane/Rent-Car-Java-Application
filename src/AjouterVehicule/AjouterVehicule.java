@@ -1,5 +1,6 @@
 package AjouterVehicule;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import AjouterCarburant.AjouterCarburant;
+import AjouterMarque.AjouterMarque;
+import AjouterType.AjouterType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
@@ -23,15 +27,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AjouterVehicule implements Initializable{
-	
-	 	@FXML
+
+	public Label erreurMessage;
+	@FXML
 	    private TextField matriculeTextField;
 
 	    @FXML
@@ -86,6 +97,8 @@ public class AjouterVehicule implements Initializable{
 				typeComboBox.setItems(TypeList);
 			}
 		});
+
+
 	}
 
 	public void comboBox() {
@@ -97,6 +110,8 @@ public class AjouterVehicule implements Initializable{
 	
 	@FXML
     void TypeOfTheMarque(ActionEvent event) {
+		typeComboBox.setDisable(false);
+		ajouterTypeButton.setDisable(false);
 		String value = marqueComboBox.getValue() ;
 		type_base_donne(value);
 		
@@ -209,28 +224,83 @@ public class AjouterVehicule implements Initializable{
 	}
 
 	public void handleSubmitButton(ActionEvent actionEvent) {
-		String matricule = matriculeTextField.getText();
-		int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
-		String carbutant = (String) carburantComboBox.getValue();
-		String parking = (String) parkingComboBox.getValue();
-		String color = toRGBCode(colorColorPicker.getValue());
-		String marque = marqueComboBox.getValue();
-		String typ = typeComboBox.getValue();
-		Vehicule vehicule = new Vehicule();
-		vehicule.setIdVehicule(matricule);
-		vehicule.setCarburant(H.carburant.get(carbutant));
-		vehicule.setColor(color);
-		vehicule.setNbr_place(nbrPlace);
-		vehicule.setParking(H.parking.get(parking));
-		vehicule.setType(H.type.get(typ));
-		vehicule.setDispo(true);
-		H.vehicule.add(vehicule);
-		
-		Stage stg = (Stage) closeButton.getScene().getWindow();
-		stg.close();
+		if (testEmpty()){
+			erreurMessage.setVisible(true);
+		}else{
+			String matricule = matriculeTextField.getText();
+			int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
+			String carbutant = (String) carburantComboBox.getValue();
+			String parking = (String) parkingComboBox.getValue();
+			String color = toRGBCode(colorColorPicker.getValue());
+			String marque = marqueComboBox.getValue();
+			String typ = typeComboBox.getValue();
+			Vehicule vehicule = new Vehicule();
+			vehicule.setIdVehicule(matricule);
+			vehicule.setCarburant(H.carburant.get(carbutant));
+			vehicule.setColor(color);
+			vehicule.setNbr_place(nbrPlace);
+			vehicule.setParking(H.parking.get(parking));
+			vehicule.setType(H.type.get(typ));
+			vehicule.setDispo(true);
+			H.vehicule.add(vehicule);
+
+			Stage stg = (Stage) closeButton.getScene().getWindow();
+			stg.close();
+		}
 	}
 
-	public void handleAjouterMarqueButton(ActionEvent actionEvent) {
+	public void handleAjouterMarqueButton(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterMarque/AjouterMarque.fxml"));
+		Parent root = loader.load();
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.setResizable(false);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.showAndWait();
+
+		AjouterMarque marqueController = loader.getController();
+		marqueList.add(marqueController.libelleMarqueTaped);
+		marqueComboBox.getItems().removeAll(marqueComboBox.getItems());
+		marqueComboBox.setItems(marqueList);
+		marqueComboBox.setValue(marqueController.libelleMarqueTaped);
+	}
+
+	public void handleAjouterTypeButton(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterType/AjouterType.fxml"));
+		Parent root = loader.load();
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.setResizable(false);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.showAndWait();
+
+		AjouterType typeController = loader.getController();
+		TypeList.add(typeController.libelleTypeTaped);
+		typeComboBox.getItems().removeAll(marqueComboBox.getItems());
+		typeComboBox.setItems(marqueList);
+		typeComboBox.setValue(typeController.libelleTypeTaped);
+	}
+
+	public void handleAjouterCarburantButton(ActionEvent actionEvent) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterCarburant/AjouterCarburant.fxml"));
+		Parent root = loader.load();
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.setResizable(false);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.showAndWait();
+
+		AjouterCarburant CarburantController = loader.getController();
+		carburantList.add(CarburantController.libelleCarburantTaped);
+		carburantComboBox.getItems().removeAll(marqueComboBox.getItems());
+		carburantComboBox.setItems(marqueList);
+		carburantComboBox.setValue(CarburantController.libelleCarburantTaped);
 	}
 
 	public static String toRGBCode( Color color )
@@ -241,9 +311,10 @@ public class AjouterVehicule implements Initializable{
 				(int)( color.getBlue() * 255 ) );
 	}
 
-	public void handleAjouterTypeButton(ActionEvent actionEvent) {
-	}
-
-	public void handleAjouterCarburantButton(ActionEvent actionEvent) {
+	public boolean testEmpty(){
+		if(matriculeTextField.getText().isEmpty() || nombrePlaceTextField.getText().isEmpty() || carburantComboBox.getValue().isEmpty()
+				|| marqueComboBox.getValue().isEmpty() || typeComboBox.getValue().isEmpty() ||  parkingComboBox.getValue().isEmpty())
+			return true;
+		return false;
 	}
 }

@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterVehicule.AjouterVehicule">
+<AnchorPane prefHeight="525.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterVehicule.AjouterVehicule">
     <children>
         <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
             <children>
                 <Label alignment="CENTER" layoutX="67.0" layoutY="15.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Ajouter une nouvelle Vehicule " textFill="WHITE" />
             </children>
         </Pane>
-          <VBox layoutY="64.0" prefHeight="427.0" prefWidth="500.0">
+          <VBox layoutY="64.0" prefHeight="462.0" prefWidth="500.0">
          <children>
             <HBox prefHeight="47.0" prefWidth="500.0">
                <padding>
@@ -138,7 +138,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="typeComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Type" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                  <JFXComboBox fx:id="typeComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Type" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                      <stylesheets>
                         <URL value="@../Css/combo.css" />
                         <URL value="@../Css/MinitextStyle.css" />
@@ -147,20 +147,17 @@
                         <Insets left="60.0" />
                      </HBox.margin>
                   </JFXComboBox>
-                  <JFXButton fx:id="ajouterTypeButton" onAction="#handleAjouterTypeButton" styleClass="chooseImageButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Ajouter" />
+                  <JFXButton fx:id="ajouterTypeButton" disable="true" onAction="#handleAjouterTypeButton" styleClass="chooseImageButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Ajouter" />
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="198.0" prefHeight="58.0" prefWidth="500.0">
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
+            <HBox alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="198.0" prefHeight="47.0" prefWidth="500.0">
                <children>
                   <Label prefHeight="29.0" prefWidth="220.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ColorPicker fx:id="colorColorPicker" prefHeight="25.0" prefWidth="180.0" styleClass="colorPicker" stylesheets="@../windowsSwitcher/windowsSwitcher.css" />
+                  <ColorPicker fx:id="colorColorPicker" prefHeight="29.0" prefWidth="180.0" styleClass="colorPicker" stylesheets="@../windowsSwitcher/windowsSwitcher.css" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0" spacing="5.0">
@@ -191,6 +188,7 @@
                   </JFXButton>
                </children>
             </HBox>
+            <Label fx:id="erreurMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="534.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
          </children>
           </VBox>
     </children>
