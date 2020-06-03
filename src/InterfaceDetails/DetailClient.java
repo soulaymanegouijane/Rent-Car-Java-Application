@@ -74,21 +74,15 @@ public class DetailClient implements Initializable{
     
     
     
-    //Boutton Supprimer
     @FXML
     public void closeButtonAction(){
     Stage stage =(Stage) closeButton.getScene().getWindow();
     stage.close();
 }
 
-
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		String str = prenomTextField.getText();
-		System.out.println("-----------> "+str);
-		
+		String str = prenomTextField.getText();		
 	}
 
-// deleteBtnAction ()
 }

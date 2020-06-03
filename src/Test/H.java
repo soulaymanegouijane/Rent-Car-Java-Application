@@ -1,5 +1,8 @@
 package Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import ControllerImpl.CarburantImpl;
 import ControllerImpl.ClientImp;
 import ControllerImpl.ContratImpl;
@@ -30,4 +33,11 @@ public class H {
 	public static ContratImpl contrat = new ContratImpl();
 	public static FactureImpl facture = new FactureImpl();
 	public static SanctionImpl sanction = new SanctionImpl();
+	
+	public static LocalDate convert(String str) {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate date = LocalDate.parse(str, formatter);
+    	return date;
+    	
+    }
 }

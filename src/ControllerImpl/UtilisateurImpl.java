@@ -108,15 +108,15 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				Utilisateur user = new Utilisateur();
-				user.setIdUtilisateur(rs.getString(1));
-				user.setNom(rs.getString(2));
-				user.setPrenom(rs.getString(3));
-				user.setAdress(rs.getString(4));
-				user.setTele(rs.getString(5));
-				user.setEmail(rs.getString(6));
-				user.setRole(H.role.getById(rs.getLong(8)));
-				list.add(user);
+				Utilisateur c = new Utilisateur();
+				c.setIdUtilisateur(rs.getString("idUtilisateur"));
+				c.setNom(rs.getString("nom"));
+				c.setPrenom(rs.getString("prenom"));
+				c.setAdress(rs.getString("adress"));
+				c.setTele(rs.getString("telephone"));
+				c.setEmail(rs.getString("email"));
+				c.setRole(H.role.getById(rs.getLong("idRole")));
+				list.add(c);
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -136,12 +136,12 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				c.setIdUtilisateur(rs.getString(1));
-				c.setNom(rs.getString(2));
-				c.setPrenom(rs.getString(3));
-				c.setAdress(rs.getString(4));
-				c.setTele(rs.getString(5));
-				c.setEmail(rs.getString(6));
+				c.setIdUtilisateur(rs.getString("idUtilisateur"));
+				c.setNom(rs.getString("nom"));
+				c.setPrenom(rs.getString("prenom"));
+				c.setAdress(rs.getString("adress"));
+				c.setTele(rs.getString("telephone"));
+				c.setEmail(rs.getString("email"));
 				c.setImage(rs.getBytes("photo"));
 				c.setRole(H.role.getById(rs.getLong("idRole")));
 			}else {
@@ -161,20 +161,28 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		Utilisateur c = new Utilisateur();
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "Select idUtilisateur,nom,prenom,adress,telephone,email,idReservation,idRole from utilisateur where idUtilisateur=?";
+			String sql = "Select * from utilisateur where idUtilisateur=?";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, id);
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				c.setIdUtilisateur(rs.getString(1));
-				c.setNom(rs.getString(2));
-				c.setPrenom(rs.getString(3));
-				c.setAdress(rs.getString(4));
-				c.setTele(rs.getString(5));
-				c.setEmail(rs.getString(6));
+				c.setIdUtilisateur(rs.getString("idUtilisateur"));
+				c.setNom(rs.getString("nom"));
+				c.setPrenom(rs.getString("prenom"));
+				c.setAdress(rs.getString("adress"));
+				c.setTele(rs.getString("telephone"));
+				c.setEmail(rs.getString("email"));
+				c.setVille(rs.getString("ville"));
+				c.setCode_postale(rs.getString("code_postale"));
+				c.setPays(rs.getString("pays"));
+				c.setCarte_identifiant(rs.getString("type_identifiant"));
+				c.setCivilite(rs.getString("civilite"));
+				c.setLieu_naissance(rs.getString("lieu_naissance"));
 				c.setRole(H.role.getById(rs.getLong("idRole")));
+				c.setNationalite(rs.getString("nationalite"));
+				c.setNaissance(rs.getString("naissance"));
 			}else {
 				return null;
 			}
@@ -198,20 +206,28 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		Utilisateur c = new Utilisateur();
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "Select idUtilisateur,nom,prenom,adress,telephone,email,idRole from utilisateur where idUtilisateur=?";
+			String sql = "Select * from utilisateur where idUtilisateur=?";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, idUser);
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				c.setIdUtilisateur(rs.getString(1));
-				c.setNom(rs.getString(2));
-				c.setPrenom(rs.getString(3));
-				c.setAdress(rs.getString(4));
-				c.setTele(rs.getString(5));
-				c.setEmail(rs.getString(6));
+				c.setIdUtilisateur(rs.getString("idUtilisateur"));
+				c.setNom(rs.getString("nom"));
+				c.setPrenom(rs.getString("prenom"));
+				c.setAdress(rs.getString("adress"));
+				c.setTele(rs.getString("telephone"));
+				c.setEmail(rs.getString("email"));
+				c.setVille(rs.getString("ville"));
+				c.setCode_postale(rs.getString("code_postale"));
+				c.setPays(rs.getString("pays"));
+				c.setCarte_identifiant(rs.getString("type_identifiant"));
+				c.setCivilite(rs.getString("civilite"));
+				c.setLieu_naissance(rs.getString("lieu_naissance"));
 				c.setRole(H.role.getById(rs.getLong("idRole")));
+				c.setNationalite(rs.getString("nationalite"));
+				c.setNaissance(rs.getString("naissance"));
 			}else {
 				return null;
 			}

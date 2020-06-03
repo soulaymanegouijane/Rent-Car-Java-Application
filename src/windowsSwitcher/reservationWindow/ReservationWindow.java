@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -242,7 +243,27 @@ public class ReservationWindow implements Initializable {
         remplir_tableau();
     }
 
-    public void handleDetailReservationButton(ActionEvent actionEvent) {
+    public void handleDetailReservationButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailReservation.fxml"));
+        Parent root = loader.load();
+        
+        FunctionAffiche(loader);
+        
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+    
+    public void FunctionAffiche(FXMLLoader loader) {
+    	
+    }
+    
+    @FXML
+    void clicked(MouseEvent event) {
+
     }
 
     public void handleButtonChoisirVehicule(ActionEvent actionEvent) throws IOException {

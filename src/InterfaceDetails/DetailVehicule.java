@@ -7,23 +7,23 @@ import javafx.stage.Stage;
 
 public class DetailVehicule {
     @FXML
-    private TextField idmatricule; // Matricule du vehicule
+    public TextField idmatricule; // Matricule du vehicule
     @FXML
-    private TextField nombrePlaceTextField; // nombre de place dans le vehicule
+    public TextField nombrePlaceTextField; // nombre de place dans le vehicule
     @FXML
-    private TextField TypeCarburant; //type de carburant
+    public TextField TypeCarburant; //type de carburant
     @FXML
-    private TextField marqueVoiture; // marque de vehicule
+    public TextField marqueVoiture; // marque de vehicule
     @FXML
-    private TextField idcolor; // la couleur du vehicule
+    public TextField idcolor; // la couleur du vehicule
     @FXML
-    private TextField idParking; // Le parking ou le véhicule est garé
+    public TextField idParking; // Le parking ou le véhicule est garé
     @FXML
-    private TextField dispoVehicule; //la disponibilité du Véhicule
+    public TextField dispoVehicule; //la disponibilité du Véhicule
     @FXML
-    private JFXButton closeButton;// OK boutton
+    public JFXButton closeButton;// OK boutton
     @FXML
-    private JFXButton deleteBtn; //supprimer la Véhicule
+    public JFXButton deleteBtn; //supprimer la Véhicule
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();

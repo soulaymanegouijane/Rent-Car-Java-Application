@@ -122,7 +122,7 @@
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
                         <JFXButton fx:id="closeButton" prefHeight="50.0" prefWidth="128.0" style="-fx-background-radius: 40; -fx-background-color: #63B4FF;" stylesheets="@../Css/MinitextStyle.css" text="OK" textFill="WHITE" />
-                        <JFXButton fx:id="deletebtn" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
+                        <JFXButton fx:id="deletebtn" layoutX="10.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="50.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
                             <HBox.margin>
                                 <Insets left="100.0" />
                             </HBox.margin>

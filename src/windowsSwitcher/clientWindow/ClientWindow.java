@@ -79,15 +79,12 @@ public class ClientWindow implements Initializable {
 
     @FXML
     private Button detailClientButton;
-	
-    
 
-
-	/* Instanciation des classes que j'ai besoins */
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "CIN", "Nom", "Prenom");
     ObservableList<Client> client_list = FXCollections.observableArrayList();
     ObservableList<Client> mono_Client = FXCollections.observableArrayList();
     String searchSection = null;
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	detailClientButton.setDisable(true);
@@ -159,21 +156,16 @@ public class ClientWindow implements Initializable {
         clt.villeTextField.setText(clientSelected.getVille());
         clt.cinTextField.setText(clientSelected.getIdClient());
         clt.numPermisTextField.setText(clientSelected.getN_permis());
-        clt.dateDelivreDatePicker.setValue(convert(clientSelected.getDelevre_a()));
-        clt.dateExpireDatePicker.setValue(convert(clientSelected.getValiditePermis()));
-        clt.dateNaissanceDatePicker.setValue(convert(clientSelected.getDate_naissance()));
+        clt.dateDelivreDatePicker.setValue(H.convert(clientSelected.getDelevre_a()));
+        clt.dateExpireDatePicker.setValue(H.convert(clientSelected.getValiditePermis()));
+        clt.dateNaissanceDatePicker.setValue(H.convert(clientSelected.getDate_naissance()));
         clt.adresseTextField.setText(clientSelected.getAdress());
         clt.typeCinTextField.setText(clientSelected.getCarte_identifiant());
         clt.paysTextField.setText(clientSelected.getPays());
         clt.lieuDelivreTextField.setText(clientSelected.getDelevre_le());
     }
 
-    public LocalDate convert(String str) {
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDate date = LocalDate.parse(str, formatter);
-    	return date;
-    	
-    }
+    
     
     public void handleChercherComboBox(ActionEvent actionEvent) {
         String searchSection = chercherComboBox.getValue();

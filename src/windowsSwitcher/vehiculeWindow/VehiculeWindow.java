@@ -9,6 +9,7 @@ import Entities.Marque;
 import Entities.Parking;
 import Entities.Utilisateur;
 import Entities.Vehicule;
+import InterfaceDetails.DetailVehicule;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +20,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -104,6 +107,8 @@ public class VehiculeWindow implements Initializable {
 
 	    @FXML
 	    private Button detailVehiculeButton;
+	    
+	    Vehicule vehiculeSelected = null;
 
     String searchSection = null;
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Matricule", "Type", "Marque", "Carburant", "Disponibilite", "Emplacement");
@@ -377,7 +382,47 @@ public class VehiculeWindow implements Initializable {
         remplir_tableau();
     }
 
-    public void handleDetailVehiculeButton(ActionEvent actionEvent) {
+    public void handleDetailVehiculeButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailVehicule.fxml"));
+        Parent root = loader.load();
+        
+        FunctionAffiche(loader);
+        
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+    
+    @FXML
+    void clicked(MouseEvent event) {
+    	TableViewSelectionModel<Vehicule>  selectionModel = tableVehicule.getSelectionModel ();
+    	ObservableList <Integer> indice = selectionModel.getSelectedIndices ();
+    	if (indice.isEmpty()) {
+    		detailVehiculeButton.setDisable(true);
+    	}else {
+    		String idVehicule = tableVehicule.getSelectionModel().getSelectedItem().getIdVehicule();
+    		vehiculeSelected = H.vehicule.getById(idVehicule);
+    		detailVehiculeButton.setDisable(false);
+    	}
+    }
+    
+    public void FunctionAffiche(FXMLLoader loader) {
+    	DetailVehicule detail = loader.getController();
+    	
+    	detail.idmatricule.setText(vehiculeSelected.getIdVehicule());
+    	detail.idcolor.setText(vehiculeSelected.getColor());
+    	detail.nombrePlaceTextField.setText(String.valueOf(vehiculeSelected.getNbr_place()));
+    	
+    	if(vehiculeSelected.getDispo()) {
+    		detail.dispoVehicule.setText("disponible");
+    	}else {
+    		detail.dispoVehicule.setText("indisponible");
+    	}
+    	detail.TypeCarburant.setText(vehiculeSelected.getCarburant().getLibelle());
+    	detail.marqueVoiture.setText("");
     }
 
 	public void handleButtonChoisirParking(ActionEvent actionEvent) throws IOException {

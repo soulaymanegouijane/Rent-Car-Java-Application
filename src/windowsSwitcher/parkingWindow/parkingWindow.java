@@ -9,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import javax.swing.*;
@@ -17,7 +19,9 @@ import javax.swing.*;
 import AbstactClasses.Abst;
 import Entities.Contrat;
 import Entities.Parking;
+import Entities.Utilisateur;
 import Entities.Vehicule;
+import InterfaceDetails.DetailGarage;
 import Test.H;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -72,6 +76,8 @@ public class parkingWindow implements Initializable {
     @FXML
     private Button detailParkingButton;
     
+    Parking parkingSelected = null;
+    
 
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Adress", "Capacite", "places sature");
     ObservableList<Parking> parking_list = FXCollections.observableArrayList();
@@ -99,7 +105,41 @@ public class parkingWindow implements Initializable {
         remplir_tableau();
     }
 
-    public void handleDetailParkingButton(ActionEvent actionEvent) {
+    public void handleDetailParkingButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailGarage.fxml"));
+        Parent root = loader.load();
+        
+        // fonction pour remplir les champs du detailClient interface
+        FunctionAffiche(loader);
+        
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+    
+    public void FunctionAffiche(FXMLLoader loader) {
+    	DetailGarage detail = loader.getController();
+    	
+    	detail.adressparkingTextField.setText(parkingSelected.getAdress());
+    	detail.capaciteParkingTextField.setText(String.valueOf(parkingSelected.getCapacite()));
+    	detail.idparkingTextField.setText(String.valueOf(parkingSelected.getIdParking()));
+    	detail.occupeParkingTextField.setText(String.valueOf(parkingSelected.getNbr_place_pleinne()));    	
+    }
+        
+    @FXML
+    void clicked(MouseEvent event) {
+    	TableViewSelectionModel<Parking>  selectionModel = tableParking.getSelectionModel ();
+    	ObservableList <Integer> indice = selectionModel.getSelectedIndices ();
+    	if (indice.isEmpty()) {
+    		detailParkingButton.setDisable(true);
+    	}else {
+    		long idParking = tableParking.getSelectionModel().getSelectedItem().getIdParking();
+    		parkingSelected = H.parking.getById(idParking);
+    		detailParkingButton.setDisable(false);
+    	}
     }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {

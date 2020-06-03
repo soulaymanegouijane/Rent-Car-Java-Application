@@ -6,7 +6,10 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
 import AbstactClasses.Abst;
+import Entities.Client;
 import Entities.Utilisateur;
+import InterfaceDetails.DetailUtilisateur;
+import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +19,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -116,7 +121,53 @@ public class UtilisateurWindow implements Initializable {
         remplir_tableau();
     }
 
-    public void handleDetailUtilisateurButton(ActionEvent actionEvent) {
+    public void handleDetailUtilisateurButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailUtilisateur.fxml"));
+        Parent root = loader.load();
+        
+        // fonction pour remplir les champs du detailClient interface
+        FunctionAffiche(loader);
+        
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+    
+    Utilisateur userSelected = null;
+    
+    @FXML
+    void clicked(MouseEvent event) {
+    	TableViewSelectionModel<Utilisateur>  selectionModel = tableauUtilisateurs.getSelectionModel ();
+    	ObservableList <Integer> indice = selectionModel.getSelectedIndices ();
+    	if (indice.isEmpty()) {
+    		detailUtilisateurButton.setDisable(true);
+    	}else {
+    		String cin = tableauUtilisateurs.getSelectionModel().getSelectedItem().getIdUtilisateur();
+    		userSelected = H.utilisateur.getById(cin);
+    		detailUtilisateurButton.setDisable(false);
+    	}
+    }
+    
+    public void FunctionAffiche(FXMLLoader loader) {
+    	DetailUtilisateur detail = loader.getController();
+    	
+    	 detail.prenomTextField.setText(userSelected.getPrenom());
+    	 detail.nomTextField.setText(userSelected.getNom());
+    	 detail.nationaliteTextField.setText(userSelected.getNationalite());
+    	 detail.lieuNaissanceTextField.setText(userSelected.getLieu_naissance());
+    	 detail.emailTextField.setText(userSelected.getEmail());
+    	 detail.codePostalTextField.setText(userSelected.getCode_postale());
+    	 detail.villeTextField.setText(userSelected.getVille());
+         detail.dateNaissanceDatePicker.setValue(H.convert(userSelected.getNaissance()));
+         detail.adresseTextField.setText(userSelected.getAdress());
+         detail.numeroTelephoneTextField.setText(userSelected.getTele());
+         detail.cinTypeTextField.setText(userSelected.getCarte_identifiant());
+         detail.numeroCinTextField.setText(userSelected.getIdUtilisateur());
+         detail.paysTextField.setText(userSelected.getPays());
+         
     }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {

@@ -8,44 +8,62 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class DetailUtilisateur {
+	
+	@FXML
+    public TextField genreUtilisateurTextField;
+
     @FXML
-    private TextField genreUtilisateurTextField; // Genre utilisateur (Mr->Massculin || Mme -> Feminin)
+    public TextField prenomTextField;
+
     @FXML
-    private TextField prenomTextField; // Prenom de l'utilisateur
+    public TextField nomTextField;
+
     @FXML
-    private TextField nomTextField; //Nom d'utilisateur
+    public TextField nationaliteTextField;
+
     @FXML
-    private TextField nationaliteTextField; // La nationalité de l'utilisateur
+    public DatePicker dateNaissanceDatePicker;
+
     @FXML
-    private DatePicker dateNaissanceDatePicker ; //Date de naissance de l'utilisateur
+    public TextField lieuNaissanceTextField;
+
     @FXML
-    private TextField lieuNaissanceTextField; // Lieu de naissance
+    public TextField cinTypeTextField;
+
     @FXML
-    private TextField cinTypeTextField; // type de la piece d'identité
+    public TextField numeroCinTextField;
+
     @FXML
-    private TextField numeroCinTextField; // N° de la piéce d'identité
+    public TextField adresseTextField;
+
     @FXML
-    private TextField adresseTextField; //Adresse de l'utilisateur
+    public TextField codePostalTextField;
+
     @FXML
-    private TextField codePostalTextField; //code postale
+    public TextField villeTextField;
+
     @FXML
-    private TextField villeTextField; //ville de l'utilisateur
+    public TextField paysTextField;
+
     @FXML
-    private TextField paysTextField; //pays de l'utilisateur
+    public TextField numeroTelephoneTextField;
+
     @FXML
-    private TextField numeroTelephoneTextField; //Télephone de l'utilisateur
+    public TextField emailTextField;
+
     @FXML
-    private TextField emailTextField; //email de l'utilisateur
+    public ImageView idImageView;
+
     @FXML
-    private ImageView idImageView; //Image de l'utilisateur
+    public JFXButton closeButton;
+
     @FXML
-    private JFXButton closeButton;// OK boutton
-    @FXML
-    private JFXButton  deleteBtn; //supprimer la reservation
+    public JFXButton deleteBtn;
+    
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();
         stage.close();
     }
-    //deleteBtnAction()
+
 }

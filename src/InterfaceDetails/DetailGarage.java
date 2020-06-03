@@ -7,19 +7,19 @@ import javafx.stage.Stage;
 
 public class DetailGarage {
     @FXML
-    private TextField idparkingTextField ; //champ de Réference Parking
+    public TextField idparkingTextField ; //champ de Réference Parking
     @FXML
-    private TextField adressparkingTextField ; // champ de l'adresse du parking
+    public TextField adressparkingTextField ; // champ de l'adresse du parking
     @FXML
-    private TextField capaciteParkingTextField ; // champ de Capacité du Parking
+    public TextField capaciteParkingTextField ; // champ de Capacité du Parking
     @FXML
-    private TextField occupeParkingTextField; // champ du nombre des emplacement occuppé
+    public TextField occupeParkingTextField; // champ du nombre des emplacement occuppé
     @FXML
-    private TextField idUtilisateurTextField ;// champ d'utilisateur qui a enreegistré le park
+    public TextField idUtilisateurTextField ;// champ d'utilisateur qui a enreegistré le park
     @FXML
-    private JFXButton closeButton; // boutton OK
+    public JFXButton closeButton; // boutton OK
     @FXML
-    private  JFXButton deletebtn ; // boutton supprimer
+    public  JFXButton deletebtn ; // boutton supprimer
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();

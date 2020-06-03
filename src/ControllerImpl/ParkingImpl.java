@@ -83,9 +83,10 @@ public class ParkingImpl extends Abst implements ParkingInter{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Parking parking = new Parking();
-				parking.setIdParking(rs.getLong(1));
-				parking.setAdress(rs.getString(2));
-				parking.setCapacite(rs.getLong(3));
+				parking.setIdParking(rs.getLong("idParking"));
+				parking.setAdress(rs.getString("adress"));
+				parking.setCapacite(rs.getLong("capacite"));
+				parking.setNbr_place_pleinne(rs.getInt("nbr_place_pleinne"));
 				list.add(parking);
 			}
 		} catch (SQLException e) {
@@ -111,6 +112,7 @@ public class ParkingImpl extends Abst implements ParkingInter{
 				parking.setIdParking(rs.getLong("idParking"));
 				parking.setAdress(rs.getString("adress"));
 				parking.setCapacite(rs.getLong("capacite"));
+				parking.setNbr_place_pleinne(rs.getInt("nbr_place_pleinne"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
@@ -130,7 +132,7 @@ public class ParkingImpl extends Abst implements ParkingInter{
 		Parking parking = new Parking();
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "Select idParking,adress,capacite from parking where idParking=?";
+			String sql = "Select * from parking where idParking=?";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, id);
@@ -140,6 +142,7 @@ public class ParkingImpl extends Abst implements ParkingInter{
 				parking.setIdParking(rs.getLong("idParking"));
 				parking.setAdress(rs.getString("adress"));
 				parking.setCapacite(rs.getLong("capacite"));
+				parking.setNbr_place_pleinne(rs.getInt("nbr_place_pleinne"));
 			}else {
 				return null;
 			}
