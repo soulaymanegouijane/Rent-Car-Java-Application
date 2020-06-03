@@ -250,7 +250,7 @@ public class AjouterVehicule implements Initializable{
 	}
 
 	public void handleAjouterMarqueButton(ActionEvent actionEvent) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterMarque/AjouterMarque.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterMarque/AjouterMarque.fxml"));
 		Parent root = loader.load();
 
 		Stage stage = new Stage();
@@ -262,13 +262,14 @@ public class AjouterVehicule implements Initializable{
 
 		AjouterMarque marqueController = loader.getController();
 		marqueList.add(marqueController.libelleMarqueTaped);
-		marqueComboBox.getItems().removeAll(marqueComboBox.getItems());
+		marqueList.clear();
+		marque_base_donne();
 		marqueComboBox.setItems(marqueList);
 		marqueComboBox.setValue(marqueController.libelleMarqueTaped);
 	}
 
 	public void handleAjouterTypeButton(ActionEvent actionEvent) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterType/AjouterType.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterType/AjouterType.fxml"));
 		Parent root = loader.load();
 
 		Stage stage = new Stage();
@@ -281,12 +282,12 @@ public class AjouterVehicule implements Initializable{
 		AjouterType typeController = loader.getController();
 		TypeList.add(typeController.libelleTypeTaped);
 		typeComboBox.getItems().removeAll(marqueComboBox.getItems());
-		typeComboBox.setItems(marqueList);
+		typeComboBox.setItems(TypeList);
 		typeComboBox.setValue(typeController.libelleTypeTaped);
 	}
 
 	public void handleAjouterCarburantButton(ActionEvent actionEvent) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterCarburant/AjouterCarburant.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterCarburant/AjouterCarburant.fxml"));
 		Parent root = loader.load();
 
 		Stage stage = new Stage();
@@ -299,7 +300,7 @@ public class AjouterVehicule implements Initializable{
 		AjouterCarburant CarburantController = loader.getController();
 		carburantList.add(CarburantController.libelleCarburantTaped);
 		carburantComboBox.getItems().removeAll(marqueComboBox.getItems());
-		carburantComboBox.setItems(marqueList);
+		carburantComboBox.setItems(carburantList);
 		carburantComboBox.setValue(CarburantController.libelleCarburantTaped);
 	}
 

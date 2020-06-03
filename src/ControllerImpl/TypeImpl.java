@@ -21,10 +21,11 @@ public class TypeImpl extends Abst implements TypeInter {
 		int status=0;
 		try {
 			Connection con = Abst.getConnection();
-			String sql = "insert into type (libelle,description) values(?,?)";
+			String sql = "insert into type (libelle,description,idMarque) values(?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getLibelle());
 			ps.setString(2,arg.getDescription());
+			ps.setLong(3, arg.getMarque().getIdMarque());
 			status = ps.executeUpdate();
 			
 			con.close();

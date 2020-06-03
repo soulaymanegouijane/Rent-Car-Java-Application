@@ -29,8 +29,6 @@ public class Contrat implements Serializable{
 	private String idVehicule;
 	@Column(name="idReservation",nullable=true)
 	private Long idReservation;
-	@Column(name="idSanction",nullable=true)
-	private Long idSanction;
 	@Column(name="date_sortie",nullable=true)
 	private String date_sortie;
 	@Column(name="date_retour",nullable=true)
@@ -64,31 +62,6 @@ public class Contrat implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idReservation",referencedColumnName = "idReservation",insertable = false,updatable = false)
 	private Reservation reservation;
-	@OneToOne
-	@JoinColumn(name="idSanction",referencedColumnName = "idSanction",insertable = false,updatable = false)
-	private Sanction sanction;
-	
-	
-	public Contrat(String dateContrat, double montantTotal, Vehicule vehicule, Reservation reservation, Sanction sanction,
-			String date_sortie, String date_retour, String heure_retour, String heure_sortie, int nbr_jour, float prix_jour,
-			float remise, float caution, long km_depart, long km_retour) {
-		super();
-		this.dateContrat = dateContrat;
-		MontantTotal = montantTotal;
-		this.vehicule = vehicule;
-		this.reservation = reservation;
-		this.sanction = sanction;
-		this.date_sortie = date_sortie;
-		this.date_retour = date_retour;
-		this.heure_retour = heure_retour;
-		this.heure_sortie = heure_sortie;
-		this.nbr_jour = nbr_jour;
-		this.prix_jour = prix_jour;
-		this.remise = remise;
-		this.caution = caution;
-		this.km_depart = km_depart;
-		this.km_retour = km_retour;
-	}
 
 	/**
 	 * @param codeContrat
@@ -242,19 +215,6 @@ public class Contrat implements Serializable{
 		this.idReservation = idReservation;
 	}
 
-	/**
-	 * @return the idSanction
-	 */
-	public Long getIdSanction() {
-		return idSanction;
-	}
-
-	/**
-	 * @param idSanction the idSanction to set
-	 */
-	public void setIdSanction(Long idSanction) {
-		this.idSanction = idSanction;
-	}
 
 	/**
 	 * @return the date_sortie
@@ -424,19 +384,6 @@ public class Contrat implements Serializable{
 		this.reservation = reservation;
 	}
 
-	/**
-	 * @return the sanction
-	 */
-	public Sanction getSanction() {
-		return sanction;
-	}
-
-	/**
-	 * @param sanction the sanction to set
-	 */
-	public void setSanction(Sanction sanction) {
-		this.sanction = sanction;
-	}
 
 	
 	

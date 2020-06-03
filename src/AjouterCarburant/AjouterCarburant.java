@@ -2,6 +2,9 @@ package AjouterCarburant;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
+
+import Entities.Carburant;
+import Test.H;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -25,14 +28,20 @@ public class AjouterCarburant {
 
     public void ajouterCarburantBtnAction(ActionEvent actionEvent) {
         if (!libelleCarburant.getText().isEmpty()){
-            libelleCarburantTaped = libelleCarburant.getText();
+        	libelleCarburantTaped = libelleCarburant.getText();
             descriptionCarburantTaped = descriptionCarburant.getText();
-
-            //Send Values To DataBase
-
+            
+            String carb = libelleCarburant.getText();
+        	String desc = descriptionCarburant.getText();
+        	
+        	Carburant carburant = new Carburant();
+        	carburant.setDescription(desc);
+        	carburant.setLibelle(carb);
+        	H.carburant.add(carburant);
+        	
+        	
             Stage stage =(Stage) ajouterCarburantBtn.getScene().getWindow();
             stage.close();
         }
     }
-    /*------------- End of Methods ------------- */
 }

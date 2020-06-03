@@ -89,6 +89,7 @@ public class AjouterUnContrat implements Initializable {
         
         @FXML
         void addContrat(ActionEvent event) {
+
         	//String idCnrt = idContrat.getText();
         	String dtContrat = ((TextField)dateContrat.getEditor()).getText();
         	String dtRetour = ((TextField)dateRetour.getEditor()).getText();
@@ -110,11 +111,11 @@ public class AjouterUnContrat implements Initializable {
         	//contrat.setRemise(Float.valueOf(rmse));
         	contrat.setReservation(H.reservation.getById(Long.valueOf(res)));
         	contrat.setVehicule(H.vehicule.getById(String.valueOf(voiture)));
-        	contrat.setSanction(H.sanction.getById(1));
         	
         	H.contrat.add(contrat);
         	
-        	
+        	Stage stage =(Stage) closeButton.getScene().getWindow();
+            stage.close();
         }
 
         @FXML
