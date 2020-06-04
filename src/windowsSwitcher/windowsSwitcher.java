@@ -1,5 +1,6 @@
 package windowsSwitcher;
 
+import Entities.Utilisateur;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import windowsSwitcher.compteWindow.CompteWindow;
 
 import java.io.IOException;
 
@@ -45,6 +47,8 @@ public class windowsSwitcher {
 
     @FXML
     private AnchorPane windowSpace;
+
+    public Utilisateur loggedInUser = null;
     
 
     public void handleAcceuilButton(ActionEvent actionEvent) {
@@ -153,7 +157,11 @@ public class windowsSwitcher {
     }
 
     public void handleCompteButton(ActionEvent actionEvent) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("compteWindow/compteWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("compteWindow/compteWindow.fxml"));
+        CompteWindow compteWindow = loader.getController();
+        compteWindow.User = loggedInUser;
+
+        AnchorPane pane = loader.load();
         windowSpace.getChildren().setAll(pane);
 
         acceuilButton.setCancelButton(false);

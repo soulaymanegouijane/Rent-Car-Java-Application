@@ -188,6 +188,7 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setLong(1,id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
+				
 				contrat.setIdContrat(rs.getLong("idContrat"));
 				contrat.setDate_retour(rs.getString("date_retour"));
 				contrat.setDate_sortie(rs.getString("date_sortie"));
