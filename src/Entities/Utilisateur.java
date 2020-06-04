@@ -13,9 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="utilisateur")
+@Table(
+		name="utilisateur",
+		uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})}
+		)
 public class Utilisateur implements Serializable{
 	
 	@Id
@@ -51,6 +55,10 @@ public class Utilisateur implements Serializable{
 	private String nationalite;
 	@Column(name="type_identifiant",nullable=true)
 	private String carte_identifiant;
+	@Column(name="username",nullable=false,unique = true)
+	private String username;
+	@Column(name="pass",nullable=true)
+	private String pass;
 	
 	@Lob
 	@Column(name="photo", columnDefinition = "BLOB")
@@ -64,6 +72,26 @@ public class Utilisateur implements Serializable{
 	
 	
 	
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPass() {
+		return pass;
+	}
+
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+
 	/**
 	 * @return the image
 	 */

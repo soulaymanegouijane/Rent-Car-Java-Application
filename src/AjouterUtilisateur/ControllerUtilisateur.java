@@ -3,6 +3,8 @@ package AjouterUtilisateur;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
+import AbstactClasses.Abst;
+import Entities.Marque;
 import Entities.Reservation;
 import Entities.Role;
 import Entities.Utilisateur;
@@ -27,6 +29,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -97,6 +103,7 @@ public class ControllerUtilisateur implements Initializable {
 
     ObservableList<String> civilite = FXCollections.observableArrayList("Homme","Femme");
     ObservableList<String> identification = FXCollections.observableArrayList("Passport","Carte Nationale");
+    ObservableList<String> roleList = FXCollections.observableArrayList();
     
 
     Image image = null;
@@ -120,12 +127,14 @@ public class ControllerUtilisateur implements Initializable {
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	role_base_donnee();
     	comboBox();
 	}
     
     public void comboBox() {
     	comboGender.setItems(civilite);
     	comboIdType.setItems(identification);
+    	comboRole.setItems(roleList);
     	
     }
 
@@ -161,7 +170,8 @@ public class ControllerUtilisateur implements Initializable {
         image = idview.getImage();
         prenom = prenomTextField.getText();
         nom = nomTextField.getText();
-        role = comboRole.getSelectionModel().getSelectedItem();
+        role = comboRole.getValue();
+        System.out.println("--------------- ** -----> " + role);
         genre = comboGender.getSelectionModel().getSelectedItem();
         nationalite = nationaliteTextField.getText();
         dateNaissance = ((TextField)date_naissance.getEditor()).getText();
@@ -196,6 +206,8 @@ public class ControllerUtilisateur implements Initializable {
 			user.setVille(ville);
 			user.setRole(rol);
 			user.setCarte_identifiant(idType);
+			user.setUsername("admin");
+			user.setPass("admin123");
 			
 			try {
 				FileInputStream inputStream = new FileInputStream(file);
@@ -217,6 +229,26 @@ public class ControllerUtilisateur implements Initializable {
             Stage stage =(Stage) saveButton.getScene().getWindow();
             stage.close();
         }
+    }
+    
+    public void role_base_donnee() {
+    	ResultSet tous_les_roles = null;
+		String sql = "select * from role";
+		Connection con = Abst.getConnection();
+		try {
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			tous_les_roles = ps.executeQuery();
+			while(tous_les_roles.next()) {
+				Role role = new Role();
+				role.setRole(tous_les_roles.getString("role"));
+				String rl = role.getRole();
+				roleList.add(rl);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
 
     public boolean testEmpty(){

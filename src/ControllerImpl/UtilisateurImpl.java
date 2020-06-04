@@ -18,7 +18,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public int add(Utilisateur arg) {
 		int status =0;
-		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idRole,naissance,type_identifiant,photo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idRole,naissance,type_identifiant,photo,username,pass) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		Connection conn = null;
 		try {
@@ -37,10 +37,12 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			preparedStatement.setString(11, arg.getPays());
 			preparedStatement.setString(12, arg.getNationalite());
 			preparedStatement.setString(13, arg.getEtat_compte());
-			preparedStatement.setLong(14,arg.getRole().getIdRole());//role
+			preparedStatement.setLong(14,arg.getRole().getIdRole());
 			preparedStatement.setString(15, arg.getNaissance());
 			preparedStatement.setString(16, arg.getCarte_identifiant());
 			preparedStatement.setBytes(17, arg.getImage());
+			preparedStatement.setString(18, arg.getUsername());
+			preparedStatement.setString(19, arg.getPass());
 			status = preparedStatement.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {
@@ -52,26 +54,33 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public Utilisateur edit(Utilisateur arg) {
 		
-		String sql = "UPDATE utilisateur SET nom=?,prenom=?,adress=?,telephone=?, email=?, idRole =? where CodeUtilisateur=?";
+		String sql = "UPDATE utilisateur SET nom = ?,prenom = ?,adress = ?,telephone = ?,email = ?,idUtilisateur = ?,civilite = ?,lieu_naissance ?,ville ?,code_postale =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,type_identifiant =?,photo =?,username =?,pass=? where idUtilisateur=?";
 		Connection con = Abst.getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement(sql);
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
 			
-			ps.setString(1,arg.getNom());
-			ps.setString(2,arg.getPrenom());
-			ps.setString(3,arg.getAdress());
-			ps.setString(4,arg.getTele());
-			ps.setString(5,arg.getEmail());
-			ps.setLong(6, arg.getRole().getIdRole());
-			ps.setString(7, arg.getIdUtilisateur());
-			ps.executeUpdate();
-			arg.setAdress(arg.getAdress());
-			arg.setNom(arg.getNom());
-			arg.setPrenom(arg.getPrenom());
-			arg.setTele(arg.getTele());
-			arg.setEmail(arg.getEmail());
-			arg.setIdUtilisateur(arg.getIdUtilisateur());
-			arg.setRole(arg.getRole());
+			preparedStatement.setString(1,arg.getNom());
+			preparedStatement.setString(2,arg.getPrenom());
+			preparedStatement.setString(3,arg.getAdress());
+			preparedStatement.setString(4,arg.getEmail());
+			preparedStatement.setString(5,arg.getTele());
+			preparedStatement.setString(6, arg.getIdUtilisateur());
+			preparedStatement.setString(7,arg.getCivilite());
+			preparedStatement.setString(8,arg.getLieu_naissance());
+			preparedStatement.setString(9, arg.getCode_postale());
+			preparedStatement.setString(10, arg.getVille());
+			preparedStatement.setString(11, arg.getPays());
+			preparedStatement.setString(12, arg.getNationalite());
+			preparedStatement.setString(13, arg.getEtat_compte());
+			preparedStatement.setLong(14,arg.getRole().getIdRole());
+			preparedStatement.setString(15, arg.getNaissance());
+			preparedStatement.setString(16, arg.getCarte_identifiant());
+			preparedStatement.setBytes(17, arg.getImage());
+			preparedStatement.setString(18, arg.getUsername());
+			preparedStatement.setString(19, arg.getPass());
+			preparedStatement.setString(20, arg.getIdUtilisateur());
+			preparedStatement.executeUpdate();
+			arg = H.utilisateur.getById(arg.getIdUtilisateur());
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,7 +138,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	public Utilisateur get(String nom) {
 		Utilisateur c = new Utilisateur();
 		try {
-			String sql = "Select codeUtilisateur,nom,prenom,adress,telephone,email,idReservation,idRole from utilisateur where nom=?";
+			String sql = "Select * from utilisateur where nom=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, nom);
@@ -183,6 +192,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setRole(H.role.getById(rs.getLong("idRole")));
 				c.setNationalite(rs.getString("nationalite"));
 				c.setNaissance(rs.getString("naissance"));
+				c.setUsername(rs.getString("username"));
+				c.setPass(rs.getString("pass"));
 			}else {
 				return null;
 			}
@@ -228,6 +239,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setRole(H.role.getById(rs.getLong("idRole")));
 				c.setNationalite(rs.getString("nationalite"));
 				c.setNaissance(rs.getString("naissance"));
+				c.setUsername(rs.getString("username"));
+				c.setPass(rs.getString("pass"));
 			}else {
 				return null;
 			}

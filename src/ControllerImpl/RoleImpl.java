@@ -80,9 +80,9 @@ public class RoleImpl extends Abst implements RoleInter {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Role ro = new Role();
-				ro.setIdRole(rs.getInt(1));
-				ro.setRole(rs.getString(2));
-				ro.setDescription(rs.getString(3));
+				ro.setIdRole(rs.getInt("idRole"));
+				ro.setRole(rs.getString("role"));
+				ro.setDescription(rs.getString("description"));
 				list.add(ro);
 			}
 		} catch (SQLException e) {
@@ -104,9 +104,9 @@ public class RoleImpl extends Abst implements RoleInter {
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				ro.setIdRole(rs.getInt(1));
-				ro.setRole(rs.getString(2));
-				ro.setDescription(rs.getString(3));
+				ro.setIdRole(rs.getLong("idRole"));
+				ro.setRole(rs.getString("role"));
+				ro.setDescription(rs.getString("description"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
