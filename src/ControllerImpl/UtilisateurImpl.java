@@ -27,8 +27,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			preparedStatement.setString(1,arg.getNom());
 			preparedStatement.setString(2,arg.getPrenom());
 			preparedStatement.setString(3,arg.getAdress());
-			preparedStatement.setString(4,arg.getEmail());
-			preparedStatement.setString(5,arg.getTele());
+			preparedStatement.setString(4,arg.getTele());
+			preparedStatement.setString(5,arg.getEmail());
 			preparedStatement.setString(6, arg.getIdUtilisateur());
 			preparedStatement.setString(7,arg.getCivilite());
 			preparedStatement.setString(8,arg.getLieu_naissance());

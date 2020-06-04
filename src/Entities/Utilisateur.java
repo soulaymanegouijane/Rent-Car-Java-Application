@@ -67,11 +67,8 @@ public class Utilisateur implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idRole",referencedColumnName = "idRole",insertable = false,updatable = false)
 	private Role role;
-	
-	
-	
-	
-	
+
+
 	public String getUsername() {
 		return username;
 	}

@@ -1,5 +1,6 @@
 package windowsSwitcher.compteWindow;
 
+import Entities.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +80,8 @@ public class CompteWindow implements Initializable {
 
     @FXML
     private Button updateCompteButton;
+
+    public Utilisateur User;
 
 
     private Image oldimage;
