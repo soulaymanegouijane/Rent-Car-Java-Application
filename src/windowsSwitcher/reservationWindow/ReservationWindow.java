@@ -6,6 +6,7 @@ import AbstactClasses.Abst;
 import Entities.Parking;
 import Entities.Reservation;
 import Entities.Status;
+import InterfaceDetails.DetailReservation;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -116,7 +118,7 @@ public class ReservationWindow implements Initializable {
 	    @FXML
         private Button detailReservationButton;
         
-	
+	    public Reservation reservationSelected;
 
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status", "Nombres des contrats");
     ObservableList<String> typeTypeList = FXCollections.observableArrayList("Reservation local", "Reservation telephonique");
@@ -258,12 +260,31 @@ public class ReservationWindow implements Initializable {
     }
     
     public void FunctionAffiche(FXMLLoader loader) {
+    	DetailReservation detail = loader.getController();
+    	
+    	detail.avance.setText(String.valueOf(reservationSelected.getAvance()));
+    	detail.dateReservation.setValue(H.convert(reservationSelected.getDatReservation()));
+    	detail.dateDepartDatePicker.setValue(H.convert(reservationSelected.getDate_depart()));
+    	detail.dateRetourDatePicker.setValue(H.convert(reservationSelected.getDate_retour()));
+    	detail.vehicule.setText(reservationSelected.getVehicule().getIdVehicule());
+    	detail.client.setText(reservationSelected.getClient().getIdClient());
+    	detail.typeRservation.setText(reservationSelected.getTypeRes().getLibelle());
+    	detail.idReservation.setText(String.valueOf(reservationSelected.getIdReservation()));
+    	detail.etatReservation.setText(reservationSelected.getStatus().getLibelle());
     	
     }
     
     @FXML
     void clicked(MouseEvent event) {
-
+    	TableViewSelectionModel<Reservation>  selectionModel = tableReservation.getSelectionModel ();
+    	ObservableList <Integer> indice = selectionModel.getSelectedIndices ();
+    	if (indice.isEmpty()) {
+    		detailReservationButton.setDisable(true);
+    	}else {
+    		long idReservation = tableReservation.getSelectionModel().getSelectedItem().getIdReservation();
+    		reservationSelected = H.reservation.getById(idReservation);
+    		detailReservationButton.setDisable(false);
+    	}
     }
 
     public void handleButtonChoisirVehicule(ActionEvent actionEvent) throws IOException {

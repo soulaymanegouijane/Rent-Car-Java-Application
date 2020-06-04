@@ -150,7 +150,7 @@
                                                 </ImageView>
                                             </graphic>
                                         </Label>
-                                        <TableView fx:id="tableContrat" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                        <TableView fx:id="tableContrat" onMouseClicked="#clicked" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                             <columns>
                                                 <TableColumn fx:id="col_nb_contrat" prefWidth="94.0" text="N° contrat" />
                                                 <TableColumn fx:id="col_date_contrat" prefWidth="117.0" text="Date de Contrat" />

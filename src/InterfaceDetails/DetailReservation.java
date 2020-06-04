@@ -8,29 +8,29 @@ import javafx.stage.Stage;
 
 public class DetailReservation {
     @FXML
-    private TextField idReservation; // Id de la reservation
+    public TextField idReservation; // Id de la reservation
     @FXML
-    private DatePicker dateReservation; // date de la réservation
+    public DatePicker dateReservation; // date de la réservation
     @FXML
-    private TextField vehicule; //Véhicule Concerné par la réservation
+    public TextField vehicule; //Véhicule Concerné par la réservation
     @FXML
-    private TextField client; // Client Concerné par la reservation
+    public TextField client; // Client Concerné par la reservation
     @FXML
-    private DatePicker dateDepartDatePicker ; //Date départ de la voiture
+    public DatePicker dateDepartDatePicker ; //Date départ de la voiture
     @FXML
-    private DatePicker dateRetourDatePicker; // Date retour de la voiture
+    public DatePicker dateRetourDatePicker; // Date retour de la voiture
     @FXML
-    private TextField avance; // Avance Payé par le client
+    public TextField avance; // Avance Payé par le client
     @FXML
-    private TextField typeRservation; // type de reservation (telephonique ou par presence)
+    public TextField typeRservation; // type de reservation (telephonique ou par presence)
     @FXML
-    private TextField etatReservation; //etat de la reservation (validé ou annulé)
+    public TextField etatReservation; //etat de la reservation (validé ou annulé)
     @FXML
-    private JFXButton closeButton;// OK boutton
+    public JFXButton closeButton;// OK boutton
     @FXML
-    private JFXButton createContratBtn ; // boutton leading to interface ajouter contrat
+    public JFXButton createContratBtn ; // boutton leading to interface ajouter contrat
     @FXML
-    private JFXButton  deleteReservationBtn; //supprimer la reservation
+    public JFXButton  deleteReservationBtn; //supprimer la reservation
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();

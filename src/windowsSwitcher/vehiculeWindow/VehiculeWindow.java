@@ -422,7 +422,8 @@ public class VehiculeWindow implements Initializable {
     		detail.dispoVehicule.setText("indisponible");
     	}
     	detail.TypeCarburant.setText(vehiculeSelected.getCarburant().getLibelle());
-    	detail.marqueVoiture.setText("");
+    	detail.marqueVoiture.setText(vehiculeSelected.getType().getMarque().getLibelle());
+    	detail.idParking.setText(vehiculeSelected.getParking().getAdress());
     }
 
 	public void handleButtonChoisirParking(ActionEvent actionEvent) throws IOException {

@@ -4,6 +4,9 @@ import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
 import Entities.Contrat;
+import Entities.Parking;
+import InterfaceDetails.DetailContrat;
+import InterfaceDetails.DetailGarage;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +17,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -66,7 +71,7 @@ public class ContratWindow implements Initializable {
     private HBox hBoxChoisirClient;
 
     @FXML
-    public TextField textFeildChoisirClient;
+    private TextField textFeildChoisirClient;
 
     @FXML
     private JFXButton buttonChoisirClient;
@@ -124,6 +129,8 @@ public class ContratWindow implements Initializable {
     ObservableList<Contrat> mono_contrat = FXCollections.observableArrayList();
     ObservableList<Contrat> contrats = FXCollections.observableArrayList();
     
+    public Contrat contratSelected = null;
+    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	comboBox();
@@ -150,7 +157,49 @@ public class ContratWindow implements Initializable {
         remplir_tableau();
     }
 
-    public void handleDetailContratButton(ActionEvent actionEvent) {
+    public void handleDetailContratButton(ActionEvent actionEvent) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailContrat.fxml"));
+        Parent root = loader.load();
+        
+        // fonction pour remplir les champs du detailClient interface
+        FunctionAffiche(loader);
+        
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
+    
+    public void FunctionAffiche(FXMLLoader loader) {
+    	DetailContrat detail = loader.getController();
+    	
+    	detail.datecontratDatePicker.setValue(H.convert(contratSelected.getDateContrat()));
+    	detail.datedepartDatePicker.setValue(H.convert(contratSelected.getDate_sortie()));
+    	detail.dateretourDatePicker.setValue(H.convert(contratSelected.getDate_retour()));
+    	detail.idContrat.setText(String.valueOf(contratSelected.getIdContrat()));
+    	System.out.println(contratSelected.getIdVehicule());
+    	System.out.println(contratSelected.getIdReservation());
+    	detail.vehicule.setText(contratSelected.getIdVehicule());
+    	detail.reservation.setText(String.valueOf(contratSelected.getIdReservation()));
+    	detail.remise.setText(String.valueOf(contratSelected.getRemise()));
+    	detail.montantTotal.setText(String.valueOf(contratSelected.getMontantTotal()));
+    	
+    	
+    }
+    
+    @FXML
+    void clicked(MouseEvent event) {
+    	TableViewSelectionModel<Contrat>  selectionModel = tableContrat.getSelectionModel ();
+    	ObservableList <Integer> indice = selectionModel.getSelectedIndices ();
+    	if (indice.isEmpty()) {
+    		detailContratButton.setDisable(true);
+    	}else {
+    		long idContrat = tableContrat.getSelectionModel().getSelectedItem().getIdContrat();
+    		contratSelected = H.contrat.getById(idContrat);
+    		detailContratButton.setDisable(false);
+    	}
     }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {

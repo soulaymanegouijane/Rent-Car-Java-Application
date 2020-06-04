@@ -163,14 +163,13 @@ public class ReservationImpl extends Abst implements ReservationInter {
 			if(rs.next()) {
 				r.setIdReservation(rs.getLong("idReservation"));
 				r.setDatReservation(rs.getString("dateReservation"));
-				ClientImp cli = new ClientImp();
-				StatusImpl sti = new StatusImpl();
-				TypeReservationImpl tri = new TypeReservationImpl();
-				VehiculeImpl vehi = new VehiculeImpl();
-				r.setClient(cli.getById(rs.getString("idClient")));
-				r.setTypeRes(tri.getById(rs.getLong("idTypeRes")));
-				r.setStatus(sti.getById(rs.getLong("idStatus")));
-				r.setVehicule(vehi.getById(rs.getString("idVehicule")));
+				r.setDate_depart(rs.getString("date_depart"));
+				r.setDate_retour(rs.getString("date_retour"));
+				r.setClient(H.client.getById(rs.getString("idClient")));
+				r.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));
+				r.setStatus(H.status.getById(rs.getLong("idStatus")));
+				r.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
+				r.setAvance(rs.getFloat("avance"));
 			}
 			con.close();
 		} catch (SQLException e) {
