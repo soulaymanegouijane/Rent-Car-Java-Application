@@ -19,6 +19,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -84,7 +88,7 @@ public class CompteWindow implements Initializable {
     public Utilisateur User;
 
 
-    private Image oldimage;
+    private Image oldImage;
     private String oldUsername;
     private String oldPassword;
     private String oldCin;
@@ -99,7 +103,7 @@ public class CompteWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        InputStream inStream = getClass().getResourceAsStream("../../img/ads.png");
+        /*InputStream inStream = getClass().getResourceAsStream("../../img/ads.png");
         profilImage.setImage(new Image(inStream, 142, 123, true,true));
         usernameTextField.setText("username");
         passwordTextField.setText("password");
@@ -110,21 +114,23 @@ public class CompteWindow implements Initializable {
         teleTextField.setText("tele");
         adresseTextField.setText("adresse");
         emailTextField.setText("email");
-        etatCompteTextField.setText("etatCompte");
+        etatCompteTextField.setText("etatCompte");*/
+
+        oldCin = User.getIdUtilisateur();
+        oldNom = User.getNom();
+        oldPrenom = User.getPrenom();
+        oldCompteType = User.getRole().getRole();
+        oldtele = User.getTele();
+        oldAdresse = User.getAdress();
+        oldemail = User.getEmail();
+        oldEtatCompte = User.getEtat_compte();
+
+        oldUsername = User.getUsername();
+        oldPassword = User.getPass();
+        oldImage = new Image(new ByteArrayInputStream(User.getImage()));
+        
         fullNameLabel.setText(nomTextField.getText() + " " + prenomTextField.getText());
         typeCompteLabel.setText(compteTypeTextField.getText());
-
-        oldimage = profilImage.getImage();
-        oldUsername = usernameTextField.getText();
-        oldPassword = passwordTextField.getText();
-        oldCin = cinTextField.getText();
-        oldNom = nomTextField.getText();
-        oldPrenom = prenomTextField.getText();
-        oldCompteType = compteTypeTextField.getText();
-        oldtele = teleTextField.getText();
-        oldAdresse = adresseTextField.getText();
-        oldemail = emailTextField.getText();
-        oldEtatCompte = etatCompteTextField.getText();
     }
 
     public void handleUpdateCompteButton(ActionEvent actionEvent) throws IOException {
@@ -161,7 +167,7 @@ public class CompteWindow implements Initializable {
 
     public void handleSaveCompte(ActionEvent actionEvent) {
         // Verification des informations saisie
-        oldimage = profilImage.getImage();
+        oldImage = profilImage.getImage();
         oldUsername = usernameTextField.getText();
         oldPassword = passwordTextField.getText();
         oldCin = cinTextField.getText();
@@ -177,7 +183,7 @@ public class CompteWindow implements Initializable {
     }
 
     public void handleAnnulerButton(ActionEvent actionEvent) {
-        profilImage.setImage(oldimage);
+        profilImage.setImage(oldImage);
         usernameTextField.setText(oldUsername);
         passwordTextField.setText(oldPassword);
         cinTextField.setText(oldCin);
