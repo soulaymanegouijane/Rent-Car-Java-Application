@@ -57,7 +57,7 @@ public class ContratImpl extends Abst implements ContratInter {
 	public Contrat edit(Contrat arg) {
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "UPDATE contrat SET date_Contrat =?, date_sortie=?, idReservation=?, idVehicule=?, MontantTotal=?, km_retour=?,"
+			String sql = "UPDATE contrat SET date_Contrat =?, date_sortie=?, idReservation=?, idVehicule=?, montant_total=?, km_retour=?,"
 					+ " km_depart=?, caution=?, remise=?, prix_jours=?, nbr_jours=?, heure_sortie=?, heure_entre=?, date_retour=? where idContrat = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			
@@ -122,7 +122,7 @@ public class ContratImpl extends Abst implements ContratInter {
 				contrat.setDateContrat(rs.getString("date_Contrat"));
 				contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
 				contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
-				contrat.setMontantTotal(rs.getFloat("MontantTotal"));
+				contrat.setMontantTotal(rs.getFloat("montant_total"));
 				contrat.setCaution(rs.getFloat("caution"));
 				contrat.setRemise(rs.getFloat("remise"));
 				contrat.setKm_retour(rs.getLong("km_retour"));
@@ -188,21 +188,24 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setLong(1,id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
+				contrat.setIdContrat(rs.getLong("idContrat"));
 				contrat.setDate_retour(rs.getString("date_retour"));
 				contrat.setDate_sortie(rs.getString("date_sortie"));
 				contrat.setDateContrat(rs.getString("date_Contrat"));
+				System.out.println("** ** "+rs.getString("idVehicule"));
+				System.out.println("** **"+rs.getLong("idReservation"));
 				contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
 				contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
-				contrat.setMontantTotal(rs.getFloat("MontantTotal"));
+				contrat.setMontantTotal(rs.getFloat("montant_total"));
 				contrat.setCaution(rs.getFloat("caution"));
 				contrat.setRemise(rs.getFloat("remise"));
 				contrat.setKm_retour(rs.getLong("km_retour"));
 				contrat.setKm_depart(rs.getLong("km_depart"));
-				contrat.setPrix_jour(rs.getFloat("prix_jours"));
-				contrat.setNbr_jour(rs.getInt("nbr_jours"));
-				contrat.setHeure_retour(rs.getString("heure_entre"));
+				contrat.setPrix_jour(rs.getFloat("prix_jour"));
+				contrat.setNbr_jour(rs.getInt("nbr_jour"));
+				contrat.setHeure_retour(rs.getString("heure_retour"));
 				contrat.setHeure_sortie(rs.getString("heure_sortie"));
-				contrat.setIdContrat(rs.getLong("idContrat"));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
