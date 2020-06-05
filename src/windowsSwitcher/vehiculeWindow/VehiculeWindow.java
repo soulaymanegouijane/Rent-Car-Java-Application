@@ -124,6 +124,7 @@ public class VehiculeWindow implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+		detailVehiculeButton.setDisable(true);
     	marque_base_donnee();
     	carburant_base_donnee();
     	comboBox();

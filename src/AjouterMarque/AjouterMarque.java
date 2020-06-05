@@ -7,7 +7,9 @@ import Entities.Marque;
 import Test.H;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 
@@ -53,6 +55,18 @@ public class AjouterMarque {
 
             Stage stage =(Stage) ajouterMarqueBtn.getScene().getWindow();
             stage.close();
+        }else {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not add marque");
+        	if(libelleMarque.getText().isEmpty()) {
+        		alert.setContentText("marque field est vide");
+        	}else if(descriptionMarque.getText().isEmpty()) {
+        		alert.setContentText("description field est vide !");
+        	}else {
+        		alert.setContentText("tu dois remplir les deux champ");
+        	}
+        	alert.showAndWait();
         }
     }
 }

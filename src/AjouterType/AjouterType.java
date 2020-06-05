@@ -19,7 +19,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class AjouterType implements Initializable {
@@ -79,6 +81,18 @@ public class AjouterType implements Initializable {
 
             Stage stage =(Stage) ajouterTypeBtn.getScene().getWindow();
             stage.close();
+        }else {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not add type");
+        	if(libelleType.getText().isEmpty()) {
+        		alert.setContentText("type field est vide");
+        	}else if(descriptionType.getText().isEmpty()) {
+        		alert.setContentText("description field est vide !");
+        	}else {
+        		alert.setContentText("tu dois remplir les deux champ");
+        	}
+        	alert.showAndWait();
         }
     }
     

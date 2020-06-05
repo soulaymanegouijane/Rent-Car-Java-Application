@@ -96,6 +96,7 @@ public class UtilisateurWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        detailUtilisateurButton.setDisable(true);
     	comboBox();
     	remplir_tableau();
     }
@@ -168,6 +169,13 @@ public class UtilisateurWindow implements Initializable {
          detail.numeroCinTextField.setText(userSelected.getIdUtilisateur());
          detail.paysTextField.setText(userSelected.getPays());
          
+         
+    }
+    
+    public String returnCivilite() {
+    	Connection con = Abst.getConnection();
+    	String sql = "select civilite from utilisateur";
+    	return null;
     }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {

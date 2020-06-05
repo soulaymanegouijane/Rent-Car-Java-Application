@@ -176,6 +176,7 @@
                         <URL value="@../Css/MinitextStyle.css" />
                      </stylesheets>
                   </JFXComboBox>
+                  <JFXButton fx:id="ajouterParkingButton" onAction="#handleAjouterParkingButton" styleClass="chooseImageButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Ajouter" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

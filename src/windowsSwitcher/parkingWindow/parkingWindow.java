@@ -86,6 +86,7 @@ public class parkingWindow implements Initializable {
     String searchSection = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        detailParkingButton.setDisable(true);
         chercherComboBox.setPromptText("Chercher par:");
         chercherComboBox.setItems(searchTypeList);
         remplir_tableau();

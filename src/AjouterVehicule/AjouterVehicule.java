@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import AjouterCarburant.AjouterCarburant;
 import AjouterMarque.AjouterMarque;
+import AjouterParking.AjouterParking;
 import AjouterType.AjouterType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -77,6 +78,9 @@ public class AjouterVehicule implements Initializable{
 
 	    @FXML
 	    private JFXButton submitButton;
+	    
+	    @FXML
+	    private JFXButton ajouterParkingButton;
 
 	ObservableList<String> carburantList = FXCollections.observableArrayList();
 	ObservableList<String> marqueList = FXCollections.observableArrayList();
@@ -117,6 +121,26 @@ public class AjouterVehicule implements Initializable{
 		
     }
 
+	@FXML
+    void handleAjouterParkingButton(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterParking/AjouterParking.fxml"));
+		Parent root = loader.load();
+
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.setResizable(false);
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.showAndWait();
+
+		AjouterParking parkingController = loader.getController();
+		ParkingList.add(parkingController.parkingTaped);
+		ParkingList.clear();
+		parking_base_donnee();
+		parkingComboBox.setItems(ParkingList);
+		parkingComboBox.setValue(parkingController.parkingTaped);
+    }
+	
 	public void type_base_donne(String str) {
 		ResultSet tous_les_types = null;
 		String sql = "select * from type where idMarque = ?";
@@ -166,24 +190,6 @@ public class AjouterVehicule implements Initializable{
 		stage.close();
 	}
 	    
-//	@FXML
-//	void addVehicule(ActionEvent event) throws NumberFormatException{
-//
-//		String matricule = matriculeTextField.getText();
-//		int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
-//		String carbutant = (String) carburantComboBox.getValue();
-//		String parking = (String) parkingComboBox.getValue();
-//		String color = toRGBCode(colorColorPicker.getValue());
-//		String marque = marqueComboBox.getValue();
-//		Vehicule vehicule = new Vehicule();
-//		vehicule.setIdVehicule(matricule);
-//		vehicule.setCarburant(H.carburant.get(carbutant));
-//		vehicule.setColor(color);
-//		vehicule.setNbr_place(nbrPlace);
-//		vehicule.setParking(H.parking.get(parking));
-//		vehicule.setType(null);
-//		H.vehicule.add(vehicule);
-//	}
 	    
 	public void carburant_base_donnee() {
 		ResultSet tous_les_carburant = null;

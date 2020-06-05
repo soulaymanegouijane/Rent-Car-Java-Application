@@ -15,8 +15,10 @@ import Test.H;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class AjouterParking implements Initializable{
@@ -33,6 +35,7 @@ public class AjouterParking implements Initializable{
     String adressparking;
     int capaciteParking;
     int occupeParking;
+    public String parkingTaped = null;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -48,15 +51,14 @@ public class AjouterParking implements Initializable{
 
     public void submitButtonAction(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
-        idparking = idparkingTextField.getText();
-        adressparking = adressparkingTextField.getText();
-        capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
-        occupeParking = Integer.parseInt(occupeParkingTextField.getText());
-        if(Erreur()){
-            erreurMessage.setVisible(true);
-        }else{
-            // Upload informations to dataBase
-            Parking parking = new Parking();
+     
+        
+        if (!Tester()) {
+    	   idparking = idparkingTextField.getText();
+           adressparking = adressparkingTextField.getText();
+           capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
+           occupeParking = Integer.parseInt(occupeParkingTextField.getText());
+        	Parking parking = new Parking();
             parking.setIdParking(Long.valueOf(idparking));
             parking.setAdress(adressparking);
             parking.setCapacite(capaciteParking);
@@ -65,15 +67,46 @@ public class AjouterParking implements Initializable{
             int result = H.parking.add(parking);  
             
             if (result != 0) {
-				System.out.println("l'ajout d'un parking est bien fait");
+            	parkingTaped = adressparkingTextField.getText();
+            	Alert alert = new Alert(AlertType.INFORMATION);
+            	alert.setTitle("Ajouter Parking");
+            	alert.setHeaderText("Results");
+            	alert.setContentText("le parking est bien ajouter");
+            	alert.showAndWait();
 			} else {
-				System.out.println("il y a un prb dans l'ajout d'un parking");
+				Alert alert = new Alert(AlertType.ERROR);
+            	alert.setTitle("Ajouter Parking");
+            	alert.setHeaderText("Results");
+            	alert.setContentText("le parking n'est bien ajouter");
+            	alert.showAndWait();
 			}
 
             Stage stage =(Stage) submitButton.getScene().getWindow();
             stage.close();
+		} else {
+			erreurMessage.setVisible(true);
+			Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not add parking");
+        	if(occupeParkingTextField.getText().isEmpty()) {
+        		alert.setContentText("tu dois remplir les places occupee dans le parking");
+        	}else if(adressparkingTextField.getText().isEmpty()) {
+        		alert.setContentText("tu dois entrer l'adress du parking !");
+        	}else if(capaciteParkingTextField.getText().isEmpty()) {
+        		alert.setContentText("tu dois remplir la capacite du parking !");
+        	}else {
+        		alert.setContentText("tu dois remplir les deux champ");
+        	}
+        	alert.showAndWait();
+		}
+    }
+    
+    public boolean Tester() {
+    	if(!adressparkingTextField.getText().isEmpty() && !capaciteParkingTextField.getText().isEmpty() 
+    			&& !occupeParkingTextField.getText().isEmpty() ) {
+        	return false;
         }
-
+    	return true;
     }
     
     public long getIdParking() {
@@ -95,12 +128,12 @@ public class AjouterParking implements Initializable{
     public boolean Erreur() {
 
         if(!isNumeric(capaciteParkingTextField.getText())){
-            erreurMessage.setText("La capacité faut étre un entier !!");
+            erreurMessage.setText("La capacite faut etre un entier !!");
             return true;
         }
 
         if(!isNumeric(occupeParkingTextField.getText())){
-            erreurMessage.setText("Le nombre des places occupées faut étre un entier !!");
+            erreurMessage.setText("Le nombre des places occupees faut etre un entier !!");
             return true;
         }
 

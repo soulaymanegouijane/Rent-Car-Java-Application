@@ -129,6 +129,7 @@ public class ReservationWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        detailReservationButton.setDisable(true);
         comboBox();
         mono_reservation.clear();
         reservation_list.clear();

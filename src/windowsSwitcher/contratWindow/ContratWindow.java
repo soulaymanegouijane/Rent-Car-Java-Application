@@ -133,6 +133,7 @@ public class ContratWindow implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        detailContratButton.setDisable(true);
     	comboBox();
     	remplir_tableau();
     }

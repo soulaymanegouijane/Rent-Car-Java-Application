@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailVehicule">
+    <children>
+        <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
+            <children>
+                <Label alignment="CENTER" layoutX="91.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Détail Du Véhicule :" textFill="WHITE" />
+                <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="671.0" layoutY="12.0" prefHeight="41.0" prefWidth="104.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
+            </children>
+        </Pane>
+        <VBox layoutY="64.0" prefHeight="427.0" prefWidth="500.0">
+            <children>
+                <HBox prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                    <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Matricule de la voiture :" textFill="#b9b3b3">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idmatricule" alignment="CENTER" editable="false" prefWidth="180.0">
+                            <HBox.margin>
+                                <Insets left="60.0" />
+                            </HBox.margin>
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                        </TextField>
+                    </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                    <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Nombre de place :" textFill="#b9b3b3">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                  <TextField fx:id="nombrePlaceTextField" alignment="CENTER" editable="false" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </TextField>
+                    </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="104.0" prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                    <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Type de carburant :" textFill="#b9b3b3">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                  <TextField fx:id="TypeCarburant" alignment="CENTER" editable="false" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </TextField>
+                    </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                    <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Marque :" textFill="#b9b3b3">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="marqueVoiture" alignment="CENTER" editable="false" prefWidth="180.0">
+                            <HBox.margin>
+                                <Insets left="60.0" />
+                            </HBox.margin>
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                        </TextField>
+                    </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="198.0" prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                    <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :" textFill="#b9b3b3">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idcolor" alignment="CENTER" editable="false" prefWidth="180.0">
+                            <HBox.margin>
+                                <Insets left="60.0" />
+                            </HBox.margin>
+                            <stylesheets>
+                                <URL value="@../Css/textinputstyle.css" />
+                                <URL value="@../Css/MinitextStyle.css" />
+                            </stylesheets>
+                            <styleClass>
+                                <String fx:value="text" />
+                                <String fx:value="text-field" />
+                            </styleClass>
+                        </TextField>
+                    </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0">
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                    <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Parking :" textFill="#b9b3b3">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                  <TextField fx:id="idParking" alignment="CENTER" editable="false" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </TextField>
+                    </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+                </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="290.0" prefHeight="47.0" prefWidth="500.0">
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <children>
+                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Disponibilité :" textFill="#b9b3b3">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="dispoVehicule" alignment="CENTER" editable="false" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <JFXButton fx:id="closeButton" layoutX="10.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #61B1FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="OK" textFill="WHITE" />
+                        <JFXButton fx:id="deleteBtn" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
+                            <HBox.margin>
+                                <Insets left="100.0" />
+                            </HBox.margin>
+                        </JFXButton>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+
+</AnchorPane>

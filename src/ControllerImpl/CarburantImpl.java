@@ -13,6 +13,7 @@ import util.HibernateUtil;
 import org.hibernate.Session;
 import AbstactClasses.Abst;
 import Entities.Carburant;
+import Exceptions.AjoutExceptions;
 import Interfaces.CarburantInter;
 
 
@@ -21,21 +22,19 @@ public class CarburantImpl extends Abst implements CarburantInter {
 	HibernateUtil hibernatUtil = new HibernateUtil();
 	
 	@Override	
-	public int add(Carburant arg) {
-		Session session =  hibernatUtil.openSession();
-		session.beginTransaction();
+	public int add(Carburant arg) throws AjoutExceptions{
 		Connection con = Abst.getConnection();
 		int status=0;
 		try {
 			
-			String sql = "insert into carburant (libelle,description) values(?,?)";
+			String sql = "insert into carburant (libellee,description) values(?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getLibelle());
 			ps.setString(2,arg.getDescription());
 			status = ps.executeUpdate();
-			session.getTransaction().commit();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new AjoutExceptions("carburant");
 		}finally {
 			try {
 				con.close();
