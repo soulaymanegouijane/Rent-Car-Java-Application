@@ -1,11 +1,10 @@
 package loginPage;
 
-import AbstactClasses.Abst;
-import Entities.Role;
 import Entities.Utilisateur;
 import Test.H;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -25,13 +24,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import AbstactClasses.Abst;
 import javafx.scene.Node;
 import windowsSwitcher.windowsSwitcher;
 
 public class LoginMain implements Initializable {
+	
+	@FXML
     public TextField username;
-    public PasswordField password;
-    public Label erreurMessage;
+    
+	@FXML
+	public PasswordField password;
+    
+	public Label erreurMessage;
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -41,6 +47,12 @@ public class LoginMain implements Initializable {
 
     public Utilisateur loggedInUser = new Utilisateur();
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+    
+    
     public void handleCloseButton(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
@@ -52,14 +64,14 @@ public class LoginMain implements Initializable {
         if (username.getText().isEmpty() || password.getText().isEmpty()){
             erreurMessage.setVisible(true);
         }else{
-
-            ResultSet loggedUtilisateur = null;
+        	
+        	Connection con = Abst.getConnection();
+            
             try {
                 String sql = "select * from utilisateur where username=?";
-                Connection con = Abst.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setString(1, username.getText());
-                loggedUtilisateur = ps.executeQuery();
+                ResultSet loggedUtilisateur = ps.executeQuery();
 
                 if (loggedUtilisateur.next()){
 
@@ -124,8 +136,5 @@ public class LoginMain implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    
 }

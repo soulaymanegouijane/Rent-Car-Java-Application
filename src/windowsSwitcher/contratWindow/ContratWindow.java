@@ -179,10 +179,8 @@ public class ContratWindow implements Initializable {
     	detail.datedepartDatePicker.setValue(H.convert(contratSelected.getDate_sortie()));
     	detail.dateretourDatePicker.setValue(H.convert(contratSelected.getDate_retour()));
     	detail.idContrat.setText(String.valueOf(contratSelected.getIdContrat()));
-    	System.out.println(contratSelected.getIdVehicule());
-    	System.out.println(contratSelected.getIdReservation());
-    	detail.vehicule.setText(contratSelected.getIdVehicule());
-    	detail.reservation.setText(String.valueOf(contratSelected.getIdReservation()));
+    	detail.vehicule.setText(contratSelected.getVehicule().getIdVehicule());
+    	detail.reservation.setText(String.valueOf(contratSelected.getReservation().getIdReservation()));
     	detail.remise.setText(String.valueOf(contratSelected.getRemise()));
     	detail.montantTotal.setText(String.valueOf(contratSelected.getMontantTotal()));
     	

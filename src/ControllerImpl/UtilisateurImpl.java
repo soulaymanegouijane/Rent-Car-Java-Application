@@ -259,4 +259,52 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		return c;
 	}
 
+	public Utilisateur getByUsername(String username) {
+		Utilisateur loggedInUser = new Utilisateur();
+		Connection con = Abst.getConnection();
+		try {
+			String sql = "Select * from utilisateur where username=?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet loggedUtilisateur =  ps.executeQuery();
+			
+			if(loggedUtilisateur.next()) {
+				 loggedInUser.setIdUtilisateur(loggedUtilisateur.getString("idUtilisateur"));
+                 loggedInUser.setNom(loggedUtilisateur.getString("nom"));
+                 loggedInUser.setPrenom(loggedUtilisateur.getString("prenom"));
+                 loggedInUser.setAdress(loggedUtilisateur.getString("adress"));
+                 loggedInUser.setTele(loggedUtilisateur.getString("telephone"));
+                 loggedInUser.setEmail(loggedUtilisateur.getString("email"));
+                 loggedInUser.setNaissance(loggedUtilisateur.getString("naissance"));
+                 loggedInUser.setEtat_compte(loggedUtilisateur.getString("etat_compte"));
+                 loggedInUser.setCivilite(loggedUtilisateur.getString("civilite"));
+                 loggedInUser.setLieu_naissance(loggedUtilisateur.getString("lieu_naissance"));
+                 loggedInUser.setVille(loggedUtilisateur.getString("ville"));
+                 loggedInUser.setPays(loggedUtilisateur.getString("pays"));
+                 loggedInUser.setNationalite(loggedUtilisateur.getString("nationalite"));
+                 loggedInUser.setCarte_identifiant(loggedUtilisateur.getString("type_identifiant"));
+
+                 loggedInUser.setUsername(loggedUtilisateur.getString("username"));
+                 loggedInUser.setPass(loggedUtilisateur.getString("pass"));
+                 loggedInUser.setImage(loggedUtilisateur.getBytes("photo"));
+                 loggedInUser.setRole(H.role.getById(loggedUtilisateur.getLong("idRole")));
+			}else {
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				System.out.println("closed from utilisateur ?");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return loggedInUser;
+		
+	}
 }
