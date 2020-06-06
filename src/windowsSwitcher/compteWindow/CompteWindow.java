@@ -85,7 +85,7 @@ public class CompteWindow implements Initializable {
     @FXML
     private Button updateCompteButton;
 
-    public Utilisateur User;
+    public static Utilisateur User;
 
 
     private Image oldImage;
@@ -103,19 +103,6 @@ public class CompteWindow implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*InputStream inStream = getClass().getResourceAsStream("../../img/ads.png");
-        profilImage.setImage(new Image(inStream, 142, 123, true,true));
-        usernameTextField.setText("username");
-        passwordTextField.setText("password");
-        cinTextField.setText("cin");
-        nomTextField.setText("nom");
-        prenomTextField.setText("prenom");
-        compteTypeTextField.setText("compteType");
-        teleTextField.setText("tele");
-        adresseTextField.setText("adresse");
-        emailTextField.setText("email");
-        etatCompteTextField.setText("etatCompte");*/
-
         oldCin = User.getIdUtilisateur();
         oldNom = User.getNom();
         oldPrenom = User.getPrenom();
@@ -127,8 +114,25 @@ public class CompteWindow implements Initializable {
 
         oldUsername = User.getUsername();
         oldPassword = User.getPass();
-        oldImage = new Image(new ByteArrayInputStream(User.getImage()));
-        
+        oldImage = new Image(new ByteArrayInputStream(User.getImage()), 142, 123, false, false);
+
+        fillBlanks();
+    }
+
+    public void fillBlanks(){
+
+        profilImage.setImage(oldImage);
+        usernameTextField.setText(oldUsername);
+        passwordTextField.setText(oldPassword);
+        cinTextField.setText(oldCin);
+        nomTextField.setText(oldNom);
+        prenomTextField.setText(oldPrenom);
+        compteTypeTextField.setText(oldCompteType);
+        teleTextField.setText(oldtele);
+        adresseTextField.setText(oldAdresse);
+        emailTextField.setText(oldemail);
+        etatCompteTextField.setText(oldEtatCompte);
+
         fullNameLabel.setText(nomTextField.getText() + " " + prenomTextField.getText());
         typeCompteLabel.setText(compteTypeTextField.getText());
     }
