@@ -338,11 +338,7 @@
             </Label>
             <VBox fx:id="editVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" visible="false">
                <children>
-                  <Button fx:id="chooseProfilImageButton" mnemonicParsing="false" onAction="#handleChooseProfilImageButton" prefHeight="26.0" prefWidth="149.0" style="-fx-font-family: Rockwell; -fx-text-fill: white; -fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 20 20;" styleClass="detailsUserButton" text="Choisir une image">
-                     <stylesheets>
-                        <URL value="@../../../../JavaProject/appLocation/JavaProject/src/windowsSwitcher/windowsSwitcher.css" />
-                        <URL value="@../windowsSwitcher/windowsSwitcher.css" />
-                     </stylesheets></Button>
+                  <Button fx:id="chooseProfilImageButton" mnemonicParsing="false" onAction="#handleChooseProfilImageButton" prefHeight="26.0" prefWidth="149.0" style="-fx-font-family: Rockwell; -fx-text-fill: white; -fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 20 20;" styleClass="detailsUserButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Choisir une image" />
                   <JFXButton fx:id="saveChangesButton" onAction="#handleSaveChangesButton" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
