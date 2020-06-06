@@ -26,9 +26,13 @@ public class DetailContrat {
     @FXML
     public TextField montantTotal;// Montant Total du contrat
     @FXML
-    public TextField sanction;// Montant des sanction du contrat
-    @FXML
     private JFXButton closeButton;// OK button
+    @FXML
+    public JFXButton choisirVehiculeBtn; //parcourrir les vehicules
+    @FXML
+    public JFXButton choisirReservationBtn;// parcourrir les reservations
+    @FXML
+    public JFXButton editContratBtn;//Boutton Modifier
 
     @FXML
     public void closeButtonAction(){

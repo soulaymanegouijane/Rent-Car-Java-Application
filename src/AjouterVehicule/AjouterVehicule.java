@@ -13,6 +13,7 @@ import AjouterMarque.AjouterMarque;
 import AjouterParking.AjouterParking;
 import AjouterType.AjouterType;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXComboBox;
 
 import AbstactClasses.Abst;
@@ -35,6 +36,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -68,7 +70,7 @@ public class AjouterVehicule implements Initializable{
 	    private JFXButton ajouterTypeButton;
 
 	    @FXML
-	    private ColorPicker colorColorPicker;
+	    private JFXColorPicker colorColorPicker;
 
 	    @FXML
 	    private JFXComboBox<String> parkingComboBox;
@@ -81,6 +83,12 @@ public class AjouterVehicule implements Initializable{
 	    
 	    @FXML
 	    private JFXButton ajouterParkingButton;
+	    @FXML
+		public JFXButton  parcourrirBtn;// bouton pour parcourir la photo
+	    @FXML
+		public ImageView imageView; //image de la vehicule
+	    @FXML
+		public TextField imagePath ;// disabled and editable
 
 	ObservableList<String> carburantList = FXCollections.observableArrayList();
 	ObservableList<String> marqueList = FXCollections.observableArrayList();

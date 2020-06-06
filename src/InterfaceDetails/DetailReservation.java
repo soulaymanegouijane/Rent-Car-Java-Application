@@ -1,6 +1,7 @@
 package InterfaceDetails;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -22,7 +23,7 @@ public class DetailReservation {
     @FXML
     public TextField avance; // Avance Payé par le client
     @FXML
-    public TextField typeRservation; // type de reservation (telephonique ou par presence)
+    public JFXComboBox typeRservation; // type de reservation (telephonique ou par presence)
     @FXML
     public TextField etatReservation; //etat de la reservation (validé ou annulé)
     @FXML
@@ -31,6 +32,12 @@ public class DetailReservation {
     public JFXButton createContratBtn ; // boutton leading to interface ajouter contrat
     @FXML
     public JFXButton  deleteReservationBtn; //supprimer la reservation
+    @FXML
+    public  JFXButton choisirVehiculeBtn;// parcourrir les vehicules
+    @FXML
+    public JFXButton choisirClientBtn;// parcourrir les clients
+    @FXML
+    public  JFXButton EditReservationBtn ;//Modifer Boutton
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();

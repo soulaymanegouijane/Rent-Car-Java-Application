@@ -71,6 +71,8 @@ public class DetailClient implements Initializable{
 
     @FXML
     private JFXButton deleteBtn;
+    @FXML
+    public JFXButton editClientBtn;//boutton Modifier
     
     
     

@@ -15,11 +15,11 @@ public class DetailGarage {
     @FXML
     public TextField occupeParkingTextField; // champ du nombre des emplacement occuppé
     @FXML
-    public TextField idUtilisateurTextField ;// champ d'utilisateur qui a enreegistré le park
-    @FXML
     public JFXButton closeButton; // boutton OK
     @FXML
     public  JFXButton deletebtn ; // boutton supprimer
+    @FXML
+    public JFXButton editParkingBtn ; // Modifier boutton
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();
@@ -27,6 +27,7 @@ public class DetailGarage {
     }
 
     //deleteButtonAction
+    // ModifierBtn
 
 }
 

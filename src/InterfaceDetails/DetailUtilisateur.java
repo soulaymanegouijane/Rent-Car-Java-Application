@@ -59,7 +59,10 @@ public class DetailUtilisateur {
 
     @FXML
     public JFXButton deleteBtn;
-    
+    @FXML
+    public JFXButton editBtn; // Modifier Boutton
+    @FXML
+    public JFXButton editPhotoBtn ; //Modifier la photo de l'utilisateur
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();
