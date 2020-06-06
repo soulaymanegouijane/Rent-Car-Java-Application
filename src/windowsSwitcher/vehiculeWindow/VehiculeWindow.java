@@ -11,6 +11,7 @@ import Entities.Utilisateur;
 import Entities.Vehicule;
 import InterfaceDetails.DetailVehicule;
 import Test.H;
+import com.sun.istack.NotNull;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +21,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import windowsSwitcher.contratWindow.ChoisirVehiculeScene;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -414,16 +419,16 @@ public class VehiculeWindow implements Initializable {
     	DetailVehicule detail = loader.getController();
     	
     	detail.idmatricule.setText(vehiculeSelected.getIdVehicule());
-    	detail.idcolor.setText(vehiculeSelected.getColor());
+    	detail.idcolor.setValue(javafx.scene.paint.Color.valueOf((String) vehiculeSelected.getColor()));
     	detail.nombrePlaceTextField.setText(String.valueOf(vehiculeSelected.getNbr_place()));
     	
     	if(vehiculeSelected.getDispo()) {
-    		detail.dispoVehicule.setText("disponible");
+    		detail.dispoVehicule.setValue("disponible");
     	}else {
-    		detail.dispoVehicule.setText("indisponible");
+    		detail.dispoVehicule.setValue("indisponible");
     	}
-    	detail.TypeCarburant.setText(vehiculeSelected.getCarburant().getLibelle());
-    	detail.marqueVoiture.setText(vehiculeSelected.getType().getMarque().getLibelle());
+    	detail.TypeCarburant.setValue(vehiculeSelected.getCarburant().getLibelle());
+    	detail.marqueVoiture.setValue(vehiculeSelected.getType().getMarque().getLibelle());
     	detail.idParking.setText(vehiculeSelected.getParking().getAdress());
     }
 

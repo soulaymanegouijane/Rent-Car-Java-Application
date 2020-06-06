@@ -213,7 +213,7 @@ public class ReservationWindow implements Initializable {
 			if(searchSection.equals("Utilisateur")) {
 				sql = "select * from reservation where idReservation=?";
 				ps = con.prepareStatement(sql);
-				ps.setLong(1, Long.valueOf(valeur));
+				ps.setLong(1, Long.parseLong(valeur));
 			}
 			if(searchSection.equals("Type")) {
 				sql = "select * from reservation where idTypeRes=?";
@@ -269,7 +269,7 @@ public class ReservationWindow implements Initializable {
     	detail.dateRetourDatePicker.setValue(H.convert(reservationSelected.getDate_retour()));
     	detail.vehicule.setText(reservationSelected.getVehicule().getIdVehicule());
     	detail.client.setText(reservationSelected.getClient().getIdClient());
-    	detail.typeRservation.setText(reservationSelected.getTypeRes().getLibelle());
+    	detail.typeRservation.setValue(reservationSelected.getTypeRes().getLibelle());
     	detail.idReservation.setText(String.valueOf(reservationSelected.getIdReservation()));
     	detail.etatReservation.setText(reservationSelected.getStatus().getLibelle());
     	
