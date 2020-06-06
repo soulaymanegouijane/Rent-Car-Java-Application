@@ -386,7 +386,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="58.0" prefWidth="386.0">
                     <children>
-                  <JFXButton fx:id="editClientBtn" alignment="CENTER" layoutX="110.0" layoutY="17.0" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                  <JFXButton fx:id="editClientBtn" alignment="CENTER" layoutX="110.0" layoutY="17.0" onAction="#modifierClient" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                            <image>
