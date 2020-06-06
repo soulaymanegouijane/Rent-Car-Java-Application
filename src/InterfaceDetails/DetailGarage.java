@@ -20,6 +20,7 @@ public class DetailGarage {
     public  JFXButton deletebtn ; // boutton supprimer
     @FXML
     public JFXButton editParkingBtn ; // Modifier boutton
+    
     @FXML
     public void closeButtonAction(){
         Stage stage =(Stage) closeButton.getScene().getWindow();

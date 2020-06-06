@@ -1,5 +1,8 @@
 package AjouterVehicule;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -36,16 +39,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class AjouterVehicule implements Initializable{
+	
+	 @FXML
+	    private ImageView imageView;
 
-	public Label erreurMessage;
-	@FXML
+	    @FXML
+	    private TextField imagePath;
+
+	    @FXML
+	    private JFXButton parcourrirBtn;
+
+	    @FXML
 	    private TextField matriculeTextField;
 
 	    @FXML
@@ -76,19 +89,16 @@ public class AjouterVehicule implements Initializable{
 	    private JFXComboBox<String> parkingComboBox;
 
 	    @FXML
+	    private JFXButton ajouterParkingButton;
+
+	    @FXML
 	    private JFXButton closeButton;
 
 	    @FXML
 	    private JFXButton submitButton;
-	    
+
 	    @FXML
-	    private JFXButton ajouterParkingButton;
-	    @FXML
-		public JFXButton  parcourrirBtn;// bouton pour parcourir la photo
-	    @FXML
-		public ImageView imageView; //image de la vehicule
-	    @FXML
-		public TextField imagePath ;// disabled and editable
+	    private Label erreurMessage;
 
 	ObservableList<String> carburantList = FXCollections.observableArrayList();
 	ObservableList<String> marqueList = FXCollections.observableArrayList();
@@ -197,8 +207,7 @@ public class AjouterVehicule implements Initializable{
 		Stage stage =(Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}
-	    
-	    
+	        
 	public void carburant_base_donnee() {
 		ResultSet tous_les_carburant = null;
 		try {
@@ -256,6 +265,21 @@ public class AjouterVehicule implements Initializable{
 			vehicule.setParking(H.parking.get(parking));
 			vehicule.setType(H.type.get(typ));
 			vehicule.setDispo(true);
+			
+			try {
+				FileInputStream inputStream = new FileInputStream(file);
+				try {
+					inputStream.read(bFile);
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			vehicule.setImage(bFile);
+			
 			H.vehicule.add(vehicule);
 
 			Stage stg = (Stage) closeButton.getScene().getWindow();
@@ -332,4 +356,21 @@ public class AjouterVehicule implements Initializable{
 			return true;
 		return false;
 	}
+
+	FileChooser fc = new FileChooser();
+    File selectedfile = null;
+    File file = null;
+    byte[] bFile = null;
+    public void btnimageAction(ActionEvent event){
+        
+        selectedfile = fc.showOpenDialog(null);
+        if(selectedfile!=null){
+            Image newimage = new Image(selectedfile.toURI().toString(),200,150,true,true);
+            imagePath.setText(selectedfile.getAbsolutePath());
+            imageView.setImage(newimage);
+            file = new File(selectedfile.getAbsolutePath());
+            bFile = new byte[(int) file.length()];
+            System.out.println(selectedfile.getAbsolutePath());
+        }
+    }
 }

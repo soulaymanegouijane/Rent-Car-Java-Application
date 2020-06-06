@@ -71,7 +71,7 @@ public class ChoisirClientScene implements Initializable {
         	
         	Client selectedClient= clientTableView.getSelectionModel().getSelectedItem();
             cinClientSelected = selectedClient.getIdClient();
-
+            
             Stage stage = (Stage) choisirButton.getScene().getWindow();
             stage.close();
         }

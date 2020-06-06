@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -23,7 +24,18 @@ public class Vehicule implements Serializable{
 	@Column(name="dispo",nullable=true)
 	private boolean dispo;
 	
+	@Lob
+	@Column(name="photo", columnDefinition = "BLOB")
+	private byte [] image;
 	
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	private String typeVehicule;
 	private String marqueLibelle;
 	

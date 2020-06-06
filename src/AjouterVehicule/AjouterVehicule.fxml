@@ -60,7 +60,7 @@
                         <Insets left="60.0" />
                      </HBox.margin>
                   </TextField>
-                  <JFXButton fx:id="parcourrirBtn" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir" textFill="WHITE">
+                  <JFXButton fx:id="parcourrirBtn" onAction="#btnimageAction" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Parcourrir" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

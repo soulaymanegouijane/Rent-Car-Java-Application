@@ -187,9 +187,9 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="choisirParkingBtn" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;">
+                  <Button fx:id="choisirParkingBtn" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#EditParking" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;">
                      <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="editParkingBtn" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Css/Images/pen.png" />
                            </image>

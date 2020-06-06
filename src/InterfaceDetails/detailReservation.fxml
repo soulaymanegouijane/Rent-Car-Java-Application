@@ -73,7 +73,7 @@
                                 <Insets left="100.0" />
                             </HBox.margin>
                         </TextField>
-                  <JFXButton fx:id="choisirVehiculeBtn" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Un Véhicule" textFill="WHITE">
+                  <JFXButton fx:id="choisirVehiculeBtn" onAction="#choisirVehiculeBtn" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Un Véhicule" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -92,7 +92,7 @@
                                 <Insets left="100.0" />
                             </HBox.margin>
                         </TextField>
-                  <JFXButton fx:id="choisirClientBtn" prefWidth="138.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Un Client" textFill="WHITE">
+                  <JFXButton fx:id="choisirClientBtn" onAction="#choisirClientBtn" prefWidth="138.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Un Client" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>

@@ -24,7 +24,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 	public int add(Vehicule arg) {
 		int status = 0;
 		try {
-			String sql = "insert into vehicule (idVehicule,nbr_place,idParking,idCarburant,idType,color,dispo) values (?,?,?,?,?,?,?)";
+			String sql = "insert into vehicule (idVehicule,nbr_place,idParking,idCarburant,idType,color,dispo,photo) values (?,?,?,?,?,?,?,?)";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getIdVehicule());
@@ -34,6 +34,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			ps.setLong(5, arg.getType().getIdType());
 			ps.setString(6, arg.getColor());
 			ps.setBoolean(7, arg.getDispo());
+			ps.setBytes(8, arg.getImage());
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,6 +180,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 				vehicule.setParking(H.parking.getById(rs.getLong("idParking")));
 				vehicule.setCarburant(H.carburant.getById(rs.getLong("idCarburant")));
 				vehicule.setType(H.type.getById(rs.getLong("idType")));
+				vehicule.setImage(rs.getBytes("photo"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");

@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -35,6 +36,7 @@ import javafx.stage.StageStyle;
 import windowsSwitcher.contratWindow.ChoisirVehiculeScene;
 
 import java.awt.*;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -430,6 +432,7 @@ public class VehiculeWindow implements Initializable {
     	detail.TypeCarburant.setValue(vehiculeSelected.getCarburant().getLibelle());
     	detail.marqueVoiture.setValue(vehiculeSelected.getType().getMarque().getLibelle());
     	detail.idParking.setText(vehiculeSelected.getParking().getAdress());
+    	detail.photoVehicule.setImage(new Image(new ByteArrayInputStream(vehiculeSelected.getImage()), 142, 123, false, false));
     }
 
 	public void handleButtonChoisirParking(ActionEvent actionEvent) throws IOException {

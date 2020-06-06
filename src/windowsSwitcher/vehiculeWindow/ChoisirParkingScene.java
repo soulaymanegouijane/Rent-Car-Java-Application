@@ -58,6 +58,7 @@ public class ChoisirParkingScene implements Initializable {
 	
     ObservableList<Parking> parking_list = FXCollections.observableArrayList();
     public String idParkingChoisi = null;
+    public String adressParkingChoisi = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Fill parkingTableView
@@ -82,6 +83,7 @@ public class ChoisirParkingScene implements Initializable {
         	
         	Parking selectedParking= parkingTableView.getSelectionModel().getSelectedItem();
             idParkingChoisi = String.valueOf(selectedParking.getIdParking());
+            adressParkingChoisi = selectedParking.getAdress();
 
             Stage stage = (Stage) choisirButton.getScene().getWindow();
             stage.close();

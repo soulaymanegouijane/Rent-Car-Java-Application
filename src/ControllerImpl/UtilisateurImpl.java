@@ -32,8 +32,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			preparedStatement.setString(6, arg.getIdUtilisateur());
 			preparedStatement.setString(7,arg.getCivilite());
 			preparedStatement.setString(8,arg.getLieu_naissance());
-			preparedStatement.setString(9, arg.getCode_postale());
-			preparedStatement.setString(10, arg.getVille());
+			preparedStatement.setString(9, arg.getVille());
+			preparedStatement.setString(10, arg.getCode_postale());
 			preparedStatement.setString(11, arg.getPays());
 			preparedStatement.setString(12, arg.getNationalite());
 			preparedStatement.setString(13, arg.getEtat_compte());
@@ -241,6 +241,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setNaissance(rs.getString("naissance"));
 				c.setUsername(rs.getString("username"));
 				c.setPass(rs.getString("pass"));
+				c.setImage(rs.getBytes("photo"));
 			}else {
 				return null;
 			}
