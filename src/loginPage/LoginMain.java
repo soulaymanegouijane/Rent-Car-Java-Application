@@ -45,7 +45,7 @@ public class LoginMain implements Initializable {
     public Button exitButton;
     public AnchorPane rootPane;
 
-    public Utilisateur loggedInUser = new Utilisateur();
+    public static Utilisateur loggedInUser = new Utilisateur();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,6 +94,8 @@ public class LoginMain implements Initializable {
                     loggedInUser.setPass(loggedUtilisateur.getString("pass"));
                     loggedInUser.setImage(loggedUtilisateur.getBytes("photo"));
                     loggedInUser.setRole(H.role.getById(loggedUtilisateur.getLong("idRole")));
+                }else{
+                    erreurMessage.setVisible(true);
                 }
 
                 if (password.getText().equals(loggedInUser.getPass())) {
@@ -103,8 +105,8 @@ public class LoginMain implements Initializable {
                     Parent root = loader.load();
 
                     windowsSwitcher switcher = loader.getController();
-                    switcher.loggedInUser = loggedInUser;
                     switcher.handleAcceuilButton(actionEvent);
+                    windowsSwitcher.loggedInUser = loggedInUser;
 
                     Scene home = new Scene(root);
                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -126,6 +128,8 @@ public class LoginMain implements Initializable {
 
                     stage.setScene(home);
                     stage.show();
+                }else{
+                    erreurMessage.setVisible(true);
                 }
                 con.close();
             } catch (SQLException e) {

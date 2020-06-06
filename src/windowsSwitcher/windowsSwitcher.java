@@ -48,7 +48,7 @@ public class windowsSwitcher {
     @FXML
     private AnchorPane windowSpace;
 
-    public Utilisateur loggedInUser = null;
+    public static Utilisateur loggedInUser = null;
     
 
     public void handleAcceuilButton(ActionEvent actionEvent) {
@@ -158,8 +158,8 @@ public class windowsSwitcher {
 
     public void handleCompteButton(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("compteWindow/compteWindow.fxml"));
-        CompteWindow compteWindow = loader.getController();
-        compteWindow.User = loggedInUser;
+
+        CompteWindow.User = loggedInUser;
 
         AnchorPane pane = loader.load();
         windowSpace.getChildren().setAll(pane);
