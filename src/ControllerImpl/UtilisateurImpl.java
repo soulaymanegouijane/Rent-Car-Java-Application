@@ -53,10 +53,15 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 
 	@Override
 	public Utilisateur edit(Utilisateur arg) {
-		
-		String sql = "UPDATE utilisateur SET nom = ?,prenom = ?,adress = ?,email = ?,telephone = ?,idUtilisateur = ?,civilite = ?,lieu_naissance ?,code_postale ?,ville =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,type_identifiant =?,photo =?,username =?,pass=? where idUtilisateur=?";
 		Connection con = Abst.getConnection();
+		Utilisateur user = null;
 		try {
+			String sq = "UPDATE utilisateur set nom = ?,prenom = ?,adress = ?,email = ?,telephone = ?,civilite = ?,"
+					+ "lieu_naissance ?,code_postale ?,ville =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,"
+					+ "type_identifiant =?,username =?,pass=? where idUtilisateur=?";
+			String sql = "update utilisateur set nom=?,prenom=?,adress=?,telephone=?,email=?,civilite=?,"
+					+ "lieu_naissance=?,ville=?,code_postale=?,pays=?,nationalite=?,"
+					+ "etat_compte=?,idRole=?,naissance=?,type_identifiant=?,username=?,pass=? where idUtilisateur=?";
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
 			
 			preparedStatement.setString(1,arg.getNom());
@@ -64,29 +69,28 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			preparedStatement.setString(3,arg.getAdress());
 			preparedStatement.setString(4,arg.getEmail());
 			preparedStatement.setString(5,arg.getTele());
-			preparedStatement.setString(6, arg.getIdUtilisateur());
-			preparedStatement.setString(7,arg.getCivilite());
-			preparedStatement.setString(8,arg.getLieu_naissance());
-			preparedStatement.setString(9, arg.getCode_postale());
-			preparedStatement.setString(10, arg.getVille());
-			preparedStatement.setString(11, arg.getPays());
-			preparedStatement.setString(12, arg.getNationalite());
-			preparedStatement.setString(13, arg.getEtat_compte());
-			preparedStatement.setLong(14,arg.getRole().getIdRole());
-			preparedStatement.setString(15, arg.getNaissance());
-			preparedStatement.setString(16, arg.getCarte_identifiant());
-			preparedStatement.setBytes(17, arg.getImage());
-			preparedStatement.setString(18, arg.getUsername());
-			preparedStatement.setString(19, arg.getPass());
-			preparedStatement.setString(20, arg.getIdUtilisateur());
+			preparedStatement.setString(6,arg.getCivilite());
+			preparedStatement.setString(7,arg.getLieu_naissance());
+			preparedStatement.setString(8, arg.getCode_postale());
+			preparedStatement.setString(9, arg.getVille());
+			preparedStatement.setString(10, arg.getPays());
+			preparedStatement.setString(11, arg.getNationalite());
+			preparedStatement.setString(12, arg.getEtat_compte());
+			preparedStatement.setLong(13,arg.getRole().getIdRole());
+			preparedStatement.setString(14, arg.getNaissance());
+			preparedStatement.setString(15, arg.getCarte_identifiant());
+			preparedStatement.setBytes(16, arg.getImage());
+			preparedStatement.setString(16, arg.getUsername());
+			preparedStatement.setString(17, arg.getPass());
+			preparedStatement.setString(18, arg.getIdUtilisateur());
 			preparedStatement.executeUpdate();
-			arg = H.utilisateur.getById(arg.getIdUtilisateur());
+			user = getById(arg.getIdUtilisateur());
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return arg;
+		return user;
 	}
 
 	@Override

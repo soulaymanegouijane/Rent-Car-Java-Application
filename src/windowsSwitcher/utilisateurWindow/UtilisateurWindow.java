@@ -89,7 +89,7 @@ public class UtilisateurWindow implements Initializable {
     @FXML
     private Button detailUtilisateurButton;
     
-    public Utilisateur userSelected = new Utilisateur();
+    public Utilisateur userSelected = null;
 
     String searchSection = null;
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "CIN", "Nom", "Prenom", "Etat de compte");
@@ -145,25 +145,6 @@ public class UtilisateurWindow implements Initializable {
 
     }
     
-    /*public void FunctionAffiche(FXMLLoader loader){
-    	DetailUtilisateur detail = loader.getController();
-    	
-    	detail.profilImage.setImage(new Image(new ByteArrayInputStream(userSelected.getImage()), 142, 123, false, false));
-    	detail.prenomTextField.setText(userSelected.getPrenom());
-    	detail.nomTextField.setText(userSelected.getNom());
-    	detail.nationaliteTextField.setText(userSelected.getNationalite());
-    	detail.lieuNaissanceTextField.setText(userSelected.getLieu_naissance());
-    	detail.emailTextField.setText(userSelected.getEmail());
-    	detail.codePostalTextField.setText(userSelected.getCode_postale());
-    	detail.villeTextField.setText(userSelected.getVille());
-    	detail.dateNaissanceDatePicker.setValue(H.convert(userSelected.getNaissance()));
-    	detail.adresseTextField.setText(userSelected.getAdress());
-    	detail.numeroTelephoneTextField.setText(userSelected.getTele());
-    	detail.cinTypeTextField.setText(userSelected.getCarte_identifiant());
-    	detail.numeroCinTextField.setText(userSelected.getIdUtilisateur());
-    	detail.paysTextField.setText(userSelected.getPays());
-    }*/
-    
     
     
     @FXML
@@ -175,6 +156,7 @@ public class UtilisateurWindow implements Initializable {
     	}else {
     		String cin = tableauUtilisateurs.getSelectionModel().getSelectedItem().getIdUtilisateur();
     		userSelected = H.utilisateur.getById(cin);
+    		System.out.println("************************ ----------------> " + userSelected.getNaissance());
     		detailUtilisateurButton.setDisable(false);
     	}
     }
