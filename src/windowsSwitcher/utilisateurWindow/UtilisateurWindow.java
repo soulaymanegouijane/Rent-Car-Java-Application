@@ -89,7 +89,7 @@ public class UtilisateurWindow implements Initializable {
     @FXML
     private Button detailUtilisateurButton;
     
-    public Utilisateur userSelected = new Utilisateur();
+    public Utilisateur userSelected = null;
 
     String searchSection = null;
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "CIN", "Nom", "Prenom", "Etat de compte");
@@ -145,25 +145,6 @@ public class UtilisateurWindow implements Initializable {
 
     }
     
-    /*public void FunctionAffiche(FXMLLoader loader){
-    	DetailUtilisateur detail = loader.getController();
-    	
-    	detail.profilImage.setImage(new Image(new ByteArrayInputStream(userSelected.getImage()), 142, 123, false, false));
-    	detail.prenomTextField.setText(userSelected.getPrenom());
-    	detail.nomTextField.setText(userSelected.getNom());
-    	detail.nationaliteTextField.setText(userSelected.getNationalite());
-    	detail.lieuNaissanceTextField.setText(userSelected.getLieu_naissance());
-    	detail.emailTextField.setText(userSelected.getEmail());
-    	detail.codePostalTextField.setText(userSelected.getCode_postale());
-    	detail.villeTextField.setText(userSelected.getVille());
-    	detail.dateNaissanceDatePicker.setValue(H.convert(userSelected.getNaissance()));
-    	detail.adresseTextField.setText(userSelected.getAdress());
-    	detail.numeroTelephoneTextField.setText(userSelected.getTele());
-    	detail.cinTypeTextField.setText(userSelected.getCarte_identifiant());
-    	detail.numeroCinTextField.setText(userSelected.getIdUtilisateur());
-    	detail.paysTextField.setText(userSelected.getPays());
-    }*/
-    
     
     
     @FXML
@@ -175,6 +156,7 @@ public class UtilisateurWindow implements Initializable {
     	}else {
     		String cin = tableauUtilisateurs.getSelectionModel().getSelectedItem().getIdUtilisateur();
     		userSelected = H.utilisateur.getById(cin);
+    		System.out.println("************************ ----------------> " + userSelected.getNaissance());
     		detailUtilisateurButton.setDisable(false);
     	}
     }
@@ -216,8 +198,6 @@ public class UtilisateurWindow implements Initializable {
         	utilisateur_list.clear();
         	mono_Utilisateur.clear();
             String CINTaped = dataTextFeild.getText();
-            utilisateur_list.clear();
-            mono_Utilisateur.clear();
             if(CINTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
@@ -229,8 +209,6 @@ public class UtilisateurWindow implements Initializable {
         	utilisateur_list.clear();
         	mono_Utilisateur.clear();
             String NomTaped = dataTextFeild.getText();
-            utilisateur_list.clear();
-            mono_Utilisateur.clear();
 
             if(NomTaped.isEmpty()){
                 enable(ErreurMessage);
@@ -243,8 +221,6 @@ public class UtilisateurWindow implements Initializable {
         	utilisateur_list.clear();
         	mono_Utilisateur.clear();
             String PrenomTaped = dataTextFeild.getText();
-            utilisateur_list.clear();
-            mono_Utilisateur.clear();
 
             if(PrenomTaped.isEmpty()){
                 enable(ErreurMessage);
@@ -257,13 +233,12 @@ public class UtilisateurWindow implements Initializable {
         	utilisateur_list.clear();
         	mono_Utilisateur.clear();
             String EtatTaped = compteComboBox.getValue();
-            utilisateur_list.clear();
-            mono_Utilisateur.clear();
             if(EtatTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
             	// Search User by Etat de compte
-                afficher_utilisateur(EtatTaped);
+            	System.out.println(EtatTaped);
+            	etatCompte(EtatTaped);
             }
             
         }else {
@@ -354,9 +329,6 @@ public class UtilisateurWindow implements Initializable {
 			if(searchSection.equals("CIN")) {
 				sql = "select * from utilisateur where idUtilisateur=?";
 			}
-			if(searchSection.equals("Etat de compte")) {
-				sql = "select * from utilisateur where etat_compte=?";
-			}
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, valeur);
@@ -365,18 +337,18 @@ public class UtilisateurWindow implements Initializable {
 				utilisateur.setIdUtilisateur(tous_les_utilisateur.getString("idUtilisateur"));
 				utilisateur.setNom(tous_les_utilisateur.getString("nom"));
 				utilisateur.setPrenom(tous_les_utilisateur.getString("prenom"));
-				utilisateur.setAdress(tous_les_utilisateur.getString("adresse"));
+				utilisateur.setAdress(tous_les_utilisateur.getString("adress"));
 				utilisateur.setTele(tous_les_utilisateur.getString("telephone"));
 				utilisateur.setEmail(tous_les_utilisateur.getString("email"));
-				utilisateur.setNaissance(tous_les_utilisateur.getString("date_naissance"));
+				utilisateur.setNaissance(tous_les_utilisateur.getString("naissance"));
 				utilisateur.setEtat_compte(tous_les_utilisateur.getString("etat_compte"));
-				//mono_Utilisateur.add(client);
+				mono_Utilisateur.add(utilisateur);
 			}
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		mono_Utilisateur.add(utilisateur);
+		
 		col_cin.setCellValueFactory(new PropertyValueFactory<>("idUtilisateur"));
         col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -387,5 +359,42 @@ public class UtilisateurWindow implements Initializable {
         col_etat_compte.setCellValueFactory(new PropertyValueFactory<>("etat_compte"));
         
         tableauUtilisateurs.setItems(mono_Utilisateur);
+    }
+    
+    public void etatCompte(String valeur) {
+    	
+    	String sql = "select * from utilisateur where etat_compte=?";
+    	Connection con = Abst.getConnection();
+    	try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, valeur);
+			ResultSet tous_les_utilisateur = ps.executeQuery();
+			while(tous_les_utilisateur.next()) {
+				Utilisateur utilisateur = new Utilisateur();
+				utilisateur.setIdUtilisateur(tous_les_utilisateur.getString("idUtilisateur"));
+				utilisateur.setNom(tous_les_utilisateur.getString("nom"));
+				utilisateur.setPrenom(tous_les_utilisateur.getString("prenom"));
+				utilisateur.setAdress(tous_les_utilisateur.getString("adress"));
+				utilisateur.setTele(tous_les_utilisateur.getString("telephone"));
+				utilisateur.setEmail(tous_les_utilisateur.getString("email"));
+				utilisateur.setNaissance(tous_les_utilisateur.getString("naissance"));
+				utilisateur.setEtat_compte(tous_les_utilisateur.getString("etat_compte"));
+				mono_Utilisateur.add(utilisateur);
+			}
+			con.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+		col_cin.setCellValueFactory(new PropertyValueFactory<>("idUtilisateur"));
+	    col_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+	    col_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+	    col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+	    col_adresse.setCellValueFactory(new PropertyValueFactory<>("adress"));
+	    col_date_naissance.setCellValueFactory(new PropertyValueFactory<>("naissance"));
+	    col_tel.setCellValueFactory(new PropertyValueFactory<>("tele"));
+	    col_etat_compte.setCellValueFactory(new PropertyValueFactory<>("etat_compte"));
+	    
+	    tableauUtilisateurs.setItems(mono_Utilisateur);
     }
 }

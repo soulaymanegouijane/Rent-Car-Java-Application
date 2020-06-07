@@ -3,6 +3,7 @@ package Test;
 
 
 import AbstactClasses.Abst;
+import Entities.Carburant;
 import Entities.Utilisateur;
 
 
@@ -12,8 +13,17 @@ public class TestApp extends Abst {
 		
 		System.out.println("test");
 		
-//		Utilisateur user = H.utilisateur.getByUsername("admin");
-//		System.out.println(user);
+//		Carburant carb = H.carburant.getById(1);
+//		System.out.println(carb.toString());
+//		
+//		carb.setLibelle("Hybride");
+//		H.carburant.edit(carb);
+//		System.out.println(carb);
+		
+		Utilisateur user = H.utilisateur.getById("JM63689");
+		System.out.println(user.toString());
+		user.setPrenom("zakaria");
+		H.utilisateur.edit(user);
 	}
 
 //	public static Date date_now(){

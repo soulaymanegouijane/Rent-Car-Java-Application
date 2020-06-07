@@ -3,6 +3,8 @@ package InterfaceDetails;
 import Entities.Utilisateur;
 import Test.H;
 import com.jfoenix.controls.JFXButton;
+
+import AbstactClasses.Abst;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,8 +24,14 @@ import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -76,6 +84,10 @@ public class DetailUtilisateur {
 
     @FXML
     public JFXButton deleteBtn;
+    
+    @FXML
+    private TextField imgFieldText;
+    
     @FXML
     public JFXButton editBtn; // Modifier Boutton
     @FXML
@@ -87,7 +99,14 @@ public class DetailUtilisateur {
     public VBox editVBox;
     public VBox nonEditVBox;
 
-    public Utilisateur User = new Utilisateur();
+    
+    FileChooser imageChooser = new FileChooser();
+    File fileChosen = null;
+    byte[] bFile = null;
+    File file = null;
+    
+    
+    public Utilisateur User = null;
 
     public void fillBlanks(){
         profilImage.setImage(new Image(new ByteArrayInputStream(User.getImage()), 142, 123, false, false));
@@ -104,6 +123,7 @@ public class DetailUtilisateur {
         cinTypeTextField.setText(User.getCarte_identifiant());
         numeroCinTextField.setText(User.getIdUtilisateur());
         paysTextField.setText(User.getPays());
+        genreUtilisateurTextField.setText(Civilite(User.getIdUtilisateur()));
     }
 
     public void rewriteUserInfos(){
@@ -114,12 +134,52 @@ public class DetailUtilisateur {
         User.setEmail(emailTextField.getText());
         User.setCode_postale(codePostalTextField.getText());
         User.setVille(villeTextField.getText());
-        User.setNaissance(dateNaissanceDatePicker.getValue().getDayOfMonth() + "/" + dateNaissanceDatePicker.getValue().getMonthValue() + "/" + dateNaissanceDatePicker.getValue().getYear());
+        User.setNaissance(((TextField)dateNaissanceDatePicker.getEditor()).getText());
         User.setAdress(adresseTextField.getText());
         User.setTele(numeroTelephoneTextField.getText());
         User.setCarte_identifiant(cinTypeTextField.getText());
         User.setIdUtilisateur(numeroCinTextField.getText());
         User.setPays(paysTextField.getText());
+        
+        try {
+			FileInputStream inputStream = new FileInputStream(file);
+			try {
+				inputStream.read(bFile);
+				inputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        User.setImage(bFile);
+    }
+    
+    public String Civilite(String idUser) {
+    	String sql ="select * from utilisateur where idUtilisateur = ?";
+    	Connection con = Abst.getConnection();
+    	String str = null;
+    	System.out.println("---------------------------------------> from civilite");
+    	try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, idUser);
+			ResultSet rs = ps.executeQuery();
+			System.out.println("bien------------->civilite");
+			if(rs.next()) {
+				System.out.println(rs.getString("civilite"));
+				if(rs.getString("civilite").equals("Homme")) {
+					str=  "Mr";
+					System.out.println("-------------> Homme");
+				}else if(rs.getString("civilite").equals("Femme")) {
+					str = "Mlle";
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return str;
     }
 
     @FXML
@@ -140,20 +200,30 @@ public class DetailUtilisateur {
         fillBlanks();
         disableFields();
     }
-
+    
     public void handleChooseProfilImageButton(ActionEvent actionEvent) {
-        FileChooser imageChooser = new FileChooser();
+    	FileChooser.ExtensionFilter extensionFilterpng = new FileChooser.ExtensionFilter("png files (*.png)","*.png");
         FileChooser.ExtensionFilter extensionFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.JPG)","*.JPG");
         FileChooser.ExtensionFilter extensionFilterjpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)","*.jpg");
         FileChooser.ExtensionFilter extensionFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.PNG)","*.PNG");
-        FileChooser.ExtensionFilter extensionFilterpng = new FileChooser.ExtensionFilter("png files (*.png)","*.png");
+        
         imageChooser.getExtensionFilters().addAll(extensionFilterJPG, extensionFilterjpg, extensionFilterPNG, extensionFilterpng);
 
         //Show open file dialog
-        File fileChosen = imageChooser.showOpenDialog(null);
-
-        Image imageChosen = new Image(fileChosen.toURI().toString(),142,123,false,false);
-        profilImage.setImage(imageChosen);
+        fileChosen = imageChooser.showOpenDialog(null);
+        
+        
+        if(fileChosen!=null){
+        	Image imageChosen = new Image(fileChosen.toURI().toString(),142,123,false,false);
+            imgFieldText.setText(fileChosen.getAbsolutePath());
+            profilImage.setImage(imageChosen);
+            file = new File(fileChosen.getAbsolutePath());
+            bFile = new byte[(int) file.length()];
+            System.out.println("-------------->  "+fileChosen.getAbsolutePath());
+        }
+        
+        
+        
     }
 
     public void handleSaveChangesButton(ActionEvent actionEvent) {

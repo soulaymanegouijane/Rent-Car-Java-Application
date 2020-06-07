@@ -3,6 +3,7 @@ package Entities;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,14 +60,29 @@ public class Utilisateur implements Serializable{
 	private String username;
 	@Column(name="pass",nullable=true)
 	private String pass;
+	@Column(name="code_postale",nullable=true)
+	private String  code_postale;
 	
 	@Lob
-	@Column(name="photo", columnDefinition = "BLOB")
+	@Column(name="photo", columnDefinition = "BLOB",nullable=true)
 	private byte [] image;
 	
 	@ManyToOne
 	@JoinColumn(name="idRole",referencedColumnName = "idRole",insertable = false,updatable = false)
 	private Role role;
+
+	
+	
+
+	@Override
+	public String toString() {
+		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", nom=" + nom + ", prenom=" + prenom + ", tele=" + tele
+				+ ", adress=" + adress + ", email=" + email + ", naissance=" + naissance + ", etat_compte="
+				+ etat_compte + ", idRole=" + idRole + ", civilite=" + civilite + ", lieu_naissance=" + lieu_naissance
+				+ ", ville=" + ville + ", pays=" + pays + ", nationalite=" + nationalite + ", carte_identifiant="
+				+ carte_identifiant + ", username=" + username + ", pass=" + pass + ", image=" + Arrays.toString(image)
+				+ ", role=" + role + ", code_postale=" + code_postale + "]";
+	}
 
 
 	public String getUsername() {
@@ -151,8 +167,7 @@ public class Utilisateur implements Serializable{
 	public void setPays(String pays) {
 		this.pays = pays;
 	}
-	@Column(name="code_postale",nullable=true)
-	private String  code_postale;
+	
 
 	
 
