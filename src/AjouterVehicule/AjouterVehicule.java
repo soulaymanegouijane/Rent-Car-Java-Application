@@ -83,7 +83,7 @@ public class AjouterVehicule implements Initializable{
 	    private JFXButton ajouterTypeButton;
 
 	    @FXML
-	    private JFXColorPicker colorColorPicker;
+	    private ColorPicker colorColorPicker;
 
 	    @FXML
 	    private JFXComboBox<String> parkingComboBox;
