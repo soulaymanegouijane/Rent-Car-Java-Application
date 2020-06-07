@@ -501,7 +501,7 @@ public class VehiculeWindow implements Initializable {
 	    	PreparedStatement ps = null;
 	    	Connection con = null;
 			if(searchSection.equals("Matricule")) {
-				sql = "select * from vehicule where matricule=?";
+				sql = "select * from vehicule where idVehicule=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
@@ -535,7 +535,7 @@ public class VehiculeWindow implements Initializable {
 			
 			tous_les_vehicule = ps.executeQuery();
 			if(tous_les_vehicule.next()) {
-				vehicule.setIdVehicule(tous_les_vehicule.getString("matricule"));
+				vehicule.setIdVehicule(tous_les_vehicule.getString("idVehicule"));
 				vehicule.setNbr_place(tous_les_vehicule.getInt("nbr_place"));
 //				vehicule.setLibelle_parking(H.parking.getById(tous_les_vehicule.getLong("idParking")).getAdress());
 //				vehicule.setLibelle_carburant(H.carburant.getById(tous_les_vehicule.getLong("idCarburant")).getLibelle());

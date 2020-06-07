@@ -137,7 +137,7 @@ public class DetailUtilisateur {
     public void handleCancelEditingButton(ActionEvent actionEvent) {
         nonEditVBox.setVisible(true);
         editVBox.setVisible(false);
-        //fillBlanks();
+        fillBlanks();
         disableFields();
     }
 
@@ -161,7 +161,15 @@ public class DetailUtilisateur {
         editVBox.setVisible(false);
         disableFields();
 
-        //rewriteUserInfos();
+        rewriteUserInfos();
+        try {
+        	Utilisateur utilisateur = H.utilisateur.edit(User);
+        	if(utilisateur == null) {
+        		System.out.println("erreur");
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     public void handleDeleteBtn(ActionEvent actionEvent) {

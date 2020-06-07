@@ -54,7 +54,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	@Override
 	public Utilisateur edit(Utilisateur arg) {
 		
-		String sql = "UPDATE utilisateur SET nom = ?,prenom = ?,adress = ?,telephone = ?,email = ?,idUtilisateur = ?,civilite = ?,lieu_naissance ?,ville ?,code_postale =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,type_identifiant =?,photo =?,username =?,pass=? where idUtilisateur=?";
+		String sql = "UPDATE utilisateur SET nom = ?,prenom = ?,adress = ?,email = ?,telephone = ?,idUtilisateur = ?,civilite = ?,lieu_naissance ?,code_postale ?,ville =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,type_identifiant =?,photo =?,username =?,pass=? where idUtilisateur=?";
 		Connection con = Abst.getConnection();
 		try {
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
