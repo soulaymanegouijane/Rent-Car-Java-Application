@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -206,7 +206,7 @@
                         <Insets top="20.0" />
                      </padding>
                   </Label>
-                  <JFXColorPicker fx:id="colorColorPicker" prefWidth="180.0" />
+                  <ColorPicker fx:id="colorColorPicker" prefHeight="25.0" prefWidth="176.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0" spacing="5.0">
