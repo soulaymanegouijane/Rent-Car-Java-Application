@@ -89,7 +89,7 @@ public class UtilisateurWindow implements Initializable {
     @FXML
     private Button detailUtilisateurButton;
     
-    public Utilisateur userSelected = null;
+    public Utilisateur userSelected = new Utilisateur();
 
     String searchSection = null;
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "CIN", "Nom", "Prenom", "Etat de compte");
@@ -130,11 +130,11 @@ public class UtilisateurWindow implements Initializable {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailUtilisateur.fxml"));
         Parent root = loader.load();
         
-        FunctionAffiche(loader);
+        //FunctionAffiche(loader);
         
-//        DetailUtilisateur detail = loader.getController();
-//        detail.User = userSelected;
-//        detail.fillBlanks();
+        DetailUtilisateur detail = loader.getController();
+        detail.User = userSelected;
+        detail.fillBlanks();
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -145,7 +145,7 @@ public class UtilisateurWindow implements Initializable {
 
     }
     
-    public void FunctionAffiche(FXMLLoader loader){
+    /*public void FunctionAffiche(FXMLLoader loader){
     	DetailUtilisateur detail = loader.getController();
     	
     	detail.profilImage.setImage(new Image(new ByteArrayInputStream(userSelected.getImage()), 142, 123, false, false));
@@ -162,7 +162,7 @@ public class UtilisateurWindow implements Initializable {
     	detail.cinTypeTextField.setText(userSelected.getCarte_identifiant());
     	detail.numeroCinTextField.setText(userSelected.getIdUtilisateur());
     	detail.paysTextField.setText(userSelected.getPays());
-    }
+    }*/
     
     
     

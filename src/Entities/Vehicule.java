@@ -23,6 +23,8 @@ public class Vehicule implements Serializable{
 	private String color;
 	@Column(name="dispo",nullable=true)
 	private boolean dispo;
+	@Column(name="kilometrage",nullable=true)
+	private long kilometrage;
 	
 	@Lob
 	@Column(name="photo", columnDefinition = "BLOB")
@@ -63,11 +65,15 @@ public class Vehicule implements Serializable{
 	@JoinColumn(name="idParking",referencedColumnName = "idParking",insertable = false,updatable = false)
 	private Parking parking;
 //	private List<Reservation> listReservation = new ArrayList<Reservation>();
-	
-	
-	
 
 
+	public long getKilometrage() {
+		return kilometrage;
+	}
+
+	public void setKilometrage(long kilometrage) {
+		this.kilometrage = kilometrage;
+	}
 
 	/**
 	 * @return the libelle_marque
