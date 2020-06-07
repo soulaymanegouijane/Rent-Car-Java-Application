@@ -44,21 +44,22 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 
 	@Override
 	public Vehicule edit(Vehicule arg) {
-		String sql = "UPDATE vehicule SET  idParking = ? , dispo = ? WHERE idVehicule = ? ";
+		String sql = "UPDATE vehicule SET  nbr_place=?,idParking=?,idCarburant=?,idType=?,color=?,dispo=?,photo=? WHERE idVehicule = ? ";
 		Connection con = Abst.getConnection();
+		Vehicule vehicule = null;
 		try {
 			PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
-			ps.setLong(1,arg.getParking().getIdParking());
-			ps.setBoolean(2, arg.isDispo());
-			ps.setString(3, arg.getIdVehicule());
+			ps.setInt(1, arg.getNbr_place());
+			ps.setLong(2, arg.getParking().getIdParking());
+			ps.setLong(3, arg.getCarburant().getIdCarburant());
+			ps.setLong(4, arg.getType().getIdType());
+			ps.setString(5, arg.getColor());
+			ps.setBoolean(6, arg.getDispo());
+			ps.setBytes(7, arg.getImage());
+			ps.setString(8, arg.getIdVehicule());
 			ps.executeUpdate();
-			arg.setParking(arg.getParking());
-			arg.setNbr_place(arg.getNbr_place());
-			arg.setColor(arg.getColor());
-			arg.setCarburant(arg.getCarburant());
-			arg.setType(arg.getType());
-			arg.setDispo(arg.isDispo());
-			arg.setIdVehicule(arg.getIdVehicule());
+			vehicule = getById(arg.getIdVehicule());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -70,7 +71,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			}
 		}
 		
-		return arg;
+		return vehicule;
 	}
 
 	@Override

@@ -111,6 +111,11 @@ public class DetailClient implements Initializable{
     }
 	
 	@FXML
+    void AnnulerBtnAction(ActionEvent event) {
+		
+    }
+	
+	@FXML
     void modifierClient(ActionEvent event) {
 		System.out.println("--------------->  * modification vehicule");
 		prenom = prenomTextField.getText();
