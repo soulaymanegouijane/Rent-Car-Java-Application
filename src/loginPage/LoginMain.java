@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -19,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -36,6 +38,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 
 import AbstactClasses.Abst;
 import javafx.scene.Node;
+import javafx.stage.StageStyle;
 import windowsSwitcher.windowsSwitcher;
 
 public class LoginMain implements Initializable {
@@ -143,26 +146,24 @@ public class LoginMain implements Initializable {
                 }else{
                     erreurMessage.setVisible(true);
                     if(loggedInUser.getEtat_compte().equals("Disactiver")) {
+
                     	JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+                        jfxDialogLayout.setAlignment(Pos.CENTER);
                         jfxDialogLayout.setHeading(new Text("test"));
-                        jfxDialogLayout.setBody(new Text("body text"));
-                        JFXDialog j = new JFXDialog(stackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
                         JFXButton okay = new JFXButton("Close");
+                        jfxDialogLayout.setBody(new Text("body text"));
                         okay.setPrefWidth(110);
                         okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
                         okay.setButtonType(JFXButton.ButtonType.RAISED);
+                        JFXDialog j = new JFXDialog(stackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+
                         okay.setOnAction(event -> {
                             j.close();
-                            stackPane.setVisible(false);
                         });
-                        stackPane.setOnMouseClicked(event -> stackPane.setVisible(false));
+
                         jfxDialogLayout.setActions(okay);
                         j.show();
-//                    	Alert alert = new Alert(AlertType.ERROR);
-//        	        	alert.setTitle("Alert d'erreur");
-//        	        	alert.setHeaderText("Vous avez pas le droit d'acces");
-//        	        	alert.setContentText("votre compte est desactivez maintenant !!");
-//        	        	alert.showAndWait();
+
                     }
                 }
                 con.close();
