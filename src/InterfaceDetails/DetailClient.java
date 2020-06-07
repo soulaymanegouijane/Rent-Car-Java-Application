@@ -75,12 +75,12 @@ public class DetailClient implements Initializable{
 
     @FXML
     public TextField emailTextField;
-    public JFXComboBox GenreComboBox;
+    public JFXComboBox<String> GenreComboBox;
     public HBox editHBox;
     public JFXButton saveEditsButton;
     public JFXButton annulerEditsButton;
     public HBox nonEditHBox;
-    public JFXComboBox typeCinCombo;
+    public JFXComboBox<String> typeCinCombo;
     public DatePicker dateValiditeDatePicker;
 
     @FXML

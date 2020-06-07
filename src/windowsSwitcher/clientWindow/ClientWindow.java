@@ -99,7 +99,7 @@ public class ClientWindow implements Initializable {
         chercherComboBox.setItems(searchTypeList);
     }
     
-    Client clientSelected = null;
+    Client clientSelected = new Client();
     
     @FXML
     void clicked(MouseEvent event) {
@@ -110,6 +110,7 @@ public class ClientWindow implements Initializable {
     	}else {
     		String cin = tableClient.getSelectionModel().getSelectedItem().getIdClient();
     		clientSelected = H.client.getById(cin);
+    		System.out.println("------------->"+clientSelected.getCarte_identifiant());
     		detailClientButton.setDisable(false);
     	}
     }
