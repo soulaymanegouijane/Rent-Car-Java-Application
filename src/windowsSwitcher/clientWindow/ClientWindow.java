@@ -130,6 +130,9 @@ public class ClientWindow implements Initializable {
 
     public void handleDetailClientButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailClient.fxml"));
+    	//DetailClient detailClient = loader.getController();
+    	//detailClient.client = clientSelected;
+    	//detailClient.fillBlanks();
         Parent root = loader.load();
         
         // fonction pour rmplir les champs du detailClient interface
@@ -157,10 +160,10 @@ public class ClientWindow implements Initializable {
         clt.cinTextField.setText(clientSelected.getIdClient());
         clt.numPermisTextField.setText(clientSelected.getN_permis());
         clt.dateDelivreDatePicker.setValue(H.convert(clientSelected.getDelevre_a()));
-        clt.dateExpireDatePicker.setValue(H.convert(clientSelected.getValiditePermis()));
+        clt.dateValiditeDatePicker.setValue(H.convert(clientSelected.getValiditePermis()));
         clt.dateNaissanceDatePicker.setValue(H.convert(clientSelected.getDate_naissance()));
         clt.adresseTextField.setText(clientSelected.getAdress());
-        clt.typeCinTextField.setText(clientSelected.getCarte_identifiant());
+        clt.typeCinCombo.setValue(clientSelected.getCarte_identifiant());
         clt.paysTextField.setText(clientSelected.getPays());
         clt.lieuDelivreTextField.setText(clientSelected.getDelevre_le());
     }

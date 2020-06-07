@@ -233,25 +233,12 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateExpireDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
-                                <Insets top="10.0" />
+                                <Insets bottom="20.0" top="10.0" />
                             </VBox.margin>
                         </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0" spacing="30.0">
-                     <children>
-                        <Label stylesheets="@../Css/MinitextStyle.css" text="Validité Permis :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="6.0" />
-                     </VBox.margin>
-                  </HBox>
                     </children>
                 </VBox>
             </children>
