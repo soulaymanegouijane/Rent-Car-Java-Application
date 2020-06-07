@@ -27,7 +27,7 @@ public class CarburantImpl extends Abst implements CarburantInter {
 		int status=0;
 		try {
 			
-			String sql = "insert into carburant (libellee,description) values(?,?)";
+			String sql = "insert into carburant (libelle,description) values(?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getLibelle());
 			ps.setString(2,arg.getDescription());

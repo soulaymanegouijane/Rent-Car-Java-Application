@@ -1,0 +1,4 @@
+.SceneHolder {
+    -fx-border-color: linear-gradient(to bottom, #485461 10%, #28313b 74%);
+    -fx-border-width: 2 2 2 2;
+}

@@ -87,40 +87,40 @@ public class DetailUtilisateur {
     public VBox editVBox;
     public VBox nonEditVBox;
 
-    //public Utilisateur User = new Utilisateur();
+    public Utilisateur User = new Utilisateur();
 
-//    public void fillBlanks(){
-//        //profilImage.setImage(new Image(new ByteArrayInputStream(User.getImage()), 142, 123, false, false));
-//        prenomTextField.setText(User.getPrenom());
-//        nomTextField.setText(User.getNom());
-//        nationaliteTextField.setText(User.getNationalite());
-//        lieuNaissanceTextField.setText(User.getLieu_naissance());
-//        emailTextField.setText(User.getEmail());
-//        codePostalTextField.setText(User.getCode_postale());
-//        villeTextField.setText(User.getVille());
-//        dateNaissanceDatePicker.setValue(H.convert(User.getNaissance()));
-//        adresseTextField.setText(User.getAdress());
-//        numeroTelephoneTextField.setText(User.getTele());
-//        cinTypeTextField.setText(User.getCarte_identifiant());
-//        numeroCinTextField.setText(User.getIdUtilisateur());
-//        paysTextField.setText(User.getPays());
-//    }
+    public void fillBlanks(){
+        profilImage.setImage(new Image(new ByteArrayInputStream(User.getImage()), 142, 123, false, false));
+        prenomTextField.setText(User.getPrenom());
+        nomTextField.setText(User.getNom());
+        nationaliteTextField.setText(User.getNationalite());
+        lieuNaissanceTextField.setText(User.getLieu_naissance());
+        emailTextField.setText(User.getEmail());
+        codePostalTextField.setText(User.getCode_postale());
+        villeTextField.setText(User.getVille());
+        dateNaissanceDatePicker.setValue(H.convert(User.getNaissance()));
+        adresseTextField.setText(User.getAdress());
+        numeroTelephoneTextField.setText(User.getTele());
+        cinTypeTextField.setText(User.getCarte_identifiant());
+        numeroCinTextField.setText(User.getIdUtilisateur());
+        paysTextField.setText(User.getPays());
+    }
 
-//    public void rewriteUserInfos(){
-//        User.setPrenom(prenomTextField.getText());
-//        User.setNom(nomTextField.getText());
-//        User.setNationalite(nationaliteTextField.getText());
-//        User.setLieu_naissance(lieuNaissanceTextField.getText());
-//        User.setEmail(emailTextField.getText());
-//        User.setCode_postale(codePostalTextField.getText());
-//        User.setVille(villeTextField.getText());
-//        User.setNaissance(dateNaissanceDatePicker.getValue().getDayOfMonth() + "/" + dateNaissanceDatePicker.getValue().getMonthValue() + "/" + dateNaissanceDatePicker.getValue().getYear());
-//        User.setAdress(adresseTextField.getText());
-//        User.setTele(numeroTelephoneTextField.getText());
-//        User.setCarte_identifiant(cinTypeTextField.getText());
-//        User.setIdUtilisateur(numeroCinTextField.getText());
-//        User.setPays(paysTextField.getText());
-//    }
+    public void rewriteUserInfos(){
+        User.setPrenom(prenomTextField.getText());
+        User.setNom(nomTextField.getText());
+        User.setNationalite(nationaliteTextField.getText());
+        User.setLieu_naissance(lieuNaissanceTextField.getText());
+        User.setEmail(emailTextField.getText());
+        User.setCode_postale(codePostalTextField.getText());
+        User.setVille(villeTextField.getText());
+        User.setNaissance(dateNaissanceDatePicker.getValue().getDayOfMonth() + "/" + dateNaissanceDatePicker.getValue().getMonthValue() + "/" + dateNaissanceDatePicker.getValue().getYear());
+        User.setAdress(adresseTextField.getText());
+        User.setTele(numeroTelephoneTextField.getText());
+        User.setCarte_identifiant(cinTypeTextField.getText());
+        User.setIdUtilisateur(numeroCinTextField.getText());
+        User.setPays(paysTextField.getText());
+    }
 
     @FXML
     public void closeButtonAction(){

@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,8 +38,10 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ControllerUtilisateur implements Initializable {
-	
-	@FXML
+
+    public TextField UsernameTextField;
+    public PasswordField PasswordTextField;
+    @FXML
     private ImageView idview;
 
     @FXML
@@ -122,8 +125,8 @@ public class ControllerUtilisateur implements Initializable {
     String pays = null;
     String telephone = null;
     String email = null;
-    
-    
+    String Username = null;
+    String Password = null;
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
