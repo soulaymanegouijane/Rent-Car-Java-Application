@@ -9,12 +9,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +29,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 
 import AbstactClasses.Abst;
 import javafx.scene.Node;
@@ -36,6 +45,9 @@ public class LoginMain implements Initializable {
     
 	@FXML
 	public PasswordField password;
+	
+	@FXML
+    private StackPane stackPane;
     
 	public Label erreurMessage;
     private double xOffset = 0;
@@ -98,7 +110,7 @@ public class LoginMain implements Initializable {
                     erreurMessage.setVisible(true);
                 }
 
-                if (password.getText().equals(loggedInUser.getPass())) {
+                if (password.getText().equals(loggedInUser.getPass()) && loggedInUser.getEtat_compte().equals("Activer")) {
 
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../windowsSwitcher/windowsSwitcher.fxml"));
@@ -130,6 +142,28 @@ public class LoginMain implements Initializable {
                     stage.show();
                 }else{
                     erreurMessage.setVisible(true);
+                    if(loggedInUser.getEtat_compte().equals("Disactiver")) {
+                    	JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+                        jfxDialogLayout.setHeading(new Text("test"));
+                        jfxDialogLayout.setBody(new Text("body text"));
+                        JFXDialog j = new JFXDialog(stackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+                        JFXButton okay = new JFXButton("Close");
+                        okay.setPrefWidth(110);
+                        okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
+                        okay.setButtonType(JFXButton.ButtonType.RAISED);
+                        okay.setOnAction(event -> {
+                            j.close();
+                            stackPane.setVisible(false);
+                        });
+                        stackPane.setOnMouseClicked(event -> stackPane.setVisible(false));
+                        jfxDialogLayout.setActions(okay);
+                        j.show();
+//                    	Alert alert = new Alert(AlertType.ERROR);
+//        	        	alert.setTitle("Alert d'erreur");
+//        	        	alert.setHeaderText("Vous avez pas le droit d'acces");
+//        	        	alert.setContentText("votre compte est desactivez maintenant !!");
+//        	        	alert.showAndWait();
+                    }
                 }
                 con.close();
             } catch (SQLException e) {

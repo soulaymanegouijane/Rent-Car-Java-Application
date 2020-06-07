@@ -56,33 +56,33 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		Connection con = Abst.getConnection();
 		Utilisateur user = null;
 		try {
-			String sq = "UPDATE utilisateur set nom = ?,prenom = ?,adress = ?,email = ?,telephone = ?,civilite = ?,"
-					+ "lieu_naissance ?,code_postale ?,ville =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,"
-					+ "type_identifiant =?,username =?,pass=? where idUtilisateur=?";
+//			String sq = "UPDATE utilisateur set nom = ?,prenom = ?,adress = ?,email = ?,telephone = ?,civilite = ?,"
+//					+ "lieu_naissance ?,code_postale ?,ville =?,pays = ?,nationalite =?,etat_compte =?,idRole =?,naissance =?,"
+//					+ "type_identifiant =?,username =?,pass=? where idUtilisateur=?";
 			String sql = "update utilisateur set nom=?,prenom=?,adress=?,telephone=?,email=?,civilite=?,"
 					+ "lieu_naissance=?,ville=?,code_postale=?,pays=?,nationalite=?,"
-					+ "etat_compte=?,idRole=?,naissance=?,type_identifiant=?,username=?,pass=? where idUtilisateur=?";
+					+ "etat_compte=?,idRole=?,naissance=?,type_identifiant=?,username=?,pass=?,photo=? where idUtilisateur=?";
 			PreparedStatement preparedStatement = con.prepareStatement(sql);
 			
 			preparedStatement.setString(1,arg.getNom());
 			preparedStatement.setString(2,arg.getPrenom());
 			preparedStatement.setString(3,arg.getAdress());
-			preparedStatement.setString(4,arg.getEmail());
-			preparedStatement.setString(5,arg.getTele());
+			preparedStatement.setString(4,arg.getTele());
+			preparedStatement.setString(5,arg.getEmail());
 			preparedStatement.setString(6,arg.getCivilite());
 			preparedStatement.setString(7,arg.getLieu_naissance());
-			preparedStatement.setString(8, arg.getCode_postale());
-			preparedStatement.setString(9, arg.getVille());
+			preparedStatement.setString(8, arg.getVille());
+			preparedStatement.setString(9, arg.getCode_postale());
 			preparedStatement.setString(10, arg.getPays());
 			preparedStatement.setString(11, arg.getNationalite());
 			preparedStatement.setString(12, arg.getEtat_compte());
 			preparedStatement.setLong(13,arg.getRole().getIdRole());
 			preparedStatement.setString(14, arg.getNaissance());
 			preparedStatement.setString(15, arg.getCarte_identifiant());
-			preparedStatement.setBytes(16, arg.getImage());
 			preparedStatement.setString(16, arg.getUsername());
 			preparedStatement.setString(17, arg.getPass());
-			preparedStatement.setString(18, arg.getIdUtilisateur());
+			preparedStatement.setBytes(18, arg.getImage());
+			preparedStatement.setString(19, arg.getIdUtilisateur());
 			preparedStatement.executeUpdate();
 			user = getById(arg.getIdUtilisateur());
 			con.close();

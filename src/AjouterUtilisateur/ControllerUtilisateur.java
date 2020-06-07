@@ -125,8 +125,8 @@ public class ControllerUtilisateur implements Initializable {
     String pays = null;
     String telephone = null;
     String email = null;
-    String Username = null;
-    String Password = null;
+    String username = null;
+    String pass = null;
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -150,7 +150,6 @@ public class ControllerUtilisateur implements Initializable {
         selectedfile = fc.showOpenDialog(null);
         if(selectedfile!=null){
             Image newimage = new Image(selectedfile.toURI().toString(),200,150,true,true);
-            //idview=new ImageView(image);
             text.setText(selectedfile.getAbsolutePath());
             idview.setImage(newimage);
             file = new File(selectedfile.getAbsolutePath());
@@ -174,7 +173,6 @@ public class ControllerUtilisateur implements Initializable {
         prenom = prenomTextField.getText();
         nom = nomTextField.getText();
         role = comboRole.getValue();
-        System.out.println("--------------- ** -----> " + role);
         genre = comboGender.getSelectionModel().getSelectedItem();
         nationalite = nationaliteTextField.getText();
         dateNaissance = ((TextField)date_naissance.getEditor()).getText();
@@ -187,6 +185,9 @@ public class ControllerUtilisateur implements Initializable {
         pays = paysTextField.getText();
         telephone = telephoneTextField.getText();
         email = emailTextField.getText();
+        username = UsernameTextField.getText();
+        pass = PasswordTextField.getText();
+        
         Role rol = H.role.get(role);
         boolean s = false;
         if(s){
@@ -209,8 +210,9 @@ public class ControllerUtilisateur implements Initializable {
 			user.setVille(ville);
 			user.setRole(rol);
 			user.setCarte_identifiant(idType);
-			user.setUsername("admin123");
-			user.setPass("admin123");
+			user.setUsername(username);
+			user.setPass(pass);
+			user.setEtat_compte("Activer");
 			
 			try {
 				FileInputStream inputStream = new FileInputStream(file);

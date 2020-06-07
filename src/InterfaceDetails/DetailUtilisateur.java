@@ -24,6 +24,8 @@ import java.awt.image.WritableRaster;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -82,6 +84,10 @@ public class DetailUtilisateur {
 
     @FXML
     public JFXButton deleteBtn;
+    
+    @FXML
+    private TextField imgFieldText;
+    
     @FXML
     public JFXButton editBtn; // Modifier Boutton
     @FXML
@@ -93,6 +99,13 @@ public class DetailUtilisateur {
     public VBox editVBox;
     public VBox nonEditVBox;
 
+    
+    FileChooser imageChooser = new FileChooser();
+    File fileChosen = null;
+    byte[] bFile = null;
+    File file = null;
+    
+    
     public Utilisateur User = null;
 
     public void fillBlanks(){
@@ -127,7 +140,20 @@ public class DetailUtilisateur {
         User.setCarte_identifiant(cinTypeTextField.getText());
         User.setIdUtilisateur(numeroCinTextField.getText());
         User.setPays(paysTextField.getText());
-        User.setImage(null);
+        
+        try {
+			FileInputStream inputStream = new FileInputStream(file);
+			try {
+				inputStream.read(bFile);
+				inputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        User.setImage(bFile);
     }
     
     public String Civilite(String idUser) {
@@ -174,20 +200,30 @@ public class DetailUtilisateur {
         fillBlanks();
         disableFields();
     }
-
+    
     public void handleChooseProfilImageButton(ActionEvent actionEvent) {
-        FileChooser imageChooser = new FileChooser();
+    	FileChooser.ExtensionFilter extensionFilterpng = new FileChooser.ExtensionFilter("png files (*.png)","*.png");
         FileChooser.ExtensionFilter extensionFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.JPG)","*.JPG");
         FileChooser.ExtensionFilter extensionFilterjpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)","*.jpg");
         FileChooser.ExtensionFilter extensionFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.PNG)","*.PNG");
-        FileChooser.ExtensionFilter extensionFilterpng = new FileChooser.ExtensionFilter("png files (*.png)","*.png");
+        
         imageChooser.getExtensionFilters().addAll(extensionFilterJPG, extensionFilterjpg, extensionFilterPNG, extensionFilterpng);
 
         //Show open file dialog
-        File fileChosen = imageChooser.showOpenDialog(null);
-
-        Image imageChosen = new Image(fileChosen.toURI().toString(),142,123,false,false);
-        profilImage.setImage(imageChosen);
+        fileChosen = imageChooser.showOpenDialog(null);
+        
+        
+        if(fileChosen!=null){
+        	Image imageChosen = new Image(fileChosen.toURI().toString(),142,123,false,false);
+            imgFieldText.setText(fileChosen.getAbsolutePath());
+            profilImage.setImage(imageChosen);
+            file = new File(fileChosen.getAbsolutePath());
+            bFile = new byte[(int) file.length()];
+            System.out.println("-------------->  "+fileChosen.getAbsolutePath());
+        }
+        
+        
+        
     }
 
     public void handleSaveChangesButton(ActionEvent actionEvent) {
