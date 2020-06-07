@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -20,7 +21,7 @@
     <children>
         <Pane prefHeight="580.0" prefWidth="400.0">
             <children>
-                <VBox layoutX="9.0" layoutY="77.0" prefHeight="491.0" prefWidth="386.0">
+                <VBox layoutX="9.0" layoutY="77.0" prefHeight="502.0" prefWidth="386.0">
                     <children>
                         <Label stylesheets="@../Css/textStyle.css" text="Informations Personnelles :" textFill="#63b4ff">
                             <font>
@@ -29,22 +30,15 @@
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
                             <children>
-                        <TextField fx:id="GenreTextField" alignment="CENTER" editable="false" layoutX="20.0" layoutY="19.0" prefHeight="23.0" prefWidth="70.0">
+                        <JFXComboBox fx:id="GenreComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="99.0" promptText="Genre" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                            <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/combo.css" />
                               <URL value="@../Css/MinitextStyle.css" />
                            </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                                <TextField fx:id="prenomTextField" alignment="CENTER" prefHeight="23.0" prefWidth="123.0">
+                        </JFXComboBox>
+                                <TextField fx:id="prenomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="136.0">
                                     <HBox.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="20.0" />
                                     </HBox.margin>
                                     <stylesheets>
                                         <URL value="@../Css/textinputstyle.css" />
@@ -55,9 +49,9 @@
                                         <String fx:value="text-field" />
                                     </styleClass>
                                 </TextField>
-                                <TextField fx:id="nomTextField" alignment="CENTER" prefHeight="25.0" prefWidth="154.0">
+                                <TextField fx:id="nomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="135.0">
                                     <HBox.margin>
-                                        <Insets left="40.0" right="10.0" />
+                                        <Insets left="20.0" right="10.0" />
                                     </HBox.margin>
                                     <stylesheets>
                                         <URL value="@../Css/textinputstyle.css" />
@@ -70,7 +64,7 @@
                                 </TextField>
                             </children>
                             <VBox.margin>
-                                <Insets top="10.0" />
+                                <Insets />
                             </VBox.margin></HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="386.0">
                             <children>
@@ -79,7 +73,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                                <TextField fx:id="nationaliteTextField" alignment="CENTER" prefHeight="25.0" prefWidth="242.0">
+                                <TextField fx:id="nationaliteTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="242.0">
                                     <HBox.margin>
                                         <Insets left="60.0" right="10.0" />
                                     </HBox.margin>
@@ -103,10 +97,10 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateNaissanceDatePicker" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateNaissanceDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
-                                <Insets top="10.0" />
+                                <Insets right="10.0" top="10.0" />
                             </VBox.margin></HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" prefHeight="45.0" prefWidth="386.0">
                             <children>
@@ -115,7 +109,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                                <TextField fx:id="lieuNaissanceTextField" alignment="CENTER" prefHeight="25.0" prefWidth="239.0">
+                                <TextField fx:id="lieuNaissanceTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="239.0">
                                     <HBox.margin>
                                         <Insets left="10.0" right="10.0" />
                                     </HBox.margin>
@@ -134,26 +128,24 @@
                             </VBox.margin></HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
                             <children>
-                        <Label prefHeight="17.0" prefWidth="149.0" stylesheets="@../Css/MinitextStyle.css" text="Type Carte Identité :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="typeCinTextField" alignment="CENTER" layoutX="245.0" layoutY="18.0" prefHeight="25.0" prefWidth="120.0">
+                        <JFXComboBox fx:id="typeCinCombo" focusColor="#039ed3" prefHeight="25.0" prefWidth="198.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                            <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/combo.css" />
                               <URL value="@../Css/MinitextStyle.css" />
                            </stylesheets>
                            <styleClass>
+                              <String fx:value="jfx-combo-box" />
                               <String fx:value="text" />
-                              <String fx:value="text-field" />
                            </styleClass>
+                        </JFXComboBox>
+                        <Label layoutX="10.0" layoutY="22.0" prefHeight="17.0" prefWidth="33.0" stylesheets="@../Css/MinitextStyle.css" text="N° :" textFill="#b9b3b3">
                            <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Label layoutX="10.0" layoutY="22.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../Css/MinitextStyle.css" text="N° :" textFill="#b9b3b3" />
-                                <TextField fx:id="cinTextField" alignment="CENTER" prefHeight="25.0" prefWidth="120.0">
+                              <Insets left="20.0" />
+                           </HBox.margin></Label>
+                                <TextField fx:id="cinTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="138.0">
                                     <HBox.margin>
                                         <Insets left="10.0" right="10.0" />
                                     </HBox.margin>
@@ -178,7 +170,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                                <TextField fx:id="numPermisTextField" alignment="CENTER" prefHeight="25.0" prefWidth="298.0">
+                                <TextField fx:id="numPermisTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="298.0">
                                     <HBox.margin>
                                         <Insets left="10.0" right="10.0" />
                                     </HBox.margin>
@@ -203,7 +195,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                                <TextField fx:id="lieuDelivreTextField" alignment="CENTER" prefHeight="25.0" prefWidth="305.0">
+                                <TextField fx:id="lieuDelivreTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="276.0">
                                     <HBox.margin>
                                         <Insets left="10.0" right="10.0" />
                                     </HBox.margin>
@@ -228,7 +220,7 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateDelivreDatePicker" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateDelivreDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
                                 <Insets top="10.0" />
@@ -241,12 +233,25 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateExpireDatePicker" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateExpireDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
                                 <Insets top="10.0" />
                             </VBox.margin>
                         </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0" spacing="30.0">
+                     <children>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Validité Permis :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="6.0" />
+                     </VBox.margin>
+                  </HBox>
                     </children>
                 </VBox>
             </children>
@@ -254,7 +259,7 @@
         <Pane layoutY="-1.0" prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
             <children>
                 <Label layoutX="227.0" layoutY="18.0" stylesheets="@../Css/textStyle.css" text="Informations A propos du Client " textFill="WHITE" />
-                  <JFXButton fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="644.0" layoutY="14.0" onAction="#closeButtonAction" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="OK" textFill="WHITE" />
+                  <JFXButton fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="635.0" layoutY="15.0" onAction="#closeButtonAction" prefHeight="35.0" prefWidth="151.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
             </children>
         </Pane>
         <Separator layoutX="399.0" layoutY="93.0" opacity="0.6" orientation="VERTICAL" prefHeight="470.0" prefWidth="0.0" style="-fx-background-color: #63B4FF;" />
@@ -268,7 +273,7 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
                     <children>
                   <Label prefHeight="17.0" prefWidth="142.0" stylesheets="@../Css/MinitextStyle.css" text="Adresse :" textFill="#b9b3b3" />
-                        <TextField fx:id="adresseTextField" alignment="CENTER" prefHeight="25.0" prefWidth="377.0">
+                        <TextField fx:id="adresseTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="377.0">
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
@@ -288,8 +293,8 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="386.0">
                     <children>
-                  <Label prefHeight="17.0" prefWidth="171.0" stylesheets="@../Css/MinitextStyle.css" text="Code Postale :" textFill="#b9b3b3" />
-                        <TextField fx:id="codePostalTextField" alignment="CENTER" prefHeight="25.0" prefWidth="154.0">
+                  <Label prefHeight="17.0" prefWidth="125.0" stylesheets="@../Css/MinitextStyle.css" text="Code Postale :" textFill="#b9b3b3" />
+                        <TextField fx:id="codePostalTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="132.0">
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
@@ -302,8 +307,8 @@
                                 <String fx:value="text-field" />
                             </styleClass>
                         </TextField>
-                  <Label layoutX="10.0" layoutY="24.0" prefHeight="17.0" prefWidth="106.0" stylesheets="@../Css/MinitextStyle.css" text="Ville :" textFill="#b9b3b3" />
-                        <TextField fx:id="villeTextField" alignment="CENTER" layoutX="70.0" layoutY="20.0" prefHeight="25.0" prefWidth="154.0">
+                  <Label layoutX="10.0" layoutY="24.0" prefHeight="17.0" prefWidth="67.0" stylesheets="@../Css/MinitextStyle.css" text="Ville :" textFill="#b9b3b3" />
+                        <TextField fx:id="villeTextField" alignment="CENTER" editable="false" layoutX="70.0" layoutY="20.0" prefHeight="25.0" prefWidth="154.0">
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
@@ -324,7 +329,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="122.0" prefHeight="45.0" prefWidth="386.0">
                     <children>
                   <Label prefHeight="17.0" prefWidth="142.0" stylesheets="@../Css/MinitextStyle.css" text="Pays :" textFill="#b9b3b3" />
-                        <TextField fx:id="paysTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0">
+                        <TextField fx:id="paysTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="380.0">
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
@@ -345,7 +350,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
                     <children>
                   <Label prefHeight="17.0" prefWidth="142.0" stylesheets="@../Css/MinitextStyle.css" text="N° de Telephone :" textFill="#b9b3b3" />
-                        <TextField fx:id="telephoneTextField" alignment="CENTER" prefHeight="25.0" prefWidth="267.0">
+                        <TextField fx:id="telephoneTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="267.0">
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
@@ -366,7 +371,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="45.0" prefWidth="386.0">
                     <children>
                   <Label prefHeight="17.0" prefWidth="211.0" stylesheets="@../Css/MinitextStyle.css" text="Adreese Email :" textFill="#b9b3b3" />
-                        <TextField fx:id="emailTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0">
+                        <TextField fx:id="emailTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="380.0">
                             <HBox.margin>
                                 <Insets left="10.0" right="10.0" />
                             </HBox.margin>
@@ -384,9 +389,40 @@
                         <Insets top="10.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="58.0" prefWidth="386.0">
+            <HBox fx:id="editHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="370.0" prefHeight="0.0" prefWidth="386.0" spacing="20.0" visible="false">
+               <children>
+                  <JFXButton fx:id="saveEditsButton" alignment="CENTER" layoutX="110.0" layoutY="17.0" onAction="#handleSaveEditsButton" prefHeight="25.0" prefWidth="221.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                           <image>
+                              <Image url="@../img/save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="annulerEditsButton" alignment="CENTER" layoutX="130.0" layoutY="17.0" onAction="#handleAnnulerEditsButton" prefHeight="25.0" prefWidth="213.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="annuler" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                           <image>
+                              <Image url="@../img/xIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+                <HBox fx:id="nonEditHBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="58.0" prefWidth="386.0">
                     <children>
-                  <JFXButton fx:id="editClientBtn" alignment="CENTER" layoutX="110.0" layoutY="17.0" onAction="#modifierClient" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                  <JFXButton fx:id="editClientBtn" alignment="CENTER" layoutX="110.0" layoutY="17.0" onAction="#modifierClient" prefHeight="29.0" prefWidth="162.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                            <image>
@@ -394,10 +430,13 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="deleteBtn" alignment="CENTER" layoutX="130.0" layoutY="17.0" onAction="#AnnulerBtnAction" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="100.0" right="10.0" />
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="deleteBtn" alignment="CENTER" layoutX="130.0" layoutY="17.0" onAction="#AnnulerBtnAction" prefHeight="29.0" prefWidth="161.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="60.0" right="10.0" />
                      </HBox.margin>
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
@@ -409,7 +448,7 @@
                   </JFXButton>
                     </children>
                     <VBox.margin>
-                        <Insets top="50.0" />
+                        <Insets top="20.0" />
                     </VBox.margin>
                 </HBox>
             </children>

@@ -7,6 +7,9 @@ import com.jfoenix.controls.JFXButton;
 
 import Entities.Client;
 import Test.H;
+import com.jfoenix.controls.JFXComboBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class DetailClient implements Initializable{
@@ -71,6 +75,13 @@ public class DetailClient implements Initializable{
 
     @FXML
     public TextField emailTextField;
+    public JFXComboBox GenreComboBox;
+    public HBox editHBox;
+    public JFXButton saveEditsButton;
+    public JFXButton annulerEditsButton;
+    public HBox nonEditHBox;
+    public JFXComboBox typeCinCombo;
+    public DatePicker dateValiditeDatePicker;
 
     @FXML
     private JFXButton closeButton;
@@ -79,6 +90,8 @@ public class DetailClient implements Initializable{
     private JFXButton deleteBtn;
     @FXML
     public JFXButton editClientBtn;//boutton Modifier
+
+    Client client = new Client();
     
     String prenom = null;
     String nom = null;
@@ -98,10 +111,12 @@ public class DetailClient implements Initializable{
     String ville = null;
     String genre = null;
     String typeIdentifiant = null;
+
+    ObservableList<String> GenreList = FXCollections.observableArrayList("Femme", "Homme");
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		GenreComboBox.setItems(GenreList);
 	}
 	
 	@FXML
@@ -136,7 +151,7 @@ public class DetailClient implements Initializable{
         ville = villeTextField.getText();
 //        genre = comboGender.getValue();
 //        typeIdentifiant = comboIdType.getValue();
-        Client client = new Client();
+
         
         if(testEmpty()){
         	Alert alert = new Alert(AlertType.ERROR);
@@ -175,4 +190,17 @@ public class DetailClient implements Initializable{
         return false;
     }
 
+    public void handleSaveEditsButton(ActionEvent actionEvent) {
+    }
+
+    public void handleAnnulerEditsButton(ActionEvent actionEvent) {
+    }
+
+    public void enableEditing(){
+
+    }
+
+    public void disableEditing(){
+
+    }
 }

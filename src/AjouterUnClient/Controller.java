@@ -21,8 +21,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-	
-	@FXML
+
+    public DatePicker dateValiditeDatePicker;
+    @FXML
     private TextField prenomTextField;
 
     @FXML

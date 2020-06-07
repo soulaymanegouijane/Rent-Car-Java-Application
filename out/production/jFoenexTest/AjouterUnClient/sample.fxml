@@ -56,7 +56,7 @@
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </VBox.margin></HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
                      <children>
@@ -152,9 +152,9 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin></HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="45.0" prefWidth="386.0">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="45.0" prefWidth="386.0" spacing="20.0">
                      <children>
-                        <TextField fx:id="numPermisTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="N° de Permis de conduite:">
+                        <TextField fx:id="numPermisTextField" alignment="CENTER" prefHeight="25.0" prefWidth="157.0" promptText="N° de Permis de conduite:">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -167,17 +167,7 @@
                               <String fx:value="text-field" />
                            </styleClass>
                         </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="45.0" prefWidth="386.0">
-                     <children>
-                        <TextField fx:id="lieuDelivreTextField" alignment="CENTER" prefHeight="25.0" prefWidth="380.0" promptText="Déliveré A :">
-                           <HBox.margin>
-                              <Insets left="10.0" right="10.0" />
-                           </HBox.margin>
+                        <TextField fx:id="lieuDelivreTextField" alignment="CENTER" prefHeight="25.0" prefWidth="178.0" promptText="Déliveré A :">
                            <stylesheets>
                               <URL value="@../Css/textinputstyle.css" />
                               <URL value="@../Css/MinitextStyle.css" />
@@ -199,7 +189,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="dateDelivreDatePicker" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                        <DatePicker fx:id="dateDelivreDatePicker" prefHeight="26.0" prefWidth="249.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -212,10 +202,23 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="dateExpireDatePicker" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                        <DatePicker fx:id="dateExpireDatePicker" prefHeight="26.0" prefWidth="252.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="358.0" spacing="20.0">
+                     <children>
+                        <Label prefWidth="97.0" stylesheets="@../Css/MinitextStyle.css" text="Validité Permis :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="26.0" prefWidth="256.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>
