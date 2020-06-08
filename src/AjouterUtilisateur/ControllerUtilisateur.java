@@ -38,8 +38,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ControllerUtilisateur implements Initializable {
-
+	@FXML
     public TextField UsernameTextField;
+	
     public PasswordField PasswordTextField;
     @FXML
     private ImageView idview;

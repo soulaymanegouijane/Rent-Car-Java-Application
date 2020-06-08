@@ -296,7 +296,6 @@ public class VehiculeWindow implements Initializable {
         	vehicule_list.clear();
         	mono_vehicule.clear();
             String matriculeTaped = matriculeTextFeild.getText();
-
             if (matriculeTaped.isEmpty()) {
                 enable(ErreurMessage);
             } else {
@@ -327,7 +326,7 @@ public class VehiculeWindow implements Initializable {
                 enable(ErreurMessage);
             } else {
                 // Search vehicule by emplacement
-            	afficher_vehicule(marqueTaped);
+            	mrq_type_Vehicule(marqueTaped);
             }
 
         }else if (searchSection.equals("Carburant")) {
@@ -339,7 +338,7 @@ public class VehiculeWindow implements Initializable {
             if (carburantTaped.isEmpty()) {
                 enable(ErreurMessage);
             } else {
-                // Search vehicule by emplacement
+            	
             	afficher_vehicule(carburantTaped);
             }
 
@@ -490,71 +489,97 @@ public class VehiculeWindow implements Initializable {
         HB.setVisible(true);
         HB.setDisable(false);
     }
+    
+    public void mrq_type_Vehicule(String marque){
+    	String sql = "select idType from type where idMarque = ?";
+    	Connection con = Abst.getConnection();
+    	try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			Marque mrq = H.marque.get(marque);
+			ps.setLong(1, mrq.getIdMarque());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				long idType = rs.getLong("idType");
+				System.out.println("**************************** $ " + idType);
+				afficher_vehicule(String.valueOf(idType));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 
     public void afficher_vehicule(String valeur) {
     	searchSection = chercherComboBox.getValue();
-    	Vehicule vehicule = new Vehicule();
+    	
     	
 		try {
 			ResultSet tous_les_vehicule = null;
-	    	String sql = "";
 	    	PreparedStatement ps = null;
 	    	Connection con = null;
 			if(searchSection.equals("Matricule")) {
-				sql = "select * from vehicule where idVehicule=?";
+				String sql = "select * from vehicule where idVehicule=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
 			}
 			if(searchSection.equals("Marque")) {
-				sql = "select * from vehicule where idMarque=?";
+				String sql = "select * from vehicule where idType=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
-				Marque marque = H.marque.get(valeur);
-				ps.setLong(1, marque.getIdMarque());
+				ps.setLong(1, Long.valueOf(valeur));
+			}
+			if(searchSection.equals("Type")) {
+				String sql = "select * from vehicule where idType=?";
+				con = Abst.getConnection();
+				ps = con.prepareStatement(sql);
+				ps.setLong(1, Long.valueOf(valeur));
 			}
 			if(searchSection.equals("Carburant")) {
-				sql = "select * from vehicule where idCarburant=?";
+				String sql = "select * from vehicule where idCarburant=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				Carburant carburant = H.carburant.get(valeur);
 				ps.setLong(1, carburant.getIdCarburant());
 			}
 			if(searchSection.equals("Disponibilite")) {
-				sql = "select * from vehicule where dispo=?";
+				String sql = "select * from vehicule where dispo=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setBoolean(1, Boolean.valueOf(valeur));
 			}
 			if(searchSection.equals("Emplacement")) {
-				sql = "select * from vehicule where idParking=?";
+				String sql = "select * from vehicule where idParking=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
 			
 			tous_les_vehicule = ps.executeQuery();
-			if(tous_les_vehicule.next()) {
+			while(tous_les_vehicule.next()) {
+				Vehicule vehicule = new Vehicule();
 				vehicule.setIdVehicule(tous_les_vehicule.getString("idVehicule"));
 				vehicule.setNbr_place(tous_les_vehicule.getInt("nbr_place"));
-//				vehicule.setLibelle_parking(H.parking.getById(tous_les_vehicule.getLong("idParking")).getAdress());
-//				vehicule.setLibelle_carburant(H.carburant.getById(tous_les_vehicule.getLong("idCarburant")).getLibelle());
-//				vehicule.setLibelle_marque(H.marque.getById(tous_les_vehicule.getLong("idMarque")).getLibelle());
+				vehicule.setLibelle_parking(H.parking.getById(tous_les_vehicule.getLong("idParking")).getAdress());
+				vehicule.setLibelle_carburant(H.carburant.getById(tous_les_vehicule.getLong("idCarburant")).getLibelle());
+				//vehicule.setLibelle_marque(H.marque.getById(tous_les_vehicule.getLong("idMarque")).getLibelle());
+				vehicule.setTypeVehicule(H.type.getById(tous_les_vehicule.getLong("idType")).getLibelle());
+				vehicule.setLibelle_marque(H.type.getById(tous_les_vehicule.getLong("idType")).getMarque().getLibelle());
 				vehicule.setColor(tous_les_vehicule.getString("color"));
-				vehicule_list.add(vehicule);
+				// vehicule_list.add(vehicule); prb ?
+				mono_vehicule.add(vehicule);
 			}
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		mono_vehicule.add(vehicule);
+		//mono_vehicule.add(vehicule); ** prb ?
     	col_matricule.setCellValueFactory(new PropertyValueFactory<>("idVehicule"));
 	    col_disponibilite.setCellValueFactory(new PropertyValueFactory<>("dispo"));
 	    col_carburant.setCellValueFactory(new PropertyValueFactory<>("libelle_carburant"));
 	    col_kilometrage.setCellValueFactory(new PropertyValueFactory<>("kilometrage"));
 	    col_marque.setCellValueFactory(new PropertyValueFactory<>("libelle_marque"));
 	    
-	    col_type.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+	    col_type.setCellValueFactory(new PropertyValueFactory<>("typeVehicule"));
 	    col_Emplacement.setCellValueFactory(new PropertyValueFactory<>("libelle_parking"));
     
 	    tableVehicule.setItems(mono_vehicule);
