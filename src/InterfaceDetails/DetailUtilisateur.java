@@ -35,7 +35,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class DetailUtilisateur {
+public class DetailUtilisateur implements Initializable{
 	
 	@FXML
     public TextField genreUtilisateurTextField;
@@ -106,7 +106,13 @@ public class DetailUtilisateur {
     File file = null;
     
     
-    public Utilisateur User = null;
+    public static Utilisateur User = null;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        fillBlanks();
+        H.setfrenchDatePicker(dateNaissanceDatePicker);
+    }
 
     public void fillBlanks(){
         profilImage.setImage(new Image(new ByteArrayInputStream(User.getImage()), 142, 123, false, false));
@@ -243,6 +249,11 @@ public class DetailUtilisateur {
     }
 
     public void handleDeleteBtn(ActionEvent actionEvent) {
+
+        //Delete Utilisateur
+
+        Stage stage =(Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 
     public void enableFields(){
@@ -282,6 +293,4 @@ public class DetailUtilisateur {
         emailTextField.setEditable(false);
 
     }
-
-
 }

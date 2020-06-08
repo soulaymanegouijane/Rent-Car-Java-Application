@@ -115,11 +115,12 @@ public class DetailClient implements Initializable{
     }
 	
 	@FXML
-    void AnnulerBtnAction(ActionEvent event) {
+    void deleteBtnAction(ActionEvent event) {
 
-		fillBlanks();
-        nonEditHBox.setVisible(true);
-        editHBox.setVisible(false);
+	    //Delete Client
+
+        Stage stage = (Stage) deleteBtn.getScene().getWindow();
+        stage.close();
     }
 	
 	@FXML
@@ -198,7 +199,7 @@ public class DetailClient implements Initializable{
             alert.setContentText("Client n'est pas Modifier !!");
             alert.showAndWait();
 
-        }else if(!isEmailValid(emailTextField.getText())){
+        }else if(!H.isEmailValid(emailTextField.getText())){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Alert d'erreur");
             alert.setHeaderText("can not add Client");
@@ -262,10 +263,4 @@ public class DetailClient implements Initializable{
         lieuDelivreTextField.setEditable(false);
     }
 
-    public static boolean isEmailValid(String email) {
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
 }

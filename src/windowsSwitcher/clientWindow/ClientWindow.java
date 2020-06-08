@@ -148,29 +148,6 @@ public class ClientWindow implements Initializable {
         remplir_tableau();
     }
     
-    /*public void FunctionAffiche(FXMLLoader loader) {
-    	DetailClient clt = loader.getController();
-        clt.prenomTextField.setText(clientSelected.getPrenom());
-        clt.nomTextField.setText(clientSelected.getNom());
-        clt.nationaliteTextField.setText(clientSelected.getNationalite());
-        clt.lieuNaissanceTextField.setText(clientSelected.getLieu_naissance());
-        clt.emailTextField.setText(clientSelected.getEmail());
-        clt.telephoneTextField.setText(clientSelected.getTelephone());
-        clt.codePostalTextField.setText(clientSelected.getCode_postale());
-        clt.villeTextField.setText(clientSelected.getVille());
-        clt.cinTextField.setText(clientSelected.getIdClient());
-        clt.numPermisTextField.setText(clientSelected.getN_permis());
-        clt.dateDelivreDatePicker.setValue(H.convert(clientSelected.getDelevre_a()));
-        clt.dateValiditeDatePicker.setValue(H.convert(clientSelected.getValiditePermis()));
-        clt.dateNaissanceDatePicker.setValue(H.convert(clientSelected.getDate_naissance()));
-        clt.adresseTextField.setText(clientSelected.getAdress());
-        clt.typeCinCombo.setValue(clientSelected.getCarte_identifiant());
-        clt.paysTextField.setText(clientSelected.getPays());
-        clt.lieuDelivreTextField.setText(clientSelected.getDelevre_le());
-    }*/
-
-    
-    
     public void handleChercherComboBox(ActionEvent actionEvent) {
         String searchSection = chercherComboBox.getValue();
         chercherButton.setDisable(false);

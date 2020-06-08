@@ -156,7 +156,7 @@ public class Controller implements Initializable {
         if(testEmpty()){
             erreurMessage.setText("Remplissez tous les champs !");
             erreurMessage.setVisible(true);
-        }else if(!isEmailValid(email)) {
+        }else if(!H.isEmailValid(email)) {
             erreurMessage.setText("Vous avez fait une faute dans l'email !");
             erreurMessage.setVisible(true);
         }else{
@@ -200,11 +200,5 @@ public class Controller implements Initializable {
         return false;
     }
 
-    public static boolean isEmailValid(String email) {
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
 
 }
