@@ -30,7 +30,7 @@
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
                             <children>
-                        <JFXComboBox fx:id="GenreComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="99.0" promptText="Genre" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                        <JFXComboBox fx:id="GenreComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="99.0" promptText="Genre" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                            <stylesheets>
                               <URL value="@../Css/combo.css" />
                               <URL value="@../Css/MinitextStyle.css" />
@@ -97,7 +97,7 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateNaissanceDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateNaissanceDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
                                 <Insets right="10.0" top="10.0" />
@@ -128,7 +128,7 @@
                             </VBox.margin></HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="45.0" prefWidth="386.0">
                             <children>
-                        <JFXComboBox fx:id="typeCinCombo" focusColor="#039ed3" prefHeight="25.0" prefWidth="198.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
+                        <JFXComboBox fx:id="typeCinCombo" disable="true" focusColor="#039ed3" prefHeight="25.0" prefWidth="198.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -220,7 +220,7 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateDelivreDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateDelivreDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
                                 <Insets top="10.0" />
@@ -233,25 +233,12 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateExpireDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                                <DatePicker fx:id="dateValiditeDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                             </children>
                             <VBox.margin>
-                                <Insets top="10.0" />
+                                <Insets bottom="20.0" top="10.0" />
                             </VBox.margin>
                         </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0" spacing="30.0">
-                     <children>
-                        <Label stylesheets="@../Css/MinitextStyle.css" text="Validité Permis :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="6.0" />
-                     </VBox.margin>
-                  </HBox>
                     </children>
                 </VBox>
             </children>

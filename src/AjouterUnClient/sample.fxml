@@ -128,7 +128,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="dateNaissanceDatePicker" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                        <DatePicker fx:id="dateNaissanceDatePicker" editable="false" prefHeight="25.0" prefWidth="236.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -189,7 +189,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="dateDelivreDatePicker" prefHeight="26.0" prefWidth="249.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                        <DatePicker fx:id="dateDelivreDatePicker" editable="false" prefHeight="26.0" prefWidth="249.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -202,23 +202,10 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="dateExpireDatePicker" prefHeight="26.0" prefWidth="252.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                        <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="26.0" prefWidth="252.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="358.0" spacing="20.0">
-                     <children>
-                        <Label prefWidth="97.0" stylesheets="@../Css/MinitextStyle.css" text="Validité Permis :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <DatePicker fx:id="dateValiditeDatePicker" editable="false" prefHeight="26.0" prefWidth="256.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>

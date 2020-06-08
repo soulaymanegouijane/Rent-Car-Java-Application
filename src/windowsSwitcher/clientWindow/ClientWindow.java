@@ -131,10 +131,12 @@ public class ClientWindow implements Initializable {
 
     public void handleDetailClientButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailClient.fxml"));
+
+        DetailClient.client = clientSelected;
         Parent root = loader.load();
-        
+        //detailClient.comboBox();
         // fonction pour rmplir les champs du detailClient interface
-        FunctionAffiche(loader);
+        //FunctionAffiche(loader);
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -145,7 +147,7 @@ public class ClientWindow implements Initializable {
      
     }
     
-    public void FunctionAffiche(FXMLLoader loader) {
+    /*public void FunctionAffiche(FXMLLoader loader) {
     	DetailClient clt = loader.getController();
         clt.prenomTextField.setText(clientSelected.getPrenom());
         clt.nomTextField.setText(clientSelected.getNom());
@@ -158,13 +160,13 @@ public class ClientWindow implements Initializable {
         clt.cinTextField.setText(clientSelected.getIdClient());
         clt.numPermisTextField.setText(clientSelected.getN_permis());
         clt.dateDelivreDatePicker.setValue(H.convert(clientSelected.getDelevre_a()));
-        clt.dateExpireDatePicker.setValue(H.convert(clientSelected.getValiditePermis()));
+        clt.dateValiditeDatePicker.setValue(H.convert(clientSelected.getValiditePermis()));
         clt.dateNaissanceDatePicker.setValue(H.convert(clientSelected.getDate_naissance()));
         clt.adresseTextField.setText(clientSelected.getAdress());
-        clt.typeCinTextField.setText(clientSelected.getCarte_identifiant());
+        clt.typeCinCombo.setValue(clientSelected.getCarte_identifiant());
         clt.paysTextField.setText(clientSelected.getPays());
         clt.lieuDelivreTextField.setText(clientSelected.getDelevre_le());
-    }
+    }*/
 
     
     

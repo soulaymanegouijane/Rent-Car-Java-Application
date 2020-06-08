@@ -38,6 +38,5 @@ public class H {
     	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     	LocalDate date = LocalDate.parse(str, formatter);
     	return date;
-    	
     }
 }

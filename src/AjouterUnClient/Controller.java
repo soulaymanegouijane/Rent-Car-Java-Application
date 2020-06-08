@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Controller implements Initializable {
 
@@ -95,6 +98,7 @@ public class Controller implements Initializable {
     String numPermis = null;
     String lieuDelivre = null;
     String dateDelivre = null;
+    String dateValidite = null;
     String dateExpire = null;
     String adresse = null;
     String codePostal = null;
@@ -108,13 +112,10 @@ public class Controller implements Initializable {
     ObservableList<String> Genderlist = FXCollections.observableArrayList("Femme","Homme");
     ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	comboBox();
     }
-    
-    
     
     public void comboBox() {
         comboGender.setItems(Genderlist);
@@ -140,6 +141,7 @@ public class Controller implements Initializable {
         lieuDelivre = lieuDelivreTextField.getText();
         dateDelivre = ((TextField)dateDelivreDatePicker.getEditor()).getText();
         dateExpire = ((TextField)dateExpireDatePicker.getEditor()).getText();
+        dateValidite = ((TextField)dateValiditeDatePicker.getEditor()).getText();
         adresse = adresseTextField.getText();
         codePostal = codePostalTextField.getText();
         pays = paysTextField.getText();
@@ -151,33 +153,38 @@ public class Controller implements Initializable {
         Client client = new Client();
         
         if(testEmpty()){
+            erreurMessage.setText("Remplissez tous les champs !");
+            erreurMessage.setVisible(true);
+        }else if(!isEmailValid(email)) {
+            erreurMessage.setText("Vous avez fait une faute dans l'email !");
             erreurMessage.setVisible(true);
         }else{
-        	client.setAdress(adresse);
-        	client.setNom(nom);
-        	client.setPrenom(prenom);
-        	client.setNationalite(nationalite);
-        	client.setDate_naissance(dateNaissance);
-        	client.setLieu_naissance(lieuNaissance);
-        	client.setIdClient(cinClient);
-        	client.setN_permis(numPermis);
-        	client.setDelevre_le(lieuDelivre);
-        	client.setDelevre_a(dateDelivre);
-        	client.setPays(pays);
-        	client.setTelephone(telephone);
-        	client.setEmail(email);
-        	client.setCode_postale(codePostal);
-        	client.setCivilite(genre);
-        	client.setCarte_identifiant(typeIdentifiant);
-        	client.setVille(ville);
-        	
-        	
-        	int s = H.client.add(client);
-        	if(s!=0) {
-        		System.out.println("l'ajout est bien fait");
-        	}else {
-        		System.out.println("il y a un prb");
-        	}
+            client.setAdress(adresse);
+            client.setNom(nom);
+            client.setPrenom(prenom);
+            client.setNationalite(nationalite);
+            client.setDate_naissance(dateNaissance);
+            client.setLieu_naissance(lieuNaissance);
+            client.setIdClient(cinClient);
+            client.setN_permis(numPermis);
+            client.setDelevre_le(lieuDelivre);
+            client.setDelevre_a(dateDelivre);
+            client.setValiditePermis(dateValidite);
+            client.setValiditePermis(dateDelivre);
+            client.setPays(pays);
+            client.setTelephone(telephone);
+            client.setEmail(email);
+            client.setCode_postale(codePostal);
+            client.setCivilite(genre);
+            client.setCarte_identifiant(typeIdentifiant);
+            client.setVille(ville);
+
+            int s = H.client.add(client);
+            if(s!=0) {
+                System.out.println("l'ajout est bien fait");
+            }else {
+                System.out.println("il y a un prb");
+            }
 
             Stage stage =(Stage) saveButton.getScene().getWindow();
             stage.close();
@@ -190,5 +197,12 @@ public class Controller implements Initializable {
                 || dateExpire == null || adresse.isEmpty() || codePostal.isEmpty() || pays.isEmpty() || telephone.isEmpty()
                 || email.isEmpty()) return true;
         return false;
+    }
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
