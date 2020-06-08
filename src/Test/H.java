@@ -17,6 +17,8 @@ import ControllerImpl.TypeImpl;
 import ControllerImpl.TypeReservationImpl;
 import ControllerImpl.UtilisateurImpl;
 import ControllerImpl.VehiculeImpl;
+import javafx.scene.control.DatePicker;
+import javafx.util.StringConverter;
 
 public class H {
 	public static ClientImp client = new ClientImp();
@@ -39,4 +41,29 @@ public class H {
     	LocalDate date = LocalDate.parse(str, formatter);
     	return date;
     }
+
+    public static void setfrenchDatePicker(DatePicker datePicker){
+		String pattern = "dd/MM/yyyy";
+		datePicker.setConverter(new StringConverter<LocalDate>() {
+			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+			@Override
+			public String toString(LocalDate date) {
+				if (date != null) {
+					return dateFormatter.format(date);
+				} else {
+					return "";
+				}
+			}
+
+			@Override
+			public LocalDate fromString(String string) {
+				if (string != null && !string.isEmpty()) {
+					return LocalDate.parse(string, dateFormatter);
+				} else {
+					return null;
+				}
+			}
+		});
+	}
 }

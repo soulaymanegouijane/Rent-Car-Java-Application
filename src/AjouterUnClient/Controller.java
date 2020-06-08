@@ -8,6 +8,7 @@ import Entities.Client;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,9 +16,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -58,9 +61,6 @@ public class Controller implements Initializable {
 
     @FXML
     private DatePicker dateDelivreDatePicker;
-
-    @FXML
-    private DatePicker dateExpireDatePicker;
 
     @FXML
     private JFXButton closeButton;
@@ -114,6 +114,9 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	comboBox();
+        H.setfrenchDatePicker(dateNaissanceDatePicker);
+        H.setfrenchDatePicker(dateValiditeDatePicker);
+        H.setfrenchDatePicker(dateDelivreDatePicker);
     }
     
     public void comboBox() {
@@ -203,4 +206,5 @@ public class Controller implements Initializable {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
 }
