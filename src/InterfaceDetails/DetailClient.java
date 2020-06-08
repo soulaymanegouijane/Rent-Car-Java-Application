@@ -98,6 +98,9 @@ public class DetailClient implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		comboBox();
 		fillBlanks();
+		H.setfrenchDatePicker(dateNaissanceDatePicker);
+		H.setfrenchDatePicker(dateDelivreDatePicker);
+		H.setfrenchDatePicker(dateValiditeDatePicker);
 	}
 
     public void comboBox() {

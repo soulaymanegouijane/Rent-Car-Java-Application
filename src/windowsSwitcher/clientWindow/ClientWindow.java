@@ -144,7 +144,8 @@ public class ClientWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-     
+        client_list.clear();
+        remplir_tableau();
     }
     
     /*public void FunctionAffiche(FXMLLoader loader) {
