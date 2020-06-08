@@ -3,6 +3,8 @@ package InterfaceDetails;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -87,7 +89,7 @@ public class DetailClient implements Initializable{
     @FXML
     public JFXButton editClientBtn;//boutton Modifier
 
-    public Client client = new Client();
+    public static Client client = new Client();
 
     ObservableList<String> GenreList = FXCollections.observableArrayList("Femme", "Homme");
     ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
@@ -95,6 +97,7 @@ public class DetailClient implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		comboBox();
+		fillBlanks();
 	}
 
     public void comboBox() {
@@ -149,9 +152,9 @@ public class DetailClient implements Initializable{
         villeTextField.setText(client.getVille());
         cinTextField.setText(client.getIdClient());
         numPermisTextField.setText(client.getN_permis());
-        dateDelivreDatePicker.setValue(H.convert(client.getDelevre_a()));
-        dateValiditeDatePicker.setValue(H.convert(client.getValiditePermis()));
-        dateNaissanceDatePicker.setValue(H.convert(client.getDate_naissance()));
+        //dateDelivreDatePicker.setValue(H.convert(client.getDelevre_a()));
+        //dateValiditeDatePicker.setValue(H.convert(client.getValiditePermis()));
+        //dateNaissanceDatePicker.setValue(H.convert(client.getDate_naissance()));
         adresseTextField.setText(client.getAdress());
         typeCinCombo.setValue(client.getCarte_identifiant());
         GenreComboBox.setValue(client.getCivilite());
@@ -192,7 +195,13 @@ public class DetailClient implements Initializable{
             alert.setContentText("Client n'est pas Modifier !!");
             alert.showAndWait();
 
-        }else{
+        }else if(!isEmailValid(emailTextField.getText())){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Alert d'erreur");
+            alert.setHeaderText("can not add Client");
+            alert.setContentText("Vous avez met une faute dans l'email !!");
+            alert.showAndWait();
+        } else{
             nonEditHBox.setVisible(true);
             editHBox.setVisible(false);
             rewriteClientInfos();
@@ -202,24 +211,10 @@ public class DetailClient implements Initializable{
     }
 
     public void handleAnnulerEditsButton(ActionEvent actionEvent) {
-        prenomTextField.setEditable(false);
-        nomTextField.setEditable(false);
-        nationaliteTextField.setEditable(false);
-        lieuNaissanceTextField.setEditable(false);
-        emailTextField.setEditable(false);
-        telephoneTextField.setEditable(false);
-        codePostalTextField.setEditable(false);
-        villeTextField.setEditable(false);
-        cinTextField.setEditable(false);
-        numPermisTextField.setEditable(false);
-        dateDelivreDatePicker.setEditable(false);
-        dateValiditeDatePicker.setEditable(false);
-        dateNaissanceDatePicker.setEditable(false);
-        adresseTextField.setEditable(false);
-        typeCinCombo.setEditable(false);
-        GenreComboBox.setEditable(false);
-        paysTextField.setEditable(false);
-        lieuDelivreTextField.setEditable(false);
+        nonEditHBox.setVisible(true);
+        editHBox.setVisible(false);
+        fillBlanks();
+        disableEditing();
     }
 
     public void enableEditing(){
@@ -233,17 +228,41 @@ public class DetailClient implements Initializable{
         villeTextField.setEditable(true);
         cinTextField.setEditable(true);
         numPermisTextField.setEditable(true);
-        dateDelivreDatePicker.setEditable(true);
-        dateValiditeDatePicker.setEditable(true);
-        dateNaissanceDatePicker.setEditable(true);
+        dateDelivreDatePicker.setDisable(false);
+        dateValiditeDatePicker.setDisable(false);
+        dateNaissanceDatePicker.setDisable(false);
         adresseTextField.setEditable(true);
-        typeCinCombo.setEditable(true);
-        GenreComboBox.setEditable(true);
+        typeCinCombo.setDisable(false);
+        GenreComboBox.setDisable(false);
         paysTextField.setEditable(true);
         lieuDelivreTextField.setEditable(true);
     }
 
     public void disableEditing(){
+        prenomTextField.setEditable(false);
+        nomTextField.setEditable(false);
+        nationaliteTextField.setEditable(false);
+        lieuNaissanceTextField.setEditable(false);
+        emailTextField.setEditable(false);
+        telephoneTextField.setEditable(false);
+        codePostalTextField.setEditable(false);
+        villeTextField.setEditable(false);
+        cinTextField.setEditable(false);
+        numPermisTextField.setEditable(false);
+        dateDelivreDatePicker.setDisable(true);
+        dateValiditeDatePicker.setDisable(true);
+        dateNaissanceDatePicker.setDisable(true);
+        adresseTextField.setEditable(false);
+        typeCinCombo.setDisable(true);
+        GenreComboBox.setDisable(true);
+        paysTextField.setEditable(false);
+        lieuDelivreTextField.setEditable(false);
+    }
 
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

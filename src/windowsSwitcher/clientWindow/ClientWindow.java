@@ -131,13 +131,12 @@ public class ClientWindow implements Initializable {
 
     public void handleDetailClientButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailClient.fxml"));
-    	//DetailClient detailClient = loader.getController();
-    	//detailClient.client = clientSelected;
-    	//detailClient.fillBlanks();
+
+        DetailClient.client = clientSelected;
         Parent root = loader.load();
-        
+        //detailClient.comboBox();
         // fonction pour rmplir les champs du detailClient interface
-        FunctionAffiche(loader);
+        //FunctionAffiche(loader);
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -148,7 +147,7 @@ public class ClientWindow implements Initializable {
      
     }
     
-    public void FunctionAffiche(FXMLLoader loader) {
+    /*public void FunctionAffiche(FXMLLoader loader) {
     	DetailClient clt = loader.getController();
         clt.prenomTextField.setText(clientSelected.getPrenom());
         clt.nomTextField.setText(clientSelected.getNom());
@@ -167,7 +166,7 @@ public class ClientWindow implements Initializable {
         clt.typeCinCombo.setValue(clientSelected.getCarte_identifiant());
         clt.paysTextField.setText(clientSelected.getPays());
         clt.lieuDelivreTextField.setText(clientSelected.getDelevre_le());
-    }
+    }*/
 
     
     
