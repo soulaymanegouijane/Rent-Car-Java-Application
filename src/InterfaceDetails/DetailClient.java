@@ -152,9 +152,9 @@ public class DetailClient implements Initializable{
         villeTextField.setText(client.getVille());
         cinTextField.setText(client.getIdClient());
         numPermisTextField.setText(client.getN_permis());
-        //dateDelivreDatePicker.setValue(H.convert(client.getDelevre_a()));
-        //dateValiditeDatePicker.setValue(H.convert(client.getValiditePermis()));
-        //dateNaissanceDatePicker.setValue(H.convert(client.getDate_naissance()));
+        dateDelivreDatePicker.setValue(H.convert(client.getDelevre_a()));
+        dateValiditeDatePicker.setValue(H.convert(client.getValiditePermis()));
+        dateNaissanceDatePicker.setValue(H.convert(client.getDate_naissance()));
         adresseTextField.setText(client.getAdress());
         typeCinCombo.setValue(client.getCarte_identifiant());
         GenreComboBox.setValue(client.getCivilite());

@@ -99,7 +99,6 @@ public class Controller implements Initializable {
     String lieuDelivre = null;
     String dateDelivre = null;
     String dateValidite = null;
-    String dateExpire = null;
     String adresse = null;
     String codePostal = null;
     String pays = null;
@@ -140,7 +139,6 @@ public class Controller implements Initializable {
         numPermis = numPermisTextField.getText();
         lieuDelivre = lieuDelivreTextField.getText();
         dateDelivre = ((TextField)dateDelivreDatePicker.getEditor()).getText();
-        dateExpire = ((TextField)dateExpireDatePicker.getEditor()).getText();
         dateValidite = ((TextField)dateValiditeDatePicker.getEditor()).getText();
         adresse = adresseTextField.getText();
         codePostal = codePostalTextField.getText();
@@ -194,7 +192,7 @@ public class Controller implements Initializable {
     public boolean testEmpty(){
         if(prenom.isEmpty() || nom.isEmpty() || nationalite.isEmpty() || dateNaissance == null || lieuNaissance.isEmpty()
                 || cinClient.isEmpty() || numPermis.isEmpty() || lieuDelivre.isEmpty() || dateDelivre == null
-                || dateExpire == null || adresse.isEmpty() || codePostal.isEmpty() || pays.isEmpty() || telephone.isEmpty()
+                || adresse.isEmpty() || codePostal.isEmpty() || pays.isEmpty() || telephone.isEmpty()
                 || email.isEmpty()) return true;
         return false;
     }
