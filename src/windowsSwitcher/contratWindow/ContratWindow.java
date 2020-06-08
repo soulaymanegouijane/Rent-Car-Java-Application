@@ -479,13 +479,14 @@ public class ContratWindow implements Initializable {
 			    contrat.setIdContrat(tous_les_contrat.getLong("idContrat"));
 			    contrat.setReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")));
 			    //contrat.setVehicule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")));
-			    //contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
+			    contrat.setCinUtilisateur(H.reservation.getCinUtilisateur(tous_les_contrat.getLong("idReservation")));
 			    contrat.setCinClient(H.reservation.getCinClient(tous_les_contrat.getLong("idReservation")));
 			    contrat.setMatricule(H.vehicule.getById(tous_les_contrat.getString("idVehicule")).getIdVehicule());
 			    contrat.setCodeReservation(H.reservation.getById(tous_les_contrat.getLong("idReservation")).getIdReservation());
 			    contrat.setDate_retour(tous_les_contrat.getString("date_retour"));
 			    contrat.setDateContrat(tous_les_contrat.getString("date_Contrat"));
 			    contrat_list.add(contrat);
+			    System.out.println("-*-*-*-*-*->"+contrat.getCinUtilisateur());
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -498,7 +499,7 @@ public class ContratWindow implements Initializable {
  	   col_date_contrat.setCellValueFactory(new PropertyValueFactory<>("dateContrat"));
  	   col_date_echeance.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
  	   col_reservation.setCellValueFactory(new PropertyValueFactory<>("codeReservation"));
- 	   col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+ 	  col_cin_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
  	  col_vehicule.setCellValueFactory(new PropertyValueFactory<>("matricule"));
  	
          

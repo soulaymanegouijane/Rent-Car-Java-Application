@@ -22,7 +22,7 @@ public class Vehicule implements Serializable{
 	@Column(name="color",nullable=true)
 	private String color;
 	@Column(name="dispo",nullable=true)
-	private boolean dispo;
+	private String dispo;
 	@Column(name="kilometrage",nullable=true)
 	private long kilometrage;
 	
@@ -134,15 +134,15 @@ public class Vehicule implements Serializable{
 
 	
 
-	public boolean isDispo() {
+	public String isDispo() {
 		return this.dispo;
 	}
 
-	public boolean getDispo() {
+	public String getDispo() {
 		return this.dispo;
 	}
 
-	public void setDispo(boolean dispo) {
+	public void setDispo(String dispo) {
 		this.dispo = dispo;
 	}
 

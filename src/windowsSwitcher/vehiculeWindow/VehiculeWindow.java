@@ -7,6 +7,7 @@ import Entities.Carburant;
 import Entities.Client;
 import Entities.Marque;
 import Entities.Parking;
+import Entities.Type;
 import Entities.Utilisateur;
 import Entities.Vehicule;
 import InterfaceDetails.DetailVehicule;
@@ -119,7 +120,7 @@ public class VehiculeWindow implements Initializable {
 
     String searchSection = null;
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Matricule", "Type", "Marque", "Carburant", "Disponibilite", "Emplacement");
-    ObservableList<String> typeList = FXCollections.observableArrayList("Voiture", "Motocycle", "Camion", "Camionnette", "Caravane");
+    ObservableList<String> typeList = FXCollections.observableArrayList();
     ObservableList<String> marqueList = FXCollections.observableArrayList();
     ObservableList<String> carburantList = FXCollections.observableArrayList();//"Essence", "Gazole", "Hybride"
     ObservableList<String> disponibiliteList = FXCollections.observableArrayList("Disponible", "Reserver", "Indisponible");
@@ -134,6 +135,7 @@ public class VehiculeWindow implements Initializable {
 		detailVehiculeButton.setDisable(true);
     	marque_base_donnee();
     	carburant_base_donnee();
+    	type_base_donne();
     	comboBox();
         remplir_tableau();
         
@@ -210,6 +212,25 @@ public class VehiculeWindow implements Initializable {
 		}
     }
 
+    public void type_base_donne() {
+    	ResultSet tous_les_types = null;
+		try {
+			String sql = "select * from type";
+			Connection con = Abst.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);
+			tous_les_types = ps.executeQuery();
+			while(tous_les_types.next()) {
+				Type type = new Type();
+				type.setLibelle(tous_les_types.getString("libelle"));
+				String typ = type.getLibelle();
+				typeList.add(typ);
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
     public void handleChercherComboBox(ActionEvent actionEvent) {
         String searchSection = chercherComboBox.getValue();
         chercherButton.setDisable(false);
@@ -313,7 +334,8 @@ public class VehiculeWindow implements Initializable {
                 enable(ErreurMessage);
             } else {
                 // Search vehicule by emplacement
-            	afficher_vehicule(typeTaped);
+            	Type type = H.type.get(typeTaped);
+            	afficher_vehicule(String.valueOf(type.getIdType()));
             }
 
         } else if (searchSection.equals("Marque")) {
@@ -346,7 +368,7 @@ public class VehiculeWindow implements Initializable {
         	vehicule_list.clear();
         	mono_vehicule.clear();
             String disponibiliteTaped = disponibiliteComboBox.getValue();
-
+			System.out.println("------------------> *" + disponibiliteTaped);
             // Search vehicule by disponibilite
             if (disponibiliteTaped.isEmpty()) {
                 enable(ErreurMessage);
@@ -422,12 +444,7 @@ public class VehiculeWindow implements Initializable {
     	detail.idmatricule.setText(vehiculeSelected.getIdVehicule());
     	detail.idcolor.setValue(javafx.scene.paint.Color.valueOf((String) vehiculeSelected.getColor()));
     	detail.nombrePlaceTextField.setText(String.valueOf(vehiculeSelected.getNbr_place()));
-    	
-    	if(vehiculeSelected.getDispo()) {
-    		detail.dispoVehicule.setValue("disponible");
-    	}else {
-    		detail.dispoVehicule.setValue("indisponible");
-    	}
+    	detail.dispoVehicule.setValue(vehiculeSelected.getDispo());
     	detail.TypeCarburant.setValue(vehiculeSelected.getCarburant().getLibelle());
     	detail.marqueVoiture.setValue(vehiculeSelected.getType().getMarque().getLibelle());
     	detail.idParking.setText(vehiculeSelected.getParking().getAdress());
@@ -545,7 +562,7 @@ public class VehiculeWindow implements Initializable {
 				String sql = "select * from vehicule where dispo=?";
 				con = Abst.getConnection();
 				ps = con.prepareStatement(sql);
-				ps.setBoolean(1, Boolean.valueOf(valeur));
+				ps.setString(1, valeur);
 			}
 			if(searchSection.equals("Emplacement")) {
 				String sql = "select * from vehicule where idParking=?";
@@ -565,6 +582,7 @@ public class VehiculeWindow implements Initializable {
 				vehicule.setTypeVehicule(H.type.getById(tous_les_vehicule.getLong("idType")).getLibelle());
 				vehicule.setLibelle_marque(H.type.getById(tous_les_vehicule.getLong("idType")).getMarque().getLibelle());
 				vehicule.setColor(tous_les_vehicule.getString("color"));
+				vehicule.setDispo(tous_les_vehicule.getString("dispo"));
 				// vehicule_list.add(vehicule); prb ?
 				mono_vehicule.add(vehicule);
 			}
@@ -602,6 +620,7 @@ public class VehiculeWindow implements Initializable {
 				vehicule.setMarqueLibelle(H.vehicule.marque_libelle(tous_les_vehicule.getString("idVehicule")));
 				vehicule.setTypeVehicule(H.type.getById(tous_les_vehicule.getLong("idType")).getLibelle());
 				vehicule.setColor(tous_les_vehicule.getString("color"));
+				vehicule.setDispo(tous_les_vehicule.getString("dispo"));
 				vehicule_list.add(vehicule);
 			}
 			con.close();

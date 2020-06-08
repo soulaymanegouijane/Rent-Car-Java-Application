@@ -264,7 +264,7 @@ public class AjouterVehicule implements Initializable{
 			vehicule.setNbr_place(nbrPlace);
 			vehicule.setParking(H.parking.get(parking));
 			vehicule.setType(H.type.get(typ));
-			vehicule.setDispo(true);
+			vehicule.setDispo("Disponible");
 			
 			try {
 				FileInputStream inputStream = new FileInputStream(file);

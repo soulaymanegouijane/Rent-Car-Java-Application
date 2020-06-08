@@ -33,7 +33,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			ps.setLong(4, arg.getCarburant().getIdCarburant());
 			ps.setLong(5, arg.getType().getIdType());
 			ps.setString(6, arg.getColor());
-			ps.setBoolean(7, arg.getDispo());
+			ps.setString(7, arg.getDispo());
 			ps.setBytes(8, arg.getImage());
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
@@ -54,7 +54,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			ps.setLong(3, arg.getCarburant().getIdCarburant());
 			ps.setLong(4, arg.getType().getIdType());
 			ps.setString(5, arg.getColor());
-			ps.setBoolean(6, arg.getDispo());
+			ps.setString(6, arg.getDispo());
 			ps.setBytes(7, arg.getImage());
 			ps.setString(8, arg.getIdVehicule());
 			ps.executeUpdate();
@@ -110,6 +110,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 				vehicule.setCarburant(H.carburant.getById(rs.getLong("idCarburant")));
 				vehicule.setType(H.type.getById(rs.getLong("idType")));
 				vehicule.setColor(rs.getString("color"));
+				vehicule.setDispo(rs.getString("dispo"));
 				list.add(vehicule);
 			}
 			
@@ -182,6 +183,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 				vehicule.setCarburant(H.carburant.getById(rs.getLong("idCarburant")));
 				vehicule.setType(H.type.getById(rs.getLong("idType")));
 				vehicule.setImage(rs.getBytes("photo"));
+				vehicule.setDispo(rs.getString("dispo"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");

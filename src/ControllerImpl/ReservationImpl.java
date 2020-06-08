@@ -201,7 +201,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 	public String getCinUtilisateur(long idReservation) {
 		String id = null;
 		Connection con = Abst.getConnection();
-		String sql ="select idUtilisateur from utilisateur where idReservation = ?";
+		String sql ="select idUtilisateur from reservation where idReservation = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, idReservation);
