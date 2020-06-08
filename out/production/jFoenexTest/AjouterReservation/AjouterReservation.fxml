@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterReservation.AjouterReservation">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AjouterReservation.AjouterReservation">
     <children>
         <Pane prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
             <children>
@@ -30,9 +30,9 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="idReservation" editable="false" stylesheets="@../Css/textinputstyle.css">
+                        <TextField fx:id="idReservation" editable="false" prefHeight="25.0" prefWidth="165.0" stylesheets="@../Css/textinputstyle.css">
                             <HBox.margin>
-                                <Insets left="100.0" />
+                                <Insets left="120.0" />
                             </HBox.margin>
                         </TextField>
                     </children>
@@ -44,7 +44,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                  <DatePicker fx:id="dateReservation" prefWidth="149.0" stylesheets="@../Css/datePicker.css">
+                  <DatePicker fx:id="dateReservation" editable="false" prefHeight="26.0" prefWidth="164.0" stylesheets="@../Css/datePicker.css">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
@@ -67,7 +67,7 @@
                         <Insets left="46.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="idUtilisateur" editable="false" stylesheets="@../Css/textinputstyle.css">
+                  <TextField fx:id="idUtilisateur" editable="false" prefHeight="25.0" prefWidth="157.0" stylesheets="@../Css/textinputstyle.css">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -86,7 +86,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="vehicule" editable="false" stylesheets="@../Css/textinputstyle.css">
+                        <TextField fx:id="vehicule" editable="false" prefHeight="25.0" prefWidth="159.0" stylesheets="@../Css/textinputstyle.css">
                             <HBox.margin>
                                 <Insets left="100.0" />
                             </HBox.margin>
@@ -105,7 +105,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="client" editable="false" stylesheets="@../Css/textinputstyle.css">
+                        <TextField fx:id="client" editable="false" prefHeight="25.0" prefWidth="161.0" stylesheets="@../Css/textinputstyle.css">
                             <HBox.margin>
                                 <Insets left="100.0" />
                             </HBox.margin>
@@ -124,7 +124,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                  <DatePicker fx:id="dateDepart" prefWidth="149.0" stylesheets="@../Css/datePicker.css">
+                  <DatePicker fx:id="dateDepart" editable="false" prefHeight="26.0" prefWidth="163.0" stylesheets="@../Css/datePicker.css">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
@@ -142,7 +142,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                  <DatePicker fx:id="dateRetour" prefWidth="149.0" stylesheets="@../Css/datePicker.css">
+                  <DatePicker fx:id="dateRetour" editable="false" prefHeight="26.0" prefWidth="165.0" stylesheets="@../Css/datePicker.css">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
@@ -160,7 +160,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="avance" stylesheets="@../Css/textinputstyle.css">
+                        <TextField fx:id="avance" prefHeight="25.0" prefWidth="162.0" stylesheets="@../Css/textinputstyle.css">
                             <HBox.margin>
                                 <Insets left="100.0" />
                             </HBox.margin>
@@ -179,7 +179,7 @@
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                  <JFXComboBox fx:id="typeReservation" prefHeight="23.0" prefWidth="168.0" promptText="Type Réservation :" style="-jfx-label-float: true;">
+                  <JFXComboBox fx:id="typeReservation" prefHeight="25.0" prefWidth="162.0" promptText="Type Réservation :" style="-jfx-label-float: true;">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
@@ -201,7 +201,7 @@
                                 <Insets left="50.0" />
                             </HBox.margin>
                         </JFXButton>
-                  <JFXButton fx:id="contratCreate" layoutX="210.0" layoutY="15.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #6622CC; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Créer le contrat" textFill="WHITE">
+                  <JFXButton fx:id="contratCreate" layoutX="210.0" layoutY="15.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #6622CC; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Générer une contrat" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>

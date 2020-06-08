@@ -103,6 +103,7 @@ public class UtilisateurWindow implements Initializable {
         detailUtilisateurButton.setDisable(true);
     	comboBox();
     	remplir_tableau();
+
     }
     
     public void comboBox() {
@@ -128,13 +129,14 @@ public class UtilisateurWindow implements Initializable {
 
     public void handleDetailUtilisateurButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailUtilisateur.fxml"));
-        Parent root = loader.load();
-        
+
+
         //FunctionAffiche(loader);
-        
-        DetailUtilisateur detail = loader.getController();
-        detail.User = userSelected;
-        detail.fillBlanks();
+        //DetailUtilisateur detail = loader.getController();
+        DetailUtilisateur.User = userSelected;
+        //detail.fillBlanks();
+
+        Parent root = loader.load();
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
