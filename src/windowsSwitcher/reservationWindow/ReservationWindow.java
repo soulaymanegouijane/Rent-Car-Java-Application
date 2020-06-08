@@ -40,85 +40,85 @@ public class ReservationWindow implements Initializable {
     public JFXButton buttonChoisirVehicule;
     
     String searchSection = null;
-    	@FXML
-	    private ComboBox<String> chercherComboBox;
+    @FXML
+    private ComboBox<String> chercherComboBox;
 
-	    @FXML
-	    private AnchorPane inputSearchArea;
+    @FXML
+    private AnchorPane inputSearchArea;
 
-	    @FXML
-	    private TextField idTextFeild;
+    @FXML
+    private TextField idTextFeild;
 
-	    @FXML
-	    private ComboBox<String> typeComboBox;
+    @FXML
+    private ComboBox<String> typeComboBox;
 
-	    @FXML
-	    private DatePicker dateDatePicker;
+    @FXML
+    private DatePicker dateDatePicker;
 
-	    @FXML
-	    private HBox hBoxChoisirClient;
+    @FXML
+    private HBox hBoxChoisirClient;
 
-	    @FXML
-	    private TextField textFeildChoisirClient;
+    @FXML
+    private TextField textFeildChoisirClient;
 
-	    @FXML
-	    private JFXButton buttonChoisirClient;
+    @FXML
+    private JFXButton buttonChoisirClient;
 
-	    @FXML
-	    private HBox hBoxChoisirUtilisateur;
+    @FXML
+    private HBox hBoxChoisirUtilisateur;
 
-	    @FXML
-	    private TextField textFeildChoisirUtilisateur;
+    @FXML
+    private TextField textFeildChoisirUtilisateur;
 
-	    @FXML
-	    private JFXButton buttonChoisirUtilisateur;
+    @FXML
+    private JFXButton buttonChoisirUtilisateur;
 
-	    @FXML
-	    private ComboBox<String> statutComboBox;
+    @FXML
+    private ComboBox<String> statutComboBox;
 
-	    @FXML
-	    private TextField nbrContratTextFeild;
+    @FXML
+    private TextField nbrContratTextFeild;
 
-	    @FXML
-	    private Button chercherButton;
+    @FXML
+    private Button chercherButton;
 
-	    @FXML
-	    private Label ErreurMessage;
+    @FXML
+    private Label ErreurMessage;
 
-	    @FXML
-	    private TableView<Reservation> tableReservation;
+    @FXML
+    private TableView<Reservation> tableReservation;
 
-	    @FXML
-	    private TableColumn<Reservation,Long> col_id;
+    @FXML
+    private TableColumn<Reservation,Long> col_id;
 
-	    @FXML
-	    private TableColumn<Reservation,String> col_type;
+    @FXML
+    private TableColumn<Reservation,String> col_type;
 
-	    @FXML
-	    private TableColumn<Reservation,String> col_date_depart;
+    @FXML
+    private TableColumn<Reservation,String> col_date_depart;
 
-	    @FXML
-	    private TableColumn<Reservation,String> col_date_retour;
+    @FXML
+    private TableColumn<Reservation,String> col_date_retour;
 
-	    @FXML
-	    private TableColumn<Reservation,Long> col_id_client;
+    @FXML
+    private TableColumn<Reservation,Long> col_id_client;
 
-	    @FXML
-	    private TableColumn<Reservation,Long> col_id_utilisateur;
+    @FXML
+    private TableColumn<Reservation,Long> col_id_utilisateur;
 
-	    @FXML
-	    private TableColumn<Reservation,String> col_status;
+    @FXML
+    private TableColumn<Reservation,String> col_status;
 
-	    @FXML
-	    private TableColumn<Reservation,Long> col_nbr_contrats;
+    @FXML
+    private TableColumn<Reservation,Long> col_nbr_contrats;
 
-	    @FXML
-	    private Button ajouterReservationButton;
+    @FXML
+    private Button ajouterReservationButton;
 
-	    @FXML
-        private Button detailReservationButton;
+    @FXML
+    private Button detailReservationButton;
         
-	    public Reservation reservationSelected;
+    public Reservation reservationSelected;
 
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status", "Nombres des contrats");
     ObservableList<String> typeTypeList = FXCollections.observableArrayList("Reservation local", "Reservation telephonique");
@@ -248,6 +248,7 @@ public class ReservationWindow implements Initializable {
 
     public void handleDetailReservationButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailReservation.fxml"));
+    	DetailReservation.reservation = reservationSelected;
         Parent root = loader.load();
         
         FunctionAffiche(loader);

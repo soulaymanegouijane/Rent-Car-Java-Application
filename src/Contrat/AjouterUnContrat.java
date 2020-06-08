@@ -74,6 +74,8 @@ public class AjouterUnContrat implements Initializable {
 
 	    @FXML
 	    private JFXButton finish;
+
+	    public boolean addwithSucces = false;
 	    
         @FXML
         private void closeButtonAction(){

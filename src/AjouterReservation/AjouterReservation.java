@@ -64,9 +64,6 @@ public class AjouterReservation implements Initializable {
 
     @FXML
     private JFXButton submit;
-
-    @FXML
-    private JFXButton contratCreate;
     
     @FXML
     private DatePicker dateReservation;

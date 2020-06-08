@@ -8,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import Contrat.AjouterUnContrat;
+import Entities.Reservation;
+import Test.H;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
@@ -22,6 +25,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -70,28 +76,65 @@ public class DetailReservation implements Initializable {
     public JFXButton createContratBtn;
 
     @FXML
-    public JFXButton EditReservation;
-
-    @FXML
     public JFXButton deleteReservationBtn;
     
     @FXML
     public  JFXButton EditReservationBtn ;
-    
+    public StackPane primaryStackPane;
+    public HBox nonEditHBox;
+    public VBox TerminerResevationVBox;
+    public JFXButton TerminerReservationBtn;
+    public VBox ContratFactureVBox;
+    public JFXButton AccederContratBtn;
+    public JFXButton AccederFactureBtn;
+    public VBox StatutVBox;
+    public JFXButton AnnulerReservationBtn;
+    public VBox EditVBox;
+    public JFXButton saveEditsBtn;
+    public JFXButton annulerEditsBtn;
+
     ObservableList<String> TypeRes = FXCollections.observableArrayList();
 
-    
+    public static Reservation reservation = new Reservation();
+
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
     	getTypeReservationn_BaseDonnee();
 		comboBox();
-		
+        H.setfrenchDatePicker(dateReservation);
+        H.setfrenchDatePicker(dateDepartDatePicker);
+        H.setfrenchDatePicker(dateRetourDatePicker);
+        visibiliteBoxByStatus();
+        fillBlanks();
 	}
     
     private void comboBox() {
 		typeRservation.setItems(TypeRes);
-		
 	}
+
+	public void fillBlanks(){
+        avance.setText(String.valueOf(reservation.getAvance()));
+        dateReservation.setValue(H.convert(reservation.getDatReservation()));
+        dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
+        dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
+        vehicule.setText(reservation.getVehicule().getIdVehicule());
+        client.setText(reservation.getClient().getIdClient());
+        typeRservation.setValue(reservation.getTypeRes().getLibelle());
+        idReservation.setText(String.valueOf(reservation.getIdReservation()));
+        etatReservation.setText(reservation.getStatus().getLibelle());
+    }
+
+    public void rewriteReservationInfos (){
+        reservation.setAvance(Float.parseFloat(avance.getText()));
+        reservation.setDatReservation(((TextField)dateReservation.getEditor()).getText());
+        reservation.setDate_depart(((TextField)dateDepartDatePicker.getEditor()).getText());
+        reservation.setDate_retour(((TextField)dateRetourDatePicker.getEditor()).getText());
+        reservation.getVehicule().setIdVehicule(vehicule.getText());
+        reservation.getClient().setIdClient(client.getText());
+        reservation.getTypeRes().setLibelle(typeRservation.getValue());
+        reservation.setIdReservation(Long.parseLong(idReservation.getText()));
+        reservation.getStatus().setLibelle(etatReservation.getText());
+    }
 
 	@FXML
     void choisirClientBtn(ActionEvent event) throws IOException {
@@ -150,9 +193,121 @@ public class DetailReservation implements Initializable {
         stage.close();
     }
 
-	
-    
-    
-    
- 
+
+    public void handleEditReservationBtn(ActionEvent actionEvent) {
+        enableFields();
+
+        EditVBox.setVisible(true);
+        nonEditHBox.setVisible(false);
+        TerminerResevationVBox.setVisible(false);
+        ContratFactureVBox.setVisible(false);
+        StatutVBox.setVisible(false);
+
+    }
+
+    public void handleAnnulerEditsBtn(ActionEvent actionEvent) {
+        disableFields();
+        fillBlanks();
+
+        EditVBox.setVisible(false);
+        nonEditHBox.setVisible(true);
+        visibiliteBoxByStatus();
+
+    }
+
+    public void handleSaveEditsBtn(ActionEvent actionEvent) {
+
+        // If everything is OK
+        disableFields();
+        rewriteReservationInfos();
+
+
+    }
+
+    public void handleDeleteReservationBtn(ActionEvent actionEvent) {
+        //Delete Reservation
+    }
+
+
+    public void handleAnnulerReservationBtn(ActionEvent actionEvent) {
+        reservation.getStatus().setIdStatus(4);
+        fillBlanks();
+        visibiliteBoxByStatus();
+    }
+
+    public void handlecreateContratBtn(ActionEvent actionEvent) throws IOException {
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../Contrat/AjouterUnContrat.fxml"));
+        AjouterUnContrat ajouterUnContrat = loader.getController();
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+        if(ajouterUnContrat.addwithSucces){
+            reservation.getStatus().setIdStatus(2);
+        }*/
+
+        reservation.getStatus().setIdStatus(2);//For Test
+        fillBlanks();
+        visibiliteBoxByStatus();
+    }
+
+    public void handleTerminerReservationBtn(ActionEvent actionEvent) {
+        reservation.getStatus().setIdStatus(3);
+        fillBlanks();
+        visibiliteBoxByStatus();
+    }
+
+    public void handleAccederContratBtn(ActionEvent actionEvent) {
+    }
+
+    public void handleAccederFactureBtn(ActionEvent actionEvent) {
+    }
+
+    public void enableFields(){
+        dateReservation.setDisable(false);
+        choisirVehiculeBtn.setDisable(false);
+        choisirClientBtn.setDisable(false);
+        dateDepartDatePicker.setDisable(false);
+        dateRetourDatePicker.setDisable(false);
+        avance.setEditable(true);
+        typeRservation.setDisable(false);
+    }
+
+    public void disableFields(){
+        dateReservation.setDisable(true);
+        choisirVehiculeBtn.setDisable(true);
+        choisirClientBtn.setDisable(true);
+        dateDepartDatePicker.setDisable(true);
+        dateRetourDatePicker.setDisable(true);
+        avance.setEditable(false);
+        typeRservation.setDisable(true);
+    }
+
+    public void visibiliteBoxByStatus(){
+        Long status = reservation.getStatus().getIdStatus();
+
+        if (status == 1){ // en cours
+            StatutVBox.setVisible(true);
+            ContratFactureVBox.setVisible(false);
+            TerminerResevationVBox.setVisible(false);
+        }else if (status == 2){ // Active
+            StatutVBox.setVisible(false);
+            ContratFactureVBox.setVisible(true);
+            AccederFactureBtn.setVisible(false);
+            TerminerResevationVBox.setVisible(true);
+        }else if (status == 3){ // Terminer
+            StatutVBox.setVisible(false);
+            ContratFactureVBox.setVisible(true);
+            AccederFactureBtn.setVisible(true);
+            TerminerResevationVBox.setVisible(false);
+        }else if (status == 4){ // Annuler
+            StatutVBox.setVisible(false);
+            ContratFactureVBox.setVisible(false);
+            TerminerResevationVBox.setVisible(false);
+        }
+    }
 }
