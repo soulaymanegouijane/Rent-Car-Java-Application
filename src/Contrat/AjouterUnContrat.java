@@ -75,6 +75,8 @@ public class AjouterUnContrat implements Initializable {
 	    @FXML
 	    private JFXButton finish;
 
+		public Contrat contrat = new Contrat();
+
 	    public boolean addwithSucces = false;
 	    
         @FXML
@@ -86,6 +88,7 @@ public class AjouterUnContrat implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
+			addwithSucces = false;
         	H.setfrenchDatePicker(dateContrat);
         	H.setfrenchDatePicker(dateDepart);
         	H.setfrenchDatePicker(dateRetour);
@@ -105,8 +108,6 @@ public class AjouterUnContrat implements Initializable {
         	//String mtTotal = montantTotal.getText();
         	//String sction = avance.getText();
         	
-        	Contrat contrat = new Contrat();
-        	
         	contrat.setDateContrat(dtContrat);
         	contrat.setDate_retour(dtRetour);
         	contrat.setDate_sortie(dtDepart);
@@ -117,6 +118,8 @@ public class AjouterUnContrat implements Initializable {
         	contrat.setVehicule(H.vehicule.getById(String.valueOf(voiture)));
         	
         	H.contrat.add(contrat);
+        	// Si contrat n'est pas ajouter Do contrat = null
+        	addwithSucces = true;
         	
         	Stage stage =(Stage) closeButton.getScene().getWindow();
             stage.close();

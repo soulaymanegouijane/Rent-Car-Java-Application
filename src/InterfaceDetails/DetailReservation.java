@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import Contrat.AjouterUnContrat;
+import Entities.Contrat;
 import Entities.Reservation;
 import Test.H;
 import com.jfoenix.controls.JFXButton;
@@ -96,6 +97,7 @@ public class DetailReservation implements Initializable {
     ObservableList<String> TypeRes = FXCollections.observableArrayList();
 
     public static Reservation reservation = new Reservation();
+    public Contrat contrat = new Contrat();
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -104,7 +106,7 @@ public class DetailReservation implements Initializable {
         H.setfrenchDatePicker(dateReservation);
         H.setfrenchDatePicker(dateDepartDatePicker);
         H.setfrenchDatePicker(dateRetourDatePicker);
-        visibiliteBoxByStatus();
+        visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
         fillBlanks();
 	}
     
@@ -211,8 +213,6 @@ public class DetailReservation implements Initializable {
 
         EditVBox.setVisible(false);
         nonEditHBox.setVisible(true);
-        visibiliteBoxByStatus();
-
     }
 
     public void handleSaveEditsBtn(ActionEvent actionEvent) {
@@ -232,13 +232,14 @@ public class DetailReservation implements Initializable {
     public void handleAnnulerReservationBtn(ActionEvent actionEvent) {
         reservation.getStatus().setIdStatus(4);
         fillBlanks();
-        visibiliteBoxByStatus();
+        visibiliteBoxByStatus(4);
     }
 
     public void handlecreateContratBtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Contrat/AjouterUnContrat.fxml"));
-        AjouterUnContrat ajouterUnContrat = loader.getController();
         Parent root = loader.load();
+
+        AjouterUnContrat ajouterUnContrat = loader.getController();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -246,19 +247,19 @@ public class DetailReservation implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-        if(ajouterUnContrat.addwithSucces){
-            reservation.getStatus().setIdStatus(2);
-        }
 
-        reservation.getStatus().setIdStatus(2);//For Test
-        fillBlanks();
-        visibiliteBoxByStatus();
+        contrat = ajouterUnContrat.contrat;
+
+        if(ajouterUnContrat.addwithSucces){
+            visibiliteBoxByStatus(2);
+            fillBlanks();
+        }
     }
 
     public void handleTerminerReservationBtn(ActionEvent actionEvent) {
         reservation.getStatus().setIdStatus(3);
         fillBlanks();
-        visibiliteBoxByStatus();
+        visibiliteBoxByStatus(3);
     }
 
     public void handleAccederContratBtn(ActionEvent actionEvent) {
@@ -287,24 +288,26 @@ public class DetailReservation implements Initializable {
         typeRservation.setDisable(true);
     }
 
-    public void visibiliteBoxByStatus(){
-        Long status = reservation.getStatus().getIdStatus();
+    public void visibiliteBoxByStatus(long idStatus){
 
-        if (status == 1){ // en cours
+        reservation.setStatus(H.status.getById(idStatus));
+        H.reservation.edit(reservation);
+
+        if (idStatus == 1){ // en cours
             StatutVBox.setVisible(true);
             ContratFactureVBox.setVisible(false);
             TerminerResevationVBox.setVisible(false);
-        }else if (status == 2){ // Active
+        }else if (idStatus == 2){ // Active
             StatutVBox.setVisible(false);
             ContratFactureVBox.setVisible(true);
             AccederFactureBtn.setVisible(false);
             TerminerResevationVBox.setVisible(true);
-        }else if (status == 3){ // Terminer
+        }else if (idStatus == 3){ // Terminer
             StatutVBox.setVisible(false);
             ContratFactureVBox.setVisible(true);
             AccederFactureBtn.setVisible(true);
             TerminerResevationVBox.setVisible(false);
-        }else if (status == 4){ // Annuler
+        }else if (idStatus == 4){ // Annuler
             StatutVBox.setVisible(false);
             ContratFactureVBox.setVisible(false);
             TerminerResevationVBox.setVisible(false);
