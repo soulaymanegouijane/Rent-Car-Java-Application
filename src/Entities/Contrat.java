@@ -59,7 +59,7 @@ public class Contrat implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="idVehicule",referencedColumnName = "idVehicule",insertable = false,updatable = false)
 	private Vehicule vehicule;
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="idReservation",referencedColumnName = "idReservation",insertable = false,updatable = false)
 	private Reservation reservation;
 
