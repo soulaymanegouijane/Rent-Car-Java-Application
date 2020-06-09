@@ -144,11 +144,9 @@ public class UtilisateurWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
     }
     
-    
-    
+
     @FXML
     void clicked(MouseEvent event) {
     	TableViewSelectionModel<Utilisateur>  selectionModel = tableauUtilisateurs.getSelectionModel ();
