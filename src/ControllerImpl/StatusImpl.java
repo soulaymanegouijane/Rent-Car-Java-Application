@@ -22,7 +22,7 @@ public class StatusImpl extends Abst implements StatusInter {
 		int status=0;
 		try {
 			Connection con = Abst.getConnection();
-			String sql = "insert into status (libelle_status,description) values(?,?)";
+			String sql = "insert into status (libelle,description) values(?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getLibelle());
 			ps.setString(2,arg.getDescription());
@@ -40,7 +40,7 @@ public class StatusImpl extends Abst implements StatusInter {
 		Status st = new Status();
 		try {
 			Connection con = Abst.getConnection();
-			String sql = "UPDATE status set libelle_status=?, description=? where idStatus = ?";
+			String sql = "UPDATE status set libelle=?, description=? where idStatus = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getLibelle());
 			ps.setString(2, arg.getDescription());
@@ -83,9 +83,9 @@ public class StatusImpl extends Abst implements StatusInter {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Status st = new Status();
-				st.setIdStatus(rs.getLong(1));
-				st.setLibelle(rs.getString(2));
-				st.setDescription(rs.getString(3));
+				st.setIdStatus(rs.getLong("idStatus"));
+				st.setLibelle(rs.getString("libelle"));
+				st.setDescription(rs.getString("description"));
 				list.add(st);
 			}
 		} catch (SQLException e) {
@@ -101,16 +101,16 @@ public class StatusImpl extends Abst implements StatusInter {
 		
 		Status st = new Status();
 		try {
-			String sql = "Select * from status where libelle_status=?";
+			String sql = "Select * from status where libelle=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, libelle);
 			ResultSet rs =  ps.executeQuery();
 			
 			if(rs.next()) {
-				st.setIdStatus(rs.getLong(1));
-				st.setLibelle(rs.getString(2));
-				st.setDescription(rs.getString(3));
+				st.setIdStatus(rs.getLong("idStatus"));
+				st.setLibelle(rs.getString("libelle"));
+				st.setDescription(rs.getString("description"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
@@ -128,7 +128,7 @@ public class StatusImpl extends Abst implements StatusInter {
 	public long idStatus(String libelle) {
 		long id=0;
 		try {
-			String sql = "select idStatus from status where libelle_status = ? ";
+			String sql = "select idStatus from status where libelle = ? ";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1,libelle);

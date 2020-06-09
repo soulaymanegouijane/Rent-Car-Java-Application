@@ -284,7 +284,6 @@ public class ContratWindow implements Initializable {
             if(nContratTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by client
             	afficher_contrat(nContratTaped);
             }
 

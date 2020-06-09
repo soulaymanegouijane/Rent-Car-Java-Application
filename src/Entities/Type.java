@@ -105,6 +105,12 @@ public class Type implements Serializable{
 	public void setMarque(Marque marque) {
 		this.marque = marque;
 	}
+
+	@Override
+	public String toString() {
+		return "Type [idType=" + idType + ", libelle=" + libelle + ", description=" + description + ", idMarque="
+				+ idMarque + ", marque=" + marque + "]";
+	}
 	
 	
 	
