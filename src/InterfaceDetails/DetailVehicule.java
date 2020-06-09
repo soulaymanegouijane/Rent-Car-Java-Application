@@ -63,7 +63,6 @@ public class DetailVehicule implements Initializable {
 
     @FXML
     public Button choisirParkingBtn;
-    
 
     @FXML
     public JFXComboBox<String> dispoVehicule;

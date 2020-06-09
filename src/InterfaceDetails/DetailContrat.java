@@ -1,12 +1,16 @@
 package InterfaceDetails;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import Test.H;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
@@ -17,7 +21,7 @@ import javafx.stage.StageStyle;
 import windowsSwitcher.contratWindow.ChoisirReservationScene;
 import windowsSwitcher.contratWindow.ChoisirVehiculeScene;
 
-public class DetailContrat {
+public class DetailContrat implements Initializable {
 	
 	@FXML
     public JFXButton closeButton;
@@ -57,6 +61,13 @@ public class DetailContrat {
     
     @FXML
     public JFXButton editContratBtn;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        H.setfrenchDatePicker(datecontratDatePicker);
+        H.setfrenchDatePicker(datedepartDatePicker);
+        H.setfrenchDatePicker(dateretourDatePicker);
+    }
     
     @FXML
     void choisirReservationBtn(ActionEvent event) throws IOException {
@@ -100,7 +111,4 @@ public class DetailContrat {
         Stage stage =(Stage) closeButton.getScene().getWindow();
         stage.close();
     }
-    
-    
-
 }

@@ -82,8 +82,14 @@ public class AjouterReservation implements Initializable {
     	long nouveauIdReservation = getMaxReservation() + 1;
     	idReservation.setText(String.valueOf(nouveauIdReservation));
         getTypeReservation();
+        H.setfrenchDatePicker(dateReservation);
+        H.setfrenchDatePicker(dateDepart);
+        H.setfrenchDatePicker(dateRetour);
         comboBox();
-        
+    }
+
+    public void comboBox() {
+        typeReservation.setItems(type_reservation);
     }
 
     String str = null;
@@ -221,9 +227,5 @@ public class AjouterReservation implements Initializable {
 			e.printStackTrace();
 		}
     	return max;
-    }
-
-    public void comboBox() {
-        typeReservation.setItems(type_reservation);
     }
 }

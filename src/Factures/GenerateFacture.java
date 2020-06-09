@@ -53,6 +53,7 @@ public class GenerateFacture implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		long fact = getidFacture() + 1;
 		idFacture.setText(String.valueOf(fact));
+		H.setfrenchDatePicker(todayDate);
 	}
     
     public long getidFacture() {

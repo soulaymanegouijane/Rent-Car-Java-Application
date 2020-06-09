@@ -86,7 +86,9 @@ public class AjouterUnContrat implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-        	
+        	H.setfrenchDatePicker(dateContrat);
+        	H.setfrenchDatePicker(dateDepart);
+        	H.setfrenchDatePicker(dateRetour);
         }
         
         @FXML

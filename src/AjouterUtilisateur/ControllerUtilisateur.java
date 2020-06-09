@@ -133,14 +133,13 @@ public class ControllerUtilisateur implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
     	role_base_donnee();
     	comboBox();
-
-	}
+        H.setfrenchDatePicker(date_naissance);
+    }
     
     public void comboBox() {
     	comboGender.setItems(civilite);
     	comboIdType.setItems(identification);
     	comboRole.setItems(roleList);
-    	H.setfrenchDatePicker(date_naissance);
     }
 
     FileChooser fc = new FileChooser();
