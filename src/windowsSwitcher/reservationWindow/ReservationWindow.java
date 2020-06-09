@@ -6,6 +6,8 @@ import AbstactClasses.Abst;
 import Entities.Parking;
 import Entities.Reservation;
 import Entities.Status;
+import Entities.Type;
+import Entities.TypeReservation;
 import InterfaceDetails.DetailReservation;
 import Test.H;
 import javafx.collections.FXCollections;
@@ -120,9 +122,9 @@ public class ReservationWindow implements Initializable {
         
     public Reservation reservationSelected;
 
-    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status", "Nombres des contrats");
+    ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status");
     ObservableList<String> typeTypeList = FXCollections.observableArrayList("Reservation local", "Reservation telephonique");
-    ObservableList<String> statutTypeList = FXCollections.observableArrayList("En cours", "Complété", "Annule");
+    ObservableList<String> statutTypeList = FXCollections.observableArrayList("En cours", "Complete", "Annule");
 
     ObservableList<Reservation> reservation_list = FXCollections.observableArrayList();
     ObservableList<Reservation> mono_reservation = FXCollections.observableArrayList();
@@ -183,8 +185,7 @@ public class ReservationWindow implements Initializable {
 
     public void afficher_reservation(String valeur) {
     	searchSection = chercherComboBox.getValue();
-    	Parking contrat = new Parking();
-    	ResultSet tous_les_parking = null;
+    	ResultSet tous_les_reservation = null;
     	Connection con = Abst.getConnection();
 		try {
 	    	String sql = "";
@@ -209,26 +210,51 @@ public class ReservationWindow implements Initializable {
 				sql = "select * from reservation where dateReservation=?";
 				ps = con.prepareStatement(sql);
 				ps.setString(1, valeur);
+				System.out.println("-*-*-*-*-*-*-*-> ???? " );
 			}
 			if(searchSection.equals("Utilisateur")) {
-				sql = "select * from reservation where idReservation=?";
+				sql = "select * from reservation where idUtilisateur=?";
 				ps = con.prepareStatement(sql);
-				ps.setLong(1, Long.parseLong(valeur));
+				ps.setString(1, valeur);
 			}
 			if(searchSection.equals("Type")) {
 				sql = "select * from reservation where idTypeRes=?";
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
-			if(searchSection.equals("Id")) {
-				sql = "select * from reservation where idReservation=?";
-				ps = con.prepareStatement(sql);
-				ps.setLong(1, Long.valueOf(valeur));
+			tous_les_reservation = ps.executeQuery();
+			while(tous_les_reservation.next()) {
+				System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*---->");
+				Reservation res = new Reservation();
+				res.setIdReservation(tous_les_reservation.getLong("idReservation"));
+				res.setDate_depart(tous_les_reservation.getString("date_depart"));
+				res.setDate_retour(tous_les_reservation.getString("date_retour"));
+				res.setCinClient(tous_les_reservation.getString("idClient"));
+				res.setCinUtilisateur(tous_les_reservation.getString("idUtilisateur"));
+				Status s = H.status.getById(H.reservation.getStatus(tous_les_reservation.getLong("idReservation")));
+				res.setStatusRes(s.getLibelle());
+				res.setTypeVehicule(H.type.getById(H.vehicule.getType(tous_les_reservation.getString("idVehicule"))).getLibelle());
+				mono_reservation.add(res);
 			}
-			tous_les_parking = ps.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		
+		col_id.setCellValueFactory(new PropertyValueFactory<>("idReservation"));
+        col_type.setCellValueFactory(new PropertyValueFactory<>("typeVehicule"));
+        col_date_depart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        col_date_retour.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
+        col_id_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
+        col_id_utilisateur.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));
+        col_status.setCellValueFactory(new PropertyValueFactory<>("statusRes"));
+        
+        tableReservation.setItems(mono_reservation);
     }
     
     public void handleAjouterReservationButton(ActionEvent actionEvent) throws IOException {
@@ -299,10 +325,14 @@ public class ReservationWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirVehiculeScene choisirVehicule = loader.getController();
+        textFeildChoisirVehicule.setText(choisirVehicule.matriculeVehicule);
     }
 
     public void handleButtonChoisirClient(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirClientScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirClientScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -310,10 +340,14 @@ public class ReservationWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirClientScene choisirClient = loader.getController();
+        textFeildChoisirClient.setText(choisirClient.cinClientSelected);
     }
 
     public void handleButtonChoisirUtilisateur(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("choisirUtilisateurScene.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirUtilisateurScene.fxml"));
+    	Parent root = loader.load();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -321,6 +355,9 @@ public class ReservationWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        ChoisirUtilisateurScene choisirUtilisateur = loader.getController();
+        textFeildChoisirUtilisateur.setText(choisirUtilisateur.cinUtilisateurSelected);
     }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {
@@ -432,7 +469,8 @@ public class ReservationWindow implements Initializable {
     public void handleChercherButton(ActionEvent actionEvent) {
         String searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
-
+        
+        // on n'a pas besoin ce trucs la 
         if(searchSection.equals("Id")){
         	mono_reservation.clear();
             reservation_list.clear();
@@ -448,16 +486,23 @@ public class ReservationWindow implements Initializable {
         }else if(searchSection.equals("Type")){
         	mono_reservation.clear();
             reservation_list.clear();
+            String typeSelected = typeComboBox.getValue();
 
-            // Search résérvation by Type
+            if(typeSelected.isEmpty()){
+                enable(ErreurMessage);
+            }else {
+            	TypeReservation type = H.typeres.get(typeSelected);
+            	afficher_reservation(String.valueOf(type.getIdTypeReservation()));
+            }
 
         }else if(searchSection.equals("Date")){
+        	mono_reservation.clear();
+            reservation_list.clear();
             String dateTaped = ((TextField)dateDatePicker.getEditor()).getText();
 
             if(dateTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-            	// Search reservation by date
             	afficher_reservation(dateTaped);
             }
 
@@ -469,7 +514,6 @@ public class ReservationWindow implements Initializable {
             if(vehiculeTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by client
             	afficher_reservation(vehiculeTaped);
             }
 
@@ -481,7 +525,6 @@ public class ReservationWindow implements Initializable {
             if(clientTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by client
             	afficher_reservation(clientTaped);
             }
 
@@ -493,9 +536,7 @@ public class ReservationWindow implements Initializable {
             if(utilisateurTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-            	// Search résérvation by utilisateur
-            	long idReservation = getReservation(utilisateurTaped);
-            	afficher_reservation(String.valueOf(idReservation));
+            	afficher_reservation(utilisateurTaped);
             }
 
         }else if(searchSection.equals("Status")){
@@ -506,40 +547,29 @@ public class ReservationWindow implements Initializable {
             if(statutTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
-                // Search résérvation by client
-            	afficher_reservation(statutTaped);
-            }
-
-        }else if(searchSection.equals("Nombres des contrats")){
-        	mono_reservation.clear();
-            reservation_list.clear();
-            try {
-                int nbrContratTaped = Integer.parseInt(nbrContratTextFeild.getText());
-                // Search résérvation by client
-
-            }catch (NumberFormatException e){
-                enable(ErreurMessage);
+            	Status status = H.status.get(statutTaped);
+            	afficher_reservation(String.valueOf(status.getIdStatus()));
             }
 
         }
     }
     
-    public long getReservation(String idUser) {
-    	Connection con = Abst.getConnection();
-    	String sql = "select idReservation from reservation where idUtilisateur = ?";
-    	long idReservation = 0;
-    	try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, idUser);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
-				idReservation = rs.getLong("idReservation");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-    	return idReservation;
-    }
+//    public long getReservation(String idUser) {
+//    	Connection con = Abst.getConnection();
+//    	String sql = "select idReservation from reservation where idUtilisateur = ?";
+//    	long idReservation = 0;
+//    	try {
+//			PreparedStatement ps = con.prepareStatement(sql);
+//			ps.setString(1, idUser);
+//			ResultSet rs = ps.executeQuery();
+//			if(rs.next()) {
+//				idReservation = rs.getLong("idReservation");
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//    	return idReservation;
+//    }
 
     public void disable(TextField TF){
         TF.setVisible(false);

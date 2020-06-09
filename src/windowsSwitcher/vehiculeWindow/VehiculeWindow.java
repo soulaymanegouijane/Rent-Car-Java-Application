@@ -621,6 +621,7 @@ public class VehiculeWindow implements Initializable {
 				vehicule.setTypeVehicule(H.type.getById(tous_les_vehicule.getLong("idType")).getLibelle());
 				vehicule.setColor(tous_les_vehicule.getString("color"));
 				vehicule.setDispo(tous_les_vehicule.getString("dispo"));
+				vehicule.setKilometrage(tous_les_vehicule.getLong("kilometrage"));
 				vehicule_list.add(vehicule);
 			}
 			con.close();

@@ -145,6 +145,7 @@ public class parkingWindow implements Initializable {
 
     public void handleChercherComboBox(ActionEvent actionEvent) {
         String searchSection = chercherComboBox.getValue();
+        charcherButton.setDisable(false);
 
         if(searchSection.equals("Tous") || searchSection.isEmpty()){
 

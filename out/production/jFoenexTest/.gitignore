@@ -17,12 +17,12 @@
 /homePage/
 /img/
 /loginPage/
-/sample/
-/utilisateurPage/
-/windowsSwitcher/
 /AbstactClasses/
 /ControllerImpl/
 /Entities/
 /Exceptions/
 /Interfaces/
+/sample/
 /util/
+/utilisateurPage/
+/windowsSwitcher/
