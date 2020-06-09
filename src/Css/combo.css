@@ -3,3 +3,14 @@
     -fx-prompt-text-fill: #cdcdcd;
    
 }
+
+
+.jfx-combo-box:disabled {
+    -fx-text-inner-color: #000000;
+    -fx-prompt-text-fill: #cdcdcd;
+   
+}
+
+.combo-box:disabled, .combo-box:disabled {
+  -fx-opacity: 1.0 ;
+}

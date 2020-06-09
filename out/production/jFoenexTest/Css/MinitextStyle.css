@@ -7,3 +7,8 @@
     -fx-font-family: "Montserrat";
     -fx-font-size : 12px;
 }
+
+.text:disabled {
+    -fx-font-family: "Montserrat";
+    -fx-font-size : 12px;
+}

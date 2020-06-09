@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
@@ -25,19 +26,12 @@
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="386.0">
                             <children>
                         <TextField fx:id="imgFieldText" prefHeight="25.0" prefWidth="61.0" visible="false" />
-                        <TextField fx:id="genreUtilisateurTextField" alignment="CENTER" editable="false" layoutX="184.0" layoutY="20.0" prefHeight="25.0" prefWidth="52.0">
+                        <JFXComboBox fx:id="GenreComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="99.0" promptText="Genre" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                            <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/combo.css" />
                               <URL value="@../Css/MinitextStyle.css" />
                            </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </TextField>
+                        </JFXComboBox>
                                 <TextField fx:id="prenomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
                                     <HBox.margin>
                                         <Insets left="5.0" />
@@ -99,7 +93,7 @@
                                         <Insets left="10.0" />
                                     </HBox.margin>
                                 </Label>
-                                <DatePicker fx:id="dateNaissanceDatePicker" editable="false" prefHeight="25.0" prefWidth="240.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css">
+                                <DatePicker fx:id="dateNaissanceDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="240.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css">
                            <HBox.margin>
                               <Insets left="100.0" right="10.0" />
                            </HBox.margin></DatePicker>
@@ -139,19 +133,22 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                                <TextField fx:id="cinTypeTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                                    <HBox.margin>
-                                        <Insets left="100.0" right="10.0" />
-                                    </HBox.margin>
-                                    <stylesheets>
-                                        <URL value="@../Css/textinputstyle.css" />
-                                        <URL value="@../Css/MinitextStyle.css" />
-                                    </stylesheets>
-                                    <styleClass>
-                                        <String fx:value="text" />
-                                        <String fx:value="text-field" />
-                                    </styleClass>
-                                </TextField>
+                        <JFXComboBox fx:id="typeCinCombo" disable="true" focusColor="#039ed3" prefHeight="25.0" prefWidth="240.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <stylesheets>
+                              <URL value="@../Css/combo.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="jfx-combo-box" />
+                              <String fx:value="text" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="100.0" right="10.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
                             </children>
                             <VBox.margin>
                                 <Insets top="2.0" />

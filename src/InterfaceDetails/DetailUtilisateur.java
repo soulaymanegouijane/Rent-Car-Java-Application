@@ -5,6 +5,9 @@ import Test.H;
 import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
+import com.jfoenix.controls.JFXComboBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,9 +39,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DetailUtilisateur implements Initializable{
-	
-	@FXML
-    public TextField genreUtilisateurTextField;
 
     @FXML
     public TextField prenomTextField;
@@ -54,9 +54,6 @@ public class DetailUtilisateur implements Initializable{
 
     @FXML
     public TextField lieuNaissanceTextField;
-
-    @FXML
-    public TextField cinTypeTextField;
 
     @FXML
     public TextField numeroCinTextField;
@@ -84,7 +81,9 @@ public class DetailUtilisateur implements Initializable{
 
     @FXML
     public JFXButton deleteBtn;
-    
+    public JFXComboBox<String> GenreComboBox;
+    public JFXComboBox<String> typeCinCombo;
+
     @FXML
     private TextField imgFieldText;
     
@@ -104,14 +103,22 @@ public class DetailUtilisateur implements Initializable{
     File fileChosen = null;
     byte[] bFile = null;
     File file = null;
-    
-    
+
+    ObservableList<String> GenreList = FXCollections.observableArrayList("Femme", "Homme");
+    ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
+
     public static Utilisateur User = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fillBlanks();
+        comboBox();
         H.setfrenchDatePicker(dateNaissanceDatePicker);
+        fillBlanks();
+    }
+
+    public void comboBox(){
+        GenreComboBox.setItems(GenreList);
+        typeCinCombo.setItems(Idtypelist);
     }
 
     public void fillBlanks(){
@@ -126,10 +133,10 @@ public class DetailUtilisateur implements Initializable{
         dateNaissanceDatePicker.setValue(H.convert(User.getNaissance()));
         adresseTextField.setText(User.getAdress());
         numeroTelephoneTextField.setText(User.getTele());
-        cinTypeTextField.setText(User.getCarte_identifiant());
+        GenreComboBox.setValue(User.getCivilite());
         numeroCinTextField.setText(User.getIdUtilisateur());
         paysTextField.setText(User.getPays());
-        genreUtilisateurTextField.setText(Civilite(User.getIdUtilisateur()));
+        typeCinCombo.setValue(User.getCarte_identifiant());
     }
 
     public void rewriteUserInfos(){
@@ -143,7 +150,8 @@ public class DetailUtilisateur implements Initializable{
         User.setNaissance(((TextField)dateNaissanceDatePicker.getEditor()).getText());
         User.setAdress(adresseTextField.getText());
         User.setTele(numeroTelephoneTextField.getText());
-        User.setCarte_identifiant(cinTypeTextField.getText());
+        User.setCarte_identifiant(typeCinCombo.getValue());
+        User.setCarte_identifiant(GenreComboBox.getValue());
         User.setIdUtilisateur(numeroCinTextField.getText());
         User.setPays(paysTextField.getText());
         
@@ -162,7 +170,7 @@ public class DetailUtilisateur implements Initializable{
         User.setImage(bFile);
     }
     
-    public String Civilite(String idUser) {
+    /*public String Civilite(String idUser) {
     	String sql ="select * from utilisateur where idUtilisateur = ?";
     	Connection con = Abst.getConnection();
     	String str = null;
@@ -186,7 +194,7 @@ public class DetailUtilisateur implements Initializable{
 			e.printStackTrace();
 		}
     	return str;
-    }
+    }*/
 
     @FXML
     public void closeButtonAction(){
@@ -258,13 +266,13 @@ public class DetailUtilisateur implements Initializable{
 
     public void enableFields(){
 
-        genreUtilisateurTextField.setEditable(true);
+        GenreComboBox.setDisable(false);
         prenomTextField.setEditable(true);
         nomTextField.setEditable(true);
         nationaliteTextField.setEditable(true);
-        dateNaissanceDatePicker.setEditable(true);
+        dateNaissanceDatePicker.setDisable(false);
         lieuNaissanceTextField.setEditable(true);
-        cinTypeTextField.setEditable(true);
+        typeCinCombo.setDisable(false);
         numeroCinTextField.setEditable(true);
         adresseTextField.setEditable(true);
         codePostalTextField.setEditable(true);
@@ -272,18 +280,17 @@ public class DetailUtilisateur implements Initializable{
         paysTextField.setEditable(true);
         numeroTelephoneTextField.setEditable(true);
         emailTextField.setEditable(true);
-
     }
 
     public void disableFields(){
 
-        genreUtilisateurTextField.setEditable(false);
+        GenreComboBox.setDisable(true);
         prenomTextField.setEditable(false);
         nomTextField.setEditable(false);
         nationaliteTextField.setEditable(false);
-        dateNaissanceDatePicker.setEditable(false);
+        dateNaissanceDatePicker.setDisable(true);
         lieuNaissanceTextField.setEditable(false);
-        cinTypeTextField.setEditable(false);
+        typeCinCombo.setDisable(true);
         numeroCinTextField.setEditable(false);
         adresseTextField.setEditable(false);
         codePostalTextField.setEditable(false);
