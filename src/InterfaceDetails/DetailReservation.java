@@ -236,7 +236,7 @@ public class DetailReservation implements Initializable {
     }
 
     public void handlecreateContratBtn(ActionEvent actionEvent) throws IOException {
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../Contrat/AjouterUnContrat.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Contrat/AjouterUnContrat.fxml"));
         AjouterUnContrat ajouterUnContrat = loader.getController();
         Parent root = loader.load();
 
@@ -248,7 +248,7 @@ public class DetailReservation implements Initializable {
         stage.showAndWait();
         if(ajouterUnContrat.addwithSucces){
             reservation.getStatus().setIdStatus(2);
-        }*/
+        }
 
         reservation.getStatus().setIdStatus(2);//For Test
         fillBlanks();

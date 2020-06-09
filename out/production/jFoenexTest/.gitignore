@@ -16,13 +16,13 @@
 /Test/
 /homePage/
 /img/
-/loginPage/
-/sample/
-/utilisateurPage/
-/windowsSwitcher/
 /AbstactClasses/
 /ControllerImpl/
 /Entities/
 /Exceptions/
 /Interfaces/
+/loginPage/
+/sample/
 /util/
+/utilisateurPage/
+/windowsSwitcher/
