@@ -161,8 +161,10 @@ public class parkingWindow implements Initializable {
     public void handleCharcherButton(ActionEvent actionEvent) {
         searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
-
+        
         if(searchSection.equals("Adress")){
+        	parking_list.clear();
+            mono_parking.clear();
             String nomTaped = dataTextFeild.getText();
 
             if(nomTaped.isEmpty()){
@@ -173,6 +175,8 @@ public class parkingWindow implements Initializable {
             }
 
         }else if(searchSection.equals("Capacite")){
+        	parking_list.clear();
+            mono_parking.clear();
 
         	String capaciteTaped = dataTextFeild.getText();
         	
@@ -185,7 +189,8 @@ public class parkingWindow implements Initializable {
             
 
         }else if(searchSection.equals("places sature")){
-            
+        	parking_list.clear();
+            mono_parking.clear();            
             String placesTaped = dataTextFeild.getText();
             
             if(placesTaped.isEmpty()){
@@ -196,13 +201,14 @@ public class parkingWindow implements Initializable {
             }
 
         }else {
+        	parking_list.clear();
+            mono_parking.clear();
         	remplir_tableau();
         }
     }
     
     public void afficher_parking(String valeur) {
     	searchSection = chercherComboBox.getValue();
-    	Parking contrat = new Parking();
     	ResultSet tous_les_parking = null;
     	Connection con = Abst.getConnection();
 		try {
@@ -231,13 +237,12 @@ public class parkingWindow implements Initializable {
 				parking.setAdress(tous_les_parking.getString("adress"));
 				parking.setCapacite(tous_les_parking.getLong("capacite"));
 				parking.setNbr_place_pleinne(tous_les_parking.getInt("nbr_place_pleinne"));
-				mono_parking.add(contrat);
+				mono_parking.add(parking);
 			}
 			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		col_id.setCellValueFactory(new PropertyValueFactory<>("idParking"));
  	    col_capacite.setCellValueFactory(new PropertyValueFactory<>("capacite"));
  	    col_placesVides.setCellValueFactory(new PropertyValueFactory<>("nbr_place_pleinne"));
