@@ -1,5 +1,7 @@
 package Contrat;
 
+import AbstactClasses.Abst;
+import Entities.Reservation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
@@ -23,150 +25,209 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class AjouterUnContrat implements Initializable {
-	
-	 @FXML
-	    private JFXButton closeButton;
 
-	    @FXML
-	    private TextField idContrat;
+    public DatePicker dateContratDatePicker;
+    public TextField reservationTextField;
+    public TextField vehiculeTextField;
+    public TextField prixParJoursTextFeild;
+    public DatePicker dateDepartDatePicker;
+    public TextField nombreDeJoursTextField;
+    public DatePicker dateRetourDatePicker;
+    public TextField montantReservationTextField;
+    public TextField avanceTextField;
+    public JFXButton submitBtn;
+    public Label erreurMessage;
 
-	    @FXML
-	    private DatePicker dateContrat;
+    @FXML
+    private JFXButton closeButton;
 
-	    @FXML
-	    private TextField vehicule;
+    @FXML
+    private TextField idContrat;
 
-	    @FXML
-	    private JFXButton parcourrirButton1;
+    @FXML
+    private JFXButton parcourrirButton;
 
-	    @FXML
-	    private TextField reservation;
+    public static Reservation reservation = null;
 
-	    @FXML
-	    private JFXButton parcourrirButton2;
+    public Contrat contrat = new Contrat();
 
-	    @FXML
-	    private DatePicker dateDepart;
-
-	    @FXML
-	    private DatePicker dateRetour;
-
-	    @FXML
-	    private TextField remise;
-
-	    @FXML
-	    private TextField kmDepart;
-
-	    @FXML
-	    private TextField montantTotal;
-
-	    @FXML
-	    private TextField avance;
-
-	    @FXML
-	    private TextField montantTotal1;
-
-	    @FXML
-	    private JFXButton submit;
-
-	    @FXML
-	    private JFXButton finish;
-
-		public Contrat contrat = new Contrat();
-
-	    public boolean addwithSucces = false;
+    public boolean addwithSucces = false;
 	    
-        @FXML
-        private void closeButtonAction(){
+    @FXML
+    private void closeButtonAction(){
+        Stage stage =(Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        addwithSucces = false;
+        H.setfrenchDatePicker(dateContratDatePicker);
+        H.setfrenchDatePicker(dateDepartDatePicker);
+        H.setfrenchDatePicker(dateRetourDatePicker);
+        LocalDateTime now = LocalDateTime.now();
+        dateContratDatePicker.setValue(LocalDate.from(now));
+        idContrat.setText(String.valueOf(getIdContrat() + 1));
+        if(reservation != null){
+            reservationTextField.setText(String.valueOf(reservation.getIdReservation()));
+            parcourrirButton.setVisible(false);
+            fillReservationRelatedFields();
+        }
+
+        nombreDeJoursTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            LocalDate dateDepat = null;
+            LocalDate dateRetour = null;
+            Double mantant = 0.0;
+            if (!nombreDeJoursTextField.getText().isEmpty() && !prixParJoursTextFeild.getText().isEmpty()){
+                mantant = Long.parseLong(newValue) * Double.parseDouble(prixParJoursTextFeild.getText());
+                montantReservationTextField.setText(String.valueOf(mantant));
+                if (dateDepartDatePicker.getValue() != null){
+                    dateDepat = H.convert(dateDepartDatePicker.getEditor().getText());
+                    dateRetour = dateDepat.plusDays(Long.parseLong(newValue));
+                    dateRetourDatePicker.setValue(dateRetour);
+                }else {
+                    dateRetourDatePicker.setValue(null);
+                }
+            }else{
+                montantReservationTextField.setText(null);
+                dateRetourDatePicker.setValue(null);
+            }
+        });
+
+        dateDepartDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(!nombreDeJoursTextField.getText().isEmpty())
+                dateRetourDatePicker.setValue(newValue.plusDays(Long.parseLong(nombreDeJoursTextField.getText())));
+            else
+                dateRetourDatePicker.setValue(null);
+        });
+    }
+
+
+    public long getIdContrat() {
+        Connection con = Abst.getConnection();
+        String sql = "select max(idContrat) as maxIdContrat from contrat";
+        long maxIdContrat = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                maxIdContrat = rs.getLong("maxIdContrat");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return maxIdContrat;
+    }
+
+    @FXML
+    void btnReservation(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirReservationScene.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        assert root != null;
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    		
+        ChoisirReservationScene choisirReservation = loader.getController();
+        reservationTextField.setText(choisirReservation.idReservationSelected);
+        reservationTextFieldAction(event);
+    }
+
+    /*@FXML
+    void btnVehicule(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirVehiculeScene.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    		
+        ChoisirVehiculeScene choisirVehicule = loader.getController();
+        vehiculeTextField.setText(choisirVehicule.matriculeVehicule);
+    }*/
+
+    public void fillReservationRelatedFields(){
+        vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
+        //prixParJoursTextFeild.setText(reservation.getVehicule().getPrix);
+        prixParJoursTextFeild.setText("299.99"); // Pour tester
+        avanceTextField.setText(String.valueOf(reservation.getAvance()));
+    }
+
+    public void reservationTextFieldAction(ActionEvent actionEvent) {
+        if(!reservationTextField.getText().isEmpty()){
+            Long idReservationSelected = Long.parseLong(reservationTextField.getText());
+            reservation = H.reservation.getById(idReservationSelected);
+            fillReservationRelatedFields();
+        }
+    }
+
+    public void handleSubmitBtn(ActionEvent actionEvent) {
+        erreurMessage.setVisible(false);
+        if (testEmpty()){
+            erreurMessage.setVisible(true);
+        }else{
+            contrat.setIdContrat(Long.parseLong(idContrat.getText()));
+            contrat.setDateContrat(dateContratDatePicker.getEditor().getText());
+            contrat.setReservation(H.reservation.getById(Long.parseLong(reservationTextField.getText())));
+            contrat.setVehicule(H.vehicule.getById(String.valueOf(vehiculeTextField.getText())));
+            contrat.setPrix_jour(Float.parseFloat(prixParJoursTextFeild.getText()));
+            contrat.setDate_sortie(dateDepartDatePicker.getEditor().getText());
+            contrat.setNbr_jour(Integer.parseInt(nombreDeJoursTextField.getText()));
+            contrat.setDate_retour(dateRetourDatePicker.getEditor().getText());
+            contrat.setMontantTotal(Double.parseDouble(montantReservationTextField.getText()));
+            //contrat.setAvance(Double.parseDouble(avanceTextField.getText()));
+
+            int result = H.contrat.add(contrat);
+            if (result == 0){
+                // Si contrat n'est pas ajouter
+                contrat = null;
+            }else {
+                addwithSucces = true;
+            }
+
             Stage stage =(Stage) closeButton.getScene().getWindow();
             stage.close();
         }
-
-
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-			addwithSucces = false;
-        	H.setfrenchDatePicker(dateContrat);
-        	H.setfrenchDatePicker(dateDepart);
-        	H.setfrenchDatePicker(dateRetour);
-        }
-        
-        @FXML
-        void addContrat(ActionEvent event) {
-
-        	//String idCnrt = idContrat.getText();
-        	String dtContrat = ((TextField)dateContrat.getEditor()).getText();
-        	String dtRetour = ((TextField)dateRetour.getEditor()).getText();
-        	String dtDepart = ((TextField)dateDepart.getEditor()).getText();
-        	String voiture = vehicule.getText();
-        	String res = reservation.getText();
-        	//String rmse = remise.getText();
-        	String kmDprt = kmDepart.getText();
-        	//String mtTotal = montantTotal.getText();
-        	//String sction = avance.getText();
-        	
-        	contrat.setDateContrat(dtContrat);
-        	contrat.setDate_retour(dtRetour);
-        	contrat.setDate_sortie(dtDepart);
-        	//contrat.setMontantTotal(Double.valueOf(mtTotal));
-        	contrat.setKm_depart(Long.valueOf(kmDprt));
-        	//contrat.setRemise(Float.valueOf(rmse));
-        	contrat.setReservation(H.reservation.getById(Long.valueOf(res)));
-        	contrat.setVehicule(H.vehicule.getById(String.valueOf(voiture)));
-        	
-        	H.contrat.add(contrat);
-        	// Si contrat n'est pas ajouter Do contrat = null
-        	addwithSucces = true;
-        	
-        	Stage stage =(Stage) closeButton.getScene().getWindow();
-            stage.close();
-        }
-
-        @FXML
-        void btnReservation(ActionEvent event) {
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirReservationScene.fxml"));
-        	Parent root = null;
-        	try {
-    			root = loader.load();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-        	Stage stage = new Stage();
-        	stage.setScene(new Scene(root));
-    		stage.setResizable(false);
-    		stage.initStyle(StageStyle.UNDECORATED);
-    		stage.initModality(Modality.APPLICATION_MODAL);
-    		stage.showAndWait();
-    		
-    		ChoisirReservationScene choisirReservation = loader.getController();
-    		reservation.setText(choisirReservation.idReservationSelected);
-        }
-
-        @FXML
-        void btnVehicule(ActionEvent event) {
-        	FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirVehiculeScene.fxml"));
-        	Parent root = null;
-        	try {
-    			root = loader.load();
-    		} catch (IOException e) {
-    			e.printStackTrace();
-    		}
-        	Stage stage = new Stage();
-        	stage.setScene(new Scene(root));
-    		stage.setResizable(false);
-    		stage.initStyle(StageStyle.UNDECORATED);
-    		stage.initModality(Modality.APPLICATION_MODAL);
-    		stage.showAndWait();
-    		
-    		ChoisirVehiculeScene choisirVehicule = loader.getController();
-    		vehicule.setText(choisirVehicule.matriculeVehicule);
-        }
-        
-        
     }
+
+    public boolean testEmpty(){
+        if (idContrat.getText().isEmpty() || dateContratDatePicker.getValue() == null || reservationTextField.getText().isEmpty()
+                || vehiculeTextField.getText().isEmpty() || prixParJoursTextFeild.getText().isEmpty()
+                || dateDepartDatePicker.getValue() == null || nombreDeJoursTextField.getText().isEmpty()
+                || dateRetourDatePicker.getValue() == null || montantReservationTextField.getText().isEmpty()
+                || avanceTextField.getText().isEmpty())
+            return true;
+        return false;
+    }
+}
 
 
 
