@@ -61,6 +61,8 @@ public class DetailContrat implements Initializable {
     
     @FXML
     public JFXButton editContratBtn;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

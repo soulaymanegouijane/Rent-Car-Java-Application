@@ -54,7 +54,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 	public Reservation edit(Reservation arg) {
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "UPDATE reservation SET dateReservation=?,idClient=?,idTypeRes=?,idStatus=?,matricule=?, avance=? , date_depart = ? , date_retour = ? where idReservation=?";
+			String sql = "UPDATE reservation SET dateReservation=?,idClient=?,idTypeRes=?,idStatus=?,idVehicule=?, avance=? , date_depart = ? , date_retour = ? where idReservation=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			
 			ps.setString(1,arg.getDatReservation());
@@ -63,8 +63,8 @@ public class ReservationImpl extends Abst implements ReservationInter {
 			ps.setLong(4,arg.getStatus().getIdStatus());
 			ps.setString(5, arg.getVehicule().getIdVehicule());
 			ps.setFloat(6, arg.getAvance());
-			ps.setString(8, arg.getDate_depart());
-			ps.setString(9, arg.getDate_retour());
+			ps.setString(7, arg.getDate_depart());
+			ps.setString(8, arg.getDate_retour());
 			ps.setLong(9, arg.getIdReservation());
 			ps.executeUpdate();
 			arg.setDatReservation(arg.getDatReservation());
@@ -126,7 +126,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 				res.setAvance(rs.getFloat("avance"));
 				res.setDate_depart(rs.getString("date_depart"));
 				res.setDate_retour(rs.getString("date_retour"));
-				res.setVehicule(H.vehicule.getById(rs.getString("matricule")));
+				res.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
 				res.setClient(H.client.getById(rs.getLong("idClient")));
 				res.setStatus(H.status.getById(rs.getLong("idStatus")));
 				res.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));

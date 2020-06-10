@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import Entities.Utilisateur;
+
 public class LoginToUpdate {
 	
 	@FXML
@@ -28,6 +30,8 @@ public class LoginToUpdate {
     private Button annulerButton;
 	
     public boolean activateUpdate;
+    
+    public Utilisateur utilisateur = new Utilisateur();
 
     public void handleEnterButton(ActionEvent actionEvent) throws IOException {
         erreurMessage.setVisible(false);
@@ -39,7 +43,12 @@ public class LoginToUpdate {
         if(usernameTaped.isEmpty() && passwordTaped.isEmpty()){
             erreurMessage.setVisible(true);
         }else{
-            activateUpdate = true;
+        	
+            if(usernameTaped.equals(utilisateur.getUsername()) && passwordTaped.equals(utilisateur.getPass())) {
+            	activateUpdate = true;
+            }else {
+            	activateUpdate = false;
+            }
 
             Stage stage = (Stage) EnterButton.getScene().getWindow();
             stage.close();

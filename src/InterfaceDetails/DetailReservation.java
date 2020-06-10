@@ -97,7 +97,7 @@ public class DetailReservation implements Initializable {
     ObservableList<String> TypeRes = FXCollections.observableArrayList();
 
     public static Reservation reservation = new Reservation();
-    public Contrat contrat = new Contrat();
+    public static Contrat contrat = new Contrat();
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -198,18 +198,23 @@ public class DetailReservation implements Initializable {
 
     public void handleEditReservationBtn(ActionEvent actionEvent) {
         enableFields();
-
+        
+        
+        
         EditVBox.setVisible(true);
         nonEditHBox.setVisible(false);
         TerminerResevationVBox.setVisible(false);
         ContratFactureVBox.setVisible(false);
         StatutVBox.setVisible(false);
+        
+        
 
     }
 
     public void handleAnnulerEditsBtn(ActionEvent actionEvent) {
         disableFields();
         fillBlanks();
+        visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
 
         EditVBox.setVisible(false);
         nonEditHBox.setVisible(true);
@@ -220,6 +225,15 @@ public class DetailReservation implements Initializable {
         // If everything is OK
         disableFields();
         rewriteReservationInfos();
+        try {
+        	Reservation result = H.reservation.edit(reservation);
+        	if(result == null) {
+        		// alert Exception 
+        		System.out.println("n'est ajouter");
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 
     }
@@ -257,12 +271,25 @@ public class DetailReservation implements Initializable {
     }
 
     public void handleTerminerReservationBtn(ActionEvent actionEvent) {
-        reservation.getStatus().setIdStatus(3);
-        fillBlanks();
         visibiliteBoxByStatus(3);
+        fillBlanks();
+        // ajouter la disponibilite la vehicule
     }
 
-    public void handleAccederContratBtn(ActionEvent actionEvent) {
+    public void handleAccederContratBtn(ActionEvent actionEvent) throws IOException {
+    	 FXMLLoader loader = new FXMLLoader(getClass().getResource("detailContrat.fxml"));
+         Parent root = loader.load();
+
+         //AjouterUnContrat ajouterUnContrat = loader.getController();
+          
+
+         Stage stage = new Stage();
+         stage.setScene(new Scene(root));
+         stage.setResizable(false);
+         stage.initStyle(StageStyle.UNDECORATED);
+         stage.initModality(Modality.APPLICATION_MODAL);
+         stage.showAndWait();
+    	
     }
 
     public void handleAccederFactureBtn(ActionEvent actionEvent) {

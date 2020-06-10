@@ -141,6 +141,9 @@ public class CompteWindow implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("loginToUpdate.fxml"));
         Parent root = loader.load();
+        LoginToUpdate access = loader.getController();
+        
+        access.utilisateur = User;
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -149,7 +152,7 @@ public class CompteWindow implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
 
-        LoginToUpdate access = loader.getController();
+        
         if(access.activateUpdate) activateModifications();
     }
 
