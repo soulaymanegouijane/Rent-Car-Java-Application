@@ -234,8 +234,6 @@ public class DetailReservation implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-
     }
 
     public void handleDeleteReservationBtn(ActionEvent actionEvent) {
@@ -251,6 +249,8 @@ public class DetailReservation implements Initializable {
 
     public void handlecreateContratBtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Contrat/AjouterUnContrat.fxml"));
+
+        AjouterUnContrat.reservation = reservation;
         Parent root = loader.load();
 
         AjouterUnContrat ajouterUnContrat = loader.getController();
