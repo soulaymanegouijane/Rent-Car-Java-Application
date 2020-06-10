@@ -146,7 +146,7 @@ public class ControllerUtilisateur implements Initializable {
     File selectedfile = null;
     File file = null;
     byte[] bFile = null;
-    public void btnimageAction(){
+    public void btnimageAction(ActionEvent e){
         
         selectedfile = fc.showOpenDialog(null);
         if(selectedfile!=null){
@@ -167,6 +167,8 @@ public class ControllerUtilisateur implements Initializable {
         stage.close();
     }
 
+    FileInputStream inputStream = null;
+    
     public void handleSaveButton(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
         Utilisateur user = new Utilisateur();
@@ -216,7 +218,7 @@ public class ControllerUtilisateur implements Initializable {
 			user.setEtat_compte("Activer");
 			
 			try {
-				FileInputStream inputStream = new FileInputStream(file);
+				inputStream = new FileInputStream(file);
 				try {
 					inputStream.read(bFile);
 					inputStream.close();
