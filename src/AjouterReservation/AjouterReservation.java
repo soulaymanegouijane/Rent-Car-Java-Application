@@ -144,6 +144,8 @@ public class AjouterReservation implements Initializable {
             reservation.setUtilisateur(H.utilisateur.getById(idUtilisateur.getText()));
             reservation.setAvance(Float.parseFloat(avanceTextField.getText()));
             reservation.setTypeRes(H.typeres.get(typeReservation.getValue()));
+            reservation.setDate_depart("28/04/2020");
+            reservation.setDate_retour("28/04/2020");
 
             int result = H.reservation.add(reservation);
 

@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import windowsSwitcher.reservationWindow.ChoisirClientScene;
 import windowsSwitcher.reservationWindow.ChoisirVehiculeScene;
+import windowsSwitcher.reservationWindow.ReservationWindow;
 
 public class DetailReservation implements Initializable {
 	
@@ -102,9 +103,12 @@ public class DetailReservation implements Initializable {
 
     public static Reservation reservation = new Reservation();
     public static Contrat contrat = new Contrat();
+    
+    public boolean bool = true;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+    	
     	getTypeReservationn_BaseDonnee();
 		comboBox();
         H.setfrenchDatePicker(dateReservation);
