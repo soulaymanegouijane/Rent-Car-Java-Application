@@ -15,10 +15,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
-<StackPane fx:id="primaryStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailReservation">
+<StackPane fx:id="primaryStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailReservation">
    <children>
-      <AnchorPane prefHeight="487.0" prefWidth="800.0" stylesheets="@../Css/holder.css">
+      <AnchorPane prefHeight="553.0" prefWidth="770.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css">
          <children>
             <Pane prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
                <children>
@@ -26,7 +27,8 @@
                   <JFXButton fx:id="closeButton" layoutX="637.0" layoutY="18.0" onAction="#closeButtonAction" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
                </children>
             </Pane>
-            <VBox layoutY="65.0" prefHeight="503.0" prefWidth="557.0" style="-fx-border-color: black;">
+            <Line endX="-7.0" endY="-174.0" layoutX="565.0" layoutY="286.0" startX="-7.0" startY="232.0" stroke="#00a4ff" strokeWidth="3.0" />
+            <VBox layoutY="65.0" prefHeight="503.0" prefWidth="557.0" style="-fx-border-color: black; -fx-border-radius: 0; -fx-border-width: 0;">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                      <children>
@@ -64,6 +66,25 @@
                         </DatePicker>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                     <children>
+                        <Label prefWidth="163.0" text="Ajouter Par :" textFill="#656060">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Mr/Mme" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="46.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idUtilisateur" editable="false" prefHeight="25.0" prefWidth="145.0" stylesheets="@../Css/textinputstyle.css">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="49.0" prefWidth="646.0" stylesheets="@../Css/MinitextStyle.css">
                      <children>
                         <Label prefWidth="163.0" text="Véhicule :" textFill="#656060">
@@ -71,12 +92,12 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="vehicule" editable="false" stylesheets="@../Css/textinputstyle.css">
+                        <TextField fx:id="vehiculeTextField" editable="false" stylesheets="@../Css/textinputstyle.css">
                            <HBox.margin>
                               <Insets left="100.0" />
                            </HBox.margin>
                         </TextField>
-                        <JFXButton fx:id="choisirVehiculeBtn" disable="true" onAction="#choisirVehiculeBtn" prefHeight="6.0" prefWidth="126.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Une Véhicule" textFill="WHITE">
+                        <JFXButton fx:id="choisirVehiculeBtn" onAction="#choisirVehiculeBtn" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Véhicule" textFill="WHITE" visible="false">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -95,7 +116,7 @@
                               <Insets left="100.0" />
                            </HBox.margin>
                         </TextField>
-                        <JFXButton fx:id="choisirClientBtn" disable="true" onAction="#choisirClientBtn" prefHeight="6.0" prefWidth="126.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Un Client" textFill="WHITE">
+                        <JFXButton fx:id="choisirClientBtn" onAction="#choisirClientBtn" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" text="Choisir Client" textFill="WHITE" visible="false">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -124,6 +145,20 @@
                         </DatePicker>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="306.0" prefHeight="50.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                     <children>
+                        <Label prefWidth="163.0" text="Nombre de jours :" textFill="#656060">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="nombreJoursTextField" editable="false" stylesheets="@../Css/textinputstyle.css">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="234.0" prefHeight="50.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                      <children>
                         <Label prefWidth="163.0" text="Date de Retour :" textFill="#656060">
@@ -144,6 +179,25 @@
                               <String fx:value="text" />
                            </styleClass>
                         </DatePicker>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                     <children>
+                        <Label prefWidth="138.0" text="Montant de Réservation :" textFill="#656060">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="montantReservationTextField" editable="false" prefHeight="25.0" prefWidth="157.0" stylesheets="@../Css/textinputstyle.css">
+                           <HBox.margin>
+                              <Insets left="122.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
@@ -207,23 +261,11 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="deleteReservationBtn" layoutX="310.0" layoutY="12.0" onAction="#handleDeleteReservationBtn" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                                 <image>
-                                    <Image url="@../Css/Images/delete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="557.0" layoutY="65.0" prefHeight="503.0" prefWidth="243.0" spacing="10.0" style="-fx-border-color: black;">
+            <VBox alignment="CENTER" layoutX="559.0" layoutY="65.0" prefHeight="503.0" prefWidth="241.0" spacing="10.0">
                <children>
                   <VBox fx:id="TerminerResevationVBox" alignment="CENTER" spacing="30.0" visible="false">
                      <children>

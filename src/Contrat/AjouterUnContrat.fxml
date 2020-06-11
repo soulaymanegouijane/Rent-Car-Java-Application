@@ -155,7 +155,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="avanceTextField" editable="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
+                  <TextField fx:id="avanceTextField" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
                      <HBox.margin>
                         <Insets left="80.0" />
                      </HBox.margin>

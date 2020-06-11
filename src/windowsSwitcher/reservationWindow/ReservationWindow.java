@@ -277,7 +277,7 @@ public class ReservationWindow implements Initializable {
     	DetailReservation.reservation = reservationSelected;
         Parent root = loader.load();
         
-        FunctionAffiche(loader);
+        //FunctionAffiche(loader);
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -294,7 +294,7 @@ public class ReservationWindow implements Initializable {
     	detail.dateReservation.setValue(H.convert(reservationSelected.getDatReservation()));
     	detail.dateDepartDatePicker.setValue(H.convert(reservationSelected.getDate_depart()));
     	detail.dateRetourDatePicker.setValue(H.convert(reservationSelected.getDate_retour()));
-    	detail.vehicule.setText(reservationSelected.getVehicule().getIdVehicule());
+    	detail.vehiculeTextField.setText(reservationSelected.getVehicule().getIdVehicule());
     	detail.client.setText(reservationSelected.getClient().getIdClient());
     	detail.typeRservation.setValue(reservationSelected.getTypeRes().getLibelle());
     	detail.idReservation.setText(String.valueOf(reservationSelected.getIdReservation()));
