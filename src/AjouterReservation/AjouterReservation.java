@@ -16,11 +16,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import windowsSwitcher.contratWindow.ChoisirReservationScene;
+import windowsSwitcher.windowsSwitcher;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,10 +30,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class AjouterReservation implements Initializable {
 
+    public Label erreurMessage;
     @FXML
     private JFXButton closeButton;
 
@@ -52,12 +57,9 @@ public class AjouterReservation implements Initializable {
 
     @FXML
     private JFXButton parcourrirButton2;
-    
-    @FXML
-    private JFXButton parcourrirButtonUser;
 
     @FXML
-    private TextField avance;
+    private TextField avanceTextField;
 
     @FXML
     private JFXComboBox<String> typeReservation;
@@ -67,14 +69,9 @@ public class AjouterReservation implements Initializable {
     
     @FXML
     private DatePicker dateReservation;
-    
-    @FXML
-    private DatePicker dateDepart;
-    
-    @FXML
-     private DatePicker dateRetour;
 
-    //ObservableList<String> typelist = FXCollections.observableArrayList("Par Appel","A l'agence");
+    public Reservation reservation = new Reservation();
+
     ObservableList<String> type_reservation = FXCollections.observableArrayList();
 
     @Override
@@ -83,9 +80,9 @@ public class AjouterReservation implements Initializable {
     	idReservation.setText(String.valueOf(nouveauIdReservation));
         getTypeReservation();
         H.setfrenchDatePicker(dateReservation);
-        H.setfrenchDatePicker(dateDepart);
-        H.setfrenchDatePicker(dateRetour);
         comboBox();
+        dateReservation.setValue(LocalDate.from(LocalDateTime.now()));
+        idUtilisateur.setText(windowsSwitcher.loggedInUser.getIdUtilisateur());
     }
 
     public void comboBox() {
@@ -115,26 +112,6 @@ public class AjouterReservation implements Initializable {
 		str = client.getText();
 		System.out.println("----------------> "+str);
     }
-    
-    @FXML
-    void btnChoisirUser(ActionEvent event) {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirUtilisateurScene.fxml"));
-    	Parent root = null;
-    	try {
-			root = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    	Stage stage = new Stage();
-    	stage.setScene(new Scene(root));
-		stage.setResizable(false);
-		stage.initStyle(StageStyle.UNDECORATED);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.showAndWait();
-		
-		ChoisirUtilisateurScene choisirUser = loader.getController();
-		idUtilisateur.setText(choisirUser.cinUtilisateurSelected);
-    }
 
     @FXML
     void btnChoisirVehicule(ActionEvent event) throws IOException {
@@ -152,42 +129,33 @@ public class AjouterReservation implements Initializable {
         vehicule.setText(choisirClient.matriculeVehicule);
     }
 
-    
     @FXML
     void addReservation(ActionEvent event) {
-    	String rese = idReservation.getText();
-    	String avc = avance.getText();
-    	String dtReservation = ((TextField)dateReservation.getEditor()).getText();
-    	String dtRetour = ((TextField)dateRetour.getEditor()).getText();
-    	String dtDepart = ((TextField)dateDepart.getEditor()).getText();
-    	String matricule = vehicule.getText();
-    	String Client = client.getText();
-    	String user = idUtilisateur.getText();
-    	String type = typeReservation.getValue();
-    	TypeReservation tpRes = H.typeres.get(type);
-    	
-    	Reservation reservation = new Reservation();
-    	
-    	reservation.setAvance(Float.valueOf(avc));
-    	reservation.setDatReservation(dtReservation);
-    	reservation.setDate_depart(dtDepart);
-    	reservation.setDate_retour(dtRetour);
-    	reservation.setVehicule(H.vehicule.getById(matricule));
-    	reservation.setClient(H.client.getById(str));
-    	reservation.setStatus(H.status.getById(1));
-    	reservation.setUtilisateur(H.utilisateur.getById(user));
-    	reservation.setTypeRes(tpRes);
-    	
-    	int result = H.reservation.add(reservation);
-    	
-    	if (result != 0) {
-			System.out.println("l'ajout d'une reservation est bien fait");
-		} else {
-			System.out.println("il y a un prb dans l'ajout d'une reservation");
-		}
-    	
-    	Stage stage =(Stage) closeButton.getScene().getWindow();
-        stage.close();
+    	erreurMessage.setVisible(false);
+
+    	if (testEmpty()){
+            erreurMessage.setVisible(true);
+        }else{
+            reservation.setIdReservation(Long.parseLong(idReservation.getText()));
+            reservation.setDatReservation(dateReservation.getEditor().getText());
+            reservation.setVehicule(H.vehicule.getById(vehicule.getText()));
+            reservation.setClient(H.client.getById(str));
+            reservation.setStatus(H.status.getById(1));
+            reservation.setUtilisateur(H.utilisateur.getById(idUtilisateur.getText()));
+            reservation.setAvance(Float.parseFloat(avanceTextField.getText()));
+            reservation.setTypeRes(H.typeres.get(typeReservation.getValue()));
+
+            int result = H.reservation.add(reservation);
+
+            if (result != 0) {
+                System.out.println("l'ajout d'une reservation est bien fait");
+            } else {
+                System.out.println("il y a un prb dans l'ajout d'une reservation");
+            }
+
+            Stage stage =(Stage) closeButton.getScene().getWindow();
+            stage.close();
+        }
     }
 
     @FXML
@@ -227,5 +195,12 @@ public class AjouterReservation implements Initializable {
 			e.printStackTrace();
 		}
     	return max;
+    }
+
+    public boolean testEmpty(){
+        if (idReservation.getText().isEmpty() || dateReservation.getEditor().getText().isEmpty()
+                || vehicule.getText().isEmpty() || client.getText().isEmpty() || idUtilisateur.getText().isEmpty()
+                || avanceTextField.getText().isEmpty() || typeReservation.getValue() == null)return true;
+        return false;
     }
 }

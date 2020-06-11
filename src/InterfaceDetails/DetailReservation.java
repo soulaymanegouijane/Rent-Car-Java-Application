@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import Contrat.AjouterUnContrat;
@@ -47,7 +48,7 @@ public class DetailReservation implements Initializable {
     public DatePicker dateReservation;
 
     @FXML
-    public TextField vehicule;
+    public TextField vehiculeTextField;
 
     @FXML
     public JFXButton choisirVehiculeBtn;
@@ -93,6 +94,9 @@ public class DetailReservation implements Initializable {
     public VBox EditVBox;
     public JFXButton saveEditsBtn;
     public JFXButton annulerEditsBtn;
+    public TextField idUtilisateur;
+    public TextField nombreJoursTextField;
+    public TextField montantReservationTextField;
 
     ObservableList<String> TypeRes = FXCollections.observableArrayList();
 
@@ -108,6 +112,37 @@ public class DetailReservation implements Initializable {
         H.setfrenchDatePicker(dateRetourDatePicker);
         visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
         fillBlanks();
+
+        nombreJoursTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            LocalDate dateDepat = null;
+            LocalDate dateRetour = null;
+            Double mantant = 0.0;
+            if (!nombreJoursTextField.getText().isEmpty()){
+                mantant = Long.parseLong(newValue) * 299.99 /*Double.parseDouble(reservation.getVehicule().getPrixJour())*/;
+                montantReservationTextField.setText(String.valueOf(mantant));
+                if (dateDepartDatePicker.getValue() != null){
+                    dateDepat = H.convert(dateDepartDatePicker.getEditor().getText());
+                    dateRetour = dateDepat.plusDays(Long.parseLong(newValue));
+                    dateRetourDatePicker.setValue(dateRetour);
+                }else {
+                    dateRetourDatePicker.setValue(null);
+                }
+            }else{
+                montantReservationTextField.setText(null);
+                dateRetourDatePicker.setValue(null);
+            }
+        });
+
+        vehiculeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+        });
+
+        dateDepartDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(!nombreJoursTextField.getText().isEmpty())
+                dateRetourDatePicker.setValue(newValue.plusDays(Long.parseLong(nombreJoursTextField.getText())));
+            else
+                dateRetourDatePicker.setValue(null);
+        });
 	}
     
     private void comboBox() {
@@ -115,26 +150,32 @@ public class DetailReservation implements Initializable {
 	}
 
 	public void fillBlanks(){
-        avance.setText(String.valueOf(reservation.getAvance()));
-        dateReservation.setValue(H.convert(reservation.getDatReservation()));
-        dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
-        dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
-        vehicule.setText(reservation.getVehicule().getIdVehicule());
-        client.setText(reservation.getClient().getIdClient());
-        typeRservation.setValue(reservation.getTypeRes().getLibelle());
         idReservation.setText(String.valueOf(reservation.getIdReservation()));
+        dateReservation.setValue(H.convert(reservation.getDatReservation()));
+        //idUtilisateur.setText(reservation.getUtilisateur().getIdUtilisateur());
+        vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
+        client.setText(reservation.getClient().getIdClient());
+        dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
+        //nombreJoursTextField.setText(reservation.getNombreJours());
+        dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
+        //montantReservationTextField.setText(reservation.getMontant());
+        avance.setText(String.valueOf(reservation.getAvance()));
+        typeRservation.setValue(reservation.getTypeRes().getLibelle());
         etatReservation.setText(reservation.getStatus().getLibelle());
     }
 
     public void rewriteReservationInfos (){
-        reservation.setAvance(Float.parseFloat(avance.getText()));
-        reservation.setDatReservation(((TextField)dateReservation.getEditor()).getText());
-        reservation.setDate_depart(((TextField)dateDepartDatePicker.getEditor()).getText());
-        reservation.setDate_retour(((TextField)dateRetourDatePicker.getEditor()).getText());
-        reservation.getVehicule().setIdVehicule(vehicule.getText());
-        reservation.getClient().setIdClient(client.getText());
-        reservation.getTypeRes().setLibelle(typeRservation.getValue());
         reservation.setIdReservation(Long.parseLong(idReservation.getText()));
+        reservation.setDatReservation(((TextField)dateReservation.getEditor()).getText());
+        //reservation.setUtilisateur(H.utilisateur.getById(idUtilisateur.getText()));
+        reservation.getVehicule().setIdVehicule(vehiculeTextField.getText());
+        reservation.getClient().setIdClient(client.getText());
+        reservation.setDate_depart(((TextField)dateDepartDatePicker.getEditor()).getText());
+        //reservation.setNombreJours(Long.parseLong(nombreJoursTextField.getText()));
+        reservation.setDate_retour(((TextField)dateRetourDatePicker.getEditor()).getText());
+        //reservation.setMontant(Double.parseDouble(montantReservationTextField.getText()));
+        reservation.setAvance(Float.parseFloat(avance.getText()));
+        reservation.getTypeRes().setLibelle(typeRservation.getValue());
         reservation.getStatus().setLibelle(etatReservation.getText());
     }
 
@@ -185,7 +226,7 @@ public class DetailReservation implements Initializable {
         
         ChoisirVehiculeScene choisirVehicule = loader.getController();
 		if(!choisirVehicule.matriculeVehicule.isEmpty()) {
-			vehicule.setText(choisirVehicule.matriculeVehicule);
+            vehiculeTextField.setText(choisirVehicule.matriculeVehicule);
 		}
     }
 
@@ -199,16 +240,11 @@ public class DetailReservation implements Initializable {
     public void handleEditReservationBtn(ActionEvent actionEvent) {
         enableFields();
         
-        
-        
         EditVBox.setVisible(true);
         nonEditHBox.setVisible(false);
         TerminerResevationVBox.setVisible(false);
         ContratFactureVBox.setVisible(false);
         StatutVBox.setVisible(false);
-        
-        
-
     }
 
     public void handleAnnulerEditsBtn(ActionEvent actionEvent) {
@@ -236,10 +272,6 @@ public class DetailReservation implements Initializable {
 		}
     }
 
-    public void handleDeleteReservationBtn(ActionEvent actionEvent) {
-        //Delete Reservation
-    }
-
 
     public void handleAnnulerReservationBtn(ActionEvent actionEvent) {
         reservation.getStatus().setIdStatus(4);
@@ -264,6 +296,16 @@ public class DetailReservation implements Initializable {
 
         contrat = ajouterUnContrat.contrat;
 
+        reservation.setDate_depart(contrat.getDate_sortie());
+        //reservation.setNombreJours(String.valueOf(contrat.getNbr_jour()));
+        nombreJoursTextField.setText(String.valueOf(contrat.getNbr_jour())); //For testing
+        reservation.setDate_retour(contrat.getDate_retour());
+        //reservation.setMontant(Double.parseDouble(String.valueOf(contrat.getMontantTotal()));
+        montantReservationTextField.setText(String.valueOf(contrat.getMontantTotal()));//For testing
+        reservation.setAvance(contrat.getRemise());
+
+        fillBlanks();
+
         if(ajouterUnContrat.addwithSucces){
             visibiliteBoxByStatus(2);
             fillBlanks();
@@ -274,6 +316,7 @@ public class DetailReservation implements Initializable {
         visibiliteBoxByStatus(3);
         fillBlanks();
         // ajouter la disponibilite la vehicule
+        EditReservationBtn.setVisible(false);
     }
 
     public void handleAccederContratBtn(ActionEvent actionEvent) throws IOException {
@@ -296,21 +339,28 @@ public class DetailReservation implements Initializable {
     }
 
     public void enableFields(){
-        dateReservation.setDisable(false);
-        choisirVehiculeBtn.setDisable(false);
-        choisirClientBtn.setDisable(false);
-        dateDepartDatePicker.setDisable(false);
-        dateRetourDatePicker.setDisable(false);
-        avance.setEditable(true);
-        typeRservation.setDisable(false);
+        if (reservation.getStatus().getIdStatus() == 1){
+            choisirVehiculeBtn.setVisible(true);
+            choisirClientBtn.setVisible(true);
+            nombreJoursTextField.setEditable(false);
+            avance.setEditable(true);
+            typeRservation.setDisable(false);
+        } else if(reservation.getStatus().getIdStatus() == 2){
+            choisirVehiculeBtn.setVisible(false);
+            choisirClientBtn.setVisible(false);
+            nombreJoursTextField.setEditable(true);
+            avance.setEditable(true);
+            typeRservation.setDisable(false);
+        } else if (reservation.getStatus().getIdStatus() == 3 || reservation.getStatus().getIdStatus() == 4){
+            enableFields();
+            EditReservationBtn.setVisible(false);
+        }
     }
 
     public void disableFields(){
-        dateReservation.setDisable(true);
-        choisirVehiculeBtn.setDisable(true);
-        choisirClientBtn.setDisable(true);
-        dateDepartDatePicker.setDisable(true);
-        dateRetourDatePicker.setDisable(true);
+        choisirVehiculeBtn.setVisible(false);
+        choisirClientBtn.setVisible(false);
+        nombreJoursTextField.setEditable(false);
         avance.setEditable(false);
         typeRservation.setDisable(true);
     }

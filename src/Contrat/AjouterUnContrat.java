@@ -78,8 +78,7 @@ public class AjouterUnContrat implements Initializable {
         H.setfrenchDatePicker(dateContratDatePicker);
         H.setfrenchDatePicker(dateDepartDatePicker);
         H.setfrenchDatePicker(dateRetourDatePicker);
-        LocalDateTime now = LocalDateTime.now();
-        dateContratDatePicker.setValue(LocalDate.from(now));
+        dateContratDatePicker.setValue(LocalDate.from(LocalDateTime.now()));
         idContrat.setText(String.valueOf(getIdContrat() + 1));
         if(reservation != null){
             reservationTextField.setText(String.valueOf(reservation.getIdReservation()));
@@ -178,7 +177,6 @@ public class AjouterUnContrat implements Initializable {
         vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
         //prixParJoursTextFeild.setText(reservation.getVehicule().getPrix);
         prixParJoursTextFeild.setText("299.99"); // Pour tester
-        avanceTextField.setText(String.valueOf(reservation.getAvance()));
     }
 
     public void reservationTextFieldAction(ActionEvent actionEvent) {
@@ -203,7 +201,7 @@ public class AjouterUnContrat implements Initializable {
             contrat.setNbr_jour(Integer.parseInt(nombreDeJoursTextField.getText()));
             contrat.setDate_retour(dateRetourDatePicker.getEditor().getText());
             contrat.setMontantTotal(Double.parseDouble(montantReservationTextField.getText()));
-            //contrat.setAvance(Double.parseDouble(avanceTextField.getText()));
+            contrat.setRemise(Float.parseFloat(avanceTextField.getText()));
 
             int result = H.contrat.add(contrat);
             if (result == 0){
