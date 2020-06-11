@@ -24,6 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -135,7 +136,37 @@ public class ReservationWindow implements Initializable {
         comboBox();
         mono_reservation.clear();
         reservation_list.clear();
+        color_cell();
         remplir_tableau();
+        color_cell();
+        
+    }
+    
+    public void color_cell() {
+    	col_status.setCellFactory(column -> {
+    	    return new TableCell<Reservation, String>() {
+    	        @Override
+    	        protected void updateItem(String item, boolean empty) {
+    	            super.updateItem(item, empty);
+
+    	            if (item == null || empty) {
+    	                setText(null);
+    	                setStyle("");
+    	            } else {
+    	            	
+    	                if (item.equals("Terminer")) {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.CHOCOLATE);
+    	                    setStyle("-fx-font-weight: bold");
+    	                } else {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.GREEN);
+    	                    //setStyle("-fx-background-color: yellow");
+    	                }
+    	            }
+    	        }
+    	    };
+    	});
     }
 
     public void comboBox(){
@@ -166,6 +197,7 @@ public class ReservationWindow implements Initializable {
 				res.setStatusRes(s.getLibelle());
 				res.setTypeVehicule(H.type.getById(H.vehicule.getType(rs.getString("idVehicule"))).getLibelle());
 				reservation_list.add(res);
+				
 			}
 			con.close();
 		} catch (SQLException e) {

@@ -257,6 +257,8 @@ public class AjouterVehicule implements Initializable{
 			String color = toRGBCode(colorColorPicker.getValue());
 			String marque = marqueComboBox.getValue();
 			String typ = typeComboBox.getValue();
+			// -----> get prix jours inteface getText()
+			float prixJours = 0;
 			Vehicule vehicule = new Vehicule();
 			vehicule.setIdVehicule(matricule);
 			vehicule.setCarburant(H.carburant.get(carbutant));
@@ -265,6 +267,8 @@ public class AjouterVehicule implements Initializable{
 			vehicule.setParking(H.parking.get(parking));
 			vehicule.setType(H.type.get(typ));
 			vehicule.setDispo("Disponible");
+			
+			vehicule.setPrixJours(prixJours);
 			
 			try {
 				FileInputStream inputStream = new FileInputStream(file);

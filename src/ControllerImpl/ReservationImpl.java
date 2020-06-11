@@ -22,7 +22,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 		Connection con = Abst.getConnection();
 		try {
 			
-			String sql = "insert into reservation (idReservation,dateReservation,idClient,idTypeRes,idStatus,idVehicule,avance,date_depart,date_retour,idUtilisateur) values(?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into reservation (idReservation,dateReservation,idClient,idTypeRes,idStatus,idVehicule,avance,idUtilisateur,montant) values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setLong(1, arg.getIdReservation());
 			ps.setString(2, arg.getDatReservation());
@@ -31,9 +31,8 @@ public class ReservationImpl extends Abst implements ReservationInter {
 			ps.setLong(5, arg.getStatus().getIdStatus());
 			ps.setString(6,arg.getVehicule().getIdVehicule());
 			ps.setFloat(7, arg.getAvance());
-			ps.setString(8, arg.getDate_depart());
-			ps.setString(9, arg.getDate_retour());
-			ps.setString(10, arg.getUtilisateur().getIdUtilisateur());
+			ps.setString(8, arg.getUtilisateur().getIdUtilisateur());
+			ps.setFloat(9, arg.getMontant());
 			status = ps.executeUpdate();
 			
 			
@@ -54,7 +53,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 	public Reservation edit(Reservation arg) {
 		Connection con = Abst.getConnection();
 		try {
-			String sql = "UPDATE reservation SET dateReservation=?,idClient=?,idTypeRes=?,idStatus=?,idVehicule=?, avance=? , date_depart = ? , date_retour = ? where idReservation=?";
+			String sql = "UPDATE reservation SET dateReservation=?,idClient=?,idTypeRes=?,idStatus=?,idVehicule=?, avance=? , date_depart = ? , date_retour = ?,montant=? where idReservation=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			
 			ps.setString(1,arg.getDatReservation());
@@ -65,7 +64,8 @@ public class ReservationImpl extends Abst implements ReservationInter {
 			ps.setFloat(6, arg.getAvance());
 			ps.setString(7, arg.getDate_depart());
 			ps.setString(8, arg.getDate_retour());
-			ps.setLong(9, arg.getIdReservation());
+			ps.setLong(10, arg.getIdReservation());
+			ps.setFloat(9, arg.getMontant());
 			ps.executeUpdate();
 			arg.setDatReservation(arg.getDatReservation());
 			arg.setAvance(arg.getAvance());
@@ -127,7 +127,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 				res.setDate_depart(rs.getString("date_depart"));
 				res.setDate_retour(rs.getString("date_retour"));
 				res.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
-				res.setClient(H.client.getById(rs.getLong("idClient")));
+				res.setClient(H.client.getById(rs.getString("idClient")));
 				res.setStatus(H.status.getById(rs.getLong("idStatus")));
 				res.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));
 				list.add(res);
@@ -169,6 +169,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 				r.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));
 				r.setStatus(H.status.getById(rs.getLong("idStatus")));
 				r.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
+				r.setUtilisateur(H.utilisateur.getById(rs.getString("idUtilisateur")));
 				r.setAvance(rs.getFloat("avance"));
 			}
 			con.close();

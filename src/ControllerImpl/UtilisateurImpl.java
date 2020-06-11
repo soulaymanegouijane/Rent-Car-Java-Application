@@ -168,53 +168,6 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 		
 		return c;
 	}
-	
-	@Override
-	public Utilisateur getById(long id) {
-		Utilisateur c = new Utilisateur();
-		Connection con = Abst.getConnection();
-		try {
-			String sql = "Select * from utilisateur where idUtilisateur=?";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setLong(1, id);
-			ResultSet rs =  ps.executeQuery();
-			
-			if(rs.next()) {
-				c.setIdUtilisateur(rs.getString("idUtilisateur"));
-				c.setNom(rs.getString("nom"));
-				c.setPrenom(rs.getString("prenom"));
-				c.setAdress(rs.getString("adress"));
-				c.setTele(rs.getString("telephone"));
-				c.setEmail(rs.getString("email"));
-				c.setVille(rs.getString("ville"));
-				c.setCode_postale(rs.getString("code_postale"));
-				c.setPays(rs.getString("pays"));
-				c.setCarte_identifiant(rs.getString("type_identifiant"));
-				c.setCivilite(rs.getString("civilite"));
-				c.setLieu_naissance(rs.getString("lieu_naissance"));
-				c.setRole(H.role.getById(rs.getLong("idRole")));
-				c.setNationalite(rs.getString("nationalite"));
-				c.setNaissance(rs.getString("naissance"));
-				c.setUsername(rs.getString("username"));
-				c.setPass(rs.getString("pass"));
-			}else {
-				return null;
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				con.close();
-				System.out.println("closed from utilisateur ?");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return c;
-	}
 
 	@Override
 	public Utilisateur getById(String idUser) {

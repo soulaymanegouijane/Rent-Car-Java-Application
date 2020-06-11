@@ -7,6 +7,7 @@ import Entities.Carburant;
 import Entities.Client;
 import Entities.Marque;
 import Entities.Parking;
+import Entities.Reservation;
 import Entities.Type;
 import Entities.Utilisateur;
 import Entities.Vehicule;
@@ -31,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -138,7 +140,35 @@ public class VehiculeWindow implements Initializable {
     	type_base_donne();
     	comboBox();
         remplir_tableau();
+        color_cell();
         
+    }
+    
+    public void color_cell() {
+    	col_disponibilite.setCellFactory(column -> {
+    	    return new TableCell<Vehicule, String>() {
+    	        @Override
+    	        protected void updateItem(String item, boolean empty) {
+    	            super.updateItem(item, empty);
+
+    	            if (item == null || empty) {
+    	                setText(null);
+    	                setStyle("");
+    	            } else {
+    	            	
+    	                if (item.equals("Indisponible")) {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.CHOCOLATE);
+    	                    setStyle("-fx-font-weight: bold");
+    	                } else {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.GREEN);
+    	                    setStyle("-fx-font-weight: bold");
+    	                }
+    	            }
+    	        }
+    	    };
+    	});
     }
     
     public void comboBox() {

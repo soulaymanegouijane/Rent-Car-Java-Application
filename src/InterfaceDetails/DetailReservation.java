@@ -156,12 +156,19 @@ public class DetailReservation implements Initializable {
 	public void fillBlanks(){
         idReservation.setText(String.valueOf(reservation.getIdReservation()));
         dateReservation.setValue(H.convert(reservation.getDatReservation()));
-        //idUtilisateur.setText(reservation.getUtilisateur().getIdUtilisateur());
+        idUtilisateur.setText(reservation.getUtilisateur().getIdUtilisateur());
+        
         vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
         client.setText(reservation.getClient().getIdClient());
-        dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
+        /* 
+         * j'ai un prb dans l'affichge du detail d'une reservation a cause de ce DatePicker
+         * */
+        //dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
         //nombreJoursTextField.setText(reservation.getNombreJours());
-        dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
+        /* 
+         * j'ai un prb dans l'affichge du detail d'une reservation a cause de ce DatePicker
+         * */
+        //dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
         //montantReservationTextField.setText(reservation.getMontant());
         avance.setText(String.valueOf(reservation.getAvance()));
         typeRservation.setValue(reservation.getTypeRes().getLibelle());
@@ -177,6 +184,9 @@ public class DetailReservation implements Initializable {
         reservation.setDate_depart(((TextField)dateDepartDatePicker.getEditor()).getText());
         //reservation.setNombreJours(Long.parseLong(nombreJoursTextField.getText()));
         reservation.setDate_retour(((TextField)dateRetourDatePicker.getEditor()).getText());
+        
+        // le champs montant est bien ajouter dans la base de donnee 
+        
         //reservation.setMontant(Double.parseDouble(montantReservationTextField.getText()));
         reservation.setAvance(Float.parseFloat(avance.getText()));
         reservation.getTypeRes().setLibelle(typeRservation.getValue());

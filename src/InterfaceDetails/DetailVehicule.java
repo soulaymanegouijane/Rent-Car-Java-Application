@@ -150,6 +150,10 @@ public class DetailVehicule implements Initializable {
 			e.printStackTrace();
 		}
 	}
+    
+    public void rewriteReservationInfos (){
+    	
+    }
 
 	
 }

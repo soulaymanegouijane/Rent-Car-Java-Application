@@ -25,6 +25,8 @@ public class Vehicule implements Serializable{
 	private String dispo;
 	@Column(name="kilometrage",nullable=true)
 	private long kilometrage;
+	@Column(name="prixJours",nullable=true)
+	private float prixJours;
 	
 	@Lob
 	@Column(name="photo", columnDefinition = "BLOB")
@@ -80,6 +82,16 @@ public class Vehicule implements Serializable{
 	 */
 	public String getLibelle_marque() {
 		return libelle_marque;
+	}
+
+	
+	
+	public float getPrixJours() {
+		return prixJours;
+	}
+
+	public void setPrixJours(float prixJours) {
+		this.prixJours = prixJours;
 	}
 
 	/**

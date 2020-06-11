@@ -239,12 +239,9 @@ public class ClientImp extends Abst implements ClientInter{
 				Reservation res = new Reservation();
 				res.setIdReservation(rs.getLong(1));
 				res.setDatReservation(rs.getString(2));
-				ClientImp cli = new ClientImp();
-				StatusImpl sti = new StatusImpl();
-				TypeReservationImpl tri = new TypeReservationImpl();
-				res.setClient(cli.getById(rs.getLong(3)));
-				res.setStatus(sti.getById(rs.getLong(5)));
-				res.setTypeRes(tri.getById(rs.getLong(4)));
+				res.setClient(H.client.getById(rs.getString("idClient")));
+				res.setStatus(H.status.getById(rs.getLong("idStatus")));
+				res.setTypeRes(H.typeres.getById(rs.getLong("idTypeRes")));
 				list.add(res);
 			}
 		} catch (SQLException e) {
@@ -258,48 +255,6 @@ public class ClientImp extends Abst implements ClientInter{
 			}
 		}
 		return list;
-	}
-
-	@Override
-	public Client getById(long id) {
-		Connection con = Abst.getConnection();
-		Client client = new Client();
-		try {
-			String sql = "select * from Client where idClient = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setLong(1, id);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
-				client.setIdClient(rs.getString("idClient"));
-				client.setNom(rs.getString("nom"));
-				client.setPrenom(rs.getString("prenom"));
-				client.setAdress(rs.getString("adress"));
-				client.setTelephone(rs.getString("telephone"));
-				client.setEmail(rs.getString("email"));
-				client.setCarte_identifiant(rs.getString("type_identifiant"));
-				//client.setValiditePI( rs.getDate("validitePI"));
-				client.setNum_carte(rs.getString("num_carte"));
-				client.setDelevre_a(rs.getString("delevre_a"));
-				//client.setValiditePermis( rs.getDate("validitePermis"));
-				//client.setDelevre_le( rs.getDate("delivrer"));
-				client.setN_permis(rs.getString("n_permis"));
-				client.setLieu_naissance(rs.getString("lieu_naissance"));
-				//client.setDate_naissance( rs.getDate("date_naissance"));
-				client.setCivilite(rs.getString("civilite"));
-				client.setAge(rs.getInt("age"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				con.close();
-				System.out.println("closed");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return client;
 	}
 
 	public Client byPrenom(String prenom) {

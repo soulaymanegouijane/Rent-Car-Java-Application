@@ -156,7 +156,7 @@ public class StatusImpl extends Abst implements StatusInter {
 				Reservation reservation = new Reservation();
 				reservation.setIdReservation(rs.getLong("idReservation"));
 				reservation.setDatReservation(rs.getString("dateReservation"));
-				reservation.setClient(cli.getById(rs.getLong("idClient")));
+				reservation.setClient(cli.getById(rs.getString("idClient")));
 				reservation.setStatus(getById(idStatus));
 				reservation.setTypeRes(tre.getById(rs.getLong("idTypeRes")));
 				list.add(reservation);

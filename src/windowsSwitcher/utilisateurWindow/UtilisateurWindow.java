@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import AbstactClasses.Abst;
 import Entities.Client;
 import Entities.Utilisateur;
+import Entities.Vehicule;
 import InterfaceDetails.DetailUtilisateur;
 import Test.H;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -103,7 +105,34 @@ public class UtilisateurWindow implements Initializable {
         detailUtilisateurButton.setDisable(true);
     	comboBox();
     	remplir_tableau();
+    	color_cell();
+    }
+    
+    public void color_cell() {
+    	col_etat_compte.setCellFactory(column -> {
+    	    return new TableCell<Utilisateur, String>() {
+    	        @Override
+    	        protected void updateItem(String item, boolean empty) {
+    	            super.updateItem(item, empty);
 
+    	            if (item == null || empty) {
+    	                setText(null);
+    	                setStyle("");
+    	            } else {
+    	            	
+    	                if (item.equals("Disactiver")) {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.CHOCOLATE);
+    	                    setStyle("-fx-font-weight: bold");
+    	                } else {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.GREEN);
+    	                    setStyle("-fx-font-weight: bold");
+    	                }
+    	            }
+    	        }
+    	    };
+    	});
     }
     
     public void comboBox() {

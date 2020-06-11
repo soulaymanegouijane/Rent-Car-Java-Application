@@ -22,9 +22,9 @@ public class Reservation implements Serializable{
 	private long idReservation;
 	@Column(name="dateReservation",nullable=false)
 	private String datReservation;
-	@Column(name="date_depart",nullable=false)
+	@Column(name="date_depart",nullable=true)
 	private String date_depart;
-	@Column(name="date_retour",nullable=false)
+	@Column(name="date_retour",nullable=true)
 	private String date_retour;	
 	@Column(name="avance",nullable=false)
 	private float avance;
@@ -38,8 +38,20 @@ public class Reservation implements Serializable{
 	private String idVehicule;
 	@Column(name="idUtilisateur",nullable=true)
 	private String idUtilisateur;
+	@Column(name="montant",nullable=true)
+	private float montant;
 	
 	
+
+
+	public float getMontant() {
+		return montant;
+	}
+
+
+	public void setMontant(float montant) {
+		this.montant = montant;
+	}
 
 
 	private String cinClient;
@@ -52,6 +64,20 @@ public class Reservation implements Serializable{
 	private Utilisateur utilisateur;
 	
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Reservation [idReservation=" + idReservation + ", datReservation=" + datReservation + ", date_depart="
+				+ date_depart + ", date_retour=" + date_retour + ", avance=" + avance + ", idTypeRes=" + idTypeRes
+				+ ", idClient=" + idClient + ", idStatus=" + idStatus + ", idVehicule=" + idVehicule
+				+ ", idUtilisateur=" + idUtilisateur + ", montant=" + montant + ", cinClient=" + cinClient
+				+ ", cinUtilisateur=" + cinUtilisateur + ", statusRes=" + statusRes + ", typeVehicule=" + typeVehicule
+				+ ", utilisateur=" + utilisateur + ", client=" + client + ", typeRes=" + typeRes + ", status=" + status
+				+ ", vehicule=" + vehicule + "]";
+	}
+
+
 	/**
 	 * @return the utilisateur
 	 */

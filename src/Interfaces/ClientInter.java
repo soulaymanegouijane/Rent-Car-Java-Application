@@ -6,6 +6,7 @@ import Entities.Client;
 import Entities.Reservation;
 
 public interface ClientInter extends GlobalInter<Client>{
+	
 	public List<Reservation> trouverTousLesReservation(Client client);
 	public Client getById(String id);
 }
