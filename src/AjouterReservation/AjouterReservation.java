@@ -59,9 +59,6 @@ public class AjouterReservation implements Initializable {
     private JFXButton parcourrirButton2;
 
     @FXML
-    private TextField avanceTextField;
-
-    @FXML
     private JFXComboBox<String> typeReservation;
 
     @FXML
@@ -142,13 +139,14 @@ public class AjouterReservation implements Initializable {
             reservation.setClient(H.client.getById(str));
             reservation.setStatus(H.status.getById(1));
             reservation.setUtilisateur(H.utilisateur.getById(idUtilisateur.getText()));
-            reservation.setAvance(Float.parseFloat(avanceTextField.getText()));
             reservation.setTypeRes(H.typeres.get(typeReservation.getValue()));
 
             int result = H.reservation.add(reservation);
 
             if (result != 0) {
                 System.out.println("l'ajout d'une reservation est bien fait");
+                reservation.getVehicule().setDispo("Reserver");
+                H.vehicule.edit(reservation.getVehicule());
             } else {
                 System.out.println("il y a un prb dans l'ajout d'une reservation");
             }
@@ -200,7 +198,7 @@ public class AjouterReservation implements Initializable {
     public boolean testEmpty(){
         if (idReservation.getText().isEmpty() || dateReservation.getEditor().getText().isEmpty()
                 || vehicule.getText().isEmpty() || client.getText().isEmpty() || idUtilisateur.getText().isEmpty()
-                || avanceTextField.getText().isEmpty() || typeReservation.getValue() == null)return true;
+                || typeReservation.getValue() == null)return true;
         return false;
     }
 }

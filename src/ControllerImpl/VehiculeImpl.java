@@ -180,6 +180,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 				vehicule.setType(H.type.getById(rs.getLong("idType")));
 				vehicule.setImage(rs.getBytes("photo"));
 				vehicule.setDispo(rs.getString("dispo"));
+				vehicule.setPrixJours(rs.getFloat("prixJours"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");

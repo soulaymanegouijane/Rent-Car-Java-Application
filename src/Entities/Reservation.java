@@ -40,9 +40,9 @@ public class Reservation implements Serializable{
 	private String idUtilisateur;
 	@Column(name="montant",nullable=true)
 	private float montant;
+	@Column(name="nombreJours",nullable=true)
+	private int nombreJours;
 	
-	
-
 
 	public float getMontant() {
 		return montant;
@@ -109,9 +109,13 @@ public class Reservation implements Serializable{
 	}
 
 
+	public int getNombreJours() {
+		return nombreJours;
+	}
 
-
-
+	public void setNombreJours(int nombreJours) {
+		this.nombreJours = nombreJours;
+	}
 
 	/**
 	 * @return the statusRes

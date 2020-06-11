@@ -309,8 +309,6 @@ public class ReservationWindow implements Initializable {
     	DetailReservation.reservation = reservationSelected;
         Parent root = loader.load();
         
-        //FunctionAffiche(loader);
-        
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);
@@ -320,21 +318,6 @@ public class ReservationWindow implements Initializable {
         reservation_list.clear();
         //mono_reservation.clear();
         remplir_tableau();
-    }
-    
-    public void FunctionAffiche(FXMLLoader loader) {
-    	DetailReservation detail = loader.getController();
-    	
-    	detail.avance.setText(String.valueOf(reservationSelected.getAvance()));
-    	detail.dateReservation.setValue(H.convert(reservationSelected.getDatReservation()));
-    	detail.dateDepartDatePicker.setValue(H.convert(reservationSelected.getDate_depart()));
-    	detail.dateRetourDatePicker.setValue(H.convert(reservationSelected.getDate_retour()));
-    	detail.vehiculeTextField.setText(reservationSelected.getVehicule().getIdVehicule());
-    	detail.client.setText(reservationSelected.getClient().getIdClient());
-    	detail.typeRservation.setValue(reservationSelected.getTypeRes().getLibelle());
-    	detail.idReservation.setText(String.valueOf(reservationSelected.getIdReservation()));
-    	detail.etatReservation.setText(reservationSelected.getStatus().getLibelle());
-    	
     }
     
     @FXML

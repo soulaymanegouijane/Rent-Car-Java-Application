@@ -102,7 +102,7 @@ public class DetailReservation implements Initializable {
     ObservableList<String> TypeRes = FXCollections.observableArrayList();
 
     public static Reservation reservation = new Reservation();
-    public static Contrat contrat = new Contrat();
+    public static Contrat contrat = null;
     
     public boolean bool = true;
 
@@ -115,6 +115,9 @@ public class DetailReservation implements Initializable {
         H.setfrenchDatePicker(dateDepartDatePicker);
         H.setfrenchDatePicker(dateRetourDatePicker);
         visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
+        if (reservation.getStatus().getIdStatus() == 3 || reservation.getStatus().getIdStatus() == 4){
+            EditReservationBtn.setVisible(false);
+        }
         fillBlanks();
 
         nombreJoursTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -160,17 +163,13 @@ public class DetailReservation implements Initializable {
         
         vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
         client.setText(reservation.getClient().getIdClient());
-        /* 
-         * j'ai un prb dans l'affichge du detail d'une reservation a cause de ce DatePicker
-         * */
-        //dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
-        //nombreJoursTextField.setText(reservation.getNombreJours());
-        /* 
-         * j'ai un prb dans l'affichge du detail d'une reservation a cause de ce DatePicker
-         * */
-        //dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
-        //montantReservationTextField.setText(reservation.getMontant());
-        avance.setText(String.valueOf(reservation.getAvance()));
+        if (contrat != null){
+            dateDepartDatePicker.setValue(H.convert(reservation.getDate_depart()));
+            nombreJoursTextField.setText(String.valueOf(reservation.getNombreJours()));
+            dateRetourDatePicker.setValue(H.convert(reservation.getDate_retour()));
+            montantReservationTextField.setText(String.valueOf(reservation.getMontant()));
+            avance.setText(String.valueOf(reservation.getAvance()));
+        }
         typeRservation.setValue(reservation.getTypeRes().getLibelle());
         etatReservation.setText(reservation.getStatus().getLibelle());
     }
@@ -178,17 +177,18 @@ public class DetailReservation implements Initializable {
     public void rewriteReservationInfos (){
         reservation.setIdReservation(Long.parseLong(idReservation.getText()));
         reservation.setDatReservation(((TextField)dateReservation.getEditor()).getText());
-        //reservation.setUtilisateur(H.utilisateur.getById(idUtilisateur.getText()));
+        reservation.setUtilisateur(H.utilisateur.getById(idUtilisateur.getText()));
         reservation.getVehicule().setIdVehicule(vehiculeTextField.getText());
         reservation.getClient().setIdClient(client.getText());
-        reservation.setDate_depart(((TextField)dateDepartDatePicker.getEditor()).getText());
-        //reservation.setNombreJours(Long.parseLong(nombreJoursTextField.getText()));
-        reservation.setDate_retour(((TextField)dateRetourDatePicker.getEditor()).getText());
-        
-        // le champs montant est bien ajouter dans la base de donnee 
-        
-        //reservation.setMontant(Double.parseDouble(montantReservationTextField.getText()));
-        reservation.setAvance(Float.parseFloat(avance.getText()));
+
+        if (reservation.getStatus().getIdStatus() != 1){
+            reservation.setDate_depart(((TextField)dateDepartDatePicker.getEditor()).getText());
+            reservation.setNombreJours(Integer.parseInt(nombreJoursTextField.getText()));
+            reservation.setDate_retour(((TextField)dateRetourDatePicker.getEditor()).getText());
+            reservation.setMontant(Float.parseFloat(montantReservationTextField.getText()));
+            reservation.setAvance(Float.parseFloat(avance.getText()));
+        }
+
         reservation.getTypeRes().setLibelle(typeRservation.getValue());
         reservation.getStatus().setLibelle(etatReservation.getText());
     }
@@ -284,6 +284,10 @@ public class DetailReservation implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+        visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
+        EditVBox.setVisible(false);
+        nonEditHBox.setVisible(true);
     }
 
 
@@ -308,19 +312,15 @@ public class DetailReservation implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
 
-        contrat = ajouterUnContrat.contrat;
-
-        reservation.setDate_depart(contrat.getDate_sortie());
-        //reservation.setNombreJours(String.valueOf(contrat.getNbr_jour()));
-        nombreJoursTextField.setText(String.valueOf(contrat.getNbr_jour())); //For testing
-        reservation.setDate_retour(contrat.getDate_retour());
-        //reservation.setMontant(Double.parseDouble(String.valueOf(contrat.getMontantTotal()));
-        montantReservationTextField.setText(String.valueOf(contrat.getMontantTotal()));//For testing
-        reservation.setAvance(contrat.getRemise());
-
-        fillBlanks();
-
         if(ajouterUnContrat.addwithSucces){
+            contrat = ajouterUnContrat.contrat;
+
+            reservation.setDate_depart(contrat.getDate_sortie());
+            reservation.setNombreJours(contrat.getNbr_jour());
+            reservation.setDate_retour(contrat.getDate_retour());
+            reservation.setMontant((float) contrat.getMontantTotal());
+            reservation.setAvance(contrat.getRemise());
+
             visibiliteBoxByStatus(2);
             fillBlanks();
         }
@@ -334,18 +334,18 @@ public class DetailReservation implements Initializable {
     }
 
     public void handleAccederContratBtn(ActionEvent actionEvent) throws IOException {
-    	 FXMLLoader loader = new FXMLLoader(getClass().getResource("detailContrat.fxml"));
+    	 /*FXMLLoader loader = new FXMLLoader(getClass().getResource("detailContrat.fxml"));
          Parent root = loader.load();
 
          //AjouterUnContrat ajouterUnContrat = loader.getController();
-          
+
 
          Stage stage = new Stage();
          stage.setScene(new Scene(root));
          stage.setResizable(false);
          stage.initStyle(StageStyle.UNDECORATED);
          stage.initModality(Modality.APPLICATION_MODAL);
-         stage.showAndWait();
+         stage.showAndWait();*/
     	
     }
 
@@ -357,16 +357,16 @@ public class DetailReservation implements Initializable {
             choisirVehiculeBtn.setVisible(true);
             choisirClientBtn.setVisible(true);
             nombreJoursTextField.setEditable(false);
-            avance.setEditable(true);
+            avance.setEditable(false);
             typeRservation.setDisable(false);
         } else if(reservation.getStatus().getIdStatus() == 2){
             choisirVehiculeBtn.setVisible(false);
             choisirClientBtn.setVisible(false);
             nombreJoursTextField.setEditable(true);
             avance.setEditable(true);
-            typeRservation.setDisable(false);
+            typeRservation.setDisable(true);
         } else if (reservation.getStatus().getIdStatus() == 3 || reservation.getStatus().getIdStatus() == 4){
-            enableFields();
+            disableFields();
             EditReservationBtn.setVisible(false);
         }
     }

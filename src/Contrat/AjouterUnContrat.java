@@ -153,30 +153,10 @@ public class AjouterUnContrat implements Initializable {
         reservationTextFieldAction(event);
     }
 
-    /*@FXML
-    void btnVehicule(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirVehiculeScene.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
-    		
-        ChoisirVehiculeScene choisirVehicule = loader.getController();
-        vehiculeTextField.setText(choisirVehicule.matriculeVehicule);
-    }*/
-
     public void fillReservationRelatedFields(){
         vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
-        //prixParJoursTextFeild.setText(reservation.getVehicule().getPrix);
-        prixParJoursTextFeild.setText("299.99"); // Pour tester
+        prixParJoursTextFeild.setText(String.valueOf(reservation.getVehicule().getPrixJours()));
+        //prixParJoursTextFeild.setText("299.99"); // Pour tester
     }
 
     public void reservationTextFieldAction(ActionEvent actionEvent) {
