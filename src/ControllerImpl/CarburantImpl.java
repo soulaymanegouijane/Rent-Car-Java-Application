@@ -22,7 +22,7 @@ public class CarburantImpl extends Abst implements CarburantInter {
 	HibernateUtil hibernatUtil = new HibernateUtil();
 	
 	@Override	
-	public int add(Carburant arg) throws AjoutExceptions{
+	public int add(Carburant arg){
 		Connection con = Abst.getConnection();
 		int status=0;
 		try {
@@ -33,8 +33,7 @@ public class CarburantImpl extends Abst implements CarburantInter {
 			ps.setString(2,arg.getDescription());
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
-			//e.printStackTrace();
-			throw new AjoutExceptions("carburant");
+			e.printStackTrace();			
 		}finally {
 			try {
 				con.close();

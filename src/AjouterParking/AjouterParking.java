@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
 import Entities.Parking;
+import Exceptions.AjoutExceptions;
 import Test.H;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,34 +53,33 @@ public class AjouterParking implements Initializable{
     public void submitButtonAction(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
      
-        
+        Boolean b = false;
+        Boolean E = false;
         if (!Tester()) {
     	   idparking = idparkingTextField.getText();
            adressparking = adressparkingTextField.getText();
-           capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
-           occupeParking = Integer.parseInt(occupeParkingTextField.getText());
+           
+           try {
+        	   capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
+               occupeParking = Integer.parseInt(occupeParkingTextField.getText());
+               
+			} catch (Exception e) {
+				b = true;
+				E = true;
+			}
         	Parking parking = new Parking();
             parking.setIdParking(Long.valueOf(idparking));
             parking.setAdress(adressparking);
             parking.setCapacite(capaciteParking);
             parking.setNbr_place_pleinne(occupeParking);
             
-            int result = H.parking.add(parking);  
+            if(!E) {
+            	H.parking.add(parking); 
+            }
             
-            if (result != 0) {
-            	parkingTaped = adressparkingTextField.getText();
-            	Alert alert = new Alert(AlertType.INFORMATION);
-            	alert.setTitle("Ajouter Parking");
-            	alert.setHeaderText("Results");
-            	alert.setContentText("le parking est bien ajouter");
-            	alert.showAndWait();
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-            	alert.setTitle("Ajouter Parking");
-            	alert.setHeaderText("Results");
-            	alert.setContentText("le parking n'est bien ajouter");
-            	alert.showAndWait();
-			}
+            if(b) {
+            	AfficheErreur(true,"parking");
+            }
 
             Stage stage =(Stage) submitButton.getScene().getWindow();
             stage.close();
@@ -99,6 +99,16 @@ public class AjouterParking implements Initializable{
         	}
         	alert.showAndWait();
 		}
+    }
+    
+    public void AfficheErreur(Boolean bool,String str) {
+    	if(bool) {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not add "+str);
+        	alert.setContentText(str+" n'est pas Ajouter !!");
+        	alert.showAndWait();
+        }
     }
     
     public boolean Tester() {

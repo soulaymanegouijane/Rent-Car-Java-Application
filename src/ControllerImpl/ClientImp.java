@@ -10,6 +10,7 @@ import java.util.List;
 import AbstactClasses.Abst;
 import Entities.Client;
 import Entities.Reservation;
+import Exceptions.AjoutExceptions;
 import Interfaces.ClientInter;
 import Test.H;
 import javafx.collections.ObservableList;
@@ -48,11 +49,11 @@ public class ClientImp extends Abst implements ClientInter{
 			preparedStatement.setString(19, arg.getPays());
 			preparedStatement.setString(18, arg.getVille());
 			preparedStatement.setString(20, arg.getNationalite());
-			status = preparedStatement.executeUpdate();
-			
+			status = preparedStatement.executeUpdate();			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		}
+		finally {
 			try {
 				con.close();
 				System.out.println("closed");

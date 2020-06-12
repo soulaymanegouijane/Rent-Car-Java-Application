@@ -50,7 +50,7 @@ public class AjouterCarburant {
         	try {
         		int y = H.carburant.add(carburant);
             	if(y==0) {
-            		throw new AjoutExceptions("carburant");
+            		throw new AjoutExceptions("carburant",true);
             	}else {
             		libelleCarburantTaped = libelleCarburant.getText();
                     descriptionCarburantTaped = descriptionCarburant.getText();

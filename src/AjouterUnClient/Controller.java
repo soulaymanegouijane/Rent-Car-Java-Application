@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import Entities.Client;
+import Exceptions.AjoutExceptions;
 import Test.H;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,9 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -130,7 +133,7 @@ public class Controller implements Initializable {
 	    stage.close();
 	}
 
-    public void handleSaveButton(ActionEvent actionEvent) {
+    public void handleSaveButton(ActionEvent actionEvent) throws AjoutExceptions {
         erreurMessage.setVisible(false);
 
         prenom = prenomTextField.getText();
@@ -179,16 +182,25 @@ public class Controller implements Initializable {
             client.setCivilite(genre);
             client.setCarte_identifiant(typeIdentifiant);
             client.setVille(ville);
-
+            boolean bool = false;
             int s = H.client.add(client);
-            if(s!=0) {
-                System.out.println("l'ajout est bien fait");
-            }else {
-                System.out.println("il y a un prb");
+            
+            if(bool) {
+            	AfficheErreur(true,"client");
             }
 
             Stage stage =(Stage) saveButton.getScene().getWindow();
             stage.close();
+        }
+    }
+    
+    public void AfficheErreur(Boolean bool,String str) {
+    	if(bool) {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not add "+str);
+        	alert.setContentText(str+" n'est pas Ajouter !!");
+        	alert.showAndWait();
         }
     }
 
