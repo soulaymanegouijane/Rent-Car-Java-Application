@@ -149,9 +149,9 @@ public class LoginMain implements Initializable {
 
                     	JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
                         jfxDialogLayout.setAlignment(Pos.CENTER);
-                        jfxDialogLayout.setHeading(new Text("test"));
+                        jfxDialogLayout.setHeading(new Text("Désolé"));
                         JFXButton okay = new JFXButton("Close");
-                        jfxDialogLayout.setBody(new Text("body text"));
+                        jfxDialogLayout.setBody(new Text("Ce compte est disactiver"));
                         okay.setPrefWidth(110);
                         okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
                         okay.setButtonType(JFXButton.ButtonType.RAISED);

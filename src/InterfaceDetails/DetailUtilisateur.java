@@ -1,5 +1,6 @@
 package InterfaceDetails;
 
+import Entities.Role;
 import Entities.Utilisateur;
 import Test.H;
 import com.jfoenix.controls.JFXButton;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -83,6 +85,9 @@ public class DetailUtilisateur implements Initializable{
     public JFXButton deleteBtn;
     public JFXComboBox<String> GenreComboBox;
     public JFXComboBox<String> typeCinCombo;
+    public JFXComboBox<String> etatCompteCombo;
+    public JFXComboBox<String> roleComboBox;
+    public Label erreurMessage;
 
     @FXML
     private TextField imgFieldText;
@@ -104,6 +109,8 @@ public class DetailUtilisateur implements Initializable{
     byte[] bFile = null;
     File file = null;
 
+    ObservableList<String> roleList = FXCollections.observableArrayList();
+    ObservableList<String> etatCompteList = FXCollections.observableArrayList("Activer", "Disactiver");
     ObservableList<String> GenreList = FXCollections.observableArrayList("Femme", "Homme");
     ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
 
@@ -113,6 +120,7 @@ public class DetailUtilisateur implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        role_base_donnee();
         comboBox();
         H.setfrenchDatePicker(dateNaissanceDatePicker);
         fillBlanks();
@@ -123,8 +131,30 @@ public class DetailUtilisateur implements Initializable{
     }
 
     public void comboBox(){
+        etatCompteCombo.setItems(etatCompteList);
         GenreComboBox.setItems(GenreList);
         typeCinCombo.setItems(Idtypelist);
+        roleComboBox.setItems(roleList);
+    }
+
+    public void role_base_donnee() {
+        ResultSet tous_les_roles = null;
+        String sql = "select * from role";
+        Connection con = Abst.getConnection();
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            tous_les_roles = ps.executeQuery();
+            while(tous_les_roles.next()) {
+                Role role = new Role();
+                role.setRole(tous_les_roles.getString("role"));
+                String rl = role.getRole();
+                roleList.add(rl);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void fillBlanks(){
@@ -143,6 +173,8 @@ public class DetailUtilisateur implements Initializable{
         numeroCinTextField.setText(User.getIdUtilisateur());
         paysTextField.setText(User.getPays());
         typeCinCombo.setValue(User.getCarte_identifiant());
+        etatCompteCombo.setValue(User.getEtat_compte());
+        roleComboBox.setValue(User.getRole().getRole());
     }
 
     public void rewriteUserInfos(){
@@ -160,6 +192,8 @@ public class DetailUtilisateur implements Initializable{
         User.setCarte_identifiant(GenreComboBox.getValue());
         User.setIdUtilisateur(numeroCinTextField.getText());
         User.setPays(paysTextField.getText());
+        User.setEtat_compte(etatCompteCombo.getValue());
+        User.setRole(H.role.get(roleComboBox.getValue()));
         if (imageChanged){
             try {
                 FileInputStream inputStream = new FileInputStream(file);
@@ -176,32 +210,6 @@ public class DetailUtilisateur implements Initializable{
             User.setImage(bFile);
         }
     }
-    
-    /*public String Civilite(String idUser) {
-    	String sql ="select * from utilisateur where idUtilisateur = ?";
-    	Connection con = Abst.getConnection();
-    	String str = null;
-    	System.out.println("---------------------------------------> from civilite");
-    	try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, idUser);
-			ResultSet rs = ps.executeQuery();
-			System.out.println("bien------------->civilite");
-			if(rs.next()) {
-				System.out.println(rs.getString("civilite"));
-				if(rs.getString("civilite").equals("Homme")) {
-					str=  "Mr";
-					System.out.println("-------------> Homme");
-				}else if(rs.getString("civilite").equals("Femme")) {
-					str = "Mlle";
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return str;
-    }*/
 
     @FXML
     public void closeButtonAction(){
@@ -242,25 +250,31 @@ public class DetailUtilisateur implements Initializable{
             bFile = new byte[(int) file.length()];
             System.out.println("-------------->  "+fileChosen.getAbsolutePath());
         }
-        
-        
-        
     }
 
     public void handleSaveChangesButton(ActionEvent actionEvent) {
-        nonEditVBox.setVisible(true);
-        editVBox.setVisible(false);
-        disableFields();
+        erreurMessage.setVisible(false);
+        if (testEmpty()){
+            erreurMessage.setText("Remplissez tous les champs !!");
+            erreurMessage.setVisible(true);
+        }else if (!H.isEmailValid(emailTextField.getText())){
+            erreurMessage.setText("Vous avez fait une faute dans l'email !!");
+            erreurMessage.setVisible(true);
+        }else {
+            nonEditVBox.setVisible(true);
+            editVBox.setVisible(false);
+            disableFields();
 
-        rewriteUserInfos();
-        try {
-        	Utilisateur utilisateur = H.utilisateur.edit(User);
-        	if(utilisateur == null) {
-        		System.out.println("erreur");
-        	}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            rewriteUserInfos();
+            try {
+                Utilisateur utilisateur = H.utilisateur.edit(User);
+                if(utilisateur == null) {
+                    System.out.println("erreur");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void handleDeleteBtn(ActionEvent actionEvent) {
@@ -276,6 +290,7 @@ public class DetailUtilisateur implements Initializable{
         GenreComboBox.setDisable(false);
         prenomTextField.setEditable(true);
         nomTextField.setEditable(true);
+        roleComboBox.setDisable(false);
         nationaliteTextField.setEditable(true);
         dateNaissanceDatePicker.setDisable(false);
         lieuNaissanceTextField.setEditable(true);
@@ -287,6 +302,8 @@ public class DetailUtilisateur implements Initializable{
         paysTextField.setEditable(true);
         numeroTelephoneTextField.setEditable(true);
         emailTextField.setEditable(true);
+        etatCompteCombo.setDisable(false);
+
     }
 
     public void disableFields(){
@@ -294,6 +311,7 @@ public class DetailUtilisateur implements Initializable{
         GenreComboBox.setDisable(true);
         prenomTextField.setEditable(false);
         nomTextField.setEditable(false);
+        roleComboBox.setDisable(true);
         nationaliteTextField.setEditable(false);
         dateNaissanceDatePicker.setDisable(true);
         lieuNaissanceTextField.setEditable(false);
@@ -305,6 +323,18 @@ public class DetailUtilisateur implements Initializable{
         paysTextField.setEditable(false);
         numeroTelephoneTextField.setEditable(false);
         emailTextField.setEditable(false);
+        etatCompteCombo.setDisable(true);
 
+    }
+
+    public boolean testEmpty(){
+        if(GenreComboBox.getValue() == null || prenomTextField.getText().isEmpty() || nomTextField.getText().isEmpty()
+                || nationaliteTextField.getText().isEmpty() || roleComboBox.getValue() == null
+                || dateNaissanceDatePicker.getValue() == null || lieuNaissanceTextField.getText().isEmpty()
+                || typeCinCombo.getValue() == null || numeroCinTextField.getText().isEmpty() || adresseTextField.getText().isEmpty()
+                || codePostalTextField.getText().isEmpty() || villeTextField.getText().isEmpty() || paysTextField.getText().isEmpty()
+                || numeroTelephoneTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || etatCompteCombo.getValue() == null)
+            return true;
+        return false;
     }
 }

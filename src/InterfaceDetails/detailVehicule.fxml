@@ -353,7 +353,7 @@
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                                  <image>
-                                    <Image url="@../Css/Images/delete.png" />
+                                    <Image url="@../img/xIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -362,7 +362,7 @@
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                                  <image>
-                                    <Image url="@../Css/Images/Edit.png" />
+                                    <Image url="@../img/save.png" />
                                  </image>
                               </ImageView>
                            </graphic>

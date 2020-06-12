@@ -19,7 +19,6 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 	public int add(Utilisateur arg) {
 		int status =0;
 		String sql = "insert into utilisateur (nom,prenom,adress,telephone,email,idUtilisateur,civilite,lieu_naissance,ville,code_postale,pays,nationalite,etat_compte,idRole,naissance,type_identifiant,photo,username,pass) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		
 		Connection conn = null;
 		try {
 			conn = Abst.getConnection();
@@ -199,6 +198,7 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 				c.setUsername(rs.getString("username"));
 				c.setPass(rs.getString("pass"));
 				c.setImage(rs.getBytes("photo"));
+				c.setEtat_compte(rs.getString("etat_compte"));
 			}else {
 				return null;
 			}
@@ -228,25 +228,25 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			ResultSet loggedUtilisateur =  ps.executeQuery();
 			
 			if(loggedUtilisateur.next()) {
-				 loggedInUser.setIdUtilisateur(loggedUtilisateur.getString("idUtilisateur"));
-                 loggedInUser.setNom(loggedUtilisateur.getString("nom"));
-                 loggedInUser.setPrenom(loggedUtilisateur.getString("prenom"));
-                 loggedInUser.setAdress(loggedUtilisateur.getString("adress"));
-                 loggedInUser.setTele(loggedUtilisateur.getString("telephone"));
-                 loggedInUser.setEmail(loggedUtilisateur.getString("email"));
-                 loggedInUser.setNaissance(loggedUtilisateur.getString("naissance"));
-                 loggedInUser.setEtat_compte(loggedUtilisateur.getString("etat_compte"));
-                 loggedInUser.setCivilite(loggedUtilisateur.getString("civilite"));
-                 loggedInUser.setLieu_naissance(loggedUtilisateur.getString("lieu_naissance"));
-                 loggedInUser.setVille(loggedUtilisateur.getString("ville"));
-                 loggedInUser.setPays(loggedUtilisateur.getString("pays"));
-                 loggedInUser.setNationalite(loggedUtilisateur.getString("nationalite"));
-                 loggedInUser.setCarte_identifiant(loggedUtilisateur.getString("type_identifiant"));
-
-                 loggedInUser.setUsername(loggedUtilisateur.getString("username"));
-                 loggedInUser.setPass(loggedUtilisateur.getString("pass"));
-                 loggedInUser.setImage(loggedUtilisateur.getBytes("photo"));
-                 loggedInUser.setRole(H.role.getById(loggedUtilisateur.getLong("idRole")));
+				loggedInUser.setIdUtilisateur(loggedUtilisateur.getString("idUtilisateur"));
+				loggedInUser.setNom(loggedUtilisateur.getString("nom"));
+				loggedInUser.setPrenom(loggedUtilisateur.getString("prenom"));
+				loggedInUser.setAdress(loggedUtilisateur.getString("adress"));
+				loggedInUser.setTele(loggedUtilisateur.getString("telephone"));
+				loggedInUser.setEmail(loggedUtilisateur.getString("email"));
+				loggedInUser.setNaissance(loggedUtilisateur.getString("naissance"));
+				loggedInUser.setEtat_compte(loggedUtilisateur.getString("etat_compte"));
+				loggedInUser.setCivilite(loggedUtilisateur.getString("civilite"));
+				loggedInUser.setLieu_naissance(loggedUtilisateur.getString("lieu_naissance"));
+				loggedInUser.setVille(loggedUtilisateur.getString("ville"));
+				loggedInUser.setPays(loggedUtilisateur.getString("pays"));
+				loggedInUser.setNationalite(loggedUtilisateur.getString("nationalite"));
+				loggedInUser.setCarte_identifiant(loggedUtilisateur.getString("type_identifiant"));
+				loggedInUser.setEtat_compte(loggedUtilisateur.getString("etat_compte"));
+				loggedInUser.setUsername(loggedUtilisateur.getString("username"));
+				loggedInUser.setPass(loggedUtilisateur.getString("pass"));
+				loggedInUser.setImage(loggedUtilisateur.getBytes("photo"));
+				loggedInUser.setRole(H.role.getById(loggedUtilisateur.getLong("idRole")));
 			}else {
 				return null;
 			}
