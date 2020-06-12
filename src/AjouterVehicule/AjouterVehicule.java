@@ -116,7 +116,6 @@ public class AjouterVehicule implements Initializable{
 		marqueComboBox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override 
 			public void changed(ObservableValue ov, String t, String t1) {
-				System.out.println("--------------------------> changer");
 				TypeList.clear();
 				typeComboBox.setItems(TypeList);
 			}

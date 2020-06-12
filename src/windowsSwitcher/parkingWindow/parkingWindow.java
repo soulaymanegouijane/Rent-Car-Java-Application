@@ -102,7 +102,8 @@ public class parkingWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-
+        parking_list.clear();
+        mono_parking.clear();
         remplir_tableau();
     }
 
@@ -119,6 +120,10 @@ public class parkingWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        mono_parking.clear();
+        parking_list.clear();
+        remplir_tableau();
     }
     
     public void FunctionAffiche(FXMLLoader loader) {

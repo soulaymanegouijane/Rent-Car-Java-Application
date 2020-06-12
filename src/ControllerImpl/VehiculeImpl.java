@@ -24,7 +24,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 	public int add(Vehicule arg) {
 		int status = 0;
 		try {
-			String sql = "insert into vehicule (idVehicule,nbr_place,idParking,idCarburant,idType,color,dispo,photo,prixJours,kilometrage) values (?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into vehicule (idVehicule,nbr_place,idParking,idCarburant,idType,color,dispo,photo,prixJours,kilometrage) values (?,?,?,?,?,?,?,?,?,?)";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getIdVehicule());

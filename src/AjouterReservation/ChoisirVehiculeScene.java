@@ -82,16 +82,18 @@ public class ChoisirVehiculeScene implements Initializable {
     public void remplir_tableau() {
     	ResultSet tous_les_vehicule = null;
 		try {
-			String sql = "select * from vehicule";
+			String sql = "select * from vehicule where dispo=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, "Disponible");
 			tous_les_vehicule = ps.executeQuery();
 			
 			while(tous_les_vehicule.next()) {
 				System.out.println("bien");
 				Vehicule vehicule = new Vehicule();
 				vehicule.setIdVehicule(tous_les_vehicule.getString("idVehicule"));
-				// je dois ajouter disponibilite
+				vehicule.setDispo(tous_les_vehicule.getString("dispo"));
+				vehicule.setKilometrage(tous_les_vehicule.getLong("kilometrage"));
 				vehicule.setMarqueLibelle(H.vehicule.marque_libelle(tous_les_vehicule.getString("idVehicule")));
 				vehicule.setTypeVehicule(H.type.getById(H.vehicule.getType(tous_les_vehicule.getString("idVehicule"))).getLibelle());
 				vehicule_list.add(vehicule);

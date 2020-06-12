@@ -1,6 +1,9 @@
 package loginPage;
 
+import Entities.Reservation;
+import Entities.Status;
 import Entities.Utilisateur;
+import Entities.Vehicule;
 import Test.H;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,6 +33,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -114,7 +118,8 @@ public class LoginMain implements Initializable {
                 }
 
                 if (password.getText().equals(loggedInUser.getPass()) && loggedInUser.getEtat_compte().equals("Activer")) {
-
+                	System.out.println("------------- *** ------>");
+                	ActualiserDispoVehicule();
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../windowsSwitcher/windowsSwitcher.fxml"));
                     Parent root = loader.load();
@@ -175,5 +180,30 @@ public class LoginMain implements Initializable {
 
     }
 
-    
+    public void ActualiserDispoVehicule() {
+    	String sql = "select * from reservation where idStatus=?";
+    	Connection con = Abst.getConnection();
+    	try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setLong(1, 1);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				LocalDate date = H.convert(rs.getString("dateReservation"));
+				LocalDate now = LocalDate.now();
+		    	LocalDate aide = now.minusDays(2);
+		    	System.out.println("-**-**-**-**-->From new Function");
+		    	if(date.isBefore(aide)) {
+		    		Status s = H.status.getById(4);
+		    		Reservation res = H.reservation.getById(rs.getLong("idReservation"));
+		    		res.setStatus(s);
+		    		H.reservation.edit(res);
+		    		Vehicule veh = res.getVehicule();
+		    		veh.setDispo("Disponible");
+		    		H.vehicule.edit(veh);
+		    	}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 }

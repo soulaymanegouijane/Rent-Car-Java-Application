@@ -156,12 +156,20 @@ public class ReservationWindow implements Initializable {
     	            	
     	                if (item.equals("Terminer")) {
     	                	setText(item.toString());
-    	                    setTextFill(Color.CHOCOLATE);
+    	                    setTextFill(Color.ORANGERED);
+    	                    setStyle("-fx-font-weight: bold");
+    	                } else if(item.equals("Annuler")) {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.RED);
+    	                    setStyle("-fx-font-weight: bold");
+    	                } else if(item.equals("Active")) {
+    	                	setText(item.toString());
+    	                    setTextFill(Color.LIME);
     	                    setStyle("-fx-font-weight: bold");
     	                } else {
     	                	setText(item.toString());
-    	                    setTextFill(Color.GREEN);
-    	                    //setStyle("-fx-background-color: yellow");
+    	                    setTextFill(Color.DARKGREEN);
+    	                    setStyle("-fx-font-weight: bold");
     	                }
     	            }
     	        }
