@@ -443,9 +443,10 @@ public class VehiculeWindow implements Initializable {
 
     public void handleDetailVehiculeButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailVehicule.fxml"));
+    	DetailVehicule.voiture = vehiculeSelected;
         Parent root = loader.load();
         
-        FunctionAffiche(loader);
+        //FunctionAffiche(loader);
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -453,6 +454,10 @@ public class VehiculeWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+
+		mono_vehicule.clear();
+		vehicule_list.clear();
+		remplir_tableau();
     }
     
     @FXML
@@ -468,18 +473,18 @@ public class VehiculeWindow implements Initializable {
     	}
     }
     
-    public void FunctionAffiche(FXMLLoader loader) {
+    /*public void FunctionAffiche(FXMLLoader loader) {
     	DetailVehicule detail = loader.getController();
     	
     	detail.idmatricule.setText(vehiculeSelected.getIdVehicule());
     	detail.idcolor.setValue(javafx.scene.paint.Color.valueOf((String) vehiculeSelected.getColor()));
     	detail.nombrePlaceTextField.setText(String.valueOf(vehiculeSelected.getNbr_place()));
     	detail.dispoVehicule.setValue(vehiculeSelected.getDispo());
-    	detail.TypeCarburant.setValue(vehiculeSelected.getCarburant().getLibelle());
-    	detail.marqueVoiture.setValue(vehiculeSelected.getType().getMarque().getLibelle());
+    	detail.carburantComboBox.setValue(vehiculeSelected.getCarburant().getLibelle());
+    	detail.marqueComboBox.setValue(vehiculeSelected.getType().getMarque().getLibelle());
     	detail.idParking.setText(vehiculeSelected.getParking().getAdress());
     	detail.photoVehicule.setImage(new Image(new ByteArrayInputStream(vehiculeSelected.getImage()), 142, 123, false, false));
-    }
+    }*/
 
 	public void handleButtonChoisirParking(ActionEvent actionEvent) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirParkingScene.fxml"));

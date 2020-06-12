@@ -295,6 +295,8 @@ public class DetailReservation implements Initializable {
         reservation.getStatus().setIdStatus(4);
         fillBlanks();
         visibiliteBoxByStatus(4);
+        reservation.getVehicule().setDispo("Disponible");
+        H.vehicule.edit(reservation.getVehicule());
     }
 
     public void handlecreateContratBtn(ActionEvent actionEvent) throws IOException {
@@ -331,6 +333,11 @@ public class DetailReservation implements Initializable {
         fillBlanks();
         // ajouter la disponibilite la vehicule
         EditReservationBtn.setVisible(false);
+
+        reservation.getVehicule().setDispo("Disponible");
+        //Changer Kilometrage
+        //Changer Emplacement
+        H.vehicule.edit(reservation.getVehicule());
     }
 
     public void handleAccederContratBtn(ActionEvent actionEvent) throws IOException {

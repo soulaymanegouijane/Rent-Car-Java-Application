@@ -48,57 +48,59 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class AjouterVehicule implements Initializable{
-	
-	 @FXML
-	    private ImageView imageView;
 
-	    @FXML
-	    private TextField imagePath;
+	public TextField prixJoursTextField;
+	public TextField kilometrageTextField;
+	@FXML
+	private ImageView imageView;
 
-	    @FXML
-	    private JFXButton parcourrirBtn;
+	@FXML
+	private TextField imagePath;
 
-	    @FXML
-	    private TextField matriculeTextField;
+	@FXML
+	private JFXButton parcourrirBtn;
 
-	    @FXML
-	    private TextField nombrePlaceTextField;
+	@FXML
+	private TextField matriculeTextField;
 
-	    @FXML
-	    private JFXComboBox<String> carburantComboBox;
+	@FXML
+	private TextField nombrePlaceTextField;
 
-	    @FXML
-	    private JFXButton ajouterCarburantButton;
+	@FXML
+	private JFXComboBox<String> carburantComboBox;
 
-	    @FXML
-	    private JFXComboBox<String> marqueComboBox;
+	@FXML
+	private JFXButton ajouterCarburantButton;
 
-	    @FXML
-	    private JFXButton ajouterMarqueButton;
+	@FXML
+	private JFXComboBox<String> marqueComboBox;
 
-	    @FXML
-	    private JFXComboBox<String> typeComboBox;
+	@FXML
+	private JFXButton ajouterMarqueButton;
 
-	    @FXML
-	    private JFXButton ajouterTypeButton;
+	@FXML
+	private JFXComboBox<String> typeComboBox;
 
-	    @FXML
-	    private ColorPicker colorColorPicker;
+	@FXML
+	private JFXButton ajouterTypeButton;
 
-	    @FXML
-	    private JFXComboBox<String> parkingComboBox;
+	@FXML
+	private ColorPicker colorColorPicker;
 
-	    @FXML
-	    private JFXButton ajouterParkingButton;
+	@FXML
+	private JFXComboBox<String> parkingComboBox;
 
-	    @FXML
-	    private JFXButton closeButton;
+	@FXML
+	private JFXButton ajouterParkingButton;
 
-	    @FXML
-	    private JFXButton submitButton;
+	@FXML
+	private JFXButton closeButton;
 
-	    @FXML
-	    private Label erreurMessage;
+	@FXML
+	private JFXButton submitButton;
+
+	@FXML
+	private Label erreurMessage;
 
 	ObservableList<String> carburantList = FXCollections.observableArrayList();
 	ObservableList<String> marqueList = FXCollections.observableArrayList();
@@ -127,7 +129,6 @@ public class AjouterVehicule implements Initializable{
 		carburantComboBox.setItems(carburantList);
 		parkingComboBox.setItems(ParkingList);
 		marqueComboBox.setItems(marqueList);
-		
 	}
 	
 	@FXML
@@ -136,7 +137,6 @@ public class AjouterVehicule implements Initializable{
 		ajouterTypeButton.setDisable(false);
 		String value = marqueComboBox.getValue() ;
 		type_base_donne(value);
-		
     }
 
 	@FXML
@@ -257,18 +257,20 @@ public class AjouterVehicule implements Initializable{
 			String color = toRGBCode(colorColorPicker.getValue());
 			String marque = marqueComboBox.getValue();
 			String typ = typeComboBox.getValue();
-			// -----> get prix jours inteface getText()
-			float prixJours = 0;
+			String prixJours = prixJoursTextField.getText();
+			String kilometrage = kilometrageTextField.getText();
+
 			Vehicule vehicule = new Vehicule();
 			vehicule.setIdVehicule(matricule);
 			vehicule.setCarburant(H.carburant.get(carbutant));
 			vehicule.setColor(color);
 			vehicule.setNbr_place(nbrPlace);
 			vehicule.setParking(H.parking.get(parking));
+			vehicule.setMarqueLibelle(marque);
 			vehicule.setType(H.type.get(typ));
 			vehicule.setDispo("Disponible");
-			
-			vehicule.setPrixJours(prixJours);
+			vehicule.setPrixJours(Float.parseFloat(prixJours));
+			vehicule.setKilometrage(Long.parseLong(kilometrage));
 			
 			try {
 				FileInputStream inputStream = new FileInputStream(file);
@@ -356,7 +358,8 @@ public class AjouterVehicule implements Initializable{
 
 	public boolean testEmpty(){
 		if(matriculeTextField.getText().isEmpty() || nombrePlaceTextField.getText().isEmpty() || carburantComboBox.getValue().isEmpty()
-				|| marqueComboBox.getValue().isEmpty() || typeComboBox.getValue().isEmpty() ||  parkingComboBox.getValue().isEmpty())
+				|| marqueComboBox.getValue().isEmpty() || typeComboBox.getValue().isEmpty() ||  parkingComboBox.getValue() == null
+				|| prixJoursTextField.getText().isEmpty() || kilometrageTextField.getText().isEmpty())
 			return true;
 		return false;
 	}

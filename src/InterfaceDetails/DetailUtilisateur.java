@@ -107,6 +107,8 @@ public class DetailUtilisateur implements Initializable{
     ObservableList<String> GenreList = FXCollections.observableArrayList("Femme", "Homme");
     ObservableList<String> Idtypelist = FXCollections.observableArrayList("Carte Nationale","Passport");
 
+    boolean imageChanged = false;
+
     public static Utilisateur User = null;
 
     @Override
@@ -114,6 +116,10 @@ public class DetailUtilisateur implements Initializable{
         comboBox();
         H.setfrenchDatePicker(dateNaissanceDatePicker);
         fillBlanks();
+
+        imgFieldText.textProperty().addListener((observable, oldValue, newValue) ->{
+            imageChanged = true;
+        });
     }
 
     public void comboBox(){
@@ -154,20 +160,21 @@ public class DetailUtilisateur implements Initializable{
         User.setCarte_identifiant(GenreComboBox.getValue());
         User.setIdUtilisateur(numeroCinTextField.getText());
         User.setPays(paysTextField.getText());
-        
-        try {
-			FileInputStream inputStream = new FileInputStream(file);
-			try {
-				inputStream.read(bFile);
-				inputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-        User.setImage(bFile);
+        if (imageChanged){
+            try {
+                FileInputStream inputStream = new FileInputStream(file);
+                try {
+                    inputStream.read(bFile);
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            User.setImage(bFile);
+        }
     }
     
     /*public String Civilite(String idUser) {

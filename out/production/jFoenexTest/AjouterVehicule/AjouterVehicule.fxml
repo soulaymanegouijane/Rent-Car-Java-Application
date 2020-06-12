@@ -37,12 +37,15 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="173.0" prefWidth="500.0">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  <VBox prefHeight="137.0" prefWidth="191.0" style="-fx-border-color: #a5a5a5; -fx-border-width: 2;">
+                     <children>
+                        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="500.0">
                <children>
@@ -66,6 +69,9 @@
                      </HBox.margin>
                   </JFXButton>
                </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="500.0">
                <children>
@@ -89,7 +95,7 @@
                   </TextField>
                </children>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
             </HBox>
             <HBox layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
@@ -114,7 +120,7 @@
                   </TextField>
                </children>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
             </HBox>
             <HBox layoutX="10.0" layoutY="104.0" prefHeight="47.0" prefWidth="500.0">
@@ -139,7 +145,7 @@
                      </HBox.margin></JFXButton>
                </children>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
             </HBox>
             <HBox layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
@@ -164,7 +170,7 @@
                      </HBox.margin></JFXButton>
                </children>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
             </HBox>
             <HBox layoutX="10.0" layoutY="196.0" prefHeight="47.0" prefWidth="500.0">
@@ -193,21 +199,71 @@
                      </styleClass></JFXButton>
                </children>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
             </HBox>
             <HBox alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="198.0" prefHeight="47.0" prefWidth="500.0">
                <children>
-                  <Label prefHeight="29.0" prefWidth="220.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :" textFill="#b9b3b3">
+                  <Label prefHeight="40.0" prefWidth="220.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :" textFill="#b9b3b3">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                      <padding>
-                        <Insets top="20.0" />
+                        <Insets bottom="5.0" top="10.0" />
                      </padding>
                   </Label>
-                  <ColorPicker fx:id="colorColorPicker" prefHeight="25.0" prefWidth="176.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                  <ColorPicker fx:id="colorColorPicker" prefHeight="24.0" prefWidth="176.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
                </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="484.0" prefHeight="47.0" prefWidth="500.0">
+               <children>
+                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="kilométrage :" textFill="#b9b3b3">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="kilometrageTextField" alignment="CENTER" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="270.0" prefHeight="47.0" prefWidth="500.0">
+               <children>
+                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Prix par jour :" textFill="#b9b3b3">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="prixJoursTextField" alignment="CENTER" prefWidth="180.0">
+                     <stylesheets>
+                        <URL value="@../Css/textinputstyle.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="text" />
+                        <String fx:value="text-field" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
             </HBox>
             <HBox layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0" spacing="5.0">
                <children>
@@ -228,23 +284,23 @@
                      </HBox.margin></JFXButton>
                </children>
                <padding>
-                  <Insets top="20.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="500.0">
+            <Label fx:id="erreurMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="534.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="500.0" spacing="100.0">
                <children>
-                  <JFXButton fx:id="closeButton" layoutX="10.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
                   <JFXButton fx:id="submitButton" onAction="#handleSubmitButton" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </JFXButton>
+                  <JFXButton fx:id="closeButton" layoutX="10.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />
                </children>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="erreurMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="534.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
          </children>
           </VBox>
     </children>

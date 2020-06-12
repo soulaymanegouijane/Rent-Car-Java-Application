@@ -24,7 +24,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 	public int add(Vehicule arg) {
 		int status = 0;
 		try {
-			String sql = "insert into vehicule (idVehicule,nbr_place,idParking,idCarburant,idType,color,dispo,photo,prixJours) values (?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into vehicule (idVehicule,nbr_place,idParking,idCarburant,idType,color,dispo,photo,prixJours,kilometrage) values (?,?,?,?,?,?,?,?,?)";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getIdVehicule());
@@ -36,6 +36,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			ps.setString(7, arg.getDispo());
 			ps.setBytes(8, arg.getImage());
 			ps.setFloat(9, arg.getPrixJours());
+			ps.setLong(10, arg.getKilometrage());
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,7 +46,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 
 	@Override
 	public Vehicule edit(Vehicule arg) {
-		String sql = "UPDATE vehicule SET  nbr_place=?,idParking=?,idCarburant=?,idType=?,color=?,dispo=?,photo=?, prixJours=? WHERE idVehicule = ? ";
+		String sql = "UPDATE vehicule SET  nbr_place=?,idParking=?,idCarburant=?,idType=?,color=?,dispo=?,photo=?, prixJours=?, kilometrage=? WHERE idVehicule = ? ";
 		Connection con = Abst.getConnection();
 		Vehicule vehicule = null;
 		try {
@@ -58,7 +59,8 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			ps.setString(6, arg.getDispo());
 			ps.setBytes(7, arg.getImage());
 			ps.setFloat(8, arg.getPrixJours());
-			ps.setString(9, arg.getIdVehicule());
+			ps.setLong(9, arg.getKilometrage());
+			ps.setString(10, arg.getIdVehicule());
 			ps.executeUpdate();
 			vehicule = getById(arg.getIdVehicule());
 			
@@ -181,6 +183,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 				vehicule.setImage(rs.getBytes("photo"));
 				vehicule.setDispo(rs.getString("dispo"));
 				vehicule.setPrixJours(rs.getFloat("prixJours"));
+				vehicule.setKilometrage(rs.getLong("kilometrage"));
 				
 			}else {
 				System.out.println("il y a quelque chose qui ne va pas");
