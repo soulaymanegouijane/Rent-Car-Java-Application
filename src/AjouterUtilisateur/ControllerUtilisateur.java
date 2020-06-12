@@ -171,6 +171,7 @@ public class ControllerUtilisateur implements Initializable {
     
     public void handleSaveButton(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
+
         Utilisateur user = new Utilisateur();
         image = idview.getImage();
         prenom = prenomTextField.getText();
@@ -192,10 +193,14 @@ public class ControllerUtilisateur implements Initializable {
         pass = PasswordTextField.getText();
         
         Role rol = H.role.get(role);
-        boolean s = false;
-        if(s){
+
+        if(testEmpty()){
+            erreurMessage.setText("Remplissez tous les champs !!");
             erreurMessage.setVisible(true);
-        }else{
+        }else if (!H.isEmailValid(email)){
+            erreurMessage.setText("Vous avez fait une faute dans l'email !!");
+            erreurMessage.setVisible(true);
+        }else {
             // Upload informations to dataBase
         	user.setIdUtilisateur(cin);
 			user.setNom(nom);
@@ -206,7 +211,7 @@ public class ControllerUtilisateur implements Initializable {
 			user.setNationalite(nationalite);
 			user.setNaissance(dateNaissance);
 			user.setLieu_naissance(lieuNaissance);
-			user.setEtat_compte("");
+			user.setEtat_compte("Activer");
 			user.setPays(pays);
 			user.setCode_postale(codePostal);
 			user.setCivilite(genre);
