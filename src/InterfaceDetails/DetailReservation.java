@@ -17,12 +17,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import AbstactClasses.Abst;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
@@ -341,19 +344,22 @@ public class DetailReservation implements Initializable {
     }
 
     public void handleAccederContratBtn(ActionEvent actionEvent) throws IOException {
-    	 /*FXMLLoader loader = new FXMLLoader(getClass().getResource("detailContrat.fxml"));
-         Parent root = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsulterContrat.fxml"));
+        ConsulterContrat.contrat = getContratbyidReservation(reservation.getIdReservation());
+        Parent parent = loader.load();
+        ConsulterContrat consulterContrat = loader.getController();
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
+        dialogLayout.setBody(parent);
+        JFXDialog dialog = new JFXDialog(primaryStackPane, dialogLayout, JFXDialog.DialogTransition.CENTER);
+        dialog.getContent().setMinSize(570,490);
+        dialog.setStyle("-fx-background-color: rgba(0.0, 0.0, 0.0, 0.1)");
+        dialog.getContent().setPadding(new Insets(0, 0, 0, 0));
+        //dialog.getContent().setPadding(new Insets(0,0,0,0));
+        dialog.show();
 
-         //AjouterUnContrat ajouterUnContrat = loader.getController();
-
-
-         Stage stage = new Stage();
-         stage.setScene(new Scene(root));
-         stage.setResizable(false);
-         stage.initStyle(StageStyle.UNDECORATED);
-         stage.initModality(Modality.APPLICATION_MODAL);
-         stage.showAndWait();*/
-    	
+        consulterContrat.fermerButton.setOnAction(event -> {
+            dialog.close();
+        });
     }
 
     public void handleAccederFactureBtn(ActionEvent actionEvent) {
@@ -410,5 +416,46 @@ public class DetailReservation implements Initializable {
             ContratFactureVBox.setVisible(false);
             TerminerResevationVBox.setVisible(false);
         }
+    }
+
+    public Contrat getContratbyidReservation(Long idReservation){
+        Connection con = Abst.getConnection();
+        Contrat contrat = new Contrat();
+        try {
+            String sql = "select * from contrat where idReservation=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setLong(1,idReservation);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                contrat.setIdContrat(rs.getLong("idContrat"));
+                contrat.setDate_retour(rs.getString("date_retour"));
+                contrat.setDate_sortie(rs.getString("date_sortie"));
+                contrat.setDateContrat(rs.getString("date_Contrat"));
+                System.out.println("** ** "+rs.getString("idVehicule"));
+                System.out.println("** **"+rs.getLong("idReservation"));
+                contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
+                contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
+                contrat.setMontantTotal(rs.getFloat("montant_total"));
+                contrat.setCaution(rs.getFloat("caution"));
+                contrat.setRemise(rs.getFloat("remise"));
+                contrat.setKm_retour(rs.getLong("km_retour"));
+                contrat.setKm_depart(rs.getLong("km_depart"));
+                contrat.setPrix_jour(rs.getFloat("prix_jour"));
+                contrat.setNbr_jour(rs.getInt("nbr_jour"));
+                contrat.setHeure_retour(rs.getString("heure_retour"));
+                contrat.setHeure_sortie(rs.getString("heure_sortie"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                con.close();
+                System.out.println("closed");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return contrat;
     }
 }

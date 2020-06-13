@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<StackPane fx:id="primaryStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailReservation">
+<StackPane fx:id="primaryStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="797.0" stylesheets="@../Css/dialog.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailReservation">
    <children>
       <AnchorPane prefHeight="553.0" prefWidth="770.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css">
          <children>
