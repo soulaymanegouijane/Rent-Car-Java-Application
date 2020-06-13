@@ -16,9 +16,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -65,6 +67,8 @@ public class AjouterUnContrat implements Initializable {
     public Contrat contrat = new Contrat();
 
     public boolean addwithSucces = false;
+    
+    public boolean showAlert = false;
 	    
     @FXML
     private void closeButtonAction(){
@@ -172,28 +176,46 @@ public class AjouterUnContrat implements Initializable {
         if (testEmpty()){
             erreurMessage.setVisible(true);
         }else{
+        	try {
+        		contrat.setReservation(H.reservation.getById(Long.parseLong(reservationTextField.getText())));
+        		contrat.setPrix_jour(Float.parseFloat(prixParJoursTextFeild.getText()));
+        		contrat.setMontantTotal(Double.parseDouble(montantReservationTextField.getText()));
+        		contrat.setRemise(Float.parseFloat(avanceTextField.getText()));
+        		contrat.setNbr_jour(Integer.parseInt(nombreDeJoursTextField.getText()));
+			} catch (Exception e) {
+				showAlert = true;
+			}
             contrat.setIdContrat(Long.parseLong(idContrat.getText()));
             contrat.setDateContrat(dateContratDatePicker.getEditor().getText());
-            contrat.setReservation(H.reservation.getById(Long.parseLong(reservationTextField.getText())));
-            contrat.setVehicule(H.vehicule.getById(String.valueOf(vehiculeTextField.getText())));
-            contrat.setPrix_jour(Float.parseFloat(prixParJoursTextFeild.getText()));
+            contrat.setVehicule(H.vehicule.getById(vehiculeTextField.getText()));
             contrat.setDate_sortie(dateDepartDatePicker.getEditor().getText());
-            contrat.setNbr_jour(Integer.parseInt(nombreDeJoursTextField.getText()));
             contrat.setDate_retour(dateRetourDatePicker.getEditor().getText());
-            contrat.setMontantTotal(Double.parseDouble(montantReservationTextField.getText()));
-            contrat.setRemise(Float.parseFloat(avanceTextField.getText()));
-
-            int result = H.contrat.add(contrat);
-            if (result == 0){
-                // Si contrat n'est pas ajouter
-                contrat = null;
+            
+            if(showAlert) {
+            	AfficheErreur("Contrat");
             }else {
-                addwithSucces = true;
+            	int result = H.contrat.add(contrat);
+                if (result == 0){
+                    // Si contrat n'est pas ajouter
+                    contrat = null;
+                }else {
+                    addwithSucces = true;
+                }
             }
+
+            // regarder ça
 
             Stage stage =(Stage) closeButton.getScene().getWindow();
             stage.close();
         }
+    }
+    
+    public void AfficheErreur(String str) {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not add "+str);
+        	alert.setContentText(str+" n'est pas Ajouter !!");
+        	alert.showAndWait();
     }
 
     public boolean testEmpty(){

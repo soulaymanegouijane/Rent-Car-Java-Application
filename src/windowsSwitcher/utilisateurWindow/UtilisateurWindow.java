@@ -160,10 +160,7 @@ public class UtilisateurWindow implements Initializable {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailUtilisateur.fxml"));
 
 
-        //FunctionAffiche(loader);
-        //DetailUtilisateur detail = loader.getController();
         DetailUtilisateur.User = userSelected;
-        //detail.fillBlanks();
 
         Parent root = loader.load();
         
@@ -173,6 +170,10 @@ public class UtilisateurWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        utilisateur_list.clear();
+        mono_Utilisateur.clear();
+        remplir_tableau();
     }
     
 

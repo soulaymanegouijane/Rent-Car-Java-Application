@@ -12,10 +12,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -276,10 +278,18 @@ public class DetailUtilisateur implements Initializable{
             }
         }
     }
-
+    
+    public void AfficheErreur(String str) {
+    	Alert alert = new Alert(AlertType.ERROR);
+    	alert.setTitle("Alert d'erreur");
+    	alert.setHeaderText("can not delete "+str);
+    	alert.setContentText(str+" n'est pas Supprimer !!");
+    	alert.showAndWait();
+    }
+    
     public void handleDeleteBtn(ActionEvent actionEvent) {
 
-        //Delete Utilisateur !!!!!!
+    	AfficheErreur("Utilisateur");
 
         Stage stage =(Stage) closeButton.getScene().getWindow();
         stage.close();

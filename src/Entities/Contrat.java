@@ -49,6 +49,8 @@ public class Contrat implements Serializable{
 	private long km_depart;
 	@Column(name="km_retour",nullable=true)
 	private long km_retour;
+	@Column(name="idUtilisateur",nullable=true)
+	private String idUtilisateur;
 	
 	private String matricule;
 	private String cinClient;
@@ -62,29 +64,20 @@ public class Contrat implements Serializable{
 	@OneToOne
 	@JoinColumn(name="idReservation",referencedColumnName = "idReservation",insertable = false,updatable = false)
 	private Reservation reservation;
+	@ManyToOne
+	@JoinColumn(name="idUtilisateur",referencedColumnName = "idUtilisateur",insertable = false,updatable = false)
+	private Utilisateur utilisateur;
 
-	/**
-	 * @param codeContrat
-	 * @param dateContrat
-	 * @param montantTotal
-	 * @param vehicule
-	 * @param reservation
-	 * @param sanction
-	 * @param date_sortie
-	 * @param date_retour
-	 * @param heure_retour {@docRoot la date de retour de la voiture}
-	 * @param heure_sortie
-	 * @param nbr_jour
-	 * @param prix_jour
-	 * @param remise
-	 * @param caution
-	 */
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+	
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 	
 	
-
-	/**
-	 * @param ConstructeruSansParametre
-	 */
 	public Contrat() {
 		super();
 	}

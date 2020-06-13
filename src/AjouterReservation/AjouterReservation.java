@@ -44,7 +44,7 @@ public class AjouterReservation implements Initializable {
     private TextField idReservation;
 
     @FXML
-    private TextField idUtilisateur; //ce champ ajouté 
+    private TextField idUtilisateur;
 
     @FXML
     private TextField vehicule;

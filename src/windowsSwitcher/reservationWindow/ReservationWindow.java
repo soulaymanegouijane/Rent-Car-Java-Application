@@ -324,7 +324,7 @@ public class ReservationWindow implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         reservation_list.clear();
-        //mono_reservation.clear();
+        mono_reservation.clear();
         remplir_tableau();
     }
     

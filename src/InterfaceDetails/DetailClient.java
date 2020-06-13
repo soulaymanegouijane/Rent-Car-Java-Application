@@ -2,6 +2,10 @@ package InterfaceDetails;
 
 import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +15,8 @@ import com.jfoenix.controls.JFXButton;
 import Entities.Client;
 import Test.H;
 import com.jfoenix.controls.JFXComboBox;
+
+import AbstactClasses.Abst;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -118,6 +124,7 @@ public class DetailClient implements Initializable{
     void deleteBtnAction(ActionEvent event) {
 
 	    //Delete Client
+		clientexisted();
 
         Stage stage = (Stage) deleteBtn.getScene().getWindow();
         stage.close();
@@ -263,4 +270,34 @@ public class DetailClient implements Initializable{
         lieuDelivreTextField.setEditable(false);
     }
 
+    boolean cannotDelete = false;
+    public void clientexisted() {
+    	Connection con = Abst.getConnection();
+    	String sql = "select idClient from reservation";
+    	try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String cin = rs.getString("idClient");
+				if(cinTextField.getText().equals(cin)) {
+					cannotDelete = true;
+					break;
+				}
+			}
+			if(cannotDelete) {
+				AfficheErreur("Client");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	
+    }
+    
+    public void AfficheErreur(String str) {
+        	Alert alert = new Alert(AlertType.ERROR);
+        	alert.setTitle("Alert d'erreur");
+        	alert.setHeaderText("can not delete "+str);
+        	alert.setContentText(str+" n'est pas Supprimer !!");
+        	alert.showAndWait();
+    }
 }
