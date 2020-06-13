@@ -26,6 +26,8 @@ public class ConsulterContrat implements Initializable {
     public TextField montantReservationTextField;
     public TextField avanceTextField;
     public JFXButton fermerButton;
+    public TextField UtilisateurTextField;
+    public TextField clientTextField;
 
 
     public static Contrat contrat = new Contrat();
@@ -41,7 +43,9 @@ public class ConsulterContrat implements Initializable {
     public void fillBlanks(){
         idContrat.setText(String.valueOf(contrat.getIdContrat()));
         dateContratDatePicker.setValue(H.convert(contrat.getDateContrat()));
+        UtilisateurTextField.setText(contrat.getUtilisateur().getIdUtilisateur());
         reservationTextField.setText(String.valueOf(contrat.getReservation().getIdReservation()));
+        clientTextField.setText(contrat.getReservation().getClient().getIdClient());
         vehiculeTextField.setText(contrat.getVehicule().getIdVehicule());
         prixParJoursTextFeild.setText(String.valueOf(contrat.getPrix_jour()));
         dateDepartDatePicker.setValue(H.convert(contrat.getDate_sortie()));
@@ -51,7 +55,4 @@ public class ConsulterContrat implements Initializable {
         avanceTextField.setText(String.valueOf(contrat.getRemise()));
     }
 
-    public void handleFermerButton(ActionEvent actionEvent) {
-
-    }
 }

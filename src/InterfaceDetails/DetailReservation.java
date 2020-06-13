@@ -118,6 +118,7 @@ public class DetailReservation implements Initializable {
         H.setfrenchDatePicker(dateDepartDatePicker);
         H.setfrenchDatePicker(dateRetourDatePicker);
         visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
+        contrat = getContratbyidReservation(reservation.getIdReservation());
         if (reservation.getStatus().getIdStatus() == 3 || reservation.getStatus().getIdStatus() == 4){
             EditReservationBtn.setVisible(false);
         }
@@ -428,6 +429,7 @@ public class DetailReservation implements Initializable {
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
                 contrat.setIdContrat(rs.getLong("idContrat"));
+                contrat.setUtilisateur(H.utilisateur.getById(rs.getString("idUtilisateur")));
                 contrat.setDate_retour(rs.getString("date_retour"));
                 contrat.setDate_sortie(rs.getString("date_sortie"));
                 contrat.setDateContrat(rs.getString("date_Contrat"));
@@ -445,6 +447,7 @@ public class DetailReservation implements Initializable {
                 contrat.setHeure_retour(rs.getString("heure_retour"));
                 contrat.setHeure_sortie(rs.getString("heure_sortie"));
 
+                return contrat;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -456,6 +459,6 @@ public class DetailReservation implements Initializable {
                 e.printStackTrace();
             }
         }
-        return contrat;
+        return null;
     }
 }

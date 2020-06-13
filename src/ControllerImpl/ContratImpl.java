@@ -23,7 +23,7 @@ public class ContratImpl extends Abst implements ContratInter {
 		int status=0;
 		Connection con = Abst.getConnection();
 		String sql = "INSERT INTO contrat (date_Contrat, date_sortie, idReservation, idVehicule, montant_total, km_retour,"
-				+ " km_depart, caution, remise, prix_jour, nbr_jour, heure_sortie, heure_retour, date_retour) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ " km_depart, caution, remise, prix_jour, nbr_jour, heure_sortie, heure_retour, date_retour, idUtilisateur) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getDateContrat() );
@@ -40,6 +40,7 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setString(12, arg.getHeure_sortie() );
 			ps.setString(13, arg.getHeure_retour() );
 			ps.setString(14, arg.getDate_retour() );
+			ps.setString(15, arg.getUtilisateur().getIdUtilisateur() );
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,7 +59,7 @@ public class ContratImpl extends Abst implements ContratInter {
 		Connection con = Abst.getConnection();
 		try {
 			String sql = "UPDATE contrat SET date_Contrat =?, date_sortie=?, idReservation=?, idVehicule=?, montant_total=?, km_retour=?,"
-					+ " km_depart=?, caution=?, remise=?, prix_jours=?, nbr_jours=?, heure_sortie=?, heure_entre=?, date_retour=? where idContrat = ?";
+					+ " km_depart=?, caution=?, remise=?, prix_jours=?, nbr_jours=?, heure_sortie=?, heure_entre=?, date_retour=?, idUtilisateur=? where idContrat = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			
 			ps.setString(1, arg.getDateContrat() );
@@ -75,7 +76,8 @@ public class ContratImpl extends Abst implements ContratInter {
 			ps.setString(12, arg.getHeure_sortie() );
 			ps.setString(13, arg.getHeure_retour() );
 			ps.setString(14, arg.getDate_retour() );
-			ps.setLong(15, arg.getIdContrat());
+			ps.setString(15, arg.getUtilisateur().getIdUtilisateur() );
+			ps.setLong(16, arg.getIdContrat());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -189,6 +191,7 @@ public class ContratImpl extends Abst implements ContratInter {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				contrat.setIdContrat(rs.getLong("idContrat"));
+				contrat.setUtilisateur(H.utilisateur.getById(rs.getString("idUtilisateur")));
 				contrat.setDate_retour(rs.getString("date_retour"));
 				contrat.setDate_sortie(rs.getString("date_sortie"));
 				contrat.setDateContrat(rs.getString("date_Contrat"));

@@ -24,6 +24,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import windowsSwitcher.windowsSwitcher;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +53,8 @@ public class AjouterUnContrat implements Initializable {
     public TextField avanceTextField;
     public JFXButton submitBtn;
     public Label erreurMessage;
+    public TextField UtilisateurTextField;
+    public TextField clientTextField;
 
     @FXML
     private JFXButton closeButton;
@@ -84,6 +87,7 @@ public class AjouterUnContrat implements Initializable {
         H.setfrenchDatePicker(dateRetourDatePicker);
         dateContratDatePicker.setValue(LocalDate.from(LocalDateTime.now()));
         idContrat.setText(String.valueOf(getIdContrat() + 1));
+        UtilisateurTextField.setText(windowsSwitcher.loggedInUser.getIdUtilisateur());
         if(reservation != null){
             reservationTextField.setText(String.valueOf(reservation.getIdReservation()));
             parcourrirButton.setVisible(false);
@@ -158,9 +162,9 @@ public class AjouterUnContrat implements Initializable {
     }
 
     public void fillReservationRelatedFields(){
+        clientTextField.setText(reservation.getClient().getIdClient());
         vehiculeTextField.setText(reservation.getVehicule().getIdVehicule());
         prixParJoursTextFeild.setText(String.valueOf(reservation.getVehicule().getPrixJours()));
-        //prixParJoursTextFeild.setText("299.99"); // Pour tester
     }
 
     public void reservationTextFieldAction(ActionEvent actionEvent) {
@@ -187,6 +191,7 @@ public class AjouterUnContrat implements Initializable {
 			}
             contrat.setIdContrat(Long.parseLong(idContrat.getText()));
             contrat.setDateContrat(dateContratDatePicker.getEditor().getText());
+            contrat.setUtilisateur(H.utilisateur.getById(UtilisateurTextField.getText()));
             contrat.setVehicule(H.vehicule.getById(vehiculeTextField.getText()));
             contrat.setDate_sortie(dateDepartDatePicker.getEditor().getText());
             contrat.setDate_retour(dateRetourDatePicker.getEditor().getText());
@@ -203,7 +208,7 @@ public class AjouterUnContrat implements Initializable {
                 }
             }
 
-            // regarder ça
+            // regarder ï¿½a
 
             Stage stage =(Stage) closeButton.getScene().getWindow();
             stage.close();
@@ -223,7 +228,7 @@ public class AjouterUnContrat implements Initializable {
                 || vehiculeTextField.getText().isEmpty() || prixParJoursTextFeild.getText().isEmpty()
                 || dateDepartDatePicker.getValue() == null || nombreDeJoursTextField.getText().isEmpty()
                 || dateRetourDatePicker.getValue() == null || montantReservationTextField.getText().isEmpty()
-                || avanceTextField.getText().isEmpty())
+                || avanceTextField.getText().isEmpty() || UtilisateurTextField.getText().isEmpty() || clientTextField.getText().isEmpty())
             return true;
         return false;
     }

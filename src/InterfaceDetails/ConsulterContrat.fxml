@@ -53,6 +53,23 @@
                   <Insets left="50.0" />
                </padding>
             </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="132.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Utilisateur :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="UtilisateurTextField" editable="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                <children>
                   <Label prefWidth="138.0" text="Réservation :" textFill="#656060">
@@ -61,6 +78,23 @@
                      </HBox.margin>
                   </Label>
                   <TextField fx:id="reservationTextField" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="456.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefWidth="138.0" text="Client :" textFill="#656060">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="clientTextField" editable="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
                      <HBox.margin>
                         <Insets left="80.0" />
                      </HBox.margin>
@@ -198,7 +232,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="12.0" layoutY="453.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                <children>
-                  <JFXButton fx:id="fermerButton" onAction="#handleFermerButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #cd025c; -fx-background-radius: 50;" text="Fermer" textFill="WHITE" />
+                  <JFXButton fx:id="fermerButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #cd025c; -fx-background-radius: 50;" text="Fermer" textFill="WHITE" />
                </children></HBox>
          </children>
       </VBox>

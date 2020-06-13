@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -61,8 +62,13 @@ public class DetailContrat implements Initializable {
     
     @FXML
     public JFXButton editContratBtn;
-    
-    
+    public TextField UtilisateurTextField;
+    public TextField clientTextField;
+    public HBox nonEditableHBox;
+    public HBox editableHBox;
+    public JFXButton saveEditsContratBtn;
+    public JFXButton annuerEditsContratBtn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,5 +118,11 @@ public class DetailContrat implements Initializable {
     public void closeButtonAction(ActionEvent event){
         Stage stage =(Stage) closeButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void saveEditsContratBtnAction(ActionEvent actionEvent) {
+    }
+
+    public void annuerEditsContratBtnAction(ActionEvent actionEvent) {
     }
 }
