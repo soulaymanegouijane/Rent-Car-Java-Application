@@ -31,7 +31,6 @@
         <mapping class="Entities.Role"/>
         <mapping class="Entities.Utilisateur"/>
         <mapping class="Entities.Factures"/>
-        <mapping class="Entities.Sanction"/>
         <mapping class="Entities.Type"/>
         <mapping class="Entities.Marque"/>
         <mapping class="Entities.Vehicule"/>

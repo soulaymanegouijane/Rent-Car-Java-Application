@@ -11,11 +11,6 @@
 /Factures/
 /Hibernate.cfg.xml
 /InterfaceDetails/
-/AbstactClasses/
-/ControllerImpl/
-/Entities/
-/Exceptions/
-/Interfaces/
 /Reservation/
 /TerminerContrat/
 /Test/
@@ -23,6 +18,11 @@
 /img/
 /loginPage/
 /sample/
-/util/
 /utilisateurPage/
 /windowsSwitcher/
+/AbstactClasses/
+/ControllerImpl/
+/Entities/
+/Exceptions/
+/Interfaces/
+/util/

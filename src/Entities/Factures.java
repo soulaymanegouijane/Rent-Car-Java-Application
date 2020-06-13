@@ -32,11 +32,31 @@ public class Factures implements Serializable{
 	private double montantTTC;
 	@Column(name="idContrat",nullable=true)
 	private Long idContrat;
+	@Column(name="nbrJoursRetard",nullable=true)
+	private int nbrJoursRetard;
+	@Column(name="montantSanction",nullable=true)
+	private float montantSanction;
 	
 
 	@ManyToOne
 	@JoinColumn(name="idContrat",referencedColumnName = "idContrat",insertable = false,updatable = false)
 	private Contrat contrat;
+	
+	public int getNbrJoursRetard() {
+		return nbrJoursRetard;
+	}
+	
+	public void setNbrJoursRetard(int nbrJoursRetard) {
+		this.nbrJoursRetard = nbrJoursRetard;
+	}
+	
+	public float getMontantSanction() {
+		return montantSanction;
+	}
+	
+	public void setMontantSanction(float montantSanction) {
+		this.montantSanction = montantSanction;
+	}
 	
 	/**
 	 * 
