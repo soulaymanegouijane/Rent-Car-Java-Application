@@ -24,8 +24,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
@@ -61,7 +63,8 @@ public class TerminerReservation implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factureSeccusfullyAdd = false;
-        reservation = contrat.getReservation();
+        reservation = H.reservation.getById(contrat.getReservation().getIdReservation());
+        System.out.println("--------------------------------- Reservation -->"+reservation);
         H.setfrenchDatePicker(dateFactureDatePicker);
         parking_base_donnee();
         parkingComboBox.setItems(ParkingList);
@@ -109,12 +112,32 @@ public class TerminerReservation implements Initializable {
         nombreDeJoursTextField.setText(String.valueOf(reservation.getNombreJours()));
         montantReservationTextField.setText(String.valueOf(reservation.getMontant()));
         avanceTextField.setText(String.valueOf(reservation.getAvance()));
-        Long days = ChronoUnit.DAYS.between(H.convert(reservation.getDate_retour()),LocalDate.from(LocalDateTime.now()));
-        joursRetartTextField.setText(String.valueOf(days));
-        Long montantSanction = days * 2000;
-        montantSanctionTextField.setText(String.valueOf(montantSanction));
-        float montantTotal = reservation.getMontant() + montantSanction - reservation.getAvance();
-        MantantTotaleTextField.setText(String.valueOf(montantTotal));
+
+        int days = Period.between(H.convert(reservation.getDate_retour()),LocalDate.from(LocalDateTime.now())).getDays();
+        System.out.println(days);
+        float montantSanction;
+        if (ChronoUnit.DAYS.between(H.convert(reservation.getDate_depart()),LocalDateTime.now()) <= 0){
+            joursRetartTextField.setText("0");
+            montantSanctionTextField.setText("0");
+            MantantTotaleTextField.setText("-" + avanceTextField.getText());
+            kilometrageTextField.setText(String.valueOf(contrat.getVehicule().getKilometrage()));
+            parkingComboBox.setValue(contrat.getVehicule().getParking().getAdress());
+            kilometrageTextField.setEditable(false);
+            parkingComboBox.setDisable(true);
+            GenererButton.setDisable(false);
+        }else if (days <= 0){
+            joursRetartTextField.setText(String.valueOf(days));
+            montantSanctionTextField.setText("0");
+            float joursLocation = (reservation.getNombreJours() + days) * contrat.getVehicule().getPrixJours();
+            float montantTotal = joursLocation - reservation.getAvance();
+            MantantTotaleTextField.setText(String.valueOf(montantTotal));
+        }else {
+            joursRetartTextField.setText(String.valueOf(days));
+            montantSanction = days * 2000;
+            montantSanctionTextField.setText(String.valueOf(montantSanction));
+            float montantTotal = reservation.getMontant() + montantSanction - reservation.getAvance();
+            MantantTotaleTextField.setText(String.valueOf(montantTotal));
+        }
     }
 
     public void parking_base_donnee() {

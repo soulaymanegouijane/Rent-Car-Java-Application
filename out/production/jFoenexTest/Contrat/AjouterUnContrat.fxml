@@ -123,14 +123,22 @@
                      </HBox.margin></Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="56.0" prefWidth="572.0" spacing="80.0" stylesheets="@../Css/MinitextStyle.css">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                <children>
                   <Label prefWidth="138.0" text="Date de Départ :" textFill="#656060">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <DatePicker fx:id="dateDepartDatePicker" editable="false" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                  <DatePicker fx:id="dateDepartDatePicker" editable="false" styleClass="datePicker" stylesheets="@../Css/datePicker.css">
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin></DatePicker>
+                  <Label fx:id="erreurDate" text="Insirez une plus grande Date" textFill="RED" visible="false">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="346.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
@@ -198,7 +206,7 @@
             <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="592.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
             <HBox alignment="CENTER" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                <children>
-                  <JFXButton fx:id="submitBtn" layoutX="210.0" layoutY="10.0" onAction="#handleSubmitBtn" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #6622CC; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter Contrat" textFill="WHITE">
+                  <JFXButton fx:id="submitBtn" disable="true" layoutX="210.0" layoutY="10.0" onAction="#handleSubmitBtn" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #6622CC; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter Contrat" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

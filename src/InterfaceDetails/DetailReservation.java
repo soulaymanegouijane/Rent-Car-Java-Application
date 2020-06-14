@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import Contrat.AjouterUnContrat;
 import Entities.Contrat;
+import Entities.Factures;
 import Entities.Reservation;
 import Test.H;
 import com.jfoenix.controls.JFXButton;
@@ -106,6 +107,7 @@ public class DetailReservation implements Initializable {
 
     public static Reservation reservation = new Reservation();
     public static Contrat contrat = null;
+    public Factures facture = null;
     
     public boolean bool = true;
 
@@ -362,7 +364,6 @@ public class DetailReservation implements Initializable {
         dialog.getContent().setMinSize(570,490);
         dialog.setStyle("-fx-background-color: rgba(0.0, 0.0, 0.0, 0.1)");
         dialog.getContent().setPadding(new Insets(0, 0, 0, 0));
-        //dialog.getContent().setPadding(new Insets(0,0,0,0));
         dialog.show();
 
         consulterContrat.fermerButton.setOnAction(event -> {
@@ -370,7 +371,22 @@ public class DetailReservation implements Initializable {
         });
     }
 
-    public void handleAccederFactureBtn(ActionEvent actionEvent) {
+    public void handleAccederFactureBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsulterFacture.fxml"));
+        ConsulterFacture.facture = getFacturebyidContrat(contrat.getIdContrat());
+        Parent parent = loader.load();
+        ConsulterFacture consulterFacture = loader.getController();
+        JFXDialogLayout dialogLayout = new JFXDialogLayout();
+        dialogLayout.setBody(parent);
+        JFXDialog dialog = new JFXDialog(primaryStackPane, dialogLayout, JFXDialog.DialogTransition.CENTER);
+        dialog.getContent().setMinSize(570,490);
+        dialog.setStyle("-fx-background-color: rgba(0.0, 0.0, 0.0, 0.1)");
+        dialog.getContent().setPadding(new Insets(0, 0, 0, 0));
+        dialog.show();
+
+        consulterFacture.FermerButton.setOnAction(event -> {
+            dialog.close();
+        });
     }
 
     public void enableFields(){
@@ -428,20 +444,19 @@ public class DetailReservation implements Initializable {
 
     public Contrat getContratbyidReservation(Long idReservation){
         Connection con = Abst.getConnection();
-        Contrat contrat = new Contrat();
+
         try {
             String sql = "select * from contrat where idReservation=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1,idReservation);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
+                Contrat contrat = new Contrat();
                 contrat.setIdContrat(rs.getLong("idContrat"));
                 contrat.setUtilisateur(H.utilisateur.getById(rs.getString("idUtilisateur")));
                 contrat.setDate_retour(rs.getString("date_retour"));
                 contrat.setDate_sortie(rs.getString("date_sortie"));
                 contrat.setDateContrat(rs.getString("date_Contrat"));
-                System.out.println("** ** "+rs.getString("idVehicule"));
-                System.out.println("** **"+rs.getLong("idReservation"));
                 contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
                 contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
                 contrat.setMontantTotal(rs.getFloat("montant_total"));
@@ -455,6 +470,39 @@ public class DetailReservation implements Initializable {
                 contrat.setHeure_sortie(rs.getString("heure_sortie"));
 
                 return contrat;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                con.close();
+                System.out.println("closed");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public Factures getFacturebyidContrat(Long idContrat){
+        Connection con = Abst.getConnection();
+
+        try {
+            String sql = "select * from facture where idContrat=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setLong(1,idContrat);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()) {
+                Factures factures = new Factures();
+                factures.setIdFacture(rs.getLong("idFacture"));
+                factures.setContrat(H.contrat.getById(rs.getLong("idContrat")));
+                factures.setDateFacture(rs.getString("date_facture"));
+                factures.setMontantTTC(rs.getDouble("montant_ttc"));
+                factures.setMontantSanction(rs.getFloat("montantSanction"));
+                factures.setNbr_jours(rs.getInt("nbr_jours"));
+                factures.setNbrJoursRetard(rs.getInt("nbrJoursRetard"));
+
+                return factures;
             }
         } catch (SQLException e) {
             e.printStackTrace();
