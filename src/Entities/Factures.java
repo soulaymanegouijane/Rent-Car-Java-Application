@@ -24,10 +24,6 @@ public class Factures implements Serializable{
 	private String dateFacture;
 	@Column(name="nbr_jours",nullable=true)
 	private int nbr_jours;
-	@Column(name="prix_ht",nullable=true)
-	private double prixHT;
-	@Column(name="tva",nullable=true)
-	private double TVA;
 	@Column(name="montant_ttc",nullable=true)
 	private double montantTTC;
 	@Column(name="idContrat",nullable=true)
@@ -63,26 +59,7 @@ public class Factures implements Serializable{
 	 */
 	public Factures() {
 	}
-	/**
-	 * @param idFacture
-	 * @param dateFacture
-	 * @param nbr_jours
-	 * @param prixHT
-	 * @param tVA
-	 * @param montantTTC
-	 * @param contrat
-	 */
-	public Factures(long idFacture, String dateFacture, int nbr_jours, double prixHT, double tVA, double montantTTC,
-			Contrat contrat) {
-		super();
-		this.idFacture = idFacture;
-		this.dateFacture = dateFacture;
-		this.nbr_jours = nbr_jours;
-		this.prixHT = prixHT;
-		TVA = tVA;
-		this.montantTTC = montantTTC;
-		this.contrat = contrat;
-	}
+
 	/**
 	 * @return the idFacture
 	 */
@@ -119,30 +96,8 @@ public class Factures implements Serializable{
 	public void setNbr_jours(int nbr_jours) {
 		this.nbr_jours = nbr_jours;
 	}
-	/**
-	 * @return the prixHT
-	 */
-	public double getPrixHT() {
-		return prixHT;
-	}
-	/**
-	 * @param prixHT the prixHT to set
-	 */
-	public void setPrixHT(double prixHT) {
-		this.prixHT = prixHT;
-	}
-	/**
-	 * @return the tVA
-	 */
-	public double getTVA() {
-		return TVA;
-	}
-	/**
-	 * @param tVA the tVA to set
-	 */
-	public void setTVA(double tVA) {
-		TVA = tVA;
-	}
+
+
 	/**
 	 * @return the montantTTC
 	 */

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -10,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="contratAnchorPane" prefHeight="533.0" prefWidth="570.0" style="-fx-background-color: white;" styleClass="SceneHolder" stylesheets="@../Css/holder.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.TerminerReservation">
+<AnchorPane fx:id="factureAnchorPane" prefHeight="533.0" prefWidth="652.0" style="-fx-background-color: white;" styleClass="SceneHolder" stylesheets="@../Css/holder.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.TerminerReservation">
     <children>
         <VBox prefHeight="494.0" prefWidth="576.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -133,6 +135,11 @@
                         <Insets left="80.0" />
                      </HBox.margin>
                   </TextField>
+                  <Label fx:id="kilometrageErreur" text="La valeure doit étre plus grande" textFill="RED" visible="false">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
                <padding>
                   <Insets left="50.0" />
@@ -145,16 +152,32 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="emplacementTextField" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                  <JFXComboBox fx:id="parkingComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="180.0" promptText="Parking" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                     <stylesheets>
+                        <URL value="@../Css/combo.css" />
+                        <URL value="@../Css/MinitextStyle.css" />
+                     </stylesheets>
                      <HBox.margin>
                         <Insets left="80.0" />
                      </HBox.margin>
-                  </TextField>
-                  <JFXButton fx:id="fermerButton2" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 50;" text="Choisir" textFill="WHITE">
+                  </JFXComboBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="384.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="184.0" text="Nombre des jours de Résérvation :" textFill="#656060">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
-                  </JFXButton>
+                  </Label>
+                  <TextField fx:id="nombreDeJoursTextField" editable="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
+                     <HBox.margin>
+                        <Insets left="32.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
                <padding>
                   <Insets left="50.0" />
@@ -204,14 +227,14 @@
                   <Insets left="50.0" />
                </padding>
             </HBox>
-                <HBox fx:id="joursRetartTextField" alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
                     <children>
                         <Label prefHeight="17.0" prefWidth="157.0" text="Nombre des jours de retard :" textFill="#656060">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
                         </Label>
-                  <TextField fx:id="nombreDeJoursTextField1" editable="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
+                  <TextField fx:id="joursRetartTextField" editable="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -265,10 +288,11 @@
                         <Insets left="50.0" />
                     </padding>
                 </HBox>
+            <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="585.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
                 <HBox alignment="CENTER" layoutX="12.0" layoutY="453.0" prefHeight="56.0" prefWidth="572.0" spacing="100.0" stylesheets="@../Css/MinitextStyle.css">
                     <children>
-                        <JFXButton fx:id="fermerButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" text="Générer Facture" textFill="WHITE" />
-                  <JFXButton fx:id="fermerButton1" layoutX="217.0" layoutY="17.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #E53434; -fx-background-radius: 50;" text="Fermer" textFill="WHITE" />
+                        <JFXButton fx:id="GenererButton" disable="true" onAction="#handleGenererButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" text="Générer Facture" textFill="WHITE" />
+                  <JFXButton fx:id="AnnulerButton" layoutX="217.0" layoutY="17.0" onAction="#handleAnnulerBtn" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #E53434; -fx-background-radius: 50;" text="Annuler" textFill="WHITE" />
                     </children></HBox>
             </children>
         </VBox>

@@ -332,16 +332,23 @@ public class DetailReservation implements Initializable {
         }
     }
 
-    public void handleTerminerReservationBtn(ActionEvent actionEvent) {
-        visibiliteBoxByStatus(3);
-        fillBlanks();
-        // ajouter la disponibilite la vehicule
-        EditReservationBtn.setVisible(false);
+    public void handleTerminerReservationBtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TerminerReservation.fxml"));
+        TerminerReservation.contrat = contrat;
+        Parent root = loader.load();
 
-        reservation.getVehicule().setDispo("Disponible");
-        //Changer Kilometrage
-        //Changer Emplacement
-        H.vehicule.edit(reservation.getVehicule());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        if (TerminerReservation.factureSeccusfullyAdd){
+            visibiliteBoxByStatus(3);
+            fillBlanks();
+            EditReservationBtn.setVisible(false);
+        }
     }
 
     public void handleAccederContratBtn(ActionEvent actionEvent) throws IOException {

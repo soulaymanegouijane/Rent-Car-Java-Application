@@ -229,7 +229,7 @@ public class AjouterVehicule implements Initializable{
 	public void parking_base_donnee() {
 		ResultSet tous_les_parking = null;
 		try {
-			String sql = "select * from parking";
+			String sql = "select * from parking where capacite>nbr_place_pleinne";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			tous_les_parking = ps.executeQuery();

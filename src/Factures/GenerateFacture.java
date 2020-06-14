@@ -86,8 +86,6 @@ public class GenerateFacture implements Initializable {
     	facture.setDateFacture(today);
     	facture.setNbr_jours(nbrDay);
     	facture.setMontantTTC(mtTTC);
-    	facture.setTVA(tax);
-    	facture.setPrixHT(mtHT);
     	int result = H.facture.add(facture);
     	
     	if (result != 0) {
