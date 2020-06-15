@@ -315,6 +315,9 @@ public class AjouterVehicule implements Initializable{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterType/AjouterType.fxml"));
 		Parent root = loader.load();
 
+		AjouterType typeController = loader.getController();
+		typeController.mrqType.setValue(marqueComboBox.getValue());
+
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.setResizable(false);
@@ -322,7 +325,6 @@ public class AjouterVehicule implements Initializable{
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
 
-		AjouterType typeController = loader.getController();
 		TypeList.add(typeController.libelleTypeTaped);
 		typeComboBox.getItems().removeAll(marqueComboBox.getItems());
 		typeComboBox.setItems(TypeList);

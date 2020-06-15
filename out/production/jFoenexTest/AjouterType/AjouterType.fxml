@@ -65,16 +65,19 @@
                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                             </padding>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="49.0" prefWidth="401.0" spacing="50.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="401.0" spacing="10.0">
                             <VBox.margin>
-                                <Insets top="20.0" />
+                                <Insets top="10.0" />
                             </VBox.margin>
                      <children>
-                        <Label text="Label" />
-                        <JFXComboBox fx:id="mrqType" prefHeight="25.0" prefWidth="241.0" />
+                        <Label prefHeight="17.0" prefWidth="64.0" stylesheets="@../Css/MinitextStyle.css" text="Marque :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin></Label>
+                        <JFXComboBox fx:id="mrqType" disable="true" prefHeight="25.0" prefWidth="274.0" styleClass="jfx-combo-box" stylesheets="@../Css/combo.css" />
                      </children>
                         </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
                                 <JFXButton fx:id="ajouterTypeBtn" onAction="#ajouterTypeBtnAction" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" />
                                 <JFXButton fx:id="closeButton" onAction="#closeButtonAction" prefHeight="30.0" prefWidth="132.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE" />

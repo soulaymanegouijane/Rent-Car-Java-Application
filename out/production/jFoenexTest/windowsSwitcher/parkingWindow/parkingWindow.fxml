@@ -59,7 +59,20 @@
                                                 <ComboBox fx:id="chercherComboBox" onAction="#handleChercherComboBox" prefHeight="32.0" prefWidth="195.0" styleClass="comboBox" stylesheets="@../windowsSwitcher.css" />
                                     <AnchorPane fx:id="inputSearchArea" nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="265.0">
                                        <children>
-                                          <TextField fx:id="dataTextFeild" disable="true" layoutY="5.0" prefHeight="28.0" prefWidth="265.0" stylesheets="@../windowsSwitcher.css" visible="false" />
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <TextField fx:id="dataTextFeild" disable="true" prefHeight="33.0" prefWidth="230.0" stylesheets="@../windowsSwitcher.css" visible="false" />
+                                                <Button fx:id="choisirParkingBtn" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#EditParking" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" visible="false">
+                                                   <graphic>
+                                                      <ImageView fx:id="editParkingBtn" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../../Css/Images/pen.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </AnchorPane>
                                                 <Button fx:id="charcherButton" disable="true" mnemonicParsing="false" onAction="#handleCharcherButton" prefHeight="32.0" prefWidth="244.0" styleClass="searchButton" stylesheets="@../windowsSwitcher.css">

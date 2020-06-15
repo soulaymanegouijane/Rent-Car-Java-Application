@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -26,6 +27,7 @@ import Test.H;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import windowsSwitcher.vehiculeWindow.ChoisirParkingScene;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,8 +38,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class parkingWindow implements Initializable {
-    
-	@FXML
+
+    public Button choisirParkingBtn;
+    public ImageView editParkingBtn;
+    @FXML
     private ComboBox<String> chercherComboBox;
 
     @FXML
@@ -155,10 +159,15 @@ public class parkingWindow implements Initializable {
         if(searchSection.equals("Tous") || searchSection.isEmpty()){
 
             disable(dataTextFeild);
+            choisirParkingBtn.setVisible(false);
 
         }else if(searchSection.equals("Adress") || searchSection.equals("Capacite") || searchSection.equals("places sature")){
 
             enable(dataTextFeild);
+            if(searchSection.equals("Adress")){
+                choisirParkingBtn.setVisible(true);
+                dataTextFeild.setEditable(false);
+            }
 
         }
     }
@@ -166,50 +175,42 @@ public class parkingWindow implements Initializable {
     public void handleCharcherButton(ActionEvent actionEvent) {
         searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
-        
-        if(searchSection.equals("Adress")){
-        	parking_list.clear();
-            mono_parking.clear();
-            String nomTaped = dataTextFeild.getText();
+        if (dataTextFeild.getText().isEmpty()){
+            enable(ErreurMessage);
+        }else{
+            if(searchSection.equals("Adress")){
+                parking_list.clear();
+                mono_parking.clear();
+                String nomTaped = dataTextFeild.getText();
 
-            if(nomTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search Parking by Adress
-            	afficher_parking(nomTaped);
-            }
+                afficher_parking(nomTaped);
 
-        }else if(searchSection.equals("Capacite")){
-        	parking_list.clear();
-            mono_parking.clear();
 
-        	String capaciteTaped = dataTextFeild.getText();
-        	
-        	if(capaciteTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-            	// Search Parking by Capacite
+            }else if(searchSection.equals("Capacite")){
+                parking_list.clear();
+                mono_parking.clear();
+
+                String capaciteTaped = dataTextFeild.getText();
+
                 afficher_parking(capaciteTaped);
-            }
-            
 
-        }else if(searchSection.equals("places sature")){
-        	parking_list.clear();
-            mono_parking.clear();            
-            String placesTaped = dataTextFeild.getText();
-            
-            if(placesTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-            	// Search Parking by places sature
+
+
+            }else if(searchSection.equals("places sature")){
+                parking_list.clear();
+                mono_parking.clear();
+                String placesTaped = dataTextFeild.getText();
+
                 afficher_parking(placesTaped);
-            }
 
-        }else {
-        	parking_list.clear();
-            mono_parking.clear();
-        	remplir_tableau();
+
+            }else {
+                parking_list.clear();
+                mono_parking.clear();
+                remplir_tableau();
+            }
         }
+
     }
     
     public void afficher_parking(String valeur) {
@@ -313,5 +314,20 @@ public class parkingWindow implements Initializable {
  	    col_adresse.setCellValueFactory(new PropertyValueFactory<>("adress"));
          
  		   tableParking.setItems(parking_list);
+    }
+
+    public void EditParking(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vehiculeWindow/choisirParkingScene.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        ChoisirParkingScene choisirParking = loader.getController();
+        dataTextFeild.setText(choisirParking.adressParkingChoisi);
     }
 }
