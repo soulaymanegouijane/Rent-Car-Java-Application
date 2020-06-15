@@ -15,411 +15,420 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailUtilisateur">
-    <children>
-        <Pane prefHeight="580.0" prefWidth="536.0">
-            <children>
-                <VBox layoutX="9.0" layoutY="68.0" prefHeight="530.0" prefWidth="525.0">
-                    <children>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="386.0">
-                            <children>
-                        <TextField fx:id="imgFieldText" prefHeight="25.0" prefWidth="61.0" visible="false" />
-                        <JFXComboBox fx:id="GenreComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="99.0" promptText="Genre :" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                        </JFXComboBox>
-                                <TextField fx:id="prenomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
-                                    <HBox.margin>
-                                        <Insets left="5.0" />
-                                    </HBox.margin>
-                                    <stylesheets>
-                                        <URL value="@../Css/textinputstyle.css" />
-                                        <URL value="@../Css/MinitextStyle.css" />
-                                    </stylesheets>
-                                    <styleClass>
-                                        <String fx:value="text" />
-                                        <String fx:value="text-field" />
-                                    </styleClass>
-                                </TextField>
-                                <TextField fx:id="nomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
-                                    <HBox.margin>
-                                        <Insets left="10.0" right="25.0" />
-                                    </HBox.margin>
-                                    <stylesheets>
-                                        <URL value="@../Css/textinputstyle.css" />
-                                        <URL value="@../Css/MinitextStyle.css" />
-                                    </stylesheets>
-                                    <styleClass>
-                                        <String fx:value="text" />
-                                        <String fx:value="text-field" />
-                                    </styleClass>
-                                </TextField>
-                        <JFXComboBox fx:id="roleComboBox" disable="true" focusColor="#63b4ff" layoutX="80.0" layoutY="19.0" prefHeight="25.0" prefWidth="99.0" promptText="Role :" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                        </JFXComboBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="2.0" />
-                            </VBox.margin></HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="386.0">
-                            <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Nationalité :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                                <TextField fx:id="nationaliteTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                                    <HBox.margin>
-                                        <Insets left="100.0" right="10.0" />
-                                    </HBox.margin>
-                                    <stylesheets>
-                                        <URL value="@../Css/textinputstyle.css" />
-                                        <URL value="@../Css/MinitextStyle.css" />
-                                    </stylesheets>
-                                    <styleClass>
-                                        <String fx:value="text" />
-                                        <String fx:value="text-field" />
-                                    </styleClass>
-                                </TextField>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="2.0" />
-                            </VBox.margin></HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="50.0" prefWidth="386.0" spacing="30.0">
-                            <children>
-                                <Label prefHeight="25.0" prefWidth="123.0" text="Date de Naissance :" textFill="#b9b3b3">
-                                    <HBox.margin>
-                                        <Insets left="10.0" />
-                                    </HBox.margin>
-                                </Label>
-                                <DatePicker fx:id="dateNaissanceDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="240.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css">
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin></DatePicker>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="2.0" />
-                            </VBox.margin></HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" prefHeight="50.0" prefWidth="386.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Lieu de Naissance :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="lieuNaissanceTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="2.0" />
-                     </VBox.margin>
-                  </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="50.0" prefWidth="386.0">
-                            <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Type de Piéce d'identité :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <JFXComboBox fx:id="typeCinCombo" disable="true" focusColor="#039ed3" prefHeight="25.0" prefWidth="240.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="jfx-combo-box" />
-                              <String fx:value="text" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                        </JFXComboBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="2.0" />
-                            </VBox.margin>
-                        </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="230.0" prefHeight="50.0" prefWidth="386.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="N° de Piéce d'identité :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="numeroCinTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="2.0" />
-                     </VBox.margin>
-                  </HBox>
-                      <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
-                          <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Adresse :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                              <TextField fx:id="adresseTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                                  <HBox.margin>
-                                      <Insets left="100.0" right="10.0" />
-                                  </HBox.margin>
-                                  <stylesheets>
-                                      <URL value="@../Css/textinputstyle.css" />
-                                      <URL value="@../Css/MinitextStyle.css" />
-                                  </stylesheets>
-                                  <styleClass>
-                                      <String fx:value="text" />
-                                      <String fx:value="text-field" />
-                                  </styleClass>
-                              </TextField>
-                          </children>
-                          <VBox.margin>
-                              <Insets top="2.0" />
-                          </VBox.margin>
-                      </HBox>
-                      <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="492.0">
-                          <children>
-                        <Label prefHeight="25.0" prefWidth="100.0" text="Code Postale :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                              <TextField fx:id="codePostalTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
-                                  <HBox.margin>
-                                      <Insets left="10.0" />
-                                  </HBox.margin>
-                                  <stylesheets>
-                                      <URL value="@../Css/textinputstyle.css" />
-                                      <URL value="@../Css/MinitextStyle.css" />
-                                  </stylesheets>
-                                  <styleClass>
-                                      <String fx:value="text" />
-                                      <String fx:value="text-field" />
-                                  </styleClass>
-                              </TextField>
-                        <Label prefHeight="25.0" prefWidth="80.0" text="Ville :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                              <TextField fx:id="villeTextField" alignment="CENTER" editable="false" layoutX="70.0" layoutY="20.0" prefHeight="25.0" prefWidth="148.0">
-                                  <HBox.margin>
-                                      <Insets left="2.0" right="25.0" />
-                                  </HBox.margin>
-                                  <stylesheets>
-                                      <URL value="@../Css/textinputstyle.css" />
-                                      <URL value="@../Css/MinitextStyle.css" />
-                                  </stylesheets>
-                                  <styleClass>
-                                      <String fx:value="text" />
-                                      <String fx:value="text-field" />
-                                  </styleClass>
-                              </TextField>
-                          </children>
-                          <VBox.margin>
-                              <Insets top="2.0" />
-                          </VBox.margin>
-                      </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="272.0" prefHeight="50.0" prefWidth="386.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Pays :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="paysTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="416.0" prefHeight="50.0" prefWidth="386.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="N° Téléphone :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="numeroTelephoneTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="460.0" prefHeight="50.0" prefWidth="386.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Adresse Email :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="emailTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                           <stylesheets>
-                              <URL value="@../Css/textinputstyle.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text" />
-                              <String fx:value="text-field" />
-                           </styleClass>
-                        </TextField>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="208.0" prefHeight="50.0" prefWidth="386.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="149.0" text="Etat de compte :" textFill="#b9b3b3">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <JFXComboBox fx:id="etatCompteCombo" disable="true" focusColor="#039ed3" prefHeight="25.0" prefWidth="240.0" promptText="Etat de compte :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <stylesheets>
-                              <URL value="@../Css/combo.css" />
-                              <URL value="@../Css/MinitextStyle.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="jfx-combo-box" />
-                              <String fx:value="text" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets left="100.0" right="10.0" />
-                           </HBox.margin>
-                        </JFXComboBox>
-                     </children>
-                  </HBox>
-                    </children>
-                </VBox>
-            </children>
-        </Pane>
-        <Pane layoutY="-1.0" prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
-            <children>
-                <Label layoutX="269.0" layoutY="18.0" stylesheets="@../Css/textStyle.css" text="Détail De L'Utilisateur" textFill="WHITE" />
-            <JFXButton fx:id="closeButton" layoutX="637.0" layoutY="13.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 40; -fx-background-color: #61B1FF;" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
-            </children>
-        </Pane>
-      <VBox alignment="CENTER" layoutX="575.0" layoutY="72.0" prefHeight="530.0" prefWidth="202.0">
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="800.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailUtilisateur">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label style="-fx-border-radius: 0 0 0 0; -fx-border-color: #5a5a5a; -fx-border-width: 3;">
-               <graphic>
-                  <ImageView fx:id="profilImage" fitHeight="123.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
-                     <viewport>
-                        <Rectangle2D height="123.0" width="142.0" />
-                     </viewport>
-                  </ImageView>
-               </graphic>
-            </Label>
-            <VBox fx:id="editVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" visible="false">
+            <Pane prefHeight="580.0" prefWidth="536.0">
                <children>
-                  <Button fx:id="chooseProfilImageButton" mnemonicParsing="false" onAction="#handleChooseProfilImageButton" prefHeight="26.0" prefWidth="149.0" style="-fx-font-family: Rockwell; -fx-text-fill: white; -fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 20 20;" styleClass="detailsUserButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Choisir une image" />
-                  <JFXButton fx:id="saveChangesButton" onAction="#handleSaveChangesButton" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                           <image>
-                              <Image url="@../img/save.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="cancelEditingButton" onAction="#handleCancelEditingButton" prefHeight="25.0" prefWidth="165.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                           <image>
-                              <Image url="@../img/xIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="210.0" text="Remplissez tous les champs !!" textFill="#fc0000" visible="false" VBox.vgrow="ALWAYS" />
+                  <VBox layoutX="9.0" layoutY="68.0" prefHeight="530.0" prefWidth="525.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <TextField fx:id="imgFieldText" prefHeight="25.0" prefWidth="61.0" visible="false" />
+                              <JFXComboBox fx:id="GenreComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="99.0" promptText="Genre :" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                                 <stylesheets>
+                                    <URL value="@../Css/combo.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                              </JFXComboBox>
+                              <TextField fx:id="prenomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                              <TextField fx:id="nomTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="25.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                              <JFXComboBox fx:id="roleComboBox" disable="true" focusColor="#63b4ff" layoutX="80.0" layoutY="19.0" prefHeight="25.0" prefWidth="99.0" promptText="Role :" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                                 <stylesheets>
+                                    <URL value="@../Css/combo.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Nationalité :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="nationaliteTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="50.0" prefWidth="386.0" spacing="30.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="123.0" text="Date de Naissance :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <DatePicker fx:id="dateNaissanceDatePicker" disable="true" editable="false" prefHeight="25.0" prefWidth="240.0" styleClass="datePicker" stylesheets="@../Css/datePicker.css">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                              </DatePicker>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="75.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Lieu de Naissance :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="lieuNaissanceTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Type de Piéce d'identité :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="typeCinCombo" disable="true" focusColor="#039ed3" prefHeight="25.0" prefWidth="240.0" promptText="Type de la carte d'identité :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <stylesheets>
+                                    <URL value="@../Css/combo.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="jfx-combo-box" />
+                                    <String fx:value="text" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="230.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="N° de Piéce d'identité :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="numeroCinTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Adresse :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="adresseTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="492.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="100.0" text="Code Postale :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="codePostalTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="154.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                              <Label prefHeight="25.0" prefWidth="80.0" text="Ville :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="villeTextField" alignment="CENTER" editable="false" layoutX="70.0" layoutY="20.0" prefHeight="25.0" prefWidth="148.0">
+                                 <HBox.margin>
+                                    <Insets left="2.0" right="25.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="272.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Pays :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="paysTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="416.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="N° Téléphone :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="numeroTelephoneTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="460.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Adresse Email :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="emailTextField" alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="240.0">
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../Css/textinputstyle.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="text" />
+                                    <String fx:value="text-field" />
+                                 </styleClass>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="208.0" prefHeight="50.0" prefWidth="386.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="149.0" text="Etat de compte :" textFill="#b9b3b3">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <JFXComboBox fx:id="etatCompteCombo" disable="true" focusColor="#039ed3" prefHeight="25.0" prefWidth="240.0" promptText="Etat de compte :" style="-jfx-focus-color: #039ED3; -jfx-label-float: true;" unFocusColor="#cfcfcf" visibleRowCount="3">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <stylesheets>
+                                    <URL value="@../Css/combo.css" />
+                                    <URL value="@../Css/MinitextStyle.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="jfx-combo-box" />
+                                    <String fx:value="text" />
+                                 </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="100.0" right="10.0" />
+                                 </HBox.margin>
+                              </JFXComboBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox fx:id="nonEditVBox" alignment="CENTER" layoutX="10.0" layoutY="193.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+            </Pane>
+            <Pane layoutY="-1.0" prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+                  <Label layoutX="269.0" layoutY="18.0" stylesheets="@../Css/textStyle.css" text="Détail De L'Utilisateur" textFill="WHITE" />
+                  <JFXButton fx:id="closeButton" layoutX="637.0" layoutY="13.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 40; -fx-background-color: #61B1FF;" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
+               </children>
+            </Pane>
+            <VBox alignment="CENTER" layoutX="575.0" layoutY="72.0" prefHeight="530.0" prefWidth="202.0">
+               <children>
+                  <Label style="-fx-border-radius: 0 0 0 0; -fx-border-color: #5a5a5a; -fx-border-width: 3;">
+                     <graphic>
+                        <ImageView fx:id="profilImage" fitHeight="123.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D height="123.0" width="142.0" />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <VBox fx:id="editVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" visible="false">
                      <children>
-                        <JFXButton fx:id="editBtn" onAction="#handleEditBtn" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                        <Button fx:id="chooseProfilImageButton" mnemonicParsing="false" onAction="#handleChooseProfilImageButton" prefHeight="26.0" prefWidth="149.0" style="-fx-font-family: Rockwell; -fx-text-fill: white; -fx-border-radius: 0 0 20 20; -fx-background-radius: 0 0 20 20;" styleClass="detailsUserButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Choisir une image" />
+                        <JFXButton fx:id="saveChangesButton" onAction="#handleSaveChangesButton" prefHeight="25.0" prefWidth="166.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                                  <image>
-                                    <Image url="@../Css/Images/Edit.png" />
+                                    <Image url="@../img/save.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
-                     <children>
-                        <JFXButton fx:id="deleteBtn" onAction="#handleDeleteBtn" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer" textFill="WHITE">
+                        <JFXButton fx:id="cancelEditingButton" onAction="#handleCancelEditingButton" prefHeight="25.0" prefWidth="165.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                                  <image>
-                                    <Image url="@../Css/Images/delete.png" />
+                                    <Image url="@../img/xIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </JFXButton>
+                        <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="210.0" text="Remplissez tous les champs !!" textFill="#fc0000" visible="false" VBox.vgrow="ALWAYS" />
                      </children>
-                  </HBox>
+                  </VBox>
+                  <VBox fx:id="nonEditVBox" alignment="CENTER" layoutX="10.0" layoutY="193.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="editBtn" onAction="#handleEditBtn" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../Css/Images/Edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="deleteBtn" onAction="#handleDeleteBtn" prefHeight="40.0" prefWidth="149.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../Css/Images/delete.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
-      </VBox>
-    </children>
-</AnchorPane>
+      </AnchorPane>
+   </children>
+</StackPane>
