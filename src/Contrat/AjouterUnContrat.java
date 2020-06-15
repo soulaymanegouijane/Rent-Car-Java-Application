@@ -8,6 +8,8 @@ import com.jfoenix.controls.JFXComboBox;
 import AjouterReservation.ChoisirUtilisateurScene;
 import Entities.Contrat;
 import Test.H;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +38,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -55,6 +58,7 @@ public class AjouterUnContrat implements Initializable {
     public Label erreurMessage;
     public TextField UtilisateurTextField;
     public TextField clientTextField;
+    public Label erreurDate;
 
     @FXML
     private JFXButton closeButton;
@@ -75,6 +79,7 @@ public class AjouterUnContrat implements Initializable {
 	    
     @FXML
     private void closeButtonAction(){
+        reservation = null;
         Stage stage =(Stage) closeButton.getScene().getWindow();
         stage.close();
     }
@@ -114,12 +119,51 @@ public class AjouterUnContrat implements Initializable {
             }
         });
 
-        dateDepartDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if(!nombreDeJoursTextField.getText().isEmpty())
-                dateRetourDatePicker.setValue(newValue.plusDays(Long.parseLong(nombreDeJoursTextField.getText())));
-            else
-                dateRetourDatePicker.setValue(null);
+        dateDepartDatePicker.valueProperty().addListener(new ChangeListener<LocalDate>() {
+
+            @Override
+            public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+                if (newValue != null){
+                    int days = Period.between(newValue,H.convert(dateContratDatePicker.getEditor().getText())).getDays();
+                    if (days <= 0){
+                        erreurDate.setVisible(false);
+                        submitBtn.setDisable(false);
+                    }else {
+                        erreurDate.setVisible(true);
+                        submitBtn.setDisable(true);
+                    }
+
+                    if(!nombreDeJoursTextField.getText().isEmpty()) {
+                        dateRetourDatePicker.setValue(newValue.plusDays(Long.parseLong(nombreDeJoursTextField.getText())));
+                    }else {
+                        dateRetourDatePicker.setValue(null);
+                    }
+                }else {
+                    submitBtn.setDisable(true);
+                }
+            }
         });
+
+        /*dateDepartDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null){
+                int days = Period.between(H.convert(dateDepartDatePicker.getEditor().getText()),H.convert(dateContratDatePicker.getEditor().getText())).getDays();
+                if (days <= 0){
+                    erreurDate.setVisible(false);
+                    submitBtn.setDisable(false);
+                }else {
+                    erreurDate.setVisible(true);
+                    submitBtn.setDisable(true);
+                }
+            }else {
+                submitBtn.setDisable(true);
+            }
+
+            if(!nombreDeJoursTextField.getText().isEmpty()) {
+                dateRetourDatePicker.setValue(newValue.plusDays(Long.parseLong(nombreDeJoursTextField.getText())));
+            }else {
+                dateRetourDatePicker.setValue(null);
+            }
+        });*/
     }
 
 
@@ -195,17 +239,13 @@ public class AjouterUnContrat implements Initializable {
             contrat.setVehicule(H.vehicule.getById(vehiculeTextField.getText()));
             contrat.setDate_sortie(dateDepartDatePicker.getEditor().getText());
             contrat.setDate_retour(dateRetourDatePicker.getEditor().getText());
-            
-            if(showAlert) {
-            	AfficheErreur("Contrat");
+
+
+            int result = H.contrat.add(contrat);
+            if (result == 0){
+                contrat = null;
             }else {
-            	int result = H.contrat.add(contrat);
-                if (result == 0){
-                    // Si contrat n'est pas ajouter
-                    contrat = null;
-                }else {
-                    addwithSucces = true;
-                }
+                addwithSucces = true;
             }
 
             // regarder �a
@@ -213,14 +253,6 @@ public class AjouterUnContrat implements Initializable {
             Stage stage =(Stage) closeButton.getScene().getWindow();
             stage.close();
         }
-    }
-    
-    public void AfficheErreur(String str) {
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Alert d'erreur");
-        	alert.setHeaderText("can not add "+str);
-        	alert.setContentText(str+" n'est pas Ajouter !!");
-        	alert.showAndWait();
     }
 
     public boolean testEmpty(){

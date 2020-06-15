@@ -1,6 +1,8 @@
 package windowsSwitcher.contratWindow;
 
+import Entities.Reservation;
 import com.jfoenix.controls.JFXButton;
+import Contrat.AjouterUnContrat;
 
 import AbstactClasses.Abst;
 import Entities.Contrat;
@@ -145,7 +147,10 @@ public class ContratWindow implements Initializable {
     
     public void handleAjouterContratButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Contrat/AjouterUnContrat.fxml"));
+        AjouterUnContrat.reservation = null;
         Parent root = loader.load();
+
+        AjouterUnContrat ajouterUnContrat = loader.getController();
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -153,6 +158,21 @@ public class ContratWindow implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+
+        Reservation reservation = AjouterUnContrat.reservation;
+        if(reservation != null){
+            Contrat contrat = ajouterUnContrat.contrat;
+
+            reservation.setDate_depart(contrat.getDate_sortie());
+            reservation.setNombreJours(contrat.getNbr_jour());
+            reservation.setDate_retour(contrat.getDate_retour());
+            reservation.setMontant((float) contrat.getMontantTotal());
+            reservation.setAvance(contrat.getRemise());
+            reservation.setStatus(H.status.get("Active"));
+
+            H.reservation.edit(reservation);
+        }
+
         mono_contrat.clear();
         contrat_list.clear();
         remplir_tableau();
