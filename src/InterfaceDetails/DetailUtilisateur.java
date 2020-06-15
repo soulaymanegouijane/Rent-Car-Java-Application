@@ -7,11 +7,14 @@ import com.jfoenix.controls.JFXButton;
 
 import AbstactClasses.Abst;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -20,7 +23,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -90,6 +95,7 @@ public class DetailUtilisateur implements Initializable{
     public JFXComboBox<String> etatCompteCombo;
     public JFXComboBox<String> roleComboBox;
     public Label erreurMessage;
+    public StackPane stackPane;
 
     @FXML
     private TextField imgFieldText;
@@ -257,10 +263,10 @@ public class DetailUtilisateur implements Initializable{
     public void handleSaveChangesButton(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
         if (testEmpty()){
-            erreurMessage.setText("Remplissez tous les champs !!");
+            erreurMessage.setText("Remplissez tous les champs!!");
             erreurMessage.setVisible(true);
         }else if (!H.isEmailValid(emailTextField.getText())){
-            erreurMessage.setText("Vous avez fait une faute dans l'email !!");
+            erreurMessage.setText("Erreur dans l'email !!");
             erreurMessage.setVisible(true);
         }else {
             nonEditVBox.setVisible(true);
@@ -278,21 +284,30 @@ public class DetailUtilisateur implements Initializable{
             }
         }
     }
-    
+
     public void AfficheErreur(String str) {
-    	Alert alert = new Alert(AlertType.ERROR);
-    	alert.setTitle("Alert d'erreur");
-    	alert.setHeaderText("can not delete "+str);
-    	alert.setContentText(str+" n'est pas Supprimer !!");
-    	alert.showAndWait();
+
+        JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+        jfxDialogLayout.setAlignment(Pos.CENTER);
+        jfxDialogLayout.setHeading(new Text("Alert d'erreur"));
+        JFXButton okay = new JFXButton("Close");
+        jfxDialogLayout.setBody(new Text("Vous pouver pas supprimer cet " + str));
+        okay.setPrefWidth(110);
+        okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
+        okay.setButtonType(JFXButton.ButtonType.RAISED);
+        JFXDialog j = new JFXDialog(stackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+
+        okay.setOnAction(event -> {
+            j.close();
+        });
+
+        jfxDialogLayout.setActions(okay);
+        j.show();
     }
     
     public void handleDeleteBtn(ActionEvent actionEvent) {
 
     	AfficheErreur("Utilisateur");
-
-        Stage stage =(Stage) closeButton.getScene().getWindow();
-        stage.close();
     }
 
     public void enableFields(){
