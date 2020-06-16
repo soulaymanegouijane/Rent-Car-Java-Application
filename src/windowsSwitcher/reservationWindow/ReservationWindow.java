@@ -121,7 +121,7 @@ public class ReservationWindow implements Initializable {
     @FXML
     private Button detailReservationButton;
         
-    public Reservation reservationSelected;
+    public Reservation reservationSelected = new Reservation();
 
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status");
     ObservableList<String> typeTypeList = FXCollections.observableArrayList("Reservation local", "Reservation telephonique");

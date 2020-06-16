@@ -81,6 +81,20 @@ public class Contrat implements Serializable{
 	public Contrat() {
 		super();
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Contrat [idContrat=" + idContrat + ", dateContrat=" + dateContrat + ", MontantTotal=" + MontantTotal
+				+ ", idVehicule=" + idVehicule + ", idReservation=" + idReservation + ", date_sortie=" + date_sortie
+				+ ", date_retour=" + date_retour + ", heure_retour=" + heure_retour + ", heure_sortie=" + heure_sortie
+				+ ", nbr_jour=" + nbr_jour + ", prix_jour=" + prix_jour + ", remise=" + remise + ", caution=" + caution
+				+ ", km_depart=" + km_depart + ", km_retour=" + km_retour + ", idUtilisateur=" + idUtilisateur
+				+ ", matricule=" + matricule + ", cinClient=" + cinClient + ", cinUtilisateur=" + cinUtilisateur
+				+ ", codeReservation=" + codeReservation + ", vehicule=" + vehicule + ", reservation=" + reservation
+				+ ", utilisateur=" + utilisateur + "]";
+	}
 
 	/**
 	 * @return the matricule

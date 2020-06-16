@@ -2,6 +2,7 @@ package ControllerImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -97,6 +98,33 @@ public class FactureImpl extends Abst implements FactureInter {
 	
 	@Override
 	public Factures getById(long id) {
+		String sql = "select * from facture";
+		Connection con = Abst.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				Factures facture = new Factures();
+				facture.setIdFacture(rs.getLong("idFacture"));
+				facture.setContrat(H.contrat.getById(rs.getLong("idContrat")));
+				facture.setDateFacture(rs.getString("date_facture"));
+				facture.setMontantSanction(rs.getFloat("montantSanction"));
+				facture.setNbr_jours(rs.getInt("nbr_jours"));
+				facture.setNbrJoursRetard(rs.getInt("nbrJoursRetard"));
+				facture.setMontantTTC(rs.getDouble("montant_ttc"));
+				return facture;		
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return null;
 	}
 

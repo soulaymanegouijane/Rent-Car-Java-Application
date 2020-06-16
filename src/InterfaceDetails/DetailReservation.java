@@ -106,8 +106,8 @@ public class DetailReservation implements Initializable {
     ObservableList<String> TypeRes = FXCollections.observableArrayList();
 
     public static Reservation reservation = new Reservation();
-    public static Contrat contrat = null;
-    public Factures facture = null;
+    public static Contrat contrat = new Contrat();
+    public Factures facture = new Factures();
     
     public boolean bool = true;
 
@@ -295,7 +295,6 @@ public class DetailReservation implements Initializable {
         EditVBox.setVisible(false);
         nonEditHBox.setVisible(true);
     }
-
 
     public void handleAnnulerReservationBtn(ActionEvent actionEvent) {
         reservation.getStatus().setIdStatus(4);
