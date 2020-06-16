@@ -64,7 +64,8 @@ public class TerminerReservation implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         factureSeccusfullyAdd = false;
         reservation = H.reservation.getById(contrat.getReservation().getIdReservation());
-        System.out.println("--------------------------------- Reservation -->"+reservation);
+        System.out.println("--------------------------------- Contrat -->"+contrat.getReservation().getIdReservation());
+        System.out.println("--------------------------------- Reservation -->"+reservation.getVehicule().getIdVehicule());
         H.setfrenchDatePicker(dateFactureDatePicker);
         parking_base_donnee();
         parkingComboBox.setItems(ParkingList);
@@ -171,12 +172,16 @@ public class TerminerReservation implements Initializable {
             facture.setMontantSanction(Float.parseFloat(montantSanctionTextField.getText()));
             facture.setNbr_jours(Integer.parseInt(nombreDeJoursTextField.getText()));
             facture.setNbrJoursRetard(Integer.parseInt(joursRetartTextField.getText()));
+            facture.setAvance(Float.parseFloat(avanceTextField.getText()));
 
-            H.facture.add(facture);
-
-            contrat.getVehicule().setDispo("Disponible");
-            H.vehicule.edit(contrat.getVehicule());
-            factureSeccusfullyAdd = true;
+            int result = H.facture.add(facture);
+            if (result != 0){
+                contrat.getVehicule().setDispo("Disponible");
+                H.vehicule.edit(contrat.getVehicule());
+                factureSeccusfullyAdd = true;
+            }else  {
+                facture = null;
+            }
 
             Stage stage =(Stage) GenererButton.getScene().getWindow();
             stage.close();

@@ -108,8 +108,6 @@ public class DetailReservation implements Initializable {
     public static Reservation reservation = new Reservation();
     public static Contrat contrat = new Contrat();
     public Factures facture = new Factures();
-    
-    public boolean bool = true;
 
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -121,6 +119,7 @@ public class DetailReservation implements Initializable {
         H.setfrenchDatePicker(dateRetourDatePicker);
         visibiliteBoxByStatus(reservation.getStatus().getIdStatus());
         contrat = getContratbyidReservation(reservation.getIdReservation());
+        System.out.println(contrat);
         if (reservation.getStatus().getIdStatus() == 3 || reservation.getStatus().getIdStatus() == 4){
             EditReservationBtn.setVisible(false);
         }
@@ -328,6 +327,7 @@ public class DetailReservation implements Initializable {
             reservation.setMontant((float) contrat.getMontantTotal());
             reservation.setAvance(contrat.getRemise());
 
+            contrat = getContratbyidReservation(reservation.getIdReservation());
             visibiliteBoxByStatus(2);
             fillBlanks();
         }
@@ -346,6 +346,8 @@ public class DetailReservation implements Initializable {
         stage.showAndWait();
 
         if (TerminerReservation.factureSeccusfullyAdd){
+            TerminerReservation terminerReservation = loader.getController();
+            facture = terminerReservation.facture;
             visibiliteBoxByStatus(3);
             fillBlanks();
             EditReservationBtn.setVisible(false);
@@ -455,7 +457,7 @@ public class DetailReservation implements Initializable {
                 contrat.setUtilisateur(H.utilisateur.getById(rs.getString("idUtilisateur")));
                 contrat.setDate_retour(rs.getString("date_retour"));
                 contrat.setDate_sortie(rs.getString("date_sortie"));
-                contrat.setDateContrat(rs.getString("date_Contrat"));
+                contrat.setDateContrat(rs.getString("date_contrat"));
                 contrat.setVehicule(H.vehicule.getById(rs.getString("idVehicule")));
                 contrat.setReservation(H.reservation.getById(rs.getLong("idReservation")));
                 contrat.setMontantTotal(rs.getFloat("montant_total"));

@@ -17,7 +17,7 @@ public class FactureImpl extends Abst implements FactureInter {
 	public int add(Factures arg) {
 		int status = 0;
 		Connection con = Abst.getConnection();
-		String sql = "insert into facture (date_facture,nbr_jours,nbrJoursRetard,montantSanction,montant_ttc,idContrat) values (?,?,?,?,?,?)";
+		String sql = "insert into facture (date_facture,nbr_jours,nbrJoursRetard,montantSanction,montant_ttc,avance,idContrat) values (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, arg.getDateFacture());
@@ -25,7 +25,9 @@ public class FactureImpl extends Abst implements FactureInter {
 			ps.setLong(3,arg.getNbrJoursRetard());
 			ps.setFloat(4,arg.getMontantSanction());
 			ps.setDouble(5, arg.getMontantTTC());
-			ps.setLong(6, arg.getContrat().getIdContrat());
+			ps.setFloat(6,arg.getAvance());
+			ps.setLong(7, arg.getContrat().getIdContrat());
+
 			status = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,7 +43,7 @@ public class FactureImpl extends Abst implements FactureInter {
 
 	@Override
 	public Factures edit(Factures arg) {
-		String sql ="update facture set date_facture=?,nbr_jours=?,nbrJoursRetard=?,montantSanction=?,montant_ttc=?,idContrat=? where idFacture=?";
+		String sql ="update facture set date_facture=?,nbr_jours=?,nbrJoursRetard=?,montantSanction=?,montant_ttc=?,avance=?,idContrat=? where idFacture=?";
 		Connection con = Abst.getConnection();
 		Factures facture = new Factures();
 		try{
@@ -52,7 +54,8 @@ public class FactureImpl extends Abst implements FactureInter {
 			ps.setFloat(4,arg.getMontantSanction());
 			ps.setDouble(5, arg.getMontantTTC());
 			ps.setLong(6, arg.getContrat().getIdContrat());
-			ps.setLong(7,arg.getIdFacture());
+			ps.setFloat(7,arg.getAvance());
+			ps.setLong(8,arg.getIdFacture());
 			ps.executeUpdate();
 			facture = H.facture.getById(arg.getIdFacture());
 		}catch (SQLException e) {

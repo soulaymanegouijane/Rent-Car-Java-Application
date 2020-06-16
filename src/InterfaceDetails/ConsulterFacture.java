@@ -57,14 +57,12 @@ public class ConsulterFacture implements Initializable {
     public static Factures facture = new Factures();
     public Contrat contrat = new Contrat();
     public Reservation reservation = new Reservation();
-    private long x = 0;
     
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	System.out.println("***" + facture);
         contrat = facture.getContrat();
-        x= contrat.getIdContrat();
         reservation = contrat.getReservation();
         H.setfrenchDatePicker(dateFactureDatePicker);
         fillBlanks();
