@@ -5,6 +5,7 @@ import Entities.Status;
 import Entities.Utilisateur;
 import Entities.Vehicule;
 import Test.H;
+import homePage.HomePage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -68,7 +69,7 @@ public class LoginMain implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ActualiserDispoVehicule();
     }
     
     
@@ -119,14 +120,11 @@ public class LoginMain implements Initializable {
 
                 if (password.getText().equals(loggedInUser.getPass()) && loggedInUser.getEtat_compte().equals("Activer")) {
                 	System.out.println("------------- *** ------>");
-                	ActualiserDispoVehicule();
-
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../windowsSwitcher/windowsSwitcher.fxml"));
-                    Parent root = loader.load();
-
-                    windowsSwitcher switcher = loader.getController();
-                    switcher.handleAcceuilButton(actionEvent);
+                    HomePage.loggedInUser = loggedInUser;
                     windowsSwitcher.loggedInUser = loggedInUser;
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../homePage/homePage.fxml"));
+                    Parent root = loader.load();
 
                     Scene home = new Scene(root);
                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
