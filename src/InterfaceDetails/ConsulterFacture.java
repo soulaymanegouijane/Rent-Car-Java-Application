@@ -55,13 +55,13 @@ public class ConsulterFacture implements Initializable {
     public JFXButton FermerButton;
 
     public static Factures facture = new Factures();
+
     public Contrat contrat = new Contrat();
     public Reservation reservation = new Reservation();
     
-    
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    	System.out.println("***" + facture);
+    	System.out.println(facture);
         contrat = facture.getContrat();
         reservation = contrat.getReservation();
         H.setfrenchDatePicker(dateFactureDatePicker);
