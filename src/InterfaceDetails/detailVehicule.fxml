@@ -101,7 +101,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="carburantComboBox" focusColor="#63b4ff" prefHeight="25.0" prefWidth="170.0" promptText="Carburant" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                  <JFXComboBox fx:id="carburantComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="170.0" promptText="Carburant" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -127,7 +127,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="marqueComboBox" focusColor="#63b4ff" layoutX="180.0" layoutY="30.0" onAction="#TypeOfTheMarque" prefHeight="25.0" prefWidth="172.0" promptText="Marque" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                  <JFXComboBox fx:id="marqueComboBox" disable="true" focusColor="#63b4ff" layoutX="180.0" layoutY="30.0" onAction="#TypeOfTheMarque" prefHeight="25.0" prefWidth="172.0" promptText="Marque" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                      <stylesheets>
                         <URL value="@../Css/combo.css" />
                         <URL value="@../Css/MinitextStyle.css" />
@@ -302,7 +302,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXComboBox fx:id="dispoVehicule" disable="true" editable="true" focusColor="#63b4ff" maxHeight="23.0" maxWidth="1.7976931348623157E308" prefHeight="23.0" prefWidth="180.0" promptText="Choisissez la disponibilité" style="-jfx-label-float: true;" styleClass="jfx-combo-box" unFocusColor="#b9b3b3">
+                  <JFXComboBox fx:id="dispoVehicule" disable="true" focusColor="#63b4ff" maxHeight="23.0" maxWidth="1.7976931348623157E308" prefHeight="23.0" prefWidth="180.0" promptText="Choisissez la disponibilité" style="-jfx-label-float: true;" styleClass="jfx-combo-box" unFocusColor="#b9b3b3">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>

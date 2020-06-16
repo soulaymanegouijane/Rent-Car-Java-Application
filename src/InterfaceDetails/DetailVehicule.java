@@ -109,6 +109,8 @@ public class DetailVehicule implements Initializable {
 		carburant_base_donnee();
     	comboBox();
     	fillBlanks();
+		type_base_donne(marqueComboBox.getValue());
+		typeComboBox.setItems(TypeList);
 		marqueComboBox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue ov, String t, String t1) {
@@ -325,6 +327,9 @@ public class DetailVehicule implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterType/AjouterType.fxml"));
 		Parent root = loader.load();
 
+		AjouterType typeController = loader.getController();
+		typeController.mrqType.setValue(marqueComboBox.getValue());
+
 		Stage stage = new Stage();
 		stage.setScene(new Scene(root));
 		stage.setResizable(false);
@@ -332,7 +337,6 @@ public class DetailVehicule implements Initializable {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
 
-		AjouterType typeController = loader.getController();
 		TypeList.add(typeController.libelleTypeTaped);
 		typeComboBox.getItems().removeAll(marqueComboBox.getItems());
 		typeComboBox.setItems(TypeList);
@@ -372,8 +376,9 @@ public class DetailVehicule implements Initializable {
 		ajouterCarburantButton.setVisible(true);
 		marqueComboBox.setDisable(false);
 		ajouterMarqueButton.setVisible(true);
-		typeComboBox.setDisable(true);
+		typeComboBox.setDisable(false);
 		ajouterTypeButton.setVisible(true);//
+		ajouterTypeButton.setDisable(false);
 		idcolor.setDisable(false);
 		kilometrageTextField.setEditable(true);
 		prixJoursTextField.setEditable(true);
@@ -393,6 +398,7 @@ public class DetailVehicule implements Initializable {
 		ajouterMarqueButton.setVisible(false);
 		typeComboBox.setDisable(true);
 		ajouterTypeButton.setVisible(false);//
+		ajouterTypeButton.setDisable(true);
 		idcolor.setDisable(true);
 		kilometrageTextField.setEditable(false);
 		prixJoursTextField.setEditable(false);

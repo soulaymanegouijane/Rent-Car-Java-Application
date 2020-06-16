@@ -39,7 +39,7 @@ public class AjouterType implements Initializable {
     private JFXButton closeButton;
     
     @FXML
-    private JFXComboBox<String> mrqType;
+    public JFXComboBox<String> mrqType;
 
     ObservableList<String> listMarque = FXCollections.observableArrayList();
     
