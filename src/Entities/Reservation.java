@@ -58,11 +58,20 @@ public class Reservation implements Serializable{
 	private String cinUtilisateur;
 	private String statusRes;
 	private  String typeVehicule;
+	private String matriculeVehicule;
 	
 	@ManyToOne
 	@JoinColumn(name="idUtilisateur",referencedColumnName = "idUtilisateur",insertable = false,updatable = false)
 	private Utilisateur utilisateur;
 	
+	
+	public String getMatriculeVehicule() {
+		return matriculeVehicule;
+	}
+	
+	public void setMatriculeVehicule(String matriculeVehicule) {
+		this.matriculeVehicule = matriculeVehicule;
+	}
 	
 	
 	

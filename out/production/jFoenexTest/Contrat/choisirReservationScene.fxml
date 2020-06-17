@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to left, #b3cdd1 0%, #9fa4c4 74%);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Contrat.ChoisirReservationScene">
     <children>
-        <JFXButton fx:id="choisirButton" layoutX="104.0" layoutY="489.0" onAction="#handleChoisirButton" prefHeight="32.0" prefWidth="192.0" styleClass="searchButton" stylesheets="@../windowsSwitcher.css" text="Choisir" textFill="WHITE">
+        <JFXButton fx:id="choisirButton" layoutX="104.0" layoutY="489.0" onAction="#handleChoisirButton" prefHeight="32.0" prefWidth="192.0" styleClass="searchButton" stylesheets="@../windowsSwitcher/windowsSwitcher.css" text="Choisir" textFill="WHITE">
             <graphic>
                 <ImageView fitHeight="22.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -35,11 +35,10 @@
         </Label>
         <TableView fx:id="reservationTableView" layoutX="4.0" layoutY="111.0" prefHeight="347.0" prefWidth="393.0">
             <columns>
-                <TableColumn fx:id="col_code_reservation" prefWidth="102.0" text="Code réservation" />
-                <TableColumn fx:id="col_date_depart" prefWidth="79.0" text="Date départ" />
-                <TableColumn fx:id="col_date_retour" prefWidth="75.0" text="Date retour" />
-                <TableColumn fx:id="col_statut" prefWidth="60.0" text="Statut" />
-                <TableColumn fx:id="col_nbr_contrats" prefWidth="76.0" text="Nbr contrats" />
+                <TableColumn fx:id="col_code_reservation" prefWidth="112.00000238418579" text="Code réservation" />
+                <TableColumn fx:id="col_vehicule" prefWidth="101.33330535888672" text="Vehicule" />
+                <TableColumn fx:id="col_client" prefWidth="86.00001525878906" text="Client" />
+                <TableColumn fx:id="col_statut" prefWidth="90.0" text="Statut" />
             </columns>
         </TableView>
         <Label fx:id="errorMessage" alignment="CENTER" layoutX="4.0" layoutY="466.0" prefHeight="17.0" prefWidth="393.0" text="Selectionnez une réservation !!" textFill="RED" visible="false">

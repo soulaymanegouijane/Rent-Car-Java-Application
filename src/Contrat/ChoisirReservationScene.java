@@ -38,10 +38,10 @@ public class ChoisirReservationScene implements Initializable {
     private TableColumn<Reservation,Integer> col_code_reservation;
 
     @FXML
-    private TableColumn<Reservation,String> col_date_depart;
+    private TableColumn<Reservation,String> col_vehicule;
 
     @FXML
-    private TableColumn<Reservation,String> col_date_retour;
+    private TableColumn<Reservation,String> col_client;
 
     @FXML
     private TableColumn<Reservation,String> col_statut;
@@ -83,19 +83,18 @@ public class ChoisirReservationScene implements Initializable {
     public void remplir_tableau() {
     	ResultSet rs = null;
 		try {
-			String sql = "select * from reservation";
+			String sql = "select * from reservation where idStatus=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setLong(1, 1);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				Reservation res = new Reservation();
 				res.setIdReservation(rs.getLong("idReservation"));
-				res.setDate_depart(rs.getString("date_depart"));
-				res.setDate_retour(rs.getString("date_retour"));
-				//Status s = H.status.getById(rs.getLong("idStatus"));
-				res.setStatus(H.status.getById(rs.getLong("idStatus")));
-				//res.setStatusRes(s.getLibelle());
+				res.setMatriculeVehicule(H.vehicule.getById(rs.getString("idVehicule")).getIdVehicule());
+				res.setCinClient(H.client.getById(rs.getString("idClient")).getIdClient());
+				res.setStatusRes(H.status.getById(rs.getLong("idStatus")).getLibelle());
 				reservation_list.add(res);
 			}
 			con.close();
@@ -104,9 +103,8 @@ public class ChoisirReservationScene implements Initializable {
 		}
         
 		col_code_reservation.setCellValueFactory(new PropertyValueFactory<>("idReservation"));
-        col_date_depart.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
-        col_date_retour.setCellValueFactory(new PropertyValueFactory<>("date_retour"));
-        col_nbr_contrats.setCellValueFactory(new PropertyValueFactory<>("cinUtilisateur"));//e dois cree un attribue pour ce champs
+        col_vehicule.setCellValueFactory(new PropertyValueFactory<>("matriculeVehicule"));
+        col_client.setCellValueFactory(new PropertyValueFactory<>("cinClient"));
         col_statut.setCellValueFactory(new PropertyValueFactory<>("statusRes"));
         
         reservationTableView.setItems(reservation_list);

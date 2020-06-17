@@ -184,14 +184,10 @@ public class AjouterUnContrat implements Initializable {
     }
 
     @FXML
-    void btnReservation(ActionEvent event) {
+    void btnReservation(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirReservationScene.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent root = loader.load();;
+        
         Stage stage = new Stage();
         assert root != null;
         stage.setScene(new Scene(root));
