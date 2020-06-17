@@ -266,7 +266,13 @@ public class DetailUtilisateur implements Initializable{
             erreurMessage.setText("Remplissez tous les champs!!");
             erreurMessage.setVisible(true);
         }else if (!H.isEmailValid(emailTextField.getText())){
-            erreurMessage.setText("Erreur dans l'email !!");
+            erreurMessage.setText("Erreur dans l'email!!");
+            erreurMessage.setVisible(true);
+        }else if (!H.isNumeric(codePostalTextField.getText())) {
+            erreurMessage.setText("Erreur dans le Code Postal!!");
+            erreurMessage.setVisible(true);
+        } else if (!H.isNumeric(numeroTelephoneTextField.getText())) {
+            erreurMessage.setText("Erreur dans le N° Téléphone!!");
             erreurMessage.setVisible(true);
         }else {
             nonEditVBox.setVisible(true);
@@ -306,8 +312,14 @@ public class DetailUtilisateur implements Initializable{
     }
     
     public void handleDeleteBtn(ActionEvent actionEvent) {
+        int result = H.utilisateur.delete(User);
 
-    	AfficheErreur("Utilisateur");
+        if (result == 0){
+            AfficheErreur("Utilisateur");
+        }else {
+            closeButtonAction();
+        }
+
     }
 
     public void enableFields(){

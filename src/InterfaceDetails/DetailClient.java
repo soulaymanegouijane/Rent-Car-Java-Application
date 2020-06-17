@@ -17,17 +17,23 @@ import Test.H;
 import com.jfoenix.controls.JFXComboBox;
 
 import AbstactClasses.Abst;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class DetailClient implements Initializable{
@@ -85,6 +91,8 @@ public class DetailClient implements Initializable{
     public HBox nonEditHBox;
     public JFXComboBox<String> typeCinCombo;
     public DatePicker dateValiditeDatePicker;
+    public Label erreurMessage;
+    public StackPane stackPane;
 
     @FXML
     private JFXButton closeButton;
@@ -124,10 +132,13 @@ public class DetailClient implements Initializable{
     void deleteBtnAction(ActionEvent event) {
 
 	    //Delete Client
-		clientexisted();
+		int result = H.client.delete(client);
 
-        Stage stage = (Stage) deleteBtn.getScene().getWindow();
-        stage.close();
+        if (result == 0){
+            AfficheErreur("Client");
+        }else {
+            closeButtonAction();
+        }
     }
 	
 	@FXML
@@ -198,20 +209,19 @@ public class DetailClient implements Initializable{
     }
 
     public void handleSaveEditsButton(ActionEvent actionEvent) {
-
+        erreurMessage.setVisible(false);
         if(testEmpty()){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Alert d'erreur");
-            alert.setHeaderText("can not add Client");
-            alert.setContentText("Client n'est pas Modifier !!");
-            alert.showAndWait();
-
+            erreurMessage.setText("Remplissez tous les champs !!");
+            erreurMessage.setVisible(true);
         }else if(!H.isEmailValid(emailTextField.getText())){
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Alert d'erreur");
-            alert.setHeaderText("can not add Client");
-            alert.setContentText("Vous avez met une faute dans l'email !!");
-            alert.showAndWait();
+            erreurMessage.setText("Ereur dans l'email !!");
+            erreurMessage.setVisible(true);
+        }else if (!H.isNumeric(codePostalTextField.getText())) {
+            erreurMessage.setText("Erreur dans la saisie du Code Postal !!");
+            erreurMessage.setVisible(true);
+        } else if (!H.isNumeric(telephoneTextField.getText())) {
+            erreurMessage.setText("Erreur dans la saisie du Téléphone !!");
+            erreurMessage.setVisible(true);
         } else{
             nonEditHBox.setVisible(true);
             editHBox.setVisible(false);
@@ -222,6 +232,7 @@ public class DetailClient implements Initializable{
     }
 
     public void handleAnnulerEditsButton(ActionEvent actionEvent) {
+        erreurMessage.setVisible(false);
         nonEditHBox.setVisible(true);
         editHBox.setVisible(false);
         fillBlanks();
@@ -294,10 +305,21 @@ public class DetailClient implements Initializable{
     }
     
     public void AfficheErreur(String str) {
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Alert d'erreur");
-        	alert.setHeaderText("can not delete "+str);
-        	alert.setContentText(str+" n'est pas Supprimer !!");
-        	alert.showAndWait();
+        JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+        jfxDialogLayout.setAlignment(Pos.CENTER);
+        jfxDialogLayout.setHeading(new Text("Alert d'erreur"));
+        JFXButton okay = new JFXButton("Close");
+        jfxDialogLayout.setBody(new Text("Vous pouver pas supprimer ce " + str));
+        okay.setPrefWidth(110);
+        okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
+        okay.setButtonType(JFXButton.ButtonType.RAISED);
+        JFXDialog j = new JFXDialog(stackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+
+        okay.setOnAction(event -> {
+            j.close();
+        });
+
+        jfxDialogLayout.setActions(okay);
+        j.show();
     }
 }

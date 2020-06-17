@@ -94,9 +94,9 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 
 	@Override
 	public int delete(Utilisateur arg) {
-		int status = 0;
+		int status;
 		try {
-			String sql = "DELETE FROM utilisateur where CodeUtilisateur=?";
+			String sql = "DELETE FROM utilisateur where idUtilisateur=?";
 			Connection con = Abst.getConnection();
 			PreparedStatement ps =  con.prepareStatement(sql);
 			ps.setString(1,arg.getIdUtilisateur());
@@ -104,10 +104,8 @@ public class UtilisateurImpl extends Abst implements UtilisateurInter {
 			
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			status = 0;
 		}
-		
-		
 		return status;
 	}
 

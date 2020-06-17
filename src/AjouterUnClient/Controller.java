@@ -162,6 +162,12 @@ public class Controller implements Initializable {
         }else if(!H.isEmailValid(email)) {
             erreurMessage.setText("Vous avez fait une faute dans l'email !");
             erreurMessage.setVisible(true);
+        }else if (!H.isNumeric(codePostal)) {
+            erreurMessage.setText("Erreur dans la saisie du Code Postal !!");
+            erreurMessage.setVisible(true);
+        } else if (!H.isNumeric(telephone)) {
+            erreurMessage.setText("Erreur dans la saisie du Téléphone !!");
+            erreurMessage.setVisible(true);
         }else{
             client.setAdress(adresse);
             client.setNom(nom);
@@ -182,25 +188,11 @@ public class Controller implements Initializable {
             client.setCivilite(genre);
             client.setCarte_identifiant(typeIdentifiant);
             client.setVille(ville);
-            boolean bool = false;
-            int s = H.client.add(client);
-            
-            if(bool) {
-            	AfficheErreur(true,"client");
-            }
+
+            H.client.add(client);
 
             Stage stage =(Stage) saveButton.getScene().getWindow();
             stage.close();
-        }
-    }
-    
-    public void AfficheErreur(Boolean bool,String str) {
-    	if(bool) {
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Alert d'erreur");
-        	alert.setHeaderText("can not add "+str);
-        	alert.setContentText(str+" n'est pas Ajouter !!");
-        	alert.showAndWait();
         }
     }
 

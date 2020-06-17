@@ -1,7 +1,9 @@
 package homePage;
 
 import Entities.Utilisateur;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import windowsSwitcher.windowsSwitcher;
 
 import javafx.event.ActionEvent;
@@ -33,6 +35,9 @@ public class HomePage implements Initializable {
     public Button ReservationHomeButton;
     public Button ContratsHomeButton;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (loggedInUser.getCivilite().equals("Homme")) {
@@ -55,6 +60,9 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -65,6 +73,9 @@ public class HomePage implements Initializable {
         Scene home = new Scene(root);
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -78,6 +89,9 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -91,6 +105,9 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -104,6 +121,9 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -117,6 +137,9 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -130,6 +153,9 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -143,7 +169,29 @@ public class HomePage implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
+    }
+
+    public void setDragged(Parent root, Stage stage) {
+        xOffset = 0;
+        yOffset = 0;
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
     }
 }

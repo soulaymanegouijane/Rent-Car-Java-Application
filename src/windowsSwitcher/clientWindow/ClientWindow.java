@@ -80,6 +80,9 @@ public class ClientWindow implements Initializable {
     @FXML
     private Button detailClientButton;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "CIN", "Nom", "Prenom");
     ObservableList<Client> client_list = FXCollections.observableArrayList();
     ObservableList<Client> mono_Client = FXCollections.observableArrayList();
@@ -90,8 +93,6 @@ public class ClientWindow implements Initializable {
     	detailClientButton.setDisable(true);
     	comboBox();
         remplir_tableau();
-        Client c = H.client.getById("JB3066");
-        System.out.println(c.getDate_naissance());
     }
     
     public void comboBox() {
@@ -167,44 +168,33 @@ public class ClientWindow implements Initializable {
     	searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
 
-        if(searchSection.equals("CIN")){
-        	client_list.clear();
-        	mono_Client.clear();
-            String CINTaped = dataTextFeild.getText();
-
-            if(CINTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search client by CIN
-            	afficher_client(CINTaped);
-            }
-
-        }else if(searchSection.equals("Nom")){
-        	client_list.clear();
-        	mono_Client.clear();
-            String NomTaped = dataTextFeild.getText();
-
-            if(NomTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search client by Nam
-            	afficher_client(NomTaped);
-            }
-
-        }else if(searchSection.equals("Prenom")){
-        	client_list.clear();
-        	mono_Client.clear();
-            String PrenomTaped = dataTextFeild.getText();
-
-            if(PrenomTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search client by prenom
-            	afficher_client(PrenomTaped);
-            }
-
+        if (dataTextFeild.getText().isEmpty()){
+            enable(ErreurMessage);
         }else {
-        	remplir_tableau();
+            if(searchSection.equals("CIN")){
+                client_list.clear();
+                mono_Client.clear();
+
+                // Search client by CIN
+                afficher_client(dataTextFeild.getText());
+
+            }else if(searchSection.equals("Nom")){
+                client_list.clear();
+                mono_Client.clear();
+
+                // Search client by Nam
+                afficher_client(dataTextFeild.getText());
+
+            }else if(searchSection.equals("Prenom")){
+                client_list.clear();
+                mono_Client.clear();
+
+                // Search client by prenom
+                afficher_client(dataTextFeild.getText());
+
+            }else {
+                remplir_tableau();
+            }
         }
     }
     
