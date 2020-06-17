@@ -49,7 +49,7 @@ public class Vehicule implements Serializable{
 	
 	
 	@Column(name="idCarburant",nullable=true)
-	private long dCarburant;
+	private long idCarburant;
 	@Column(name="idType",nullable=true)
 	private long idType;
 	@Column(name="idParking",nullable=true)
