@@ -13,6 +13,7 @@ import Contrat.AjouterUnContrat;
 import Entities.Contrat;
 import Entities.Factures;
 import Entities.Reservation;
+import Entities.Vehicule;
 import Test.H;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -27,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
@@ -34,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -516,5 +519,38 @@ public class DetailReservation implements Initializable {
             }
         }
         return null;
+    }
+
+    public void handleDeleteReservationBtn(ActionEvent actionEvent) {
+        //Delete Reservation
+        Vehicule vehicule = reservation.getVehicule();
+        int result = H.reservation.delete(reservation);
+
+        if (result == 0){
+            AfficheErreur("Réservation");
+        }else {
+            reservation.getVehicule().setDispo("Disponible");
+            H.vehicule.edit(vehicule);
+            closeButtonAction(actionEvent);
+        }
+    }
+
+    public void AfficheErreur(String str) {
+        JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+        jfxDialogLayout.setAlignment(Pos.CENTER);
+        jfxDialogLayout.setHeading(new Text("Alert d'erreur"));
+        JFXButton okay = new JFXButton("Close");
+        jfxDialogLayout.setBody(new Text("Vous pouver pas supprimer cette " + str));
+        okay.setPrefWidth(110);
+        okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
+        okay.setButtonType(JFXButton.ButtonType.RAISED);
+        JFXDialog j = new JFXDialog(primaryStackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+
+        okay.setOnAction(event -> {
+            j.close();
+        });
+
+        jfxDialogLayout.setActions(okay);
+        j.show();
     }
 }

@@ -46,12 +46,12 @@ public class LoginToUpdate {
         	
             if(usernameTaped.equals(utilisateur.getUsername()) && passwordTaped.equals(utilisateur.getPass())) {
             	activateUpdate = true;
+                Stage stage = (Stage) EnterButton.getScene().getWindow();
+                stage.close();
             }else {
             	activateUpdate = false;
+                erreurMessage.setVisible(true);
             }
-
-            Stage stage = (Stage) EnterButton.getScene().getWindow();
-            stage.close();
         }
     }
 

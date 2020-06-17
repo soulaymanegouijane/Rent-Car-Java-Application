@@ -17,11 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<StackPane fx:id="primaryStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="797.0" stylesheets="@../Css/dialog.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailReservation">
+<StackPane fx:id="primaryStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="804.0" stylesheets="@../Css/dialog.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailReservation">
    <children>
-      <AnchorPane prefHeight="553.0" prefWidth="770.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css">
+      <AnchorPane prefHeight="572.0" prefWidth="788.0" styleClass="SceneHolder">
          <children>
-            <Pane prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;">
+            <Pane prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #406C87;" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="290.0" layoutY="18.0" styleClass="text" stylesheets="@../Css/textStyle.css" text="Détail De la Réservation :" textFill="WHITE" />
                   <JFXButton fx:id="closeButton" layoutX="637.0" layoutY="18.0" onAction="#closeButtonAction" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
@@ -261,6 +261,15 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
+                        <JFXButton fx:id="deleteReservationBtn" layoutX="218.0" layoutY="17.0" onAction="#handleDeleteReservationBtn" prefHeight="30.0" prefWidth="141.0" style="-fx-background-color: red; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                 <image>
+                                    <Image url="@../Css/Images/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
                      </children>
                   </HBox>
                </children>
@@ -361,6 +370,10 @@
                </children>
             </VBox>
          </children>
+         <stylesheets>
+            <URL value="@../Css/holder.css" />
+            <URL value="@../Css/holder.css" />
+         </stylesheets>
       </AnchorPane>
    </children>
 </StackPane>

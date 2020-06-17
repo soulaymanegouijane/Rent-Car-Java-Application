@@ -104,7 +104,7 @@ public class ReservationImpl extends Abst implements ReservationInter {
 			
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			status = 0;
 		}
 		
 		

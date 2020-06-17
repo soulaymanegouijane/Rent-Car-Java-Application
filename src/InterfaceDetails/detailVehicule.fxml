@@ -14,368 +14,374 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="704.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailVehicule">
-    <children>
-        <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
-            <children>
-                <Label alignment="CENTER" layoutX="91.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Détail Du Véhicule :" textFill="WHITE" />
-                  <JFXButton fx:id="closeButton" layoutX="413.0" layoutY="10.0" onAction="#closeButtonAction" prefHeight="40.0" prefWidth="85.0" style="-fx-background-color: #61B1FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="OK" textFill="WHITE" />
-            </children>
-        </Pane>
-        <VBox layoutY="65.0" prefHeight="629.0" prefWidth="500.0">
-            <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailVehicule">
+   <children>
+      <AnchorPane prefHeight="704.0" prefWidth="500.0">
+         <children>
+            <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
                <children>
-                  <TextField fx:id="imagePath" editable="false" visible="false" />
-                  <HBox alignment="CENTER" prefHeight="158.0" prefWidth="235.0">
+                  <Label alignment="CENTER" layoutX="91.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Détail Du Véhicule :" textFill="WHITE" />
+                  <JFXButton fx:id="closeButton" layoutX="401.0" layoutY="18.0" onAction="#closeButtonAction" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #61B1FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
+               </children>
+            </Pane>
+            <VBox layoutY="65.0" prefHeight="629.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #a5a5a5; -fx-border-width: 2;">
+                        <TextField fx:id="imagePath" editable="false" visible="false" />
+                        <HBox alignment="CENTER" prefHeight="158.0" prefWidth="235.0">
                            <children>
-                              <ImageView fx:id="photoVehicule" fitHeight="158.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" />
+                              <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #a5a5a5; -fx-border-width: 2;">
+                                 <children>
+                                    <ImageView fx:id="photoVehicule" fitHeight="158.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </VBox>
                            </children>
-                        </VBox>
+                        </HBox>
+                        <JFXButton fx:id="editPhotoVehiculeBtn" onAction="#btnimageAction" prefHeight="25.0" prefWidth="197.0" style="-fx-background-color: #1ED760; -fx-background-radius: 0 0 40 40; -fx-border-color: #a5a5a5; -fx-border-radius: 0 0 40 40;" stylesheets="@../Css/MinitextStyle.css" text="Modifier la Photo" textFill="WHITE" visible="false" />
                      </children>
-                  </HBox>
-                  <JFXButton fx:id="editPhotoVehiculeBtn" onAction="#btnimageAction" prefHeight="25.0" prefWidth="197.0" style="-fx-background-color: #1ED760; -fx-background-radius: 0 0 40 40; -fx-border-color: #a5a5a5; -fx-border-radius: 0 0 40 40;" stylesheets="@../Css/MinitextStyle.css" text="Modifier la Photo" textFill="WHITE" visible="false" />
-               </children>
-            </VBox>
-                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="500.0">
-                    <padding>
-                        <Insets bottom="5.0" top="10.0" />
-                    </padding>
-                    <children>
-                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Matricule de la voiture :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                        <TextField fx:id="idmatricule" alignment="CENTER" editable="false" prefWidth="180.0">
-                            <HBox.margin>
-                                <Insets left="30.0" />
-                            </HBox.margin>
-                            <stylesheets>
-                                <URL value="@../Css/textinputstyle.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="text-field" />
-                            </styleClass>
-                        </TextField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
-                    <padding>
-                        <Insets bottom="5.0" top="10.0" />
-                    </padding>
-                    <children>
-                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Nombre de place :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                  <TextField fx:id="nombrePlaceTextField" alignment="CENTER" editable="false" prefWidth="180.0">
-                     <stylesheets>
-                        <URL value="@../Css/textinputstyle.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text-field" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </TextField>
-                    </children>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-                </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="500.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="130.0" stylesheets="@../Css/MinitextStyle.css" text="Type de carburant :" textFill="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <JFXComboBox fx:id="carburantComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="170.0" promptText="Carburant" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
-                     <stylesheets>
-                        <URL value="@../Css/combo.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                  </JFXComboBox>
-                  <JFXButton fx:id="ajouterCarburantButton" onAction="#handleAjouterCarburantButton" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="chooseImageButton" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" visible="false">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="500.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="129.0" stylesheets="@../Css/MinitextStyle.css" text="Marque :" textFill="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <JFXComboBox fx:id="marqueComboBox" disable="true" focusColor="#63b4ff" layoutX="180.0" layoutY="30.0" onAction="#TypeOfTheMarque" prefHeight="25.0" prefWidth="172.0" promptText="Marque" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
-                     <stylesheets>
-                        <URL value="@../Css/combo.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
-                  <JFXButton fx:id="ajouterMarqueButton" onAction="#handleAjouterMarqueButton" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" visible="false">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="500.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="132.0" stylesheets="@../Css/MinitextStyle.css" text="Type :" textFill="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <JFXComboBox fx:id="typeComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="171.0" promptText="Type" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
-                     <stylesheets>
-                        <URL value="@../Css/combo.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
-                  <JFXButton fx:id="ajouterTypeButton" disable="true" onAction="#handleAjouterTypeButton" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" visible="false">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text" />
-                     </styleClass>
-                  </JFXButton>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" right="5.0" top="10.0" />
-               </padding>
-            </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="198.0" prefHeight="47.0" prefWidth="500.0">
-                    <children>
-                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="41.0" prefWidth="500.0">
                      <padding>
                         <Insets bottom="5.0" top="10.0" />
                      </padding>
+                     <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Matricule de la voiture :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                  <ColorPicker fx:id="idcolor" disable="true" prefHeight="30.0" prefWidth="187.0" stylesheets="@../Css/datePicker.css">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                     <styleClass>
-                        <String fx:value="datePicker" />
-                        <String fx:value="date-picker-display-node" />
-                     </styleClass></ColorPicker>
-                    </children>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-                </HBox>
-            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="500.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="162.0" stylesheets="@../Css/MinitextStyle.css" text="Kilométrage :" textFill="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="kilometrageTextField" alignment="CENTER" editable="false" prefWidth="180.0">
-                     <stylesheets>
-                        <URL value="@../Css/textinputstyle.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text-field" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="500.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="155.0" stylesheets="@../Css/MinitextStyle.css" text="Prix par jour :" textFill="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="prixJoursTextField" alignment="CENTER" editable="false" prefWidth="180.0">
-                     <stylesheets>
-                        <URL value="@../Css/textinputstyle.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text-field" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-               <padding>
-                  <Insets bottom="5.0" top="10.0" />
-               </padding>
-            </HBox>
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0">
-                    <padding>
+                        <TextField fx:id="idmatricule" alignment="CENTER" editable="false" prefWidth="180.0">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="57.0" prefHeight="47.0" prefWidth="500.0">
+                     <padding>
                         <Insets bottom="5.0" top="10.0" />
-                    </padding>
-                    <children>
-                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Parking :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="60.0" />
-                            </HBox.margin>
+                     </padding>
+                     <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Nombre de place :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                  <TextField fx:id="idParking" alignment="CENTER" disable="true" editable="false" prefWidth="180.0">
-                     <stylesheets>
-                        <URL value="@../Css/textinputstyle.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                     <styleClass>
-                        <String fx:value="text" />
-                        <String fx:value="text-field" />
-                     </styleClass>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button fx:id="choisirParkingBtn" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#EditParking" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" visible="false">
-                     <graphic>
-                        <ImageView fx:id="editParkingBtn" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Css/Images/pen.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Button>
-                    </children>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-                </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="290.0" prefHeight="57.0" prefWidth="500.0">
-               <padding>
-                  <Insets bottom="5.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-               <children>
-                  <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Disponibilité :" textFill="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <JFXComboBox fx:id="dispoVehicule" disable="true" focusColor="#63b4ff" maxHeight="23.0" maxWidth="1.7976931348623157E308" prefHeight="23.0" prefWidth="180.0" promptText="Choisissez la disponibilité" style="-jfx-label-float: true;" styleClass="jfx-combo-box" unFocusColor="#b9b3b3">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                     <stylesheets>
-                        <URL value="@../Css/combo.css" />
-                        <URL value="@../Css/MinitextStyle.css" />
-                     </stylesheets>
-                  </JFXComboBox>
-               </children>
-            </HBox>
-            <Label fx:id="erreurMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="534.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <HBox fx:id="nonEditableHBox" alignment="CENTER" prefHeight="46.0" prefWidth="500.0" spacing="100.0">
+                        <TextField fx:id="nombrePlaceTextField" alignment="CENTER" editable="false" prefWidth="180.0">
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="500.0">
                      <children>
-                        <JFXButton fx:id="deleteBtn" onAction="#handleDeleteBtn" prefHeight="29.0" prefWidth="140.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
+                        <Label prefHeight="17.0" prefWidth="130.0" stylesheets="@../Css/MinitextStyle.css" text="Type de carburant :" textFill="#b9b3b3">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="10.0" />
                            </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                                 <image>
-                                    <Image url="@../Css/Images/delete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="editBtn" layoutX="240.0" layoutY="26.0" onAction="#handleEditBtn" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                        </Label>
+                        <JFXComboBox fx:id="carburantComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="170.0" promptText="Carburant" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="60.0" />
                            </HBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                                 <image>
-                                    <Image url="@../Css/Images/Edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
+                           <stylesheets>
+                              <URL value="@../Css/combo.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                        </JFXComboBox>
+                        <JFXButton fx:id="ajouterCarburantButton" onAction="#handleAjouterCarburantButton" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="chooseImageButton" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" visible="false">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </JFXButton>
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" right="5.0" top="10.0" />
+                     </padding>
                   </HBox>
-                  <HBox fx:id="editableHBox" alignment="CENTER" prefHeight="46.0" prefWidth="500.0" spacing="100.0" visible="false">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="500.0">
                      <children>
-                        <JFXButton fx:id="annulerBtn" onAction="#handleAnnulerBtn" prefHeight="29.0" prefWidth="140.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                                 <image>
-                                    <Image url="@../img/xIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="enregistrerBtn" onAction="#handleEnregistrerBtn" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                                 <image>
-                                    <Image url="@../img/save.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
+                        <Label prefHeight="17.0" prefWidth="129.0" stylesheets="@../Css/MinitextStyle.css" text="Marque :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="marqueComboBox" disable="true" focusColor="#63b4ff" layoutX="180.0" layoutY="30.0" onAction="#TypeOfTheMarque" prefHeight="25.0" prefWidth="172.0" promptText="Marque" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                           <stylesheets>
+                              <URL value="@../Css/combo.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <JFXButton fx:id="ajouterMarqueButton" onAction="#handleAjouterMarqueButton" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" visible="false">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </JFXButton>
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" right="5.0" top="10.0" />
+                     </padding>
                   </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="500.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="132.0" stylesheets="@../Css/MinitextStyle.css" text="Type :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="typeComboBox" disable="true" focusColor="#63b4ff" prefHeight="25.0" prefWidth="171.0" promptText="Type" style="-jfx-label-float: true;" unFocusColor="#cdcdcd">
+                           <stylesheets>
+                              <URL value="@../Css/combo.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <JFXButton fx:id="ajouterTypeButton" disable="true" onAction="#handleAjouterTypeButton" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Ajouter" textFill="WHITE" visible="false">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" right="5.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="198.0" prefHeight="47.0" prefWidth="500.0">
+                     <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Couleur :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <ColorPicker fx:id="idcolor" disable="true" prefHeight="30.0" prefWidth="187.0" stylesheets="@../Css/datePicker.css">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="datePicker" />
+                              <String fx:value="date-picker-display-node" />
+                           </styleClass>
+                        </ColorPicker>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="500.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="162.0" stylesheets="@../Css/MinitextStyle.css" text="Kilométrage :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="kilometrageTextField" alignment="CENTER" editable="false" prefWidth="180.0">
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="500.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="155.0" stylesheets="@../Css/MinitextStyle.css" text="Prix par jour :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="prixJoursTextField" alignment="CENTER" editable="false" prefWidth="180.0">
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="151.0" prefHeight="47.0" prefWidth="500.0">
+                     <padding>
+                        <Insets bottom="5.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Parking :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idParking" alignment="CENTER" disable="true" editable="false" prefWidth="180.0">
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button fx:id="choisirParkingBtn" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#EditParking" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" visible="false">
+                           <graphic>
+                              <ImageView fx:id="editParkingBtn" fitHeight="18.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Css/Images/pen.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="290.0" prefHeight="57.0" prefWidth="500.0">
+                     <padding>
+                        <Insets bottom="5.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label prefWidth="160.0" stylesheets="@../Css/MinitextStyle.css" text="Disponibilité :" textFill="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <JFXComboBox fx:id="dispoVehicule" disable="true" focusColor="#63b4ff" maxHeight="23.0" maxWidth="1.7976931348623157E308" prefHeight="23.0" prefWidth="180.0" promptText="Choisissez la disponibilité" style="-jfx-label-float: true;" styleClass="jfx-combo-box" unFocusColor="#b9b3b3">
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/combo.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                        </JFXComboBox>
+                     </children>
+                  </HBox>
+                  <Label fx:id="erreurMessage" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="534.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <HBox fx:id="nonEditableHBox" alignment="CENTER" prefHeight="46.0" prefWidth="500.0" spacing="100.0">
+                           <children>
+                              <JFXButton fx:id="deleteBtn" onAction="#handleDeleteBtn" prefHeight="29.0" prefWidth="140.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../Css/Images/delete.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="editBtn" layoutX="240.0" layoutY="26.0" onAction="#handleEditBtn" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../Css/Images/Edit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="editableHBox" alignment="CENTER" prefHeight="46.0" prefWidth="500.0" spacing="100.0" visible="false">
+                           <children>
+                              <JFXButton fx:id="annulerBtn" onAction="#handleAnnulerBtn" prefHeight="29.0" prefWidth="140.0" style="-fx-background-color: #E53434; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../img/xIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="enregistrerBtn" onAction="#handleEnregistrerBtn" prefHeight="28.0" prefWidth="140.0" style="-fx-background-color: #1ED760; -fx-background-radius: 40;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                       <image>
+                                          <Image url="@../img/save.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
-            </children>
-        </VBox>
-    </children>
-
-</AnchorPane>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

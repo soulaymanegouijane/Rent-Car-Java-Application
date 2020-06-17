@@ -345,78 +345,74 @@ public class VehiculeWindow implements Initializable {
         disable(ErreurMessage);
 
         if (searchSection.equals("Matricule")) {
-        	vehicule_list.clear();
-        	mono_vehicule.clear();
             String matriculeTaped = matriculeTextFeild.getText();
             if (matriculeTaped.isEmpty()) {
                 enable(ErreurMessage);
             } else {
                 // Search vehicule by matricule
+				vehicule_list.clear();
+				mono_vehicule.clear();
             	afficher_vehicule(matriculeTaped);
             }
 
         } else if (searchSection.equals("Type")) {
-        	vehicule_list.clear();
-        	mono_vehicule.clear();
             String typeTaped = typeComboBox.getValue();
-
             // Search vehicule by Type
             if (typeTaped.isEmpty()) {
                 enable(ErreurMessage);
             } else {
                 // Search vehicule by emplacement
+				vehicule_list.clear();
+				mono_vehicule.clear();
             	Type type = H.type.get(typeTaped);
             	afficher_vehicule(String.valueOf(type.getIdType()));
             }
 
         } else if (searchSection.equals("Marque")) {
-        	vehicule_list.clear();
-        	mono_vehicule.clear();
             String marqueTaped = marqueComboBox.getValue();
-            System.out.println("----->" +marqueTaped );
             // Search vehicule by Marque
-            if (marqueTaped.isEmpty()) {
+            if (marqueTaped == null) {
                 enable(ErreurMessage);
             } else {
+				vehicule_list.clear();
+				mono_vehicule.clear();
                 // Search vehicule by emplacement
             	mrq_type_Vehicule(marqueTaped);
             }
 
         }else if (searchSection.equals("Carburant")) {
-        	vehicule_list.clear();
-        	mono_vehicule.clear();
             String carburantTaped = carburantComboBox.getValue();
 
             // Search vehicule by carburant
-            if (carburantTaped.isEmpty()) {
+            if (carburantTaped == null) {
                 enable(ErreurMessage);
             } else {
-            	
+				vehicule_list.clear();
+				mono_vehicule.clear();
             	afficher_vehicule(carburantTaped);
             }
 
         } else if (searchSection.equals("Disponibilite")) {
-        	vehicule_list.clear();
-        	mono_vehicule.clear();
             String disponibiliteTaped = disponibiliteComboBox.getValue();
-			System.out.println("------------------> *" + disponibiliteTaped);
             // Search vehicule by disponibilite
-            if (disponibiliteTaped.isEmpty()) {
+            if (disponibiliteTaped == null) {
                 enable(ErreurMessage);
             } else {
                 // Search vehicule by emplacement
+				vehicule_list.clear();
+				mono_vehicule.clear();
             	afficher_vehicule(disponibiliteTaped);
             }
 
         } else if (searchSection.equals("Emplacement")) {
-        	vehicule_list.clear();
-        	mono_vehicule.clear();
             String emplacementTaped = textFeildChoisirParking.getText();
 
             if (emplacementTaped.isEmpty()) {
                 enable(ErreurMessage);
             } else {
                 // Search vehicule by emplacement
+				vehicule_list.clear();
+				mono_vehicule.clear();
             	afficher_vehicule(emplacementTaped);
             }
 
@@ -447,8 +443,6 @@ public class VehiculeWindow implements Initializable {
     	DetailVehicule.voiture = vehiculeSelected;
         Parent root = loader.load();
         
-        //FunctionAffiche(loader);
-        
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);
@@ -473,19 +467,6 @@ public class VehiculeWindow implements Initializable {
     		detailVehiculeButton.setDisable(false);
     	}
     }
-    
-    /*public void FunctionAffiche(FXMLLoader loader) {
-    	DetailVehicule detail = loader.getController();
-    	
-    	detail.idmatricule.setText(vehiculeSelected.getIdVehicule());
-    	detail.idcolor.setValue(javafx.scene.paint.Color.valueOf((String) vehiculeSelected.getColor()));
-    	detail.nombrePlaceTextField.setText(String.valueOf(vehiculeSelected.getNbr_place()));
-    	detail.dispoVehicule.setValue(vehiculeSelected.getDispo());
-    	detail.carburantComboBox.setValue(vehiculeSelected.getCarburant().getLibelle());
-    	detail.marqueComboBox.setValue(vehiculeSelected.getType().getMarque().getLibelle());
-    	detail.idParking.setText(vehiculeSelected.getParking().getAdress());
-    	detail.photoVehicule.setImage(new Image(new ByteArrayInputStream(vehiculeSelected.getImage()), 142, 123, false, false));
-    }*/
 
 	public void handleButtonChoisirParking(ActionEvent actionEvent) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("choisirParkingScene.fxml"));

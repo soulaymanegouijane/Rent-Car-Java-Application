@@ -262,6 +262,11 @@ public class ReservationWindow implements Initializable {
 				ps = con.prepareStatement(sql);
 				ps.setLong(1, Long.valueOf(valeur));
 			}
+            if(searchSection.equals("Id")) {
+                sql = "select * from reservation where idReservation=?";
+                ps = con.prepareStatement(sql);
+                ps.setLong(1, Long.valueOf(valeur));
+            }
 			tous_les_reservation = ps.executeQuery();
 			while(tous_les_reservation.next()) {
 				System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*---->");
@@ -498,81 +503,88 @@ public class ReservationWindow implements Initializable {
         
         // on n'a pas besoin ce trucs la 
         if(searchSection.equals("Id")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String idTaped = idTextFeild.getText();
 
             if(idTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
                 // Search résérvation by id
             	afficher_reservation(idTaped);
             }
 
         }else if(searchSection.equals("Type")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String typeSelected = typeComboBox.getValue();
 
             if(typeSelected.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
             	TypeReservation type = H.typeres.get(typeSelected);
             	afficher_reservation(String.valueOf(type.getIdTypeReservation()));
             }
 
         }else if(searchSection.equals("Date")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String dateTaped = ((TextField)dateDatePicker.getEditor()).getText();
 
             if(dateTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
             	afficher_reservation(dateTaped);
             }
 
         }else if(searchSection.equals("Vehicule")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String vehiculeTaped = textFeildChoisirVehicule.getText();
 
             if(vehiculeTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
             	afficher_reservation(vehiculeTaped);
             }
 
         }else if(searchSection.equals("Client")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String clientTaped = textFeildChoisirClient.getText();
 
             if(clientTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
             	afficher_reservation(clientTaped);
             }
 
         }else if(searchSection.equals("Utilisateur")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String utilisateurTaped = textFeildChoisirUtilisateur.getText();
 
             if(utilisateurTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
             	afficher_reservation(utilisateurTaped);
             }
 
         }else if(searchSection.equals("Status")){
-        	mono_reservation.clear();
-            reservation_list.clear();
+
             String statutTaped = statutComboBox.getValue();
 
             if(statutTaped.isEmpty()){
                 enable(ErreurMessage);
             }else {
+                mono_reservation.clear();
+                reservation_list.clear();
             	Status status = H.status.get(statutTaped);
             	afficher_reservation(String.valueOf(status.getIdStatus()));
             }
@@ -580,23 +592,6 @@ public class ReservationWindow implements Initializable {
         }
     }
     
-//    public long getReservation(String idUser) {
-//    	Connection con = Abst.getConnection();
-//    	String sql = "select idReservation from reservation where idUtilisateur = ?";
-//    	long idReservation = 0;
-//    	try {
-//			PreparedStatement ps = con.prepareStatement(sql);
-//			ps.setString(1, idUser);
-//			ResultSet rs = ps.executeQuery();
-//			if(rs.next()) {
-//				idReservation = rs.getLong("idReservation");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//    	return idReservation;
-//    }
-
     public void disable(TextField TF){
         TF.setVisible(false);
         TF.setDisable(true);

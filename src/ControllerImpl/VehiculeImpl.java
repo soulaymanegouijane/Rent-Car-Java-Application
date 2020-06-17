@@ -90,7 +90,7 @@ public class VehiculeImpl extends Abst implements VehiculeInter {
 			
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			status = 0;
 		}
 		
 		

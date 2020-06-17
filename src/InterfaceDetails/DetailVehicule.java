@@ -13,9 +13,7 @@ import AjouterType.AjouterType;
 import Entities.Type;
 import Entities.Vehicule;
 import Test.H;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXColorPicker;
-import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.*;
 
 import AbstactClasses.Abst;
 import AjouterCarburant.AjouterCarburant;
@@ -29,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,7 +37,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -93,8 +94,9 @@ public class DetailVehicule implements Initializable {
 	public JFXComboBox<String> typeComboBox;
 	public JFXButton ajouterTypeButton;
 	public TextField imagePath;
+    public StackPane stackPane;
 
-	ObservableList<String> TypeList = FXCollections.observableArrayList();
+    ObservableList<String> TypeList = FXCollections.observableArrayList();
 	ObservableList<String> carburantList = FXCollections.observableArrayList();
     ObservableList<String> marqueList = FXCollections.observableArrayList();
     ObservableList<String> dispoList = FXCollections.observableArrayList("Disponible", "Reserver", "indisponible");
@@ -344,6 +346,33 @@ public class DetailVehicule implements Initializable {
 	}
 
 	public void handleDeleteBtn(ActionEvent actionEvent) {
+		//Delete Véhicule
+		int result = H.vehicule.delete(voiture);
+
+		if (result == 0){
+			AfficheErreur("Véhicule");
+		}else {
+			closeButtonAction();
+		}
+	}
+
+	public void AfficheErreur(String str) {
+		JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+		jfxDialogLayout.setAlignment(Pos.CENTER);
+		jfxDialogLayout.setHeading(new Text("Alert d'erreur"));
+		JFXButton okay = new JFXButton("Close");
+		jfxDialogLayout.setBody(new Text("Vous pouver pas supprimer cette " + str));
+		okay.setPrefWidth(110);
+		okay.setStyle("-fx-background-color: #F39C12; -fx-text-fill: white;");
+		okay.setButtonType(JFXButton.ButtonType.RAISED);
+		JFXDialog j = new JFXDialog(stackPane, jfxDialogLayout, JFXDialog.DialogTransition.CENTER);
+
+		okay.setOnAction(event -> {
+			j.close();
+		});
+
+		jfxDialogLayout.setActions(okay);
+		j.show();
 	}
 
 	public void handleEditBtn(ActionEvent actionEvent) {
@@ -358,8 +387,18 @@ public class DetailVehicule implements Initializable {
 	public void handleEnregistrerBtn(ActionEvent actionEvent) {
 		erreurMessage.setVisible(false);
 		if (testEmpty()){
+			erreurMessage.setText("Remplissez tous les champs !!");
 			erreurMessage.setVisible(true);
-		}else {
+		}else if (!H.isNumeric(nombrePlaceTextField.getText())){
+			erreurMessage.setText("Nombre de places doit étre numérique !!");
+			erreurMessage.setVisible(true);
+		}else if (!H.isNumeric(kilometrageTextField.getText())){
+			erreurMessage.setText("Kilométrage doit étre numérique !!");
+			erreurMessage.setVisible(true);
+		}else if (!H.isDouble(prixJoursTextField.getText())){
+			erreurMessage.setText("Prix par jours doit étre numérique !!");
+			erreurMessage.setVisible(true);
+		} else {
 			rewriteVoitureInfos();
 			H.vehicule.edit(voiture);
 			disableEditing();

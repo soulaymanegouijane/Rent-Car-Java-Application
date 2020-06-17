@@ -246,9 +246,20 @@ public class AjouterVehicule implements Initializable{
 	}
 
 	public void handleSubmitButton(ActionEvent actionEvent) {
+		erreurMessage.setVisible(false);
 		if (testEmpty()){
+			erreurMessage.setText("Remplissez tous les champs !!");
 			erreurMessage.setVisible(true);
-		}else{
+		}else if (!H.isNumeric(nombrePlaceTextField.getText())){
+			erreurMessage.setText("Nombre de places doit étre numérique !!");
+			erreurMessage.setVisible(true);
+		}else if (!H.isNumeric(kilometrageTextField.getText())){
+			erreurMessage.setText("Kilométrage doit étre numérique !!");
+			erreurMessage.setVisible(true);
+		}else if (!H.isDouble(prixJoursTextField.getText())){
+			erreurMessage.setText("Prix par jours doit étre numérique !!");
+			erreurMessage.setVisible(true);
+		} else{
 			String matricule = matriculeTextField.getText();
 			int nbrPlace = Integer.parseInt(nombrePlaceTextField.getText());
 			String carbutant = (String) carburantComboBox.getValue();

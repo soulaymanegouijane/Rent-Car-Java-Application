@@ -113,10 +113,8 @@ public class parkingWindow implements Initializable {
 
     public void handleDetailParkingButton(ActionEvent actionEvent) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("../../InterfaceDetails/detailGarage.fxml"));
+    	DetailGarage.parking = parkingSelected;
         Parent root = loader.load();
-        
-        // fonction pour remplir les champs du detailClient interface
-        FunctionAffiche(loader);
         
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -128,15 +126,6 @@ public class parkingWindow implements Initializable {
         mono_parking.clear();
         parking_list.clear();
         remplir_tableau();
-    }
-    
-    public void FunctionAffiche(FXMLLoader loader) {
-    	DetailGarage detail = loader.getController();
-    	
-    	detail.adressparkingTextField.setText(parkingSelected.getAdress());
-    	detail.capaciteParkingTextField.setText(String.valueOf(parkingSelected.getCapacite()));
-    	detail.idparkingTextField.setText(String.valueOf(parkingSelected.getIdParking()));
-    	detail.occupeParkingTextField.setText(String.valueOf(parkingSelected.getNbr_place_pleinne()));    	
     }
         
     @FXML
@@ -163,7 +152,10 @@ public class parkingWindow implements Initializable {
 
         }else if(searchSection.equals("Adress") || searchSection.equals("Capacite") || searchSection.equals("places sature")){
 
+            choisirParkingBtn.setVisible(false);
+            dataTextFeild.setEditable(true);
             enable(dataTextFeild);
+
             if(searchSection.equals("Adress")){
                 choisirParkingBtn.setVisible(true);
                 dataTextFeild.setEditable(false);
@@ -177,7 +169,7 @@ public class parkingWindow implements Initializable {
         disable(ErreurMessage);
         if (dataTextFeild.getText().isEmpty()){
             enable(ErreurMessage);
-        }else{
+        } else{
             if(searchSection.equals("Adress")){
                 parking_list.clear();
                 mono_parking.clear();
@@ -187,23 +179,26 @@ public class parkingWindow implements Initializable {
 
 
             }else if(searchSection.equals("Capacite")){
-                parking_list.clear();
-                mono_parking.clear();
+                if (H.isNumeric(dataTextFeild.getText())) {
+                    parking_list.clear();
+                    mono_parking.clear();
 
-                String capaciteTaped = dataTextFeild.getText();
+                    String capaciteTaped = dataTextFeild.getText();
 
-                afficher_parking(capaciteTaped);
-
-
-
+                    afficher_parking(capaciteTaped);
+                }else{
+                    enable(ErreurMessage);
+                }
             }else if(searchSection.equals("places sature")){
-                parking_list.clear();
-                mono_parking.clear();
-                String placesTaped = dataTextFeild.getText();
+                if (H.isNumeric(dataTextFeild.getText())) {
+                    parking_list.clear();
+                    mono_parking.clear();
+                    String placesTaped = dataTextFeild.getText();
 
-                afficher_parking(placesTaped);
-
-
+                    afficher_parking(placesTaped);
+                }else{
+                    enable(ErreurMessage);
+                }
             }else {
                 parking_list.clear();
                 mono_parking.clear();
@@ -229,12 +224,12 @@ public class parkingWindow implements Initializable {
 			if(searchSection.equals("Capacite")) {
 				sql = "select * from parking where capacite=?";
 				ps = con.prepareStatement(sql);
-				ps.setLong(1, Long.valueOf(valeur));
+				ps.setLong(1, Long.parseLong(valeur));
 			}
 			if(searchSection.equals("places sature")) {
 				sql = "select * from parking where nbr_place_pleinne=?";
 				ps = con.prepareStatement(sql);
-				ps.setInt(1, Integer.valueOf(valeur));
+				ps.setInt(1, Integer.parseInt(valeur));
 			}
 			tous_les_parking = ps.executeQuery();
 			while(tous_les_parking.next()) {

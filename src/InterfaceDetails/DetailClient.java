@@ -282,6 +282,7 @@ public class DetailClient implements Initializable{
     }
 
     boolean cannotDelete = false;
+
     public void clientexisted() {
     	Connection con = Abst.getConnection();
     	String sql = "select idClient from reservation";

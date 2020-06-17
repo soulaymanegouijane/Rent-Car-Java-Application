@@ -68,7 +68,7 @@ public class ParkingImpl extends Abst implements ParkingInter{
 			status =ps.executeUpdate(); 
 			con.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			status = 0;
 		}
 		return status;
 	}

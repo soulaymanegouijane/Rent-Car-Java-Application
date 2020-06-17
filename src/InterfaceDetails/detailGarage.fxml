@@ -11,134 +11,169 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailGarage">
-    <children>
-        <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;">
-            <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Détail Du Parking" textFill="WHITE" />
-                  <JFXButton fx:id="closeButton" onAction="#closeButtonAction" layoutX="397.0" layoutY="8.0" prefHeight="50.0" prefWidth="89.0" style="-fx-background-radius: 40; -fx-background-color: #63B4FF;" stylesheets="@../Css/MinitextStyle.css" text="OK" textFill="WHITE" />
-            </children>
-        </Pane>
-        <VBox layoutY="65.0" prefHeight="424.0" prefWidth="500.0" AnchorPane.topAnchor="60.0">
-            <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="500.0">
-                    <children>
+
+<StackPane fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.DetailGarage">
+   <children>
+      <AnchorPane prefHeight="450.0" prefWidth="500.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css">
+         <children>
+            <Pane prefHeight="65.0" prefWidth="500.0" style="-fx-background-color: #406C87;" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="18.0" prefHeight="29.0" prefWidth="366.0" stylesheets="@../Css/textStyle.css" text="Détail Du Parking" textFill="WHITE" />
+                  <JFXButton fx:id="closeButton" layoutX="389.0" layoutY="15.0" onAction="#closeButtonAction" prefHeight="35.0" prefWidth="89.0" style="-fx-background-radius: 40; -fx-background-color: #63B4FF;" stylesheets="@../Css/MinitextStyle.css" text="Fermer" textFill="WHITE" />
+               </children>
+            </Pane>
+            <VBox layoutY="65.0" prefHeight="424.0" prefWidth="500.0" AnchorPane.topAnchor="60.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="500.0">
+                     <children>
                         <Label prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Réference Parking :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
                         <TextField fx:id="idparkingTextField" editable="false" prefWidth="200.0" styleClass="text">
-                            <HBox.margin>
-                                <Insets left="60.0" />
-                            </HBox.margin>
-                            <stylesheets>
-                                <URL value="@../Css/textinputstyle.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
                         </TextField>
-                    </children>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="500.0">
-                    <children>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="500.0">
+                     <children>
                         <Label prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Adresse du Parking :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                        <TextField fx:id="adressparkingTextField" prefWidth="200.0" styleClass="text">
-                            <HBox.margin>
-                                <Insets left="60.0" />
-                            </HBox.margin>
-                            <stylesheets>
-                                <URL value="@../Css/textinputstyle.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
+                        <TextField fx:id="adressparkingTextField" editable="false" prefWidth="200.0" styleClass="text">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
                         </TextField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="500.0">
-                    <children>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="500.0">
+                     <children>
                         <Label prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Capacité du Parking :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                        <TextField fx:id="capaciteParkingTextField" prefWidth="200.0" styleClass="text">
-                            <HBox.margin>
-                                <Insets left="60.0" />
-                            </HBox.margin>
-                            <stylesheets>
-                                <URL value="@../Css/textinputstyle.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
+                        <TextField fx:id="capaciteParkingTextField" editable="false" prefWidth="200.0" styleClass="text">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
                         </TextField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="114.0" prefHeight="52.0" prefWidth="500.0">
-                    <children>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="114.0" prefHeight="52.0" prefWidth="500.0">
+                     <children>
                         <Label prefWidth="148.0" stylesheets="@../Css/MinitextStyle.css" text="Place Occupées :" textFill="#b9b3b3">
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </Label>
-                        <TextField fx:id="occupeParkingTextField" prefWidth="200.0">
-                            <HBox.margin>
-                                <Insets left="60.0" />
-                            </HBox.margin>
-                            <stylesheets>
-                                <URL value="@../Css/textinputstyle.css" />
-                                <URL value="@../Css/MinitextStyle.css" />
-                            </stylesheets>
-                            <styleClass>
-                                <String fx:value="text" />
-                                <String fx:value="text-field" />
-                            </styleClass>
+                        <TextField fx:id="occupeParkingTextField" editable="false" prefWidth="200.0">
+                           <HBox.margin>
+                              <Insets left="60.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../Css/textinputstyle.css" />
+                              <URL value="@../Css/MinitextStyle.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="text" />
+                              <String fx:value="text-field" />
+                           </styleClass>
                         </TextField>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                  <JFXButton fx:id="editParkingBtn" layoutX="236.0" layoutY="35.0" onAction="#closeButtonAction" prefHeight="50.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                           <image>
-                              <Image url="@../Css/Images/Edit.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                        <JFXButton fx:id="deletebtn" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
-                            <HBox.margin>
-                                <Insets left="100.0" />
-                            </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
-                           <image>
-                              <Image url="@../Css/Images/delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="nonEditHBox" alignment="CENTER" prefHeight="42.0" prefWidth="500.0">
+                     <children>
+                        <JFXButton fx:id="editParkingBtn" layoutX="236.0" layoutY="35.0" onAction="#editButtonAction" prefHeight="36.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Modifier" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                 <image>
+                                    <Image url="@../Css/Images/Edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </JFXButton>
-                    </children>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-                </HBox>
-                <Label alignment="CENTER" prefHeight="17.0" prefWidth="543.0" text="Remplire tous les champs" textFill="#fc0000" visible="false">
-                    <font>
+                        <JFXButton fx:id="deletebtn" layoutX="10.0" layoutY="10.0" onAction="#deleteBtnAction" prefHeight="33.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Supprimer." textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                 <image>
+                                    <Image url="@../Css/Images/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="543.0" text="Remplire tous les champs" textFill="#fc0000" visible="false">
+                     <font>
                         <Font name="Rockwell" size="14.0" />
-                    </font></Label>
-            </children>
-        </VBox>
-    </children>
-</AnchorPane>
+                     </font>
+                  </Label>
+                  <HBox fx:id="editHBox" alignment="CENTER" layoutX="10.0" layoutY="298.0" prefHeight="42.0" prefWidth="500.0" visible="false">
+                     <children>
+                        <JFXButton fx:id="SaveeditParkingBtn" layoutX="236.0" layoutY="35.0" onAction="#SaveeditParkingBtnAction" prefHeight="36.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #1ED760;" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                 <image>
+                                    <Image url="@../img/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="annulerBtn" layoutX="10.0" layoutY="10.0" onAction="#annulerBtnAction" prefHeight="33.0" prefWidth="148.0" style="-fx-background-radius: 40; -fx-background-color: #E53434;" stylesheets="@../Css/MinitextStyle.css" text="Annuler" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                 <image>
+                                    <Image url="@../img/xIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

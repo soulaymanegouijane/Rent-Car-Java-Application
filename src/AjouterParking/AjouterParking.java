@@ -52,62 +52,36 @@ public class AjouterParking implements Initializable{
 
     public void submitButtonAction(ActionEvent actionEvent) {
         erreurMessage.setVisible(false);
-     
-        Boolean b = false;
-        Boolean E = false;
-        if (!Tester()) {
-    	   idparking = idparkingTextField.getText();
-           adressparking = adressparkingTextField.getText();
-           
-           try {
-        	   capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
-               occupeParking = Integer.parseInt(occupeParkingTextField.getText());
-               
-			} catch (Exception e) {
-				b = true;
-				E = true;
-			}
-        	Parking parking = new Parking();
-            parking.setIdParking(Long.valueOf(idparking));
+
+        if (Tester()){
+            erreurMessage.setText("Remplissez tous les champs !!");
+            erreurMessage.setVisible(true);
+        }else if(H.isNumeric(capaciteParkingTextField.getText())){
+            erreurMessage.setText("Capacité doit étre entier !!");
+            erreurMessage.setVisible(true);
+        }else if(H.isNumeric(occupeParkingTextField.getText())){
+            erreurMessage.setText("Nombre de places doit étre entier !!");
+            erreurMessage.setVisible(true);
+        }else if((Integer.parseInt(capaciteParkingTextField.getText()) < Integer.parseInt(occupeParkingTextField.getText()))){
+            erreurMessage.setText("Nombre de places doit étre moins de Capacité !!");
+            erreurMessage.setVisible(true);
+        }else {
+            idparking = idparkingTextField.getText();
+            adressparking = adressparkingTextField.getText();
+
+            capaciteParking = Integer.parseInt(capaciteParkingTextField.getText());
+            occupeParking = Integer.parseInt(occupeParkingTextField.getText());
+
+            Parking parking = new Parking();
+            parking.setIdParking(Long.parseLong(idparking));
             parking.setAdress(adressparking);
             parking.setCapacite(capaciteParking);
             parking.setNbr_place_pleinne(occupeParking);
-            
-            if(!E) {
-            	H.parking.add(parking); 
-            }
-            
-            if(b) {
-            	AfficheErreur(true,"parking");
-            }
+
+            H.parking.add(parking);
 
             Stage stage =(Stage) submitButton.getScene().getWindow();
             stage.close();
-		} else {
-			erreurMessage.setVisible(true);
-			Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Alert d'erreur");
-        	alert.setHeaderText("can not add parking");
-        	if(occupeParkingTextField.getText().isEmpty()) {
-        		alert.setContentText("tu dois remplir les places occupee dans le parking");
-        	}else if(adressparkingTextField.getText().isEmpty()) {
-        		alert.setContentText("tu dois entrer l'adress du parking !");
-        	}else if(capaciteParkingTextField.getText().isEmpty()) {
-        		alert.setContentText("tu dois remplir la capacite du parking !");
-        	}else {
-        		alert.setContentText("tu dois remplir les deux champ");
-        	}
-        	alert.showAndWait();
-		}
-    }
-    
-    public void AfficheErreur(Boolean bool,String str) {
-    	if(bool) {
-        	Alert alert = new Alert(AlertType.ERROR);
-        	alert.setTitle("Alert d'erreur");
-        	alert.setHeaderText("can not add "+str);
-        	alert.setContentText(str+" n'est pas Ajouter !!");
-        	alert.showAndWait();
         }
     }
     
@@ -135,36 +109,4 @@ public class AjouterParking implements Initializable{
     	return parc;
     }
 
-    public boolean Erreur() {
-
-        if(!isNumeric(capaciteParkingTextField.getText())){
-            erreurMessage.setText("La capacite faut etre un entier !!");
-            return true;
-        }
-
-        if(!isNumeric(occupeParkingTextField.getText())){
-            erreurMessage.setText("Le nombre des places occupees faut etre un entier !!");
-            return true;
-        }
-
-        if(idparking.isEmpty() || adressparking.isEmpty()){
-            erreurMessage.setText("Remplire tous les champs !!");
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
-        try {
-            int d = Integer.parseInt(strNum);
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
-
-	
 }
