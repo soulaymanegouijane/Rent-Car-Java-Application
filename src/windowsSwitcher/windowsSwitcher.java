@@ -3,6 +3,7 @@ package windowsSwitcher;
 import Entities.Utilisateur;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import windowsSwitcher.compteWindow.CompteWindow;
@@ -51,6 +53,9 @@ public class windowsSwitcher implements Initializable {
     @FXML
     private AnchorPane windowSpace;
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     public static Utilisateur loggedInUser = null;
 
     @Override
@@ -67,6 +72,9 @@ public class windowsSwitcher implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) acceuilButton.getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
@@ -180,8 +188,29 @@ public class windowsSwitcher implements Initializable {
 
         Scene home = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        setDragged(root, stage);
+
         stage.setScene(home);
         stage.show();
     }
 
+    public void setDragged(Parent root, Stage stage) {
+        xOffset = 0;
+        yOffset = 0;
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
+    }
 }

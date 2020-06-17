@@ -121,9 +121,9 @@ public class ClientImp extends Abst implements ClientInter{
 			PreparedStatement ps =  con.prepareStatement(sql);
 			ps.setString(1,arg.getIdClient());
 			status = ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
-			e.printStackTrace();
+			status = 0;
 		}finally {
 			try {
 				con.close();

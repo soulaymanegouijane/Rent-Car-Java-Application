@@ -158,9 +158,6 @@ public class ControllerUtilisateur implements Initializable {
             System.out.println(selectedfile.getAbsolutePath());
         }
     }
-    
-    
-    
 
     public void handleAnnulerButton(ActionEvent actionEvent) {
         Stage stage =(Stage) closeButton.getScene().getWindow();
@@ -197,10 +194,16 @@ public class ControllerUtilisateur implements Initializable {
         if(testEmpty()){
             erreurMessage.setText("Remplissez tous les champs !!");
             erreurMessage.setVisible(true);
-        }else if (!H.isEmailValid(email)){
-            erreurMessage.setText("Vous avez fait une faute dans l'email !!");
+        } else if (!H.isEmailValid(email)){
+            erreurMessage.setText("Erreur dans la saisie de l'email !!");
             erreurMessage.setVisible(true);
-        }else {
+        } else if (!H.isNumeric(codePostal)) {
+            erreurMessage.setText("Erreur dans la saisie du Code Postal !!");
+            erreurMessage.setVisible(true);
+        } else if (!H.isNumeric(telephone)) {
+            erreurMessage.setText("Erreur dans la saisie du Téléphone !!");
+            erreurMessage.setVisible(true);
+        } else {
             // Upload informations to dataBase
         	user.setIdUtilisateur(cin);
 			user.setNom(nom);

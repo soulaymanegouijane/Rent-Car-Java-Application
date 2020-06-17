@@ -351,11 +351,11 @@
                      </HBox.margin></PasswordField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="178.0" prefHeight="58.0" prefWidth="386.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="178.0" prefHeight="58.0" prefWidth="386.0">
                <children>
                   <JFXButton fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleSaveButton" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: #63B4FF; -fx-background-radius: 40;" styleClass="text" stylesheets="@../Css/MinitextStyle.css" text="Enregistrer l'Utilisateur" textFill="WHITE">
                      <HBox.margin>
-                        <Insets left="120.0" />
+                        <Insets />
                      </HBox.margin>
                   </JFXButton>
                </children>

@@ -191,12 +191,6 @@ public class UtilisateurWindow implements Initializable {
     	}
     }
 
-    
-    public String returnCivilite() {
-    	Connection con = Abst.getConnection();
-    	String sql = "select civilite from utilisateur";
-    	return null;
-    }
 
     public void handleChercherComboBox(ActionEvent actionEvent) {
         searchSection = chercherComboBox.getValue();
@@ -224,55 +218,42 @@ public class UtilisateurWindow implements Initializable {
         String searchSection = chercherComboBox.getValue();
         disable(ErreurMessage);
 
-        if(searchSection.equals("CIN")){
-        	utilisateur_list.clear();
-        	mono_Utilisateur.clear();
-            String CINTaped = dataTextFeild.getText();
-            if(CINTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search User by CIN
-            	afficher_utilisateur(CINTaped);
-            }
-
-        }else if(searchSection.equals("Nom")){
-        	utilisateur_list.clear();
-        	mono_Utilisateur.clear();
-            String NomTaped = dataTextFeild.getText();
-
-            if(NomTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search User by Nam
-            	afficher_utilisateur(NomTaped);
-            }
-
-        }else if(searchSection.equals("Prenom")){
-        	utilisateur_list.clear();
-        	mono_Utilisateur.clear();
-            String PrenomTaped = dataTextFeild.getText();
-
-            if(PrenomTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-                // Search User by prenom
-            	afficher_utilisateur(PrenomTaped);
-            }
-
-        }else if(searchSection.equals("Etat de compte")){
-        	utilisateur_list.clear();
-        	mono_Utilisateur.clear();
-            String EtatTaped = compteComboBox.getValue();
-            if(EtatTaped.isEmpty()){
-                enable(ErreurMessage);
-            }else {
-            	// Search User by Etat de compte
-            	System.out.println(EtatTaped);
-            	etatCompte(EtatTaped);
-            }
-            
+        if ((searchSection.equals("CIN") || searchSection.equals("Nom") || searchSection.equals("Prenom")) && dataTextFeild.getText().isEmpty()) {
+            enable(ErreurMessage);
+        }else if (compteComboBox.getValue() == null && searchSection.equals("Etat de compte")){
+            enable(ErreurMessage);
         }else {
-        	remplir_tableau();
+            if(searchSection.equals("CIN")){
+                utilisateur_list.clear();
+                mono_Utilisateur.clear();
+
+                // Search User by CIN
+                afficher_utilisateur(dataTextFeild.getText());
+
+            }else if(searchSection.equals("Nom")){
+                utilisateur_list.clear();
+                mono_Utilisateur.clear();
+
+                // Search User by Nam
+                afficher_utilisateur(dataTextFeild.getText());
+
+            }else if(searchSection.equals("Prenom")){
+                utilisateur_list.clear();
+                mono_Utilisateur.clear();
+
+                // Search User by Prenom
+                afficher_utilisateur(dataTextFeild.getText());
+
+            }else if(searchSection.equals("Etat de compte")){
+                utilisateur_list.clear();
+                mono_Utilisateur.clear();
+
+                // Search User by Etat de compte
+                etatCompte(compteComboBox.getValue());
+
+            }else {
+                remplir_tableau();
+            }
         }
     }
 

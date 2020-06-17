@@ -129,20 +129,7 @@ public class LoginMain implements Initializable {
                     Scene home = new Scene(root);
                     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-                    root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            xOffset = event.getSceneX();
-                            yOffset = event.getSceneY();
-                        }
-                    });
-                    root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            stage.setX(event.getScreenX() - xOffset);
-                            stage.setY(event.getScreenY() - yOffset);
-                        }
-                    });
+                    setDragged(root, stage);
 
                     stage.setScene(home);
                     stage.show();
@@ -203,5 +190,24 @@ public class LoginMain implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+    }
+
+    public void setDragged(Parent root, Stage stage) {
+        xOffset = 0;
+        yOffset = 0;
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
     }
 }
