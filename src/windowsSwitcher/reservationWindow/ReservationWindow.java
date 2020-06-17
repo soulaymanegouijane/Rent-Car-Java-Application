@@ -125,7 +125,7 @@ public class ReservationWindow implements Initializable {
 
     ObservableList<String> searchTypeList = FXCollections.observableArrayList("Tous", "Id", "Type", "Date", "Vehicule", "Client", "Utilisateur", "Status");
     ObservableList<String> typeTypeList = FXCollections.observableArrayList("Reservation local", "Reservation telephonique");
-    ObservableList<String> statutTypeList = FXCollections.observableArrayList("En cours", "Complete", "Annule");
+    ObservableList<String> statutTypeList = FXCollections.observableArrayList("en cours", "Active","Terminer", "Annuler");
 
     ObservableList<Reservation> reservation_list = FXCollections.observableArrayList();
     ObservableList<Reservation> mono_reservation = FXCollections.observableArrayList();

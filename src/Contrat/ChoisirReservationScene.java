@@ -61,7 +61,6 @@ public class ChoisirReservationScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Fill reservationTableView
     	remplir_tableau();
     }
 
@@ -70,8 +69,6 @@ public class ChoisirReservationScene implements Initializable {
         if(reservationTableView.getSelectionModel().getSelectedItem() == null){
             errorMessage.setVisible(true);
         }else{
-            // Get selected row
-        	
         	Reservation selectedReservation= reservationTableView.getSelectionModel().getSelectedItem();
             idReservationSelected = String.valueOf(selectedReservation.getIdReservation());
 
