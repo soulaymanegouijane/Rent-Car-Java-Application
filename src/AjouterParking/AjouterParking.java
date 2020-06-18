@@ -56,10 +56,10 @@ public class AjouterParking implements Initializable{
         if (Tester()){
             erreurMessage.setText("Remplissez tous les champs !!");
             erreurMessage.setVisible(true);
-        }else if(H.isNumeric(capaciteParkingTextField.getText())){
+        }else if(!H.isNumeric(capaciteParkingTextField.getText())){
             erreurMessage.setText("Capacité doit étre entier !!");
             erreurMessage.setVisible(true);
-        }else if(H.isNumeric(occupeParkingTextField.getText())){
+        }else if(!H.isNumeric(occupeParkingTextField.getText())){
             erreurMessage.setText("Nombre de places doit étre entier !!");
             erreurMessage.setVisible(true);
         }else if((Integer.parseInt(capaciteParkingTextField.getText()) < Integer.parseInt(occupeParkingTextField.getText()))){
