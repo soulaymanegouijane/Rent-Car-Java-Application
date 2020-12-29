@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="prt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="506.0" style="-fx-background-color: transparent;" stylesheets="@../Css/holder.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.ImprimerController">
+   <children>
+      <VBox fx:id="vboxT" prefHeight="461.0" prefWidth="476.0" style="-fx-background-color: white;" styleClass="SceneHolder" stylesheets="@../Css/holder.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <ImageView fitHeight="43.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/output-onlinepngtools.png" />
+                     </image>
+                  </ImageView>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="dateFacture" prefHeight="17.0" prefWidth="193.0" />
+                  <JFXButton fx:id="closeBtn" onAction="#CloseBtnFct" style="-fx-background-color: red; -fx-background-radius: 50;" text="X" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox spacing="10.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Informations du Client">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="55.0" prefWidth="507.0">
+                     <children>
+                        <VBox prefHeight="55.0" prefWidth="255.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="89.0" text="Nom :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="nomClient" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="15.0" layoutY="15.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="108.0" text="Prénom :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="prenomClient" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="255.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="89.0" text="CIN :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="cinClient" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="15.0" layoutY="15.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="107.0" text="Adresse :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="adresseClient" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="20.0" layoutY="83.0" spacing="10.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Informations du Véhicule">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <VBox prefHeight="55.0" prefWidth="255.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="89.0" text="Matricule :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="matriculeVehicule" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="15.0" layoutY="15.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="89.0" text="Type :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="typeVehicule" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="255.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="107.0" text="Marque :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="marqueVehicule" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="15.0" layoutY="15.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="126.0" text="Carburant :" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="carburantVehicule" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="20.0" layoutY="169.0" spacing="10.0">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Informations du Facture">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="73.0" prefWidth="447.0">
+                     <children>
+                        <TableView fx:id="table" focusTraversable="false" prefHeight="73.0" prefWidth="471.0">
+                          <columns>
+                            <TableColumn fx:id="NumeroFacture" prefWidth="66.00000286102295" text="N° Facture" />
+                            <TableColumn fx:id="NbrJours" prefWidth="60.000022888183594" text="nbr Jrs" />
+                              <TableColumn fx:id="MTReservation" prefWidth="108.66668701171875" text="MT Reservation" />
+                              <TableColumn fx:id="MTSanction" prefWidth="81.33332824707031" text="MT sanction" />
+                              <TableColumn fx:id="Avance" prefWidth="66.6666259765625" text="Avance" />
+                              <TableColumn fx:id="MontantTotal" minWidth="0.0" prefWidth="81.33330281575519" text="MT Total" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="imprimerBtn" onAction="#ImprimerFacture" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" text="Imprimer" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Print.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

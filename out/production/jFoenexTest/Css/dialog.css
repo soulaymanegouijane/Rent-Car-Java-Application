@@ -1,0 +1,7 @@
+.jfx-dialog-overlay-pane {
+    -fx-background-color: rgba(0.0, 0.0, 0.0, 0.1);
+}
+
+.jfx-dialog-overlay-pane > StackPane {
+    -fx-background-color: TRANSPARENT;
+}

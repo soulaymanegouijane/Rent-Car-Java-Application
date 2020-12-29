@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="factureAnchorPane" prefHeight="533.0" prefWidth="652.0" style="-fx-background-color: white;" styleClass="SceneHolder" stylesheets="@../Css/holder.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InterfaceDetails.ConsulterFacture">
+    <children>
+        <VBox prefHeight="494.0" prefWidth="576.0" styleClass="SceneHolder" stylesheets="@../Css/holder.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="56.0" prefWidth="572.0" style="-fx-background-color: #FBB537;" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label styleClass="text" stylesheets="@../Css/textStyle.css" text="Consulter Facture" textFill="WHITE">
+                            <font>
+                                <Font name="Rockwell" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label text="Reférence Du Facture :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idFactureTextField" editable="false" prefHeight="25.0" prefWidth="172.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="100.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" spacing="80.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Date De Réglement :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <DatePicker fx:id="dateFactureDatePicker" disable="true" editable="false" styleClass="datePicker" stylesheets="@../Css/datePicker.css" />
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="132.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Contrat :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="ContratTextField" editable="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Réservation :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="reservationTextField" editable="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="456.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Client :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="clientTextField" editable="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Véhicule :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="vehiculeTextField" editable="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="384.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefHeight="17.0" prefWidth="184.0" text="Nombre des jours de Résérvation :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="nombreDeJoursTextField" editable="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="32.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Montant de Réservation :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="montantReservationTextField" editable="false" prefHeight="25.0" prefWidth="177.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="424.0" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Avance:" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="avanceTextField" editable="false" prefHeight="25.0" prefWidth="177.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefHeight="17.0" prefWidth="157.0" text="Nombre des jours de retard :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="joursRetartTextField" editable="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="60.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Montant des Sanctions :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="montantSanctionTextField" editable="false" prefHeight="25.0" prefWidth="178.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="572.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <Label prefWidth="138.0" text="Montant Totale :" textFill="#656060">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="MantantTotaleTextField" editable="false" prefHeight="25.0" prefWidth="177.0" stylesheets="@../Css/textinputstyle.css">
+                            <HBox.margin>
+                                <Insets left="80.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Label stylesheets="@../Css/MinitextStyle.css" text="Dhs">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" />
+                    </padding>
+                </HBox>
+                <Label fx:id="erreurMessage" alignment="CENTER" prefHeight="17.0" prefWidth="585.0" text="Remplissez tous les champs !!" textFill="RED" visible="false" />
+                <HBox alignment="CENTER" layoutX="12.0" layoutY="453.0" prefHeight="56.0" prefWidth="572.0" spacing="100.0" stylesheets="@../Css/MinitextStyle.css">
+                    <children>
+                        <JFXButton fx:id="imprimerButton" onAction="#handleImprimerButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #1ED760; -fx-background-radius: 50;" text="Imprimer" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Print.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                        <JFXButton fx:id="FermerButton" layoutX="217.0" layoutY="17.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #E53434; -fx-background-radius: 50;" text="Fermer" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
+                    </children></HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
